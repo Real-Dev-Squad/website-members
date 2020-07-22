@@ -18,6 +18,9 @@ const HeroText = styled.p`
   font-size: 100px;
   color: #caf0f8;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 50px;
+  }
 `;
 
 export default function Home() {
@@ -34,7 +37,7 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      <Lottie options={defaultOptions} height={500} width={500} />
+      <Lottie options={defaultOptions} height={300} width={300} />
       <HeroText>WORK IN PROGRESS</HeroText>
     </Wrapper>
   );
