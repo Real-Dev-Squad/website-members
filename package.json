@@ -11,6 +11,8 @@
   "dependencies": {
     "next": "9.3.5",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-lottie": "^1.2.3",
+    "styled-components": "^5.1.1"
   }
 }

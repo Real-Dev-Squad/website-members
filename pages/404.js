@@ -1,7 +1,7 @@
-import Head from "next/head";
+import React from "react";
 import styled from "styled-components";
 import Lottie from "react-lottie";
-import animationData from "../public/lottie/paperFlight.json";
+import pageNotFoundAnimation from "../public/lottie/pageNotFound.json";
 
 const Wrapper = styled.div`
   background: #0f2027;
@@ -14,28 +14,18 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const HeroText = styled.p`
-  font-size: 100px;
-  color: #caf0f8;
-  text-align: center;
-`;
-
-export default function Home() {
+export default function PageNotFound() {
   const defaultOptions = {
     loop: true,
     autoplay: true,
-    animationData: animationData,
+    animationData: pageNotFoundAnimation,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
   return (
     <Wrapper>
-      <Head>
-        <title>Home</title>
-      </Head>
       <Lottie options={defaultOptions} height={500} width={500} />
-      <HeroText>WORK IN PROGRESS</HeroText>
     </Wrapper>
   );
 }
