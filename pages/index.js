@@ -3,7 +3,7 @@ import "../styles/global-styles.scss";
 import Head from "next/head";
 import HomePage from "../components/pages/index";
 
-export default function Home() {
+const Index = () => {
   return (
     <div>
       <Head>
@@ -15,7 +15,7 @@ export default function Home() {
           type="image/x-icon"
         />
         <link rel="icon" href="/icons/favicon.ico" type="image/x-icon" />
-        <title>Real Dev Squad</title>
+        <title>Members | Real Dev Squad</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap"
           rel="stylesheet"
@@ -24,4 +24,6 @@ export default function Home() {
       <HomePage />
     </div>
   );
-}
+};
+
+export default Index;
