@@ -43,7 +43,7 @@ All the reusable components are created inside `/components` directory.
 
 ### `/components/pages`
 
-In Next.js it is adviced that the files inside `/pages` directory should contain as minimal code as possible, that's why all the code for a given page is created inside `/components/pages` directory and imported in `/pages`. For Example -
+In Next.js it is adviced that the files inside `/pages` directory should contain as minimal code as possible, that's why all the code for a given page is written inside `/components/pages` directory and imported in `/pages`. For Example -
 
 ```JavaScript
 // Inside /components/pages/blogs/index.js
@@ -57,7 +57,7 @@ export default Blogs;
 
 // Inside /pages/blogs/index.js
 import React from "react";
-import Blogs from "../components/pages/blogs";
+import Blogs from "../../components/pages/blogs";
 
 const BlogsPage = () => {
   return (
