@@ -1,7 +1,8 @@
 import Head from "next/head";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Lottie from "react-lottie";
-import animationData from "../public/lottie/paperFlight.json";
+import animationData from "public/lottie/paperFlight.json";
+import useGetDeviceType from "hooks/useGetDeviceType";
 
 const Wrapper = styled.div`
   background: #0f2027;
@@ -14,16 +15,19 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const HeroText = styled.p`
-  font-size: 100px;
-  color: #caf0f8;
-  text-align: center;
-  @media (max-width: 768px) {
-    font-size: 50px;
-  }
-`;
-
 export default function Home() {
+  const deviceType = useGetDeviceType();
+
+  const HeroText = styled.p`
+    font-size: 100px;
+    color: #caf0f8;
+    text-align: center;
+    ${deviceType === "tablet" &&
+    css`
+      font-size: 50px;
+    `}
+  `;
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -32,12 +36,17 @@ export default function Home() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
   return (
     <Wrapper>
       <Head>
         <title>Home</title>
       </Head>
-      <Lottie options={defaultOptions} height={300} width={300} />
+      <Lottie
+        options={defaultOptions}
+        height={deviceType === "tablet" ? 300 : 600}
+        width={deviceType === "tablet" ? 300 : 600}
+      />
       <HeroText>WORK IN PROGRESS</HeroText>
     </Wrapper>
   );
