@@ -2,11 +2,13 @@
 
 The part of the website that shows the members of RDS
 
-## Folder Structure
+## Project Structure
+
+We are using Next.js for this project. Next.js has a well defined directory structure that must be used to make sure the apps runs properly. Read more about Next.js [here](https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&utm_medium=homepage-cta&utm_campaign=next-website)
 
 ### Pages
 
-In `Next.js`, a page is a React Component exported from a `.js`, `.jsx`, `.ts`, or `.tsx` file in the `pages` directory. Each page is associated with a route based on its file/directory name. An example is given below -
+In `Next.js`, a page is a React Component exported from a `.js`, `.jsx`, `.ts`, or `.tsx` file in the `pages` directory. Each page is associated with a route based on its file/directory name. Read more about `pages` [here](https://nextjs.org/docs/basic-features/pages). An example is given below -
 
 #### Directory Structure
 
