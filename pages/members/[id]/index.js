@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const MemberProfile = () => {
   return <h1>Member Profile</h1>;
