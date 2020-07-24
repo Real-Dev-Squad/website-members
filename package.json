@@ -8,7 +8,8 @@
     "start": "next start",
     "build-static": "next build && next export",
     "lint": "eslint --fix .",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,scss,sass,css,md,json}' --config ./.prettierrc"
+    "format-code": "prettier --write './**/*.{js,jsx,ts,tsx,md,json}' --config ./.prettierrc",
+    "format-styles": "stylelint './**/*.{css,scss}'"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
@@ -34,7 +35,7 @@
     }
   },
   "lint-staged": {
-    "./**/*.{js,jsx,scss,sass,css,ts,tsx}": [
+    "./**/*.{js,jsx,ts,tsx}": [
       "npm run lint",
       "npm run format"
     ]
