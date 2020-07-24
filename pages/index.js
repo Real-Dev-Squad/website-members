@@ -1,7 +1,6 @@
-import React from "react";
-import "../styles/global-styles.scss";
-import Head from "next/head";
-import HomePage from "../components/pages/index";
+import '../styles/global-styles.scss';
+import Head from 'next/head';
+import HomePage from '../components/pages/index';
 
 const Index = () => {
   return (
@@ -9,11 +8,7 @@ const Index = () => {
       <Head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="shortcut icon"
-          href="/icons/favicon.ico"
-          type="image/x-icon"
-        />
+        <link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/icons/favicon.ico" type="image/x-icon" />
         <title>Members | Real Dev Squad</title>
         <link
