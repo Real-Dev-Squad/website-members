@@ -34,8 +34,11 @@
     }
   },
   "lint-staged": {
-    "./**/*.{js,jsx,scss,ts,tsx}": [
-      "eslint --fix"
+    "./**/*.{js,jsx,ts,tsx}": [
+      "npm run lint"
+    ],
+    "./**/*.{js,jsx,ts,tsx,scss}": [
+      "npm run format"
     ]
   }
 }
