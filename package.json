@@ -35,7 +35,8 @@
   },
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix",
+      "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
     ]
   }
 }
