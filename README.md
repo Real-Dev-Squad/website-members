@@ -76,3 +76,59 @@ export default BlogsPage;
 ### Public
 
 All the public assets like `icons`, `images` are stored inside public directory.
+
+## SCSS Guide
+
+There are two ways to add styles in the project
+
+### Global Sylesheets
+
+Create a stylesheet, for example `nav-styles.scss`
+
+```SCSS
+nav {
+  padding: 20px 20px 60px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+```
+
+Import the nav-style.scss in a js file
+
+```JavaScript
+import './nav-styles.css';
+
+const Nav = () => {
+  return <nav>This is nav</nav>;
+}
+```
+
+> Note this way is suitable for writing global stylesheets only, for internal components use CSS modules syntax explained below.
+
+### CSS Modules
+
+Next support CSS Modules out of the box. To enable CSS Module for any SCSS stylesheet use `.module.scss` in the end of the filename. Let's see and example -
+
+Creating a filename with the name `button.module.scss`
+
+```SCSS
+.btn{
+  color: red;
+  font-size: 100px;
+  border: 0px;
+}
+```
+
+In the JS file import this stylesheet.
+
+```JavaScript
+import classNames from "./button.module.scss";
+
+const Button = () => {
+  return <button className={classNames.btn}>Click Me!</button>;
+}
+
+export default Button;
+```
+
+Importing styles in this way will scope all the styles to their respective files. So classname `.btn` is converted to `[filename]_btn__[hash]`. Read [this](https://nextjs.org/docs/basic-features/built-in-css-support) guide for more info on CSS support in Next.js.
