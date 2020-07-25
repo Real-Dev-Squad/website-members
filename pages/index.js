@@ -17,6 +17,9 @@ const Index = () => {
         />
       </Head>
       <HomePage />
+      <footer>
+        <p className="info-repo">The contents of this website are deployed from this <a href="https://github.com/Real-Dev-Squad/website-members" target="_blank" rel="noopener noreferrer">open sourced repo</a></p>
+      </footer>
     </div>
   );
 };
