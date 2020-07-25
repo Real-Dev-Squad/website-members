@@ -1,4 +1,3 @@
-import '../styles/global-styles.scss';
 import Head from 'next/head';
 import HomePage from '../components/pages/index';
 
