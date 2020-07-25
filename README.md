@@ -93,7 +93,7 @@ nav {
 }
 ```
 
-Import the nav-style.scss in a js file
+Import the `nav-style.scss` in a js file.
 
 ```JavaScript
 import './nav-styles.css';
@@ -103,7 +103,7 @@ const Nav = () => {
 }
 ```
 
-> Note this way is suitable for writing global stylesheets only, for internal components use CSS modules syntax explained below.
+> Note this way is suitable for writing global stylesheets only, for internal component stylesheets use CSS modules syntax explained below.
 
 ### CSS Modules
 
