@@ -77,6 +77,8 @@ export default BlogsPage;
 
 All the public assets like `icons`, `images` are stored inside public directory.
 
+## SCSS Guide
+
 There are two ways to add styles in the project
 
 ### Global Sylesheets
@@ -142,5 +144,3 @@ These scripts refer to the different stages of developing an application:
 #### build-static - Runs next build && next export which builds the application and have a static version of app in the 'out' directory.
 
 #### start - Runs next start which starts a Next.js production server.
-
-## SCSS Guide
