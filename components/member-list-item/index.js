@@ -22,7 +22,7 @@ const PreviewMember = (props) => {
 
   return (
     <div className={classNames.container}>
-      <Link prefetch={false} href={`/members/${rdsId}`} key={rdsId}>
+      <Link prefetch={false} href="/members/[id]" as={`/members/${rdsId}`} key={rdsId}>
         <a href={`/members/${rdsId}`}>
           <div ref={imgRef} className={classNames.imgContainer}></div>
         </a>
