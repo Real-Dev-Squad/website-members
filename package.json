@@ -8,9 +8,9 @@
     "start": "next start",
     "build-static": "next build && next export",
     "lint": "eslint --fix .",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,scss,md,json}'",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,md,json}\""
   },
   "dependencies": {
     "next": "9.3.5",
