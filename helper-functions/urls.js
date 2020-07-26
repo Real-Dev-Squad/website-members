@@ -12,4 +12,4 @@ const getImgURL = (rdsId) => `${baseURL}/members/${rdsId}/img.png`;
  */
 const getDataURL = (rdsId) => `${baseURL}/members/${rdsId}/data.json`;
 
-export { getImgURL, getDataURL, baseURL };
+export { getImgURL, getDataURL };
