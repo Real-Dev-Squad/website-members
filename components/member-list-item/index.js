@@ -39,6 +39,15 @@ const PreviewMember = (props) => {
               <img className={classNames.icon} alt="github icon" src="/icons/github.png" />
             </a>
           )}
+          {data['linkedin_id'] && (
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`//linkedin.com/in/${data['linkedin_id']}`}
+              className={classNames.iconAnchor}>
+              <img className={classNames.icon} alt="github icon" src="/icons/linkedin.png" />
+            </a>
+          )}
           {data['instagram_id'] && (
             <a
               target="_blank"
