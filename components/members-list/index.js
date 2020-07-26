@@ -1,13 +1,14 @@
+import React from 'react';
 import MemberListItem from 'components/member-list-item';
 import Loader from 'components/loader';
 
-import useFetchHook from 'custom-hooks/useFetchHook';
+import useFetch from 'custom-hooks/useFetch';
 import classNames from './member-list.module.scss';
 
 const URL = 'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/ids/mapping.json';
 
 const MembersList = () => {
-  let { loading, error, data } = useFetchHook(URL);
+  let { loading, error, data } = useFetch(URL);
 
   if (loading) {
     return <Loader />;
@@ -19,13 +20,12 @@ const MembersList = () => {
 
   if (data) {
     let rdsIds = Object.keys(data);
-    console.log(rdsIds);
     return (
       <div className={classNames.container}>
         {rdsIds.map((rdsId) => (
-          <div key={rdsId}>
+          <React.Fragment key={rdsId}>
             <MemberListItem rdsId={rdsId} />
-          </div>
+          </React.Fragment>
         ))}
       </div>
     );

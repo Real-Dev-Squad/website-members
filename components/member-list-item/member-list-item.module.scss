@@ -1,0 +1,27 @@
+.container {
+  flex: 1 250px;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 40px 20px;
+}
+
+.imgContainer {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0px auto;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.iconsContainer {
+  margin-top: auto;
+}
+
+.iconAnchor:not(:last-child) {
+  margin-right: 15px;
+}
