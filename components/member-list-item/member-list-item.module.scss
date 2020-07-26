@@ -1,0 +1,35 @@
+.container {
+  flex: 1 250px;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 20px;
+  border: 1px solid #f4f4f4;
+  padding: 20px 10px;
+}
+
+.imgContainer {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 0px auto;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.iconsContainer {
+  margin-top: auto;
+}
+
+.iconContainer:not(:last-child) {
+  margin-right: 15px;
+}
+
+.iconContainer {
+  img {
+    width: 28px;
+  }
+}
