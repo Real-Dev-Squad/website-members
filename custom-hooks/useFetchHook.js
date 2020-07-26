@@ -45,7 +45,7 @@ const useFetchHook = (url) => {
 
         setToData(data);
       } catch (e) {
-        setToError(e.message);
+        setToError(e);
       }
     };
     fetchUrl();
