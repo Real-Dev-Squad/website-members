@@ -12,7 +12,7 @@ const MyApp = (props) => {
 
 MyApp.propTypes = {
   Component: PropTypes.element.isRequired,
-  pageProps: PropTypes.any.isRequired
+  pageProps: PropTypes.any
 };
 
 export default MyApp;
