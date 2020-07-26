@@ -131,13 +131,16 @@ export default Button;
 
 Importing styles in this way will scope all the styles to their respective files. So classname `.btn` is converted to `[filename]_btn__[hash]`. Read [this](https://nextjs.org/docs/basic-features/built-in-css-support) guide for more info on CSS support in Next.js.
 
-
 ## How to start ?
 
 These scripts refer to the different stages of developing an application:
 
 #### dev - Runs next which starts Next.js in development mode.
+
 #### build - Runs next build which builds the application for production usage.
+
 #### build-static - Runs next build && next export which builds the application and have a static version of app in the 'out' directory.
+
 #### start - Runs next start which starts a Next.js production server.
+
 ## SCSS Guide
