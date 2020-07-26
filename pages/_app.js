@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
+  console.log('pageProps - ', props);
   return (
     <div>
       <Component {...pageProps} />
@@ -12,7 +13,7 @@ const MyApp = (props) => {
 
 MyApp.propTypes = {
   Component: PropTypes.element.isRequired,
-  pageProps: PropTypes.any
+  pageProps: PropTypes.object.isRequired
 };
 
 export default MyApp;
