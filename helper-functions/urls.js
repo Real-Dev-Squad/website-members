@@ -1,15 +1,15 @@
-/**
- *
- * @param {string} rdsId
- */
-const getImgURL = (rdsId) =>
-  `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/members/${rdsId}/img.png`;
+const baseURL = 'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main';
 
 /**
  *
  * @param {string} rdsId
  */
-const getDataURL = (rdsId) =>
-  `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/members/${rdsId}/data.json`;
+const getImgURL = (rdsId) => `${baseURL}/members/${rdsId}/img.png`;
 
-export { getImgURL, getDataURL };
+/**
+ *
+ * @param {string} rdsId
+ */
+const getDataURL = (rdsId) => `${baseURL}/members/${rdsId}/data.json`;
+
+export { getImgURL, getDataURL, baseURL };
