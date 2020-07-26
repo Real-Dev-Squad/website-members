@@ -1,4 +1,5 @@
 import '../styles/global-styles.scss';
+import Footer from '../components/footer';
 import PropTypes from 'prop-types';
 
 const MyApp = (props) => {
@@ -6,6 +7,7 @@ const MyApp = (props) => {
   return (
     <div>
       <Component {...pageProps} />
+      <Footer />
     </div>
   );
 };
