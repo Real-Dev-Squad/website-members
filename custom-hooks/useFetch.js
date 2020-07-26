@@ -9,7 +9,7 @@ let defaults = {
 /**
  * @param {string} url
  */
-const useFetchHook = (url) => {
+const useFetch = (url) => {
   let [loading, setLoading] = useState(defaults.loading);
   let [error, setError] = useState(defaults.error);
   let [data, setData] = useState(defaults.data);
@@ -50,7 +50,8 @@ const useFetchHook = (url) => {
     };
     fetchUrl();
   }, []);
+
   return { loading, error, data };
 };
 
-export default useFetchHook;
+export default useFetch;
