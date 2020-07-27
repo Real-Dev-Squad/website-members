@@ -31,18 +31,10 @@ const PreviewMember = (props) => {
       </h2>
       {data && (
         <div className={classNames.iconsContainer}>
-          {data['twitter_id'] && (
-            <SocialMediaIcon id={data.twitter_id} type="twitter"></SocialMediaIcon>
-          )}
-          {data['github_id'] && (
-            <SocialMediaIcon id={data.github_id} type="github"></SocialMediaIcon>
-          )}
-          {data['linkedin_id'] && (
-            <SocialMediaIcon id={data.linkedin_id} type="linkedIn"></SocialMediaIcon>
-          )}
-          {data['instagram_id'] && (
-            <SocialMediaIcon id={data.instagram_id} type="instagram"></SocialMediaIcon>
-          )}
+          {data['twitter_id'] && <SocialMediaIcon id={data.twitter_id} type="twitter" />}
+          {data['github_id'] && <SocialMediaIcon id={data.github_id} type="github" />}
+          {data['linkedin_id'] && <SocialMediaIcon id={data.linkedin_id} type="linkedIn" />}
+          {data['instagram_id'] && <SocialMediaIcon id={data.instagram_id} type="instagram" />}
         </div>
       )}
     </div>
