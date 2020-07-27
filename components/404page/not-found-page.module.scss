@@ -1,0 +1,14 @@
+.fullPageContainer {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notFoundImage {
+  width: 100%;
+  height: 45vh;
+  object-fit: contain;
+}
