@@ -28,4 +28,9 @@ SocialMediaIcon.propTypes = {
   type: PropTypes.string
 };
 
+SocialMediaIcon.defaultProps = {
+  id: '',
+  type: ''
+};
+
 export default SocialMediaIcon;
