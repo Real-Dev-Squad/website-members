@@ -1,18 +1,16 @@
-import { string } from 'prop-types';
-import Link from 'next/link';
 import { getDataURL, getImgURL } from 'helper-functions/urls';
+import { useEffect, useRef } from 'react';
+
+import Link from 'next/link';
+import SocialMediaIcon from '../social-media-icon';
 import classNames from './member-list-item.module.scss';
-import { useRef, useEffect } from 'react';
+import { string } from 'prop-types';
 import useFetch from 'custom-hooks/useFetch';
 
 const PreviewMember = (props) => {
   const { rdsId } = props;
   const { data } = useFetch(getDataURL(rdsId));
   const imgRef = useRef();
-
-  const onClick = (e) => {
-    e.stopPropagation();
-  };
 
   useEffect(() => {
     if (imgRef && imgRef.current) {
@@ -33,45 +31,10 @@ const PreviewMember = (props) => {
       </h2>
       {data && (
         <div className={classNames.iconsContainer}>
-          {data['twitter_id'] && (
-            <a
-              onClick={onClick}
-              className={classNames.iconContainer}
-              target="_blank"
-              rel="noreferrer"
-              href={`//twitter.com/${data['twitter_id']}`}>
-              <img className={classNames.icon} alt="twitter icon" src="/icons/twitter.png" />
-            </a>
-          )}
-          {data['github_id'] && (
-            <a
-              onClick={onClick}
-              target="_blank"
-              rel="noreferrer"
-              href={`//github.com/${data['github_id']}`}
-              className={classNames.iconContainer}>
-              <img className={classNames.icon} alt="github icon" src="/icons/github.png" />
-            </a>
-          )}
-          {data['linkedin_id'] && (
-            <a
-              onClick={onClick}
-              target="_blank"
-              rel="noreferrer"
-              href={`//linkedin.com/in/${data['linkedin_id']}`}
-              className={classNames.iconContainer}>
-              <img className={classNames.icon} alt="github icon" src="/icons/linkedin.png" />
-            </a>
-          )}
-          {data['instagram_id'] && (
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href={`//instagram.com/${data['instagram_id']}`}
-              className={classNames.iconContainer}>
-              <img className={classNames.icon} alt="github icon" src="/icons/instagram.png" />
-            </a>
-          )}
+          {data['twitter_id'] && <SocialMediaIcon id={data.twitter_id} type="twitter" />}
+          {data['github_id'] && <SocialMediaIcon id={data.github_id} type="github" />}
+          {data['linkedin_id'] && <SocialMediaIcon id={data.linkedin_id} type="linkedIn" />}
+          {data['instagram_id'] && <SocialMediaIcon id={data.instagram_id} type="instagram" />}
         </div>
       )}
     </div>
