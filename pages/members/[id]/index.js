@@ -1,9 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Profile from 'components/member-profile';
 
 const MemberProfile = () => {
   let { query } = useRouter();
-  return <h1>Member Profile - {query.id}</h1>;
+  return <Profile id={query.id} />;
 };
 
 export default MemberProfile;
