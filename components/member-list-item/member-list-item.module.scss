@@ -19,6 +19,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  transition: transform 0.2s ease-in-out;
 }
 //transition of image for better user experiance
 .imgContainer:hover {
