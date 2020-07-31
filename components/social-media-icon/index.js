@@ -13,12 +13,12 @@ const SocialMediaIcon = (props) => {
   return (
     <a
       onClick={onClick}
-      className={classNames.iconContainer}
+      className={classNames.iconAnchor}
       target="_blank"
       rel="noreferrer"
       tabIndex="0"
       href={`${IconMapper[type].href}/${[id]}`}>
-      <img className={classNames.image} alt={IconMapper[type].alt} src={IconMapper[type].src} />
+      <img className={classNames.iconImage} alt={IconMapper[type].alt} src={IconMapper[type].src} />
     </a>
   );
 };
