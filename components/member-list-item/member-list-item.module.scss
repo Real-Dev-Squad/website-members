@@ -9,7 +9,6 @@
   //addition of box-shadow and border radius to member card
   box-shadow: 10px 10px 20px -10px rgba(0, 0, 0, 0.22);
   border-radius: 5%;
-
 }
 
 .imgContainer {
@@ -20,23 +19,27 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  transition: transform 0.2s ease-in-out;
 }
 //transition of image for better user experiance
 .imgContainer:hover {
   transform: translateY(-5px);
 }
 
+.name {
+  padding: 10px 10px;
+}
 .iconsContainer {
   margin-top: auto;
 }
 
-.iconContainer:not(:last-child) {
+.iconsContainer:not(:last-child) {
   margin-right: 15px;
 }
 
-.iconContainer {
+.iconsContainer {
   img {
-    width: 28px;
+    width: 2rem;
     //social media icons are scaled by 10%
     transition: transform 0.2s ease-in-out;
   }
