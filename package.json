@@ -5,14 +5,40 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "build-static": "next build && next export"
+    "start": "next start -p $PORT",
+    "build-static": "next build && next export",
+    "lint": "eslint --fix .",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,md,json}\""
   },
   "dependencies": {
-    "@zeit/next-sass": "^1.0.1",
     "next": "9.3.5",
-    "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "sass": "^1.26.10"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged --allow-empty"
+    }
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx}": [
+      "npm run lint"
+    ],
+    "./**/*.{js,jsx,ts,tsx,scss}": [
+      "npm run format"
+    ]
   }
 }

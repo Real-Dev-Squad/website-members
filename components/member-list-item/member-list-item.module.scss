@@ -1,0 +1,46 @@
+.container {
+  flex: 1 250px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid #f4f4f4;
+  padding: 20px 10px;
+
+  //addition of box-shadow and border radius to member card
+  box-shadow: 10px 10px 20px -10px rgba(0, 0, 0, 0.22);
+  border-radius: 5%;
+
+}
+
+.imgContainer {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 0px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+//transition of image for better user experiance
+.imgContainer:hover {
+  transform: translateY(-5px);
+}
+
+.iconsContainer {
+  margin-top: auto;
+}
+
+.iconContainer:not(:last-child) {
+  margin-right: 15px;
+}
+
+.iconContainer {
+  img {
+    width: 28px;
+    //social media icons are scaled by 10%
+    transition: transform 0.2s ease-in-out;
+  }
+  img:hover {
+    transform: scale(1.1);
+  }
+}
