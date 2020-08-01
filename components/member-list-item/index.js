@@ -26,7 +26,7 @@ const PreviewMember = (props) => {
         </a>
       </Link>
 
-      <h2 className={classNames.name}>
+      <h2 className={classNames.nameOfPerson}>
         {data ? `${data['first_name']} ${data['last_name']}` : rdsId}
       </h2>
       {data && (

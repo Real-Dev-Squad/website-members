@@ -1,13 +1,11 @@
-.imgContainer {
-  width: 180px;
-  height: 180px;
+.iconAnchor {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  margin: 0px auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  margin: 4px;
+  display: inline-block;
 }
 
-.image {
-  margin-right: 8px;
+.iconImage {
+  margin: 2px;
 }
