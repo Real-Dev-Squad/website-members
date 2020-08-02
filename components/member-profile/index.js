@@ -1,8 +1,9 @@
-import React from 'react';
 import { getDataURL, getImgURL } from 'helper-functions/urls';
+
+import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from './member-profile.module.scss';
 import useFetch from 'custom-hooks/useFetch';
-import PropTypes from 'prop-types';
 
 const Profile = (props) => {
   const { id } = props;
@@ -10,7 +11,7 @@ const Profile = (props) => {
   const { data } = useFetch(getDataURL(id));
   return (
     <>
-      <img src={imgLink} alt="" className={classNames.profilePic} />
+      <img src={imgLink} className={classNames.profilePic} alt="profile" />
       <div className={classNames.memberName}>
         {data ? `${data['first_name']} ${data['last_name']} ` : `${id}`}
       </div>
