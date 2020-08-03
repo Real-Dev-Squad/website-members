@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-
+import Footer from 'components/footer';
 const Layout = (props) => {
   const { children, title, description } = props;
   return (
@@ -12,12 +12,13 @@ const Layout = (props) => {
       <div className="container">
         <div>{children}</div>
       </div>
+      <Footer />
     </div>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.node.isRequired,
   title: PropTypes.string,
   description: PropTypes.string
 };
