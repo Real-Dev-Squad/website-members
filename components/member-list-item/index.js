@@ -19,25 +19,25 @@ const PreviewMember = (props) => {
   }, []);
 
   return (
-    <div className={classNames.container}>
-      <Link prefetch={false} href="/members/[id]" as={`/members/${rdsId}`} key={rdsId}>
-        <a href={`/members/${rdsId}`}>
+    <Link prefetch={false} href="/members/[id]" as={`/members/${rdsId}`} key={rdsId}>
+      <div className={classNames.container}>
+        <div>
           <div ref={imgRef} className={classNames.imgContainer}></div>
-        </a>
-      </Link>
-
-      <h2 className={classNames.nameOfPerson}>
-        {data ? `${data['first_name']} ${data['last_name']}` : rdsId}
-      </h2>
-      {data && (
-        <div className={classNames.iconsContainer}>
-          {data['twitter_id'] && <SocialMediaIcon id={data.twitter_id} type="twitter" />}
-          {data['github_id'] && <SocialMediaIcon id={data.github_id} type="github" />}
-          {data['linkedin_id'] && <SocialMediaIcon id={data.linkedin_id} type="linkedIn" />}
-          {data['instagram_id'] && <SocialMediaIcon id={data.instagram_id} type="instagram" />}
         </div>
-      )}
-    </div>
+
+        <h2 className={classNames.nameOfPerson}>
+          {data ? `${data['first_name']} ${data['last_name']}` : rdsId}
+        </h2>
+        {data && (
+          <div className={classNames.iconsContainer}>
+            {data['twitter_id'] && <SocialMediaIcon id={data.twitter_id} type="twitter" />}
+            {data['github_id'] && <SocialMediaIcon id={data.github_id} type="github" />}
+            {data['linkedin_id'] && <SocialMediaIcon id={data.linkedin_id} type="linkedIn" />}
+            {data['instagram_id'] && <SocialMediaIcon id={data.instagram_id} type="instagram" />}
+          </div>
+        )}
+      </div>
+    </Link>
   );
 };
 
