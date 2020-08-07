@@ -8,6 +8,8 @@
     "start": "next start -p $PORT",
     "build-static": "next build && next export",
     "lint": "eslint --fix .",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,md,json}\""
   },
   "dependencies": {
@@ -18,6 +20,14 @@
     "sass": "^1.26.10"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-docs": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react-app": "^9.1.2",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
@@ -26,7 +36,8 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "react-is": "^16.13.1"
   },
   "husky": {
     "hooks": {
