@@ -104,4 +104,4 @@ Now go to your forked repository and you'll see that **This branch is xx commits
 
 Wait for it to get reviewed, make the changes required (if any) , commit your changes and hit **Pull Request** again, your commits will be added to the same pull request you had opened earlier (if it is NOT closed).
 
-11. **Congratulations on making your first Pull Request! 🎉# How can you make your first **Pull Request**
+11. **Congratulations on making your first Pull Request! 🎉**
