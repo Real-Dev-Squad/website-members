@@ -17,7 +17,10 @@ const Profile = (props) => {
 
 Profile.propTypes = {
   imageLink: PropTypes.string,
-  membersData: PropTypes.object
+  membersData: PropTypes.shape({
+    first_name: PropTypes.string,
+    last_name: PropTypes.string
+  })
 };
 
 Profile.defaultProps = {
