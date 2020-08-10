@@ -3,22 +3,18 @@ import React from 'react';
 import classNames from './member-profile.module.scss';
 
 const Profile = (props) => {
-  const memberName = `${props.membersData.first_name || '--'} ${
-    props.membersData.last_name || '--'
-  }`;
+  const { membersData, imageLink } = props;
+  const memberName = `${membersData.first_name || '--'} ${membersData.last_name || '--'}`;
   return (
     <>
-      <img src={props.imageLink} className={classNames.profilePic} alt="profile" />
+      <img src={imageLink} className={classNames.profilePic} alt="profile" />
       <div className={classNames.memberName}>{memberName}</div>
     </>
   );
 };
 
 Profile.propTypes = {
-  imageLink: PropTypes.string
-};
-
-Profile.propTypes = {
+  imageLink: PropTypes.string,
   membersData: PropTypes.object
 };
 
