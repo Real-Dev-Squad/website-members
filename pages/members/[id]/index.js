@@ -3,28 +3,30 @@ import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
 import React from 'react';
 import Profile from 'components/member-profile';
-import NotFound from 'components/404page';
+import NotFound from 'components/not-found-page';
 
 const MemberProfile = ({ imageLink, data, errorMessage }) => {
   if (errorMessage) {
-    return <NotFound />;
+    return <NotFound errorMsg={errorMessage} />;
   }
   return <Profile imageLink={imageLink} membersData={data} />;
 };
 
 export async function getServerSideProps(context) {
   const { params } = context;
-  const imgLink = getImgURL(params.id);
+  const imageLink = getImgURL(params.id);
   const jsonUrl = getDataURL(params.id);
 
   try {
     const res = await fetch(jsonUrl);
     if (res.status !== 200) {
-      throw new Error('Invalid Username');
+      throw new Error(
+        `The user ${params.id} you're trying to find doesn't exist with us, please go to members to see all the available members we have`
+      );
     }
-    const returnData = await res.json();
+    const data = await res.json();
 
-    return { props: { imageLink: imgLink, data: returnData } };
+    return { props: { imageLink, data } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
   }
