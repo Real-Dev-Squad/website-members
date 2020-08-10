@@ -1,6 +1,11 @@
 # website-members
 
 The part of the website that shows the members of RDS
+This page is hosted on: https://members.realdevsquad.com/ 
+
+# How can I contribute?
+
+Wish to contribute? You can find a detailed guide [here](./CONTRIBUTING.md)!
 
 ## Project Structure
 
