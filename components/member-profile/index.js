@@ -24,7 +24,11 @@ Profile.propTypes = {
 };
 
 Profile.defaultProps = {
-  imageLink: ''
+  imageLink: '',
+  membersData: {
+    first_name: '',
+    last_name: ''
+  }
 };
 
 export default Profile;

@@ -1,7 +1,7 @@
 import { getDataURL, getImgURL } from 'helper-functions/urls';
 import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
-import React from 'react';
+import Error from 'next/error';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
 
