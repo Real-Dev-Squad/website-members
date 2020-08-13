@@ -20,8 +20,7 @@ Profile.propTypes = {
   membersData: PropTypes.shape({
     first_name: PropTypes.string,
     last_name: PropTypes.string
-  }),
-  memberId: PropTypes.string
+  })
 };
 
 Profile.defaultProps = {
@@ -29,8 +28,7 @@ Profile.defaultProps = {
   membersData: {
     first_name: '',
     last_name: ''
-  },
-  memberId: ''
+  }
 };
 
 export default Profile;
