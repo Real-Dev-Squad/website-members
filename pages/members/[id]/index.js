@@ -12,15 +12,17 @@ const MemberProfile = ({ imageLink, data, errorMessage }) => {
 };
 
 export async function getServerSideProps(context) {
-  const { params } = context;
-  const imageLink = getImgURL(params.id);
-  const jsonUrl = getDataURL(params.id);
+  const {
+    params: { id }
+  } = context;
+  const imageLink = getImgURL(id);
+  const jsonUrl = getDataURL(id);
 
   try {
     const res = await fetch(jsonUrl);
     if (res.status !== 200) {
       throw new Error(
-        `The user ${params.id} you're trying to find doesn't exist with us, please go to members to see all the available members we have`
+        `The user ${id} you're trying to find doesn't exist with us, please go to members to see all the available members we have`
       );
     }
     const data = await res.json();
