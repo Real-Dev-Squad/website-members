@@ -1,29 +1,34 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import useFetch from 'custom-hooks/useFetch';
 import classNames from './member-profile.module.scss';
-import { getDataURL, getImgURL } from 'helper-functions/urls';
 
 const Profile = (props) => {
-  const { id } = props;
-  const imgLink = getImgURL(id);
-  const { data } = useFetch(getDataURL(id));
+  const {
+    membersData: { first_name, last_name },
+    imageLink
+  } = props;
+  const memberName = `${first_name || ''} ${last_name || ''}`;
   return (
     <>
-      <img src={imgLink} className={classNames.profilePic} alt="profile" />
-      <div className={classNames.memberName}>
-        {data ? `${data['first_name'] || '--'} ${data['last_name'] || '--'} ` : `${id}`}
-      </div>
+      <img src={imageLink} className={classNames.profilePic} alt="profile" />
+      <div className={classNames.memberName}>{memberName.trim() || '--'}</div>
     </>
   );
 };
 
 Profile.propTypes = {
-  id: PropTypes.string
+  imageLink: PropTypes.string,
+  membersData: PropTypes.shape({
+    first_name: PropTypes.string,
+    last_name: PropTypes.string
+  })
 };
 
 Profile.defaultProps = {
-  id: ''
+  imageLink: '',
+  membersData: {
+    first_name: '',
+    last_name: ''
+  }
 };
 
 export default Profile;
