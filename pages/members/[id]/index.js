@@ -12,14 +12,13 @@ const MemberProfile = ({ imageLink, data, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
   let { query } = useRouter();
-  const { first_name, last_name } = query;
+  const { first_name: firstName, last_name: lastName, id: queryId } = query;
+  const hasBothNames = firstName && lastName;
+  const titleString = hasBothNames ? `${firstName} ${lastName}` : queryId;
 
   return (
-    <Layout
-      title={`${
-        query.first_name && query.last_name ? `${first_name} ${last_name}` : query.id
-      } | Member Real Dev Squad`}>
-      <Profile imageLink={imageLink} membersData={data} id={query.id} />
+    <Layout title={`${titleString} | Member Real Dev Squad`}>
+      <Profile imageLink={imageLink} membersData={data} />
     </Layout>
   );
 };

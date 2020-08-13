@@ -1,5 +1,5 @@
 import HomePage from '../components/pages/index';
-import Layout from '../components/layout/index';
+import Layout from '../components/layout';
 
 const Index = () => {
   return (
