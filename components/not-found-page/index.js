@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import classNames from './not-found-page.module.scss';
 
-export default function index() {
+const Index = ({ errorMsg }) => {
   return (
     <div className={classNames.fullPageContainer}>
       <img
@@ -8,6 +9,17 @@ export default function index() {
         alt="page not found"
         className={classNames.notFoundImage}
       />
+      <p className={classNames.errorTxt}>{errorMsg}</p>
     </div>
   );
-}
+};
+
+Index.propTypes = {
+  errorMsg: PropTypes.string
+};
+
+Index.defaultProps = {
+  errorMsg: ''
+};
+
+export default Index;
