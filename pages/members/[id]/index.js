@@ -1,14 +1,26 @@
+import React from 'react';
+import { useRouter } from 'next/router';
 import { getDataURL, getImgURL } from 'helper-functions/urls';
 import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
+import Layout from 'components/layout';
 
 const MemberProfile = ({ imageLink, data, errorMessage }) => {
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
-  return <Profile imageLink={imageLink} membersData={data} />;
+  let { query } = useRouter();
+  const { first_name: firstName, last_name: lastName, id: queryId } = query;
+  const hasBothNames = firstName && lastName;
+  const titleString = hasBothNames ? `${firstName} ${lastName}` : queryId;
+
+  return (
+    <Layout title={`${titleString} | Member Real Dev Squad`}>
+      <Profile imageLink={imageLink} membersData={data} />
+    </Layout>
+  );
 };
 
 export async function getServerSideProps(context) {
@@ -43,4 +55,4 @@ MemberProfile.defaultProps = {
   errorMessage: ''
 };
 
-export default MemberProfile;
+export default React.memo(MemberProfile);

@@ -1,10 +1,11 @@
 import HomePage from '../components/pages/index';
+import Layout from '../components/layout';
 
 const Index = () => {
   return (
-    <div>
+    <Layout title={'Members | Real Dev Squad'}>
       <HomePage />
-    </div>
+    </Layout>
   );
 };
 
