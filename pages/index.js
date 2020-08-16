@@ -5,15 +5,14 @@ import Layout from '../components/layout';
 import NotFound from 'components/not-found-page';
 
 const Index = ({ data, errorMsg }) => {
+  let loadComponent = '';
   if (errorMsg) {
-    return <NotFound errorMsg={errorMsg} />;
+    loadComponent = <NotFound errorMsg={errorMsg} />;
+  } else {
+    loadComponent = <HomePage membersKey={data} />;
   }
 
-  return (
-    <Layout title={'Members | Real Dev Squad'}>
-      <HomePage membersKey={data} />
-    </Layout>
-  );
+  return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
 };
 
 export async function getServerSideProps() {
