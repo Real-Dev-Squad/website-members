@@ -8,7 +8,9 @@
     "start": "next start -p $PORT",
     "build-static": "next build && next export",
     "lint": "eslint --fix .",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,md,json}\""
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,md,json}\"",
+    "hooks:pre-commit": "node ./git-hooks/pre-commit.js",
+    "hooks:pre-push": "node ./git-hooks/pre-push.js"
   },
   "dependencies": {
     "next": "9.3.5",
@@ -26,19 +28,13 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "shelljs": "^0.8.4"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged --allow-empty"
+      "pre-commit": "npm run hooks:pre-commit",
+      "pre-push": "npm run hooks:pre-push"
     }
-  },
-  "lint-staged": {
-    "./**/*.{js,jsx,ts,tsx}": [
-      "npm run lint"
-    ],
-    "./**/*.{js,jsx,ts,tsx,scss}": [
-      "npm run format"
-    ]
   }
 }
