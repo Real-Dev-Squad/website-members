@@ -32,21 +32,16 @@
 
 .nameOfPerson {
   padding: 10px 10px;
+  margin: 16px 0;
 }
+
 .iconsContainer {
   margin-top: auto;
-}
-
-.iconsContainer:not(:last-child) {
-  margin-right: 15px;
-}
-
-.iconsContainer {
   img {
     width: 2rem;
   }
 }
 
-.nameOfPerson {
-  margin: 16px 0;
+.iconsContainer:not(:last-child) {
+  margin-right: 15px;
 }
