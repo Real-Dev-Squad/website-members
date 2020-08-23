@@ -25,7 +25,7 @@ MembersList.propTypes = {
 };
 
 MembersList.defaultProps = {
-  membersKey: ''
+  membersKey: {}
 };
 
 export default MembersList;

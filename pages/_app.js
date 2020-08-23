@@ -15,7 +15,7 @@ const MyApp = (props) => {
 };
 
 MyApp.propTypes = {
-  Component: PropTypes.object.isRequired,
+  Component: PropTypes.func.isRequired,
   pageProps: PropTypes.object.isRequired
 };
 
