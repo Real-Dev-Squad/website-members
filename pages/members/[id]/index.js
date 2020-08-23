@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { getDataURL, getImgURL } from 'helper-functions/urls';
 import fetch from 'cross-fetch';
@@ -11,11 +10,11 @@ const MemberProfile = ({ imageLink, data, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
 
-  const { first_name, last_name } = data;
-  const memberName = `${first_name || ''} ${last_name || ''}`;
+  const { first_name = '', last_name = '' } = data;
+  const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
   return (
-    <Layout title={`${memberName.trim() || '--'} | Member Real Dev Squad`}>
+    <Layout title={memberName}>
       <Profile imageLink={imageLink} membersData={data} />
     </Layout>
   );
@@ -55,4 +54,4 @@ MemberProfile.defaultProps = {
   errorMessage: ''
 };
 
-export default React.memo(MemberProfile);
+export default MemberProfile;
