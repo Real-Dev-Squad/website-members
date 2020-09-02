@@ -5,14 +5,12 @@ import HomePage from '../components/pages';
 import Layout from '../components/layout';
 import NotFound from 'components/not-found-page';
 
-const Index = ({ data, errorMsg }) => {
-  // console.log(data);
-  // return <p>Hello</p>;
+const Index = ({ membersArr, errorMsg }) => {
   let loadComponent = '';
   if (errorMsg) {
     loadComponent = <NotFound errorMsg={errorMsg} />;
   } else {
-    loadComponent = <HomePage membersArr={data} />;
+    loadComponent = <HomePage membersArr={membersArr} />;
   }
 
   return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
@@ -22,7 +20,7 @@ export async function getServerSideProps() {
   const URL =
     'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/ids/mapping.json';
 
-  let membersArr = [];
+  const membersArr = [];
   let memberDetailsUrl = '';
   let resp1 = '';
   let jsonObj = '';
@@ -39,28 +37,28 @@ export async function getServerSideProps() {
     for (const rdsid in data) {
       memberDetailsUrl = getDataURL(rdsid);
       resp1 = await fetch(memberDetailsUrl);
-      jsonObj = await resp1.json();
-      membersArr.push({
-        ...jsonObj,
-        img_url: getImgURL(rdsid)
-      });
+      if (resp1.status == 200) {
+        jsonObj = await resp1.json();
+        membersArr.push({
+          ...jsonObj,
+          img_url: getImgURL(rdsid)
+        });
+      }
     }
 
-    data = membersArr;
-
-    return { props: { data } };
+    return { props: { membersArr } };
   } catch (e) {
     return { props: { errorMsg: e.message } };
   }
 }
 
 Index.propTypes = {
-  data: PropTypes.array,
+  membersArr: PropTypes.array,
   errorMsg: PropTypes.string
 };
 
 Index.defaultProps = {
-  data: [],
+  membersArr: [],
   errorMsg: ''
 };
 
