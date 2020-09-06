@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import SocialMediaIcon from '../social-media-icon';
@@ -6,8 +7,8 @@ import { object } from 'prop-types';
 
 const PreviewMember = ({ memberDetails }) => {
   const { id } = memberDetails;
-
   const imgRef = useRef();
+  const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
   useEffect(() => {
     if (imgRef && imgRef.current) {
@@ -38,17 +39,13 @@ const PreviewMember = ({ memberDetails }) => {
       </h2>
       {memberDetails && (
         <div className={classNames.iconsContainer}>
-          {memberDetails['twitter_id'] && (
-            <SocialMediaIcon id={memberDetails.twitter_id} type="twitter" />
-          )}
-          {memberDetails['github_id'] && (
-            <SocialMediaIcon id={memberDetails.github_id} type="github" />
-          )}
-          {memberDetails['linkedin_id'] && (
-            <SocialMediaIcon id={memberDetails.linkedin_id} type="linkedIn" />
-          )}
-          {memberDetails['instagram_id'] && (
-            <SocialMediaIcon id={memberDetails.instagram_id} type="instagram" />
+          {socialMedia.map(
+            (ele) =>
+              memberDetails[ele] && (
+                <React.Fragment key={ele}>
+                  <SocialMediaIcon id={memberDetails[ele]} type={ele} />
+                </React.Fragment>
+              )
           )}
         </div>
       )}
