@@ -1,15 +1,16 @@
+import { getDataURL, getImgURL } from 'helper-functions/urls';
 import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
 import HomePage from '../components/pages';
 import Layout from '../components/layout';
 import NotFound from 'components/not-found-page';
 
-const Index = ({ data, errorMsg }) => {
+const Index = ({ membersArr, errorMsg }) => {
   let loadComponent = '';
   if (errorMsg) {
     loadComponent = <NotFound errorMsg={errorMsg} />;
   } else {
-    loadComponent = <HomePage membersKey={data} />;
+    loadComponent = <HomePage membersArr={membersArr} />;
   }
 
   return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
@@ -19,6 +20,11 @@ export async function getServerSideProps() {
   const URL =
     'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/ids/mapping.json';
 
+  const membersArr = [];
+  let memberDetailsUrl = '';
+  let resp1 = '';
+  let jsonObj = '';
+
   try {
     const res = await fetch(URL);
     if (res.status !== 200) {
@@ -26,20 +32,33 @@ export async function getServerSideProps() {
         'There was some issues fetching the members, Please try again after some time'
       );
     }
-    const data = await res.json();
-    return { props: { data } };
+    let data = await res.json();
+
+    for (const rdsid in data) {
+      memberDetailsUrl = getDataURL(rdsid);
+      resp1 = await fetch(memberDetailsUrl);
+      if (resp1.status == 200) {
+        jsonObj = await resp1.json();
+        membersArr.push({
+          ...jsonObj,
+          img_url: getImgURL(rdsid)
+        });
+      }
+    }
+
+    return { props: { membersArr } };
   } catch (e) {
     return { props: { errorMsg: e.message } };
   }
 }
 
 Index.propTypes = {
-  data: PropTypes.object,
+  membersArr: PropTypes.array,
   errorMsg: PropTypes.string
 };
 
 Index.defaultProps = {
-  data: {},
+  membersArr: [],
   errorMsg: ''
 };
 
