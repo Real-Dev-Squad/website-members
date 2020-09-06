@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import MemberListItem from 'components/member-list-item';
 import classNames from './member-list.module.scss';
 
-const MembersList = ({ membersKey }) => {
-  if (membersKey) {
-    const rdsIds = Object.keys(membersKey);
+const MembersList = ({ membersArr }) => {
+  if (membersArr) {
     return (
       <div className={classNames.container}>
-        {rdsIds.map((rdsId) => (
-          <React.Fragment key={rdsId}>
-            <MemberListItem rdsId={rdsId} />
+        {membersArr.map((ele) => (
+          <React.Fragment key={ele['id']}>
+            <MemberListItem memberDetails={ele} />
           </React.Fragment>
         ))}
       </div>
@@ -21,11 +20,11 @@ const MembersList = ({ membersKey }) => {
 };
 
 MembersList.propTypes = {
-  membersKey: PropTypes.object
+  membersArr: PropTypes.array
 };
 
 MembersList.defaultProps = {
-  membersKey: {}
+  membersArr: []
 };
 
 export default MembersList;

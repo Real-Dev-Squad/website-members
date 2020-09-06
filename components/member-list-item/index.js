@@ -1,20 +1,18 @@
-import { getDataURL, getImgURL } from 'helper-functions/urls';
+import React from 'react';
 import { useEffect, useRef } from 'react';
-
 import Link from 'next/link';
 import SocialMediaIcon from '../social-media-icon';
 import classNames from './member-list-item.module.scss';
-import { string } from 'prop-types';
-import useFetch from 'custom-hooks/useFetch';
+import { object } from 'prop-types';
 
-const PreviewMember = (props) => {
-  const { rdsId } = props;
-  const { data } = useFetch(getDataURL(rdsId));
+const PreviewMember = ({ memberDetails }) => {
+  const { id } = memberDetails;
   const imgRef = useRef();
+  const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
   useEffect(() => {
     if (imgRef && imgRef.current) {
-      imgRef.current.style.backgroundImage = `url("${getImgURL(rdsId)}")`;
+      imgRef.current.style.backgroundImage = `url("${memberDetails.img_url}")`;
     }
   }, []);
 
@@ -25,26 +23,30 @@ const PreviewMember = (props) => {
         href={{
           pathname: '/members/[id]',
           query: {
-            first_name: `${data ? data.first_name : ''}`,
-            last_name: `${data ? data.last_name : ''}`
+            first_name: `${memberDetails ? memberDetails.first_name : ''}`,
+            last_name: `${memberDetails ? memberDetails.last_name : ''}`
           }
         }}
-        as={`/members/${rdsId}`}
-        key={rdsId}>
-        <a href={`/members/${rdsId}`}>
+        as={`/members/${id}`}
+        key={id}>
+        <a href={`/members/${id}`}>
           <div ref={imgRef} className={classNames.imgContainer}></div>
         </a>
       </Link>
 
       <h2 className={classNames.nameOfPerson}>
-        {data ? `${data['first_name']} ${data['last_name']}` : rdsId}
+        {memberDetails ? `${memberDetails['first_name']} ${memberDetails['last_name']}` : id}
       </h2>
-      {data && (
+      {memberDetails && (
         <div className={classNames.iconsContainer}>
-          {data['twitter_id'] && <SocialMediaIcon id={data.twitter_id} type="twitter" />}
-          {data['github_id'] && <SocialMediaIcon id={data.github_id} type="github" />}
-          {data['linkedin_id'] && <SocialMediaIcon id={data.linkedin_id} type="linkedIn" />}
-          {data['instagram_id'] && <SocialMediaIcon id={data.instagram_id} type="instagram" />}
+          {socialMedia.map(
+            (ele) =>
+              memberDetails[ele] && (
+                <React.Fragment key={ele}>
+                  <SocialMediaIcon id={memberDetails[ele]} type={ele} />
+                </React.Fragment>
+              )
+          )}
         </div>
       )}
     </div>
@@ -52,7 +54,7 @@ const PreviewMember = (props) => {
 };
 
 PreviewMember.propTypes = {
-  rdsId: string
+  memberDetails: object
 };
 
 export default PreviewMember;
