@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import SocialMediaIcon from '../social-media-icon';
 import classNames from './member-list-item.module.scss';
@@ -7,14 +6,7 @@ import { object } from 'prop-types';
 
 const PreviewMember = ({ memberDetails }) => {
   const { id } = memberDetails;
-  const imgRef = useRef();
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
-
-  useEffect(() => {
-    if (imgRef && imgRef.current) {
-      imgRef.current.style.backgroundImage = `url("${memberDetails.img_url}")`;
-    }
-  }, []);
 
   return (
     <div className={classNames.container}>
@@ -30,7 +22,7 @@ const PreviewMember = ({ memberDetails }) => {
         as={`/members/${id}`}
         key={id}>
         <a href={`/members/${id}`}>
-          <div ref={imgRef} className={classNames.imgContainer}></div>
+          <img src={memberDetails.img_url} className={classNames.imgContainer} alt={id} />
         </a>
       </Link>
 
