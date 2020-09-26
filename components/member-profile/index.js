@@ -7,11 +7,15 @@ const Profile = (props) => {
     imageLink
   } = props;
   const memberName = `${first_name || ''} ${last_name || ''}`;
+  const socialLinks = {
+    instagram: 'https://staging-members-rds.herokuapp.com/icons/instagram.png',
+    linkedin: 'https://staging-members-rds.herokuapp.com/icons/linkedin.png',
+    github: 'https://staging-members-rds.herokuapp.com/icons/github.png',
+    twitter: 'https://staging-members-rds.herokuapp.com/icons/twitter.png'
+  };
+
   return (
     <div className={classNames.container}>
-      {/* <img src={imageLink} className={classNames.profilePic} alt="profile" />
-      <div className={classNames.memberName}>{memberName.trim() || '--'}</div> */}
-
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
           <img src={imageLink} className={classNames.profilePic} alt="ProfilePicture" />
@@ -25,16 +29,10 @@ const Profile = (props) => {
             </p>
           </div>
           <div className={classNames.socialIcons}>
-            <img
-              src="https://staging-members-rds.herokuapp.com/icons/instagram.png"
-              alt="Instagram"
-            />
-            <img
-              src="https://staging-members-rds.herokuapp.com/icons/linkedin.png"
-              alt="LinkedIn"
-            />
-            <img src="https://staging-members-rds.herokuapp.com/icons/github.png" alt="GitHub" />
-            <img src="https://staging-members-rds.herokuapp.com/icons/twitter.png" alt="Twitter" />
+            <img src={socialLinks.instagram} alt="Instagram" />
+            <img src={socialLinks.linkedin} alt="LinkedIn" />
+            <img src={socialLinks.github} alt="GitHub" />
+            <img src={socialLinks.twitter} alt="Twitter" />
           </div>
         </div>
       </div>
