@@ -107,13 +107,10 @@
   font-size: 18px;
 }
 
-.socialIcons {
-  display: flex;
-  flex-direction: row;
-  flex-basis: flex-start;
-
+.iconsContainer {
+  margin-top: auto;
   img {
-    padding-right: 5px;
+    width: 2rem;
     cursor: pointer;
   }
 }
@@ -129,11 +126,6 @@
   }
 
   .memberDetails {
-    text-align: center;
-  }
-
-  .socialIcons {
-    display: block;
     text-align: center;
   }
 }
