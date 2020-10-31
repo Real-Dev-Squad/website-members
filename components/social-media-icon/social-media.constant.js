@@ -1,7 +1,7 @@
 export const IconMapper = {
   twitter_id: {
     alt: 'twitter',
-    src: 'icons/twitter.png',
+    src: '/icons/twitter.png',
     href: '//twitter.com/'
   },
   github_id: {
