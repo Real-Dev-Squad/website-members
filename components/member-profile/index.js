@@ -91,7 +91,8 @@ const Profile = (props) => {
               <a
                 href="https://github.com/Real-Dev-Squad/website-backend/pull/26"
                 className={classNames.title}
-                target="_blank">
+                target="_blank"
+                rel="noreferrer">
                 {' '}
                 User details
               </a>
@@ -117,7 +118,8 @@ const Profile = (props) => {
               <a
                 href="https://github.com/Real-Dev-Squad/website-backend/pull/26"
                 className={classNames.title}
-                target="_blank">
+                target="_blank"
+                rel="noreferrer">
                 {' '}
                 User details
               </a>
@@ -142,7 +144,8 @@ const Profile = (props) => {
               <a
                 href="https://github.com/Real-Dev-Squad/website-backend/pull/26"
                 className={classNames.title}
-                target="_blank">
+                target="_blank"
+                rel="noreferrer">
                 {' '}
                 User details
               </a>
