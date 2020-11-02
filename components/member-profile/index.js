@@ -10,17 +10,19 @@ const Profile = (props) => {
     imageLink
   } = props;
   const { membersData } = props;
-  const memberName = `${first_name} ${last_name}`;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
+  const fullName = `${first_name} ${last_name}`;
+  const memberName = fullName.trim() || '--';
+  const rdsUserName = `@${id}`;
   return (
     <div className={classNames.container}>
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
           <img src={imageLink} className={classNames.profilePic} alt="ProfilePicture" />
           <div className={classNames.personalInfo}>
-            <h1 className={classNames.profileName}>{memberName.trim() || '--'}</h1>
-            <p className={classNames.userName}>@{id}</p>
+            <h1 className={classNames.profileName}>{memberName}</h1>
+            <p className={classNames.userName}>{rdsUserName}</p>
             <p className={classNames.workDetails}>
               {designation}
               <br />
@@ -45,48 +47,36 @@ const Profile = (props) => {
       </div>
 
       <div className={(classNames.content, classNames.column)}>
-        <div className={(classNames.section, classNames.card)}>
-          <h2>
+        <div className={classNames.card}>
+          <div className={classNames.heading}>
             <img
               src="https://www.iconfinder.com/data/icons/picons-basic-3/57/basic3-092_shape_badge_sticker-128.png"
               className={classNames.icon}
               alt="Badge Icon"
             />
-            Badges
-          </h2>
+            <div className="">
+              <h2>Badges</h2>
+            </div>
+          </div>
           <div className={classNames.badgeContainer}>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0wrh4RPzsicylNFoflCJ7bRagLpsgs5o2VQ&usqp=CAU"
-              className={classNames.badge}
-              alt="badge"
-            />
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0wrh4RPzsicylNFoflCJ7bRagLpsgs5o2VQ&usqp=CAU"
-              className={classNames.badge}
-              alt="badge"
-            />
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0wrh4RPzsicylNFoflCJ7bRagLpsgs5o2VQ&usqp=CAU"
-              className={classNames.badge}
-              alt="badge"
-            />
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0wrh4RPzsicylNFoflCJ7bRagLpsgs5o2VQ&usqp=CAU"
-              className={classNames.badge}
-              alt="badge"
-            />
+            <img src="/images/badge.jpeg" className={classNames.badge} alt="badge" />
+            <img src="/images/badge.jpeg" className={classNames.badge} alt="badge" />
+            <img src="/images/badge.jpeg" className={classNames.badge} alt="badge" />
+            <img src="/images/badge.jpeg" className={classNames.badge} alt="badge" />
           </div>
         </div>
 
-        <div className={(classNames.section, classNames.card)}>
-          <h2>
+        <div className={classNames.card}>
+          <div className={classNames.heading}>
             <img
               src="https://www.iconfinder.com/data/icons/octicons/1024/mark-github-128.png"
               className={classNames.icon}
               alt="GitHub logo"
             />
-            Contributions
-          </h2>
+            <div className="">
+              <h2>Contributions</h2>
+            </div>
+          </div>
           <div className={classNames.contributions}>
             <div className={classNames.pullRequest}>
               <svg
@@ -100,7 +90,10 @@ const Profile = (props) => {
               </svg>
               <a
                 href="https://github.com/Real-Dev-Squad/website-backend/pull/26"
-                className={classNames.title}>
+                className={classNames.title}
+                target="_blank"
+                rel="noreferrer">
+                {' '}
                 User details
               </a>
               <p className={classNames.description}>
@@ -124,7 +117,9 @@ const Profile = (props) => {
               </svg>
               <a
                 href="https://github.com/Real-Dev-Squad/website-backend/pull/26"
-                className={classNames.title}>
+                className={classNames.title}
+                target="_blank"
+                rel="noreferrer">
                 {' '}
                 User details
               </a>
@@ -148,7 +143,9 @@ const Profile = (props) => {
               </svg>
               <a
                 href="https://github.com/Real-Dev-Squad/website-backend/pull/26"
-                className={classNames.title}>
+                className={classNames.title}
+                target="_blank"
+                rel="noreferrer">
                 {' '}
                 User details
               </a>
