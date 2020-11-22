@@ -16,7 +16,8 @@ const Index = ({ membersArr, errorMsg }) => {
   return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  context.res.setHeader('Cache-Control', 'max-age=100000');
   const URL =
     'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/ids/mapping.json';
 
