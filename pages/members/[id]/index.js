@@ -4,6 +4,7 @@ import fetch from 'cross-fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
 import Layout from 'components/layout';
+import { CACHE_MAX_AGE } from '../../../constants/cache-max-age.js';
 
 const MemberProfile = ({ imageLink, data, errorMessage }) => {
   if (errorMessage) {
@@ -21,7 +22,7 @@ const MemberProfile = ({ imageLink, data, errorMessage }) => {
 };
 
 export async function getServerSideProps(context) {
-  context.res.setHeader('Cache-Control', 'max-age=100000');
+  context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const {
     params: { id }
   } = context;
