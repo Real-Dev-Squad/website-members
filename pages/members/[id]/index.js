@@ -21,6 +21,7 @@ const MemberProfile = ({ imageLink, data, errorMessage }) => {
 };
 
 export async function getServerSideProps(context) {
+  context.res.setHeader('Cache-Control', 'max-age=100000');
   const {
     params: { id }
   } = context;
