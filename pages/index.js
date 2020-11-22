@@ -4,6 +4,7 @@ import fetch from 'cross-fetch';
 import HomePage from '../components/pages';
 import Layout from '../components/layout';
 import NotFound from 'components/not-found-page';
+import { MAX_AGE } from '../components/constants/max-age.js';
 
 const Index = ({ membersArr, errorMsg }) => {
   let loadComponent = '';
@@ -17,7 +18,7 @@ const Index = ({ membersArr, errorMsg }) => {
 };
 
 export async function getServerSideProps(context) {
-  context.res.setHeader('Cache-Control', 'max-age=100000');
+  context.res.setHeader('Cache-Control', `max-age=${MAX_AGE}`);
   const URL =
     'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/ids/mapping.json';
 
