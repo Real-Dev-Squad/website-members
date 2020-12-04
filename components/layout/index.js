@@ -2,8 +2,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Footer from 'components/footer';
 import Navbar from 'components/navbar';
-const Layout = (props) => {
-  const { children, title, description } = props;
+const Layout = ({ children, title, description }) => {
   return (
     <div>
       <Head>
