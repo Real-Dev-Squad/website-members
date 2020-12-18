@@ -13,6 +13,7 @@
     "hooks:pre-push": "node ./git-hooks/pre-push.js"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "next": "9.3.5",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
