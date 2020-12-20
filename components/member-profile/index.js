@@ -18,16 +18,7 @@ const Profile = (props) => {
     getPRsbyUser(id).then((res) => setPullRequests(res));
   }, []);
 
-  console.log(pullRequests);
   const showPRdetails = pullRequests.map((obj) => {
-    let reviewState;
-    if (obj.readyForReview) {
-      reviewState = 'Ready for review';
-    } else if (obj.state === 'closed') {
-      reviewState = '';
-    } else {
-      reviewState = 'Changes requested';
-    }
     return (
       <div className={classNames.pullRequest} key={obj.url}>
         <svg
@@ -43,7 +34,7 @@ const Profile = (props) => {
           {obj.title}
         </a>
         <p className={classNames.description}>
-          {obj.state} • {reviewState}
+          {obj.state}
         </p>
       </div>
     );
@@ -124,7 +115,6 @@ const Profile = (props) => {
             Contributions
           </h2>
           <div>{showPRdetails}</div>
-          <div className={classNames.contributions}></div>
         </div>
       </div>
     </div>
