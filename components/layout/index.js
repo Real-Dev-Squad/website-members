@@ -1,14 +1,15 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Footer from 'components/footer';
-const Layout = (props) => {
-  const { children, title, description } = props;
+import Navbar from 'components/navbar';
+const Layout = ({ children, title, description }) => {
   return (
     <div>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
+      <Navbar />
       <div className="container">
         <div>{children}</div>
       </div>
