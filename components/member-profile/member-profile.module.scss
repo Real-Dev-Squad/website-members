@@ -48,14 +48,14 @@
 }
 
 .badgeContainer {
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
 }
 
 .badge {
-  max-width: 100px;
+  max-width: 64px;
+  margin-right: 25px;
 }
 
 .pullRequest {
