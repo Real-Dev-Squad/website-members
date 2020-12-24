@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '../social-media-icon';
 import { getPRsbyUser } from '../../helper-functions/getPRs';
+import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 
 const Profile = (props) => {
@@ -20,6 +21,8 @@ const Profile = (props) => {
   useEffect(() => {
     getPRsbyUser(id).then((res) => setPullRequests(res));
   }, []);
+
+  const badges = getBadges(id);
 
   const showPRdetails = pullRequests.map((obj) => {
     return (
@@ -74,20 +77,17 @@ const Profile = (props) => {
 
       <div className={(classNames.content, classNames.column)}>
         <div className={(classNames.section, classNames.card)}>
-          <h2>
-            <img
-              src="https://www.iconfinder.com/data/icons/picons-basic-3/57/basic3-092_shape_badge_sticker-128.png"
-              className={classNames.icon}
-              alt="Badge Icon"
-            />
-            Badges
-          </h2>
+          <h2>Badges</h2>
           <div className={classNames.badgeContainer}>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0wrh4RPzsicylNFoflCJ7bRagLpsgs5o2VQ&usqp=CAU"
-              className={classNames.badge}
-              alt="badge"
-            />
+            {badges &&
+              badges.map((badge) => (
+                <img
+                  src={badge.img}
+                  className={classNames.badge}
+                  alt={badge.title}
+                  key={badge.title}
+                />
+              ))}
           </div>
         </div>
 
