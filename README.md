@@ -1,3 +1,5 @@
+[![Better Uptime Badge](https://betteruptime.com/status-badges/v1/monitor/5hv0.svg)](https://betteruptime.com/?utm_source=status_badge)
+
 # website-members
 
 The part of the website that shows the members of RDS
