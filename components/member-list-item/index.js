@@ -13,13 +13,13 @@ const PreviewMember = ({ memberDetails }) => {
       <Link
         prefetch={false}
         href={{
-          pathname: '/members/[id]',
+          pathname: '/[id]',
           query: {
             first_name: `${memberDetails ? memberDetails.first_name : ''}`,
             last_name: `${memberDetails ? memberDetails.last_name : ''}`
           }
         }}
-        as={`/members/${id}`}
+        as={`/${id}`}
         key={id}>
         <a href={`/members/${id}`}>
           <img src={memberDetails.img_url} className={classNames.imgContainer} alt={id} />
