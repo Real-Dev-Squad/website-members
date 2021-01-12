@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from './navbar.module.scss';
 
 const Navbar = () => {
+
+  const [toggle, setToggle] = useState(false);
+
   return (
     <div className={classNames.infoNavbar}>
-      <nav>
-        <ul>
-          <li>
+      <nav className={classNames.navbar}>
+        <div className = {classNames.hamburger} onClick = {() => setToggle(!toggle)}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div> 
+        <ul className = {
+          toggle ? classNames.navbarShow : classNames.navbarHide
+        }>
+          <li >
             <a href="https://www.realdevsquad.com/">Home</a>
           </li>
           <li>
