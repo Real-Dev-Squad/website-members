@@ -1,16 +1,17 @@
+.infoNavbar nav{
+    background-color: #1D1283;
+}
 .infoNavbar nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #1D1283;
+    // background-color: #1D1283;
 }
-  
 .infoNavbar nav li {
     float: left;
 }
-  
-.infoNavbar nav li a {
+.infoNavbar nav li a{
     display: block;
     border-radius: .5rem;
     color: #ffffff;
@@ -19,7 +20,42 @@
     padding: 14px 16px;
     text-decoration: none;
 }
-  
-.infoNavbar nav li a:hover {
+.infoNavbar nav li a:hover{
     background-color: rgba(255, 255, 255, 0.2);
+}
+.hamburger{
+    position: relative;
+    width: 35px;
+    height: 70%;
+    left: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: none;
+}
+.hamburger span{
+    background-color: white;
+    width: 70%;
+    height: 3px;
+    margin: 2px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .navbarShow {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .navbarHide{
+        display: none;
+    }
+    .hamburger{
+        display: flex;
+    }
 }
