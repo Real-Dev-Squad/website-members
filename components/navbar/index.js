@@ -1,22 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from './navbar.module.scss';
 
-const Navbar = () => {
-
-  const [toggle, setToggle] = useState(false);
-
+const Navbar = ({ drawerToggleClicked }) => {
   return (
     <div className={classNames.infoNavbar}>
-      <nav className={classNames.navbar}>
-        <div className = {classNames.hamburger} onClick = {() => setToggle(!toggle)}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </div> 
-        <ul className = {
-          toggle ? classNames.navbarShow : classNames.navbarHide
-        }>
-          <li >
+      <nav>
+        <div className={classNames.DrawerToggle} onClick={drawerToggleClicked}>
+          <span />
+          <span />
+          <span />
+        </div>
+        <ul>
+          <li>
             <a href="https://www.realdevsquad.com/">Home</a>
           </li>
           <li>
@@ -37,6 +33,10 @@ const Navbar = () => {
       </nav>
     </div>
   );
+};
+
+Navbar.propTypes = {
+  drawerToggleClicked: PropTypes.func.isRequired
 };
 
 export default Navbar;
