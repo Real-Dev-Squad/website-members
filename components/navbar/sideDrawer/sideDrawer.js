@@ -1,41 +1,40 @@
-import Head from 'next/head';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Footer from 'components/footer';
-import Navbar from 'components/navbar';
-import SideDrawer from 'components/navbar/SideDrawer/SideDrawer';
-const Layout = ({ children, title, description }) => {
-  const [showSideDrawer, setShowSideDrawer] = useState(false);
+import classNames from './SideDrawer.module.scss';
 
-  const sideDrawerToggleHandler = () => {
-    setShowSideDrawer((prevState) => !prevState);
-  };
-
+const SideDrawer = ({ open }) => {
+  let attachedClasses = [classNames.SideDrawer, classNames.Close];
+  if (open) {
+    attachedClasses = [classNames.SideDrawer, classNames.Open];
+  }
   return (
-    <div>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Head>
-      <Navbar drawerToggleClicked={sideDrawerToggleHandler} />
-      <SideDrawer open={showSideDrawer} />
-      <div className="container">
-        <div>{children}</div>
-      </div>
-      <Footer />
+    <div className={attachedClasses.join(' ')}>
+      <nav>
+        <ul>
+          <li>
+            <a href="https://www.realdevsquad.com/">Home</a>
+          </li>
+          <li>
+            <a href="https://welcome.realdevsquad.com/">Welcome</a>
+          </li>
+          <li>
+            <a href="https://www.realdevsquad.com/events.html">Events</a>
+          </li>
+          <li>
+            <a href="https://members.realdevsquad.com/" style={{ color: '#87D870' }}>
+              Members
+            </a>
+          </li>
+          <li>
+            <a href="https://crypto.realdevsquad.com/">Crypto</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  title: PropTypes.string,
-  description: PropTypes.string
+SideDrawer.propTypes = {
+  open: PropTypes.bool.isRequired
 };
 
-Layout.defaultProps = {
-  title: 'Real Dev Squad',
-  description: ''
-};
-
-export default Layout;
+export default SideDrawer;
