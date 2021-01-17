@@ -3,6 +3,7 @@ import Link from 'next/link';
 import SocialMediaIcon from '../social-media-icon';
 import classNames from './member-list-item.module.scss';
 import { object } from 'prop-types';
+import { motion } from 'framer-motion';
 
 const PreviewMember = ({ memberDetails }) => {
   const { id } = memberDetails;
@@ -22,7 +23,12 @@ const PreviewMember = ({ memberDetails }) => {
         as={`/${id}`}
         key={id}>
         <a href={`/members/${id}`}>
-          <img src={memberDetails.img_url} className={classNames.imgContainer} alt={id} />
+          <motion.img
+            layoutId={id}
+            src={memberDetails.img_url}
+            className={classNames.imgContainer}
+            alt={id}
+          />
         </a>
       </Link>
 
