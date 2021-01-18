@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { getDataURL, getImgURL } from 'helper-functions/urls';
-import fetch from 'cross-fetch';
+import { getDataURL, getImgURL, getPRsUrl } from 'helper-functions/urls';
+import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
 import Layout from 'components/layout';
 import { CACHE_MAX_AGE } from '../../constants/cache-max-age.js';
 
-const MemberProfile = ({ imageLink, data, errorMessage }) => {
+const MemberProfile = ({ imageLink, data, pullRequests, errorMessage }) => {
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
@@ -16,7 +16,7 @@ const MemberProfile = ({ imageLink, data, errorMessage }) => {
 
   return (
     <Layout title={memberName}>
-      <Profile imageLink={imageLink} membersData={data} />
+      <Profile imageLink={imageLink} membersData={data} pullRequests={pullRequests} />
     </Layout>
   );
 };
@@ -28,6 +28,7 @@ export async function getServerSideProps(context) {
   } = context;
   const imageLink = getImgURL(id);
   const jsonUrl = getDataURL(id);
+  const userPRUrl = getPRsUrl(id);
 
   try {
     const res = await fetch(jsonUrl);
@@ -36,9 +37,12 @@ export async function getServerSideProps(context) {
         `The user ${id} you're trying to find doesn't exist with us, please go to members to see all the available members we have`
       );
     }
-    const data = await res.json();
+    const data = await res.data;
+    
+    const getPRsbyUser = await fetch(userPRUrl);
+    const { pullRequests } = getPRsbyUser.data;
 
-    return { props: { imageLink, data } };
+    return { props: { imageLink, data, pullRequests } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
   }
@@ -47,12 +51,14 @@ export async function getServerSideProps(context) {
 MemberProfile.propTypes = {
   imageLink: PropTypes.string,
   data: PropTypes.object,
+  pullRequests: PropTypes.array,
   errorMessage: PropTypes.string
 };
 
 MemberProfile.defaultProps = {
   imageLink: '',
   data: {},
+  pullRequests: [],
   errorMessage: ''
 };
 

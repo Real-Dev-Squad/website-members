@@ -1,4 +1,5 @@
 const baseURL = 'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main';
+const PRbaseURL = 'https://staging-api.realdevsquad.com/pullrequests/user';
 
 /**
  *
@@ -12,4 +13,11 @@ const getImgURL = (rdsId) => `${baseURL}/members/${rdsId}/img.png`;
  */
 const getDataURL = (rdsId) => `${baseURL}/members/${rdsId}/data.json`;
 
-export { getImgURL, getDataURL };
+/**
+ *
+ * @param {string} rdsId
+ */
+const getPRsUrl = (rdsId) => `${PRbaseURL}/${rdsId}`;
+
+export { getImgURL, getDataURL, getPRsUrl };
+
