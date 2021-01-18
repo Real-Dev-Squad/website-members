@@ -20,4 +20,3 @@ const getDataURL = (rdsId) => `${baseURL}/members/${rdsId}/data.json`;
 const getPRsUrl = (rdsId) => `${PRbaseURL}/${rdsId}`;
 
 export { getImgURL, getDataURL, getPRsUrl };
-

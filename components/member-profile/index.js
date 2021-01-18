@@ -7,7 +7,8 @@ import classNames from './member-profile.module.scss';
 const Profile = (props) => {
   const {
     membersData: { id, first_name, last_name, company, designation },
-    imageLink, pullRequests
+    imageLink,
+    pullRequests
   } = props;
   const { membersData } = props;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
@@ -17,7 +18,7 @@ const Profile = (props) => {
   const rdsUserName = `@${id}`;
 
   const badges = getBadges(id);
-  
+
   const showPRdetails = pullRequests.map((obj) => {
     return (
       <div className={classNames.pullRequest} key={obj.url}>
@@ -122,7 +123,7 @@ Profile.defaultProps = {
     company: '',
     designation: ''
   },
-  pullRequests:[]
+  pullRequests: []
 };
 
 export default Profile;
