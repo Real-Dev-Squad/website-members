@@ -38,7 +38,7 @@ export async function getServerSideProps(context) {
       );
     }
     const data = await res.data;
-    
+
     const getPRsbyUser = await fetch(userPRUrl);
     const { pullRequests } = getPRsbyUser.data;
 
