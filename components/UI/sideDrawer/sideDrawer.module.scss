@@ -11,9 +11,23 @@
   transition: transform 0.3s ease-out;
   border-radius: 0 8px 8px 0;
 }
+.logoName{
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 20px;
+  color: #1d1283;
+}
+.saltire{
+  font-size: 18px;
+  font-weight: bolder;
+  margin-right: 20px;
+  text-align: left;
+  color: black;
+}
 .SideDrawer ul {
   padding: 20px 20px;
   list-style: none;
+  margin-top: 20px;
 }
 .SideDrawer ul li {
   margin-top: 20px;
