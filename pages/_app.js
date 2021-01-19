@@ -2,15 +2,18 @@ import '../styles/global-styles.scss';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from '../styles/layout-style.module.scss';
+import { AnimateSharedLayout } from 'framer-motion';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
   return (
-    <div className={classNames.root}>
-      <div className={classNames.main}>
-        <Component {...pageProps} />
+    <AnimateSharedLayout>
+      <div className={classNames.root}>
+        <div className={classNames.main}>
+          <Component {...pageProps} />
+        </div>
       </div>
-    </div>
+    </AnimateSharedLayout>
   );
 };
 
