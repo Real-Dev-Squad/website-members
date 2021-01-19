@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SocialMediaIcon from '../social-media-icon';
 import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
+import { motion } from 'framer-motion';
 
 const Profile = (props) => {
   const {
@@ -43,7 +44,12 @@ const Profile = (props) => {
     <div className={classNames.container}>
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
-          <img src={imageLink} className={classNames.profilePic} alt="ProfilePicture" />
+          <motion.img
+            layoutId={id}
+            src={imageLink}
+            className={classNames.profilePic}
+            alt="ProfilePicture"
+          />
           <div className={classNames.personalInfo}>
             <h1 className={classNames.profileName}>{memberName}</h1>
             <p className={classNames.userName}>{rdsUserName}</p>
