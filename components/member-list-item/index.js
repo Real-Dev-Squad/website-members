@@ -22,7 +22,7 @@ const PreviewMember = ({ memberDetails }) => {
         }}
         as={`/${id}`}
         key={id}>
-        <a href={`/members/${id}`}>
+        <a href={`/${id}`}>
           <motion.img
             layoutId={id}
             src={memberDetails.img_url}
