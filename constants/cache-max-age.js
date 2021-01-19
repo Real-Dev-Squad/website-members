@@ -1,1 +1,1 @@
-export const CACHE_MAX_AGE = 43200;
+export const CACHE_MAX_AGE = 604800;

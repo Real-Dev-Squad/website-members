@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '../social-media-icon';
-import { getPRsbyUser } from '../../helper-functions/getPRs';
 import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 
 const Profile = (props) => {
   const {
     membersData: { id, first_name, last_name, company, designation },
-    imageLink
+    imageLink,
+    pullRequests
   } = props;
   const { membersData } = props;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
@@ -16,11 +16,6 @@ const Profile = (props) => {
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
   const rdsUserName = `@${id}`;
-
-  const [pullRequests, setPullRequests] = useState([]);
-  useEffect(() => {
-    getPRsbyUser(id).then((res) => setPullRequests(res));
-  }, []);
 
   const badges = getBadges(id);
 
@@ -115,7 +110,8 @@ Profile.propTypes = {
     last_name: PropTypes.string,
     company: PropTypes.string,
     designation: PropTypes.string
-  })
+  }),
+  pullRequests: PropTypes.array
 };
 
 Profile.defaultProps = {
@@ -126,7 +122,8 @@ Profile.defaultProps = {
     last_name: '',
     company: '',
     designation: ''
-  }
+  },
+  pullRequests: []
 };
 
 export default Profile;
