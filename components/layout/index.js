@@ -1,15 +1,24 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from 'components/footer';
-import Navbar from 'components/navbar';
+import Navbar from 'components/UI/navbar';
+import SideDrawer from 'components/UI/sideDrawer/SideDrawer';
 const Layout = ({ children, title, description }) => {
+  const [showSideDrawer, setShowSideDrawer] = useState(false);
+
+  const sideDrawerToggleHandler = () => {
+    setShowSideDrawer((prevState) => !prevState);
+  };
+
   return (
     <div>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <Navbar />
+      <Navbar drawerToggleClicked={sideDrawerToggleHandler} />
+      <SideDrawer open={showSideDrawer} close={sideDrawerToggleHandler} />
       <div className="container">
         <div>{children}</div>
       </div>
