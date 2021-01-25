@@ -26,7 +26,6 @@ export async function getServerSideProps(context) {
   const {
     params: { id }
   } = context;
-  const imageLink = getImgURL(id);
   const jsonUrl = getDataURL(id);
   const userPRUrl = getPRsUrl(id);
 
@@ -41,6 +40,7 @@ export async function getServerSideProps(context) {
 
     const getPRsbyUser = await fetch(userPRUrl);
     const { pullRequests } = getPRsbyUser.data;
+    const imageLink = getImgURL(id, data.img);
 
     return { props: { imageLink, data, pullRequests } };
   } catch (e) {

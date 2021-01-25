@@ -5,7 +5,7 @@ const PRbaseURL = 'https://staging-api.realdevsquad.com/pullrequests/user';
  *
  * @param {string} rdsId
  */
-const getImgURL = (rdsId) => `${baseURL}/members/${rdsId}/img.png`;
+const getImgURL = (rdsId, img) => `${baseURL}/members/${rdsId}/${img}`;
 
 /**
  *
