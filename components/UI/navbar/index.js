@@ -1,10 +1,20 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from './navbar.module.scss';
 
-const Navbar = () => {
+const Navbar = ({ drawerToggleClicked }) => {
   return (
     <div className={classNames.infoNavbar}>
       <nav>
+        <div
+          className={classNames.DrawerToggle}
+          onClick={drawerToggleClicked}
+          onKeyPress={drawerToggleClicked}>
+          <span />
+          <span />
+          <span />
+        </div>
         <ul>
           <li>
             <a href="https://www.realdevsquad.com/">Home</a>
@@ -27,6 +37,10 @@ const Navbar = () => {
       </nav>
     </div>
   );
+};
+
+Navbar.propTypes = {
+  drawerToggleClicked: PropTypes.func.isRequired
 };
 
 export default Navbar;

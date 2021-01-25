@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
         jsonObj = await resp1.json();
         membersArr.push({
           ...jsonObj,
-          img_url: getImgURL(rdsid)
+          img_url: getImgURL(rdsid, jsonObj.img)
         });
       }
     }
