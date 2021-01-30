@@ -4,6 +4,7 @@ import SocialMediaIcon from '../social-media-icon';
 import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 import Contribution from './contribution/';
+import { motion } from 'framer-motion';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -44,7 +45,12 @@ const Profile = (props) => {
     <div className={classNames.container}>
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
-          <img src={imageLink} className={classNames.profilePic} alt="ProfilePicture" />
+          <motion.img
+            layoutId={id}
+            src={imageLink}
+            className={classNames.profilePic}
+            alt="ProfilePicture"
+          />
           <div className={classNames.personalInfo}>
             <h1 className={classNames.profileName}>{memberName}</h1>
             <p className={classNames.userName}>{rdsUserName}</p>
