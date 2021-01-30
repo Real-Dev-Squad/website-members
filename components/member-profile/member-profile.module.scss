@@ -1,8 +1,8 @@
 .container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  flex-wrap: wrap;
+  width: 70%;
+  margin: auto;
 }
 
 .column {
@@ -26,12 +26,22 @@
   border: 1px solid #f4f4f4;
   padding: 20px 30px 20px;
   background: white;
-  cursor: pointer;
   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
 
   &:hover {
     box-shadow: 0 0 20px -7px rgba(0, 0, 0, 0.65);
   }
+}
+
+.card h2 {
+  color: #041484;
+  font-weight: bolder;
+}
+
+.contributionContainer {
+  border: 2px solid darkgray;
+  border-radius: 5px;
+  padding: 6px;
 }
 
 .sidebar {
@@ -56,18 +66,6 @@
 .badge {
   max-width: 64px;
   margin-right: 25px;
-}
-
-.pullRequest {
-  margin: 5px;
-  padding: 3px 10px;
-}
-
-.prIcon {
-  display: inline-block;
-  vertical-align: text-bottom;
-  width: 25px;
-  height: 25px;
 }
 
 .open {
@@ -106,12 +104,6 @@
   font-size: 16px;
 }
 
-.gitUserName {
-  font-weight: bold;
-  color: #097bbf;
-  cursor: pointer;
-}
-
 .workDetails {
   margin-top: 5px;
   color: #0e141e;
@@ -138,5 +130,15 @@
 
   .memberDetails {
     text-align: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .card {
+    padding: 8px;
+  }
+
+  .card h2 {
+    font-size: 16px;
   }
 }

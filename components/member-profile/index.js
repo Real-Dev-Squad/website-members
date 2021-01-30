@@ -3,15 +3,35 @@ import PropTypes from 'prop-types';
 import SocialMediaIcon from '../social-media-icon';
 import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
-import { motion } from 'framer-motion';
+import Contribution from './contribution/';
 
+const renderBadgeImages = (badges) =>
+  badges.map((badge) => (
+    <img src={badge.img} className={classNames.badge} alt={badge.title} key={badge.title} />
+  ));
+
+const renderContributions = (contributions, fullName, imageLink) =>
+  contributions.map((noteWorthyContribution, index) => (
+    <Contribution
+      contribution={noteWorthyContribution}
+      key={index}
+      fullName={fullName}
+      imageLink={imageLink}
+    />
+  ));
+
+const renderSocialMediaIcons = (socialMedia, membersData) =>
+  socialMedia.map(
+    (ele) => membersData[ele] && <SocialMediaIcon id={membersData[ele]} type={ele} key={ele} />
+  );
 const Profile = (props) => {
   const {
     membersData: { id, first_name, last_name, company, designation },
     imageLink,
-    pullRequests
+    contributions
   } = props;
   const { membersData } = props;
+  const { noteworthy, all } = contributions;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
   const fullName = `${first_name} ${last_name}`;
@@ -20,36 +40,11 @@ const Profile = (props) => {
 
   const badges = getBadges(id);
 
-  const showPRdetails = pullRequests.map((obj) => {
-    return (
-      <div className={classNames.pullRequest} key={obj.url}>
-        <svg
-          className={classNames.prIcon}
-          viewBox="0 0 16 16"
-          version="1.1"
-          width="16"
-          height="16"
-          aria-hidden="true">
-          <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z" />
-        </svg>
-        <a href={obj.url} className={obj.title} target="_blank" rel="noopener noreferrer">
-          {obj.title}
-        </a>
-        <p className={classNames.description}>{obj.state}</p>
-      </div>
-    );
-  });
-
   return (
     <div className={classNames.container}>
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
-          <motion.img
-            layoutId={id}
-            src={imageLink}
-            className={classNames.profilePic}
-            alt="ProfilePicture"
-          />
+          <img src={imageLink} className={classNames.profilePic} alt="ProfilePicture" />
           <div className={classNames.personalInfo}>
             <h1 className={classNames.profileName}>{memberName}</h1>
             <p className={classNames.userName}>{rdsUserName}</p>
@@ -62,14 +57,7 @@ const Profile = (props) => {
           <div className={classNames.iconsContainer}>
             {membersData && (
               <div className={classNames.iconsContainer}>
-                {socialMedia.map(
-                  (ele) =>
-                    membersData[ele] && (
-                      <React.Fragment key={ele}>
-                        <SocialMediaIcon id={membersData[ele]} type={ele} />
-                      </React.Fragment>
-                    )
-                )}
+                {renderSocialMediaIcons(socialMedia, membersData)}
               </div>
             )}
           </div>
@@ -79,29 +67,14 @@ const Profile = (props) => {
       <div className={(classNames.content, classNames.column)}>
         <div className={(classNames.section, classNames.card)}>
           <h2>Badges</h2>
-          <div className={classNames.badgeContainer}>
-            {badges &&
-              badges.map((badge) => (
-                <img
-                  src={badge.img}
-                  className={classNames.badge}
-                  alt={badge.title}
-                  key={badge.title}
-                />
-              ))}
-          </div>
+          <div className={classNames.badgeContainer}>{badges && renderBadgeImages(badges)}</div>
         </div>
 
         <div className={(classNames.section, classNames.card)}>
-          <h2>
-            <img
-              src="https://www.iconfinder.com/data/icons/octicons/1024/mark-github-128.png"
-              className={classNames.icon}
-              alt="GitHub logo"
-            />
-            Contributions
-          </h2>
-          <div>{showPRdetails}</div>
+          <h2>Noteworthy Contributions</h2>
+          {renderContributions(noteworthy, fullName, imageLink)}
+          <h2>All Contributions</h2>
+          {renderContributions(all, fullName, imageLink)}
         </div>
       </div>
     </div>
@@ -117,7 +90,10 @@ Profile.propTypes = {
     company: PropTypes.string,
     designation: PropTypes.string
   }),
-  pullRequests: PropTypes.array
+  contributions: PropTypes.shape({
+    noteworthy: PropTypes.array,
+    all: PropTypes.array
+  })
 };
 
 Profile.defaultProps = {
@@ -129,7 +105,10 @@ Profile.defaultProps = {
     company: '',
     designation: ''
   },
-  pullRequests: []
+  contributions: {
+    noteworthy: [],
+    all: []
+  }
 };
 
 export default Profile;
