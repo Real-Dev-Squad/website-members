@@ -33,6 +33,9 @@
     "prettier": "^2.2.1",
     "shelljs": "^0.8.4"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run hooks:pre-commit",
