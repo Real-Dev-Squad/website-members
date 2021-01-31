@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import classNames from './SideDrawer.module.scss';
+import classNames from './side-drawer.module.scss';
 import Backdrop from '../backdrop/';
 
 const SideDrawer = ({ open, close }) => {
