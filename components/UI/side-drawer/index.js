@@ -12,9 +12,16 @@ const SideDrawer = ({ open, close }) => {
       <Backdrop show={open} clicked={close} />
       <div className={attachedClasses.join(' ')}>
         <div className="brandname">
-          <h2 className={classNames.logoName}> 
-            <span className={classNames.saltire} onClick={close}>&#9747;</span> 
-              Real Dev Squad
+          <h2 className={classNames.logoName}>
+            <span
+              className={classNames.saltire}
+              tabIndex={0}
+              role="button"
+              onKeyDown={close}
+              onClick={close}>
+              &#9747;
+            </span>
+            Real Dev Squad
           </h2>
         </div>
         <nav>
