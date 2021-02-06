@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "build-static": "next build && next export",
-    "lint": "eslint --fix .",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,md,json}\"",
     "hooks:pre-commit": "node ./git-hooks/pre-commit.js",
     "hooks:pre-push": "node ./git-hooks/pre-push.js"
