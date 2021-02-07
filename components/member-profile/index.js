@@ -61,11 +61,9 @@ const Profile = (props) => {
             </p>
           </div>
           <div className={classNames.iconsContainer}>
-            {membersData && (
-              <div className={classNames.iconsContainer}>
-                {renderSocialMediaIcons(socialMedia, membersData)}
-              </div>
-            )}
+            <div className={classNames.iconsContainer}>
+              {renderSocialMediaIcons(socialMedia, membersData)}
+            </div>
           </div>
         </div>
       </div>

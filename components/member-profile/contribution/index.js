@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from './contribution.module.scss';
 import PRLink from './pr-link/';
-import { timeWas } from '../../../helper-functions/time-was';
+import Dates from './dates/';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
@@ -20,41 +20,19 @@ const Contribution = ({ contribution, fullName, imageLink }) => {
     setShowMoreContent((prevstate) => !prevstate);
   };
 
+  const [allContributionObj] = prList;
+
   const showText = showMoreContent ? 'Show less' : 'Show more';
   const showMoreContentClass = showMoreContent ? classNames.showContent : classNames.hideContent;
 
-  const isTaskAvailable = title ? true : false;
-
-  let completedText = '';
-  let completedDate = '';
-  let featureLiveOnText = '';
-  let featurLiveDate = '';
-
-  if (isTaskAvailable) {
-    if (status === 'Active') {
-      completedText = <span>Estimated Completion: </span>;
-      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
-    } else {
-      completedDate = timeWas(endsOn * 1000);
-      completedText = <span>Completed in: </span>;
-      featurLiveDate = timeWas(endsOn * 1000, true);
-      featureLiveOnText = `Feature live on ${featurLiveDate}`;
-    }
-  } else {
-    const createdAt = +new Date(prList[0]['createdAt']);
-    const updatedAt = +new Date(prList[0]['updatedAt']);
-    if (prList[0]['state'] === 'closed') {
-      completedDate = timeWas(createdAt, false, updatedAt);
-      completedText = <span>Completed in: </span>;
-      featurLiveDate = timeWas(updatedAt, true);
-      featureLiveOnText = `Feature live on ${featurLiveDate}`;
-    }
-  }
+  const isTaskAvailable = !!title;
 
   return (
     <div className={classNames.contributionContainer}>
       <section className={classNames.heading}>
-        <span className={classNames.featureTitle}>{isTaskAvailable ? title : prList[0].title}</span>
+        <span id={classNames.featureTitle}>
+          {isTaskAvailable ? title : allContributionObj.title}
+        </span>
         <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
       </section>
       {isTaskAvailable && (
@@ -64,18 +42,32 @@ const Contribution = ({ contribution, fullName, imageLink }) => {
             <img src={imageLink} className={classNames.participantIcon} alt="participantsIcon" />
             <span>{fullName}</span>
           </p>
-          <p className={classNames.featureLink}>
-            <a href={featureUrl} target="_blank" rel="noreferrer">
-              Click here to checkout this feature
-            </a>
-          </p>
+          {featureUrl > '' && (
+            <p id={classNames.featureLink}>
+              <a href={featureUrl} target="_blank" rel="noreferrer" className={classNames.linkText}>
+                Click here to checkout this feature
+              </a>
+            </p>
+          )}
         </div>
       )}
-      <p>
-        {completedText} {completedDate}
-      </p>
+      <Dates
+        what="completed"
+        isTaskAvailable={isTaskAvailable}
+        startedOn={startedOn}
+        endsOn={endsOn}
+        status={status}
+        allContributionObj={allContributionObj}
+      />
       <div className={classNames.featureBottomContainer}>
-        <div>{featureLiveOnText}</div>
+        <Dates
+          what="feature"
+          isTaskAvailable={isTaskAvailable}
+          startedOn={startedOn}
+          endsOn={endsOn}
+          status={status}
+          allContributionObj={allContributionObj}
+        />
         {isTaskAvailable && (
           <button onClick={showMoreContentHandler} onKeyPress={showMoreContentHandler}>
             {showText}

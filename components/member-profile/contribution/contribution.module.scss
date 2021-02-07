@@ -16,22 +16,17 @@
   justify-content: space-between;
 }
 
-.featureTitle,
-.featureLink a {
-  color: #041484 !important;
-}
-
 .featureDescription {
   margin-top: 12px;
   color: gray;
 }
 
-.featureLink {
+#featureLink {
   text-align: center;
   padding: 12px 0;
 }
 
-.featureLink a {
+#featureLink a {
   text-decoration: none;
 }
 
@@ -71,6 +66,11 @@
 .userIcon img {
   border-radius: 50%;
   height: 40px;
+}
+
+#featureTitle,
+#featureLink a {
+  color: #041484;
 }
 
 @media (max-width: 768px) {
