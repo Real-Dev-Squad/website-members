@@ -7,10 +7,6 @@
   flex-direction: column;
 }
 
-.contributionContainer span {
-  color: lightgray;
-}
-
 .heading {
   display: flex;
   justify-content: space-between;
@@ -21,12 +17,12 @@
   color: gray;
 }
 
-#featureLink {
+.featureLink {
   text-align: center;
   padding: 12px 0;
 }
 
-#featureLink a {
+.featureLink a {
   text-decoration: none;
 }
 
@@ -68,8 +64,8 @@
   height: 40px;
 }
 
-#featureTitle,
-#featureLink a {
+.featureTitle,
+.featureLink a {
   color: #041484;
 }
 

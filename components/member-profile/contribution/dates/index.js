@@ -29,7 +29,7 @@ const Dates = (props) => {
 
   return what === 'completed' ? (
     <p>
-      <span>{completedText}</span> {completedDate}
+      <span style={{ color: 'lightgray' }}>{completedText}</span> {completedDate}
     </p>
   ) : (
     <div>{featureLiveOnText}</div>
