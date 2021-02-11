@@ -33,8 +33,8 @@ Create a new branch to work on. We require a different branch so that we always 
 ``` 
 git checkout -b <branch-name> 
 ```
-We will try to name the branch according to the task we are going to perform in it. If it going to be a `feature`, the branch name should begin with `feat` or `feature`. If it going to be a `fix`, the branch name should begin with `fix` or `bugfix`. The branch name should be self explanatory.
-For example, if I want to work on a `feature` called `login-form`, the branch name will be **feature/login-form**. If it is going to a `fix` in `form-data`, the branch will be `fix/form-data`. 
+We will try to name the branch according to the task we are going to perform in it. If it is going to be a `feature`, the branch name should begin with `feat` or `feature`. If it is going to be a `fix`, the branch name should begin with `fix` or `bugfix`. The branch name should be self-explanatory.
+For example, if I want to work on a `feature` called `login-form`, the branch name will be **feature/login-form**. If it is going to be a `fix` in `form-data`, the branch name will be `fix/form-data`. 
 Command example:
 ``` 
 git checkout -b feature/login-form
