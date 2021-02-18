@@ -1,17 +1,18 @@
-const baseURL = 'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main';
+const baseURL = 'https://staging-api.realdevsquad.com';
+const baseImgURL = 'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main';
 const PRbaseURL = 'https://staging-api.realdevsquad.com/contributions';
 
 /**
  *
  * @param {string} rdsId
  */
-const getImgURL = (rdsId, img) => `${baseURL}/members/${rdsId}/${img}`;
+const getImgURL = (rdsId, img) => `${baseImgURL}/members/${rdsId}/${img}`;
 
 /**
  *
  * @param {string} rdsId
  */
-const getDataURL = (rdsId) => `${baseURL}/members/${rdsId}/data.json`;
+const getDataURL = (rdsId) => `${baseURL}/users/${rdsId}`;
 
 /**
  *
