@@ -3,13 +3,13 @@ import { timeWas } from '../../../../helper-functions/time-was';
 
 const Dates = (props) => {
   const { isTaskAvailable, startedOn, endsOn, status, what, allContributionObj } = props;
-  let completedText = 'Completed in:';
+  let completedText = allContributionObj['state'] === 'closed' ? 'Completed in:' : '';
   let completedDate = '';
   let featureLiveOnText = '';
   let featureLiveDate = '';
 
   if (isTaskAvailable) {
-    if (status === 'Active') {
+    if (status.toLowerCase() === 'active') {
       completedText = 'Estimated Completion:';
       completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
     } else {
