@@ -1,5 +1,5 @@
 const baseURL = 'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main';
-const PRbaseURL = 'https://staging-api.realdevsquad.com/pullrequests/user';
+const PRbaseURL = 'https://api.realdevsquad.com/pullrequests/user';
 
 /**
  *
