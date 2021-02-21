@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from 'components/footer';
 import Navbar from 'components/UI/navbar';
-import SideDrawer from 'components/UI/sideDrawer/SideDrawer';
+import SideDrawer from 'components/UI/side-drawer';
 const Layout = ({ children, title, description }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
 
@@ -16,6 +16,7 @@ const Layout = ({ children, title, description }) => {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Navbar drawerToggleClicked={sideDrawerToggleHandler} />
       <SideDrawer open={showSideDrawer} close={sideDrawerToggleHandler} />

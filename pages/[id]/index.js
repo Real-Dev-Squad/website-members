@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { getDataURL, getImgURL, getPRsUrl } from 'helper-functions/urls';
+import { getDataURL, getImgURL, getContributionsURL } from 'helper-functions/urls';
 import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
 import Layout from 'components/layout';
 import { CACHE_MAX_AGE } from '../../constants/cache-max-age.js';
 
-const MemberProfile = ({ imageLink, data, pullRequests, errorMessage }) => {
+const MemberProfile = ({ imageLink, data, contributions, errorMessage }) => {
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
@@ -16,7 +16,7 @@ const MemberProfile = ({ imageLink, data, pullRequests, errorMessage }) => {
 
   return (
     <Layout title={memberName}>
-      <Profile imageLink={imageLink} membersData={data} pullRequests={pullRequests} />
+      <Profile imageLink={imageLink} membersData={data} contributions={contributions} />
     </Layout>
   );
 };
@@ -26,9 +26,8 @@ export async function getServerSideProps(context) {
   const {
     params: { id }
   } = context;
-  const imageLink = getImgURL(id);
   const jsonUrl = getDataURL(id);
-  const userPRUrl = getPRsUrl(id);
+  const contributionsURL = getContributionsURL(id);
 
   try {
     const res = await fetch(jsonUrl);
@@ -39,10 +38,11 @@ export async function getServerSideProps(context) {
     }
     const data = await res.data;
 
-    const getPRsbyUser = await fetch(userPRUrl);
-    const { pullRequests } = getPRsbyUser.data;
+    const contributionsResponse = await fetch(contributionsURL);
+    const contributions = await contributionsResponse.data;
+    const imageLink = getImgURL(id, data.img);
 
-    return { props: { imageLink, data, pullRequests } };
+    return { props: { imageLink, data, contributions } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
   }
@@ -51,14 +51,20 @@ export async function getServerSideProps(context) {
 MemberProfile.propTypes = {
   imageLink: PropTypes.string,
   data: PropTypes.object,
-  pullRequests: PropTypes.array,
+  contributions: PropTypes.shape({
+    noteworthy: PropTypes.array,
+    all: PropTypes.array
+  }),
   errorMessage: PropTypes.string
 };
 
 MemberProfile.defaultProps = {
   imageLink: '',
   data: {},
-  pullRequests: [],
+  contributions: {
+    noteworthy: [],
+    all: []
+  },
   errorMessage: ''
 };
 
