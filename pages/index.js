@@ -1,4 +1,4 @@
-import { getDataURL, getImgURL } from 'helper-functions/urls';
+import { getImgURL, getMembersURL } from 'helper-functions/urls';
 import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
 import HomePage from '../components/pages';
@@ -19,33 +19,32 @@ const Index = ({ membersArr, errorMsg }) => {
 
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
-  const URL =
-    'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/ids/mapping.json';
 
   const membersArr = [];
-  let memberDetailsUrl = '';
-  let resp1 = '';
-  let jsonObj = '';
 
   try {
-    const res = await fetch(URL);
+    const res = await fetch(getMembersURL);
     if (res.status !== 200) {
       throw new Error(
         'There was some issues fetching the members, Please try again after some time'
       );
     }
-    let data = await res.json();
+    let { members } = await res.json();
 
-    for (const rdsid in data) {
-      memberDetailsUrl = getDataURL(rdsid);
-      resp1 = await fetch(memberDetailsUrl);
-      if (resp1.status == 200) {
-        jsonObj = await resp1.json();
-        membersArr.push({
-          ...jsonObj,
-          img_url: getImgURL(rdsid, jsonObj.img)
-        });
+    members.sort((a, b) => {
+      if (a.first_name < b.first_name) {
+        return -1;
       }
+      if (a.first_name > b.first_name) {
+        return 1;
+      }
+      return 0;
+    });
+    for (const memberData of members) {
+      membersArr.push({
+        ...memberData,
+        img_url: getImgURL(memberData.username, 'img.png')
+      });
     }
 
     return { props: { membersArr } };
