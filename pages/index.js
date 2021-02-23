@@ -29,17 +29,9 @@ export async function getServerSideProps(context) {
         'There was some issues fetching the members, Please try again after some time'
       );
     }
-    let { members } = await res.json();
+    const { members } = await res.json();
 
-    members.sort((a, b) => {
-      if (a.first_name < b.first_name) {
-        return -1;
-      }
-      if (a.first_name > b.first_name) {
-        return 1;
-      }
-      return 0;
-    });
+    members.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
     for (const memberData of members) {
       membersArr.push({
         ...memberData,
