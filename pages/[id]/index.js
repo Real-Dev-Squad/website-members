@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { getDataURL, getImgURL, getContributionsURL } from 'helper-functions/urls';
+import { getMembersDataURL, getImgURL, getContributionsURL } from 'helper-functions/urls';
 import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
   const {
     params: { id }
   } = context;
-  const jsonUrl = getDataURL(id);
+  const jsonUrl = getMembersDataURL(id);
   const contributionsURL = getContributionsURL(id);
 
   try {
