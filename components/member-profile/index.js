@@ -35,11 +35,11 @@ const Profile = (props) => {
   const { noteworthy, all } = contributions;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
-  const fullName = `${first_name} ${last_name}`;
-  const memberName = fullName.trim() || '--';
-  const rdsUserName = `@${id}`;
+  const fullName = `${props.membersData.user.first_name} ${props.membersData.user.last_name}`;
+  const rdsUserName = `${props.membersData.user.username}`;
 
   const badges = getBadges(id);
+  const workPlace = props.membersData.user.designation;
 
   return (
     <div className={classNames.container}>
@@ -52,10 +52,10 @@ const Profile = (props) => {
             alt="ProfilePicture"
           />
           <div className={classNames.personalInfo}>
-            <h1 className={classNames.profileName}>{memberName}</h1>
+            <h1 className={classNames.profileName}>{fullName}</h1>
             <p className={classNames.userName}>{rdsUserName}</p>
             <p className={classNames.workDetails}>
-              {designation}
+              {workPlace}
               <br />
               <span className={classNames.userName}>{company}</span>
             </p>

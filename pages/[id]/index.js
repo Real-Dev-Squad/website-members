@@ -11,9 +11,7 @@ const MemberProfile = ({ imageLink, data, contributions, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
 
-  const { first_name = '', last_name = '' } = data;
-  const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
-
+  const memberName = `${data.user.first_name} ${data.user.last_name} | Member Real Dev Squad`;
   return (
     <Layout title={memberName}>
       <Profile imageLink={imageLink} membersData={data} contributions={contributions} />
@@ -40,7 +38,7 @@ export async function getServerSideProps(context) {
 
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
-    const imageLink = getImgURL(id, data.img);
+    const imageLink = getImgURL(id, 'img.png');
 
     return { props: { imageLink, data, contributions } };
   } catch (e) {
