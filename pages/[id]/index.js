@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
-import { getDataURL, getImgURL, getContributionsURL } from 'helper-functions/urls';
+import { getMembersDataURL, getImgURL, getContributionsURL } from 'helper-functions/urls';
 import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
 import Layout from 'components/layout';
 import { CACHE_MAX_AGE } from '../../constants/cache-max-age.js';
 
-const MemberProfile = ({ imageLink, data, contributions, errorMessage }) => {
+const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
 
-  const { first_name = '', last_name = '' } = data;
+  const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
   return (
     <Layout title={memberName}>
-      <Profile imageLink={imageLink} membersData={data} contributions={contributions} />
+      <Profile imageLink={imageLink} membersData={user} contributions={contributions} />
     </Layout>
   );
 };
@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
   const {
     params: { id }
   } = context;
-  const jsonUrl = getDataURL(id);
+  const jsonUrl = getMembersDataURL(id);
   const contributionsURL = getContributionsURL(id);
 
   try {
@@ -36,13 +36,13 @@ export async function getServerSideProps(context) {
         `The user ${id} you're trying to find doesn't exist with us, please go to members to see all the available members we have`
       );
     }
-    const data = await res.data;
+    const { user } = await res.data;
 
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
-    const imageLink = getImgURL(id, data.img);
+    const imageLink = getImgURL(id, 'img.png');
 
-    return { props: { imageLink, data, contributions } };
+    return { props: { imageLink, user, contributions } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
   }
@@ -50,7 +50,7 @@ export async function getServerSideProps(context) {
 
 MemberProfile.propTypes = {
   imageLink: PropTypes.string,
-  data: PropTypes.object,
+  user: PropTypes.object,
   contributions: PropTypes.shape({
     noteworthy: PropTypes.array,
     all: PropTypes.array
@@ -60,7 +60,7 @@ MemberProfile.propTypes = {
 
 MemberProfile.defaultProps = {
   imageLink: '',
-  data: {},
+  user: {},
   contributions: {
     noteworthy: [],
     all: []
