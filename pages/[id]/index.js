@@ -6,17 +6,15 @@ import NotFound from 'components/not-found-page';
 import Layout from 'components/layout';
 import { CACHE_MAX_AGE } from '../../constants/cache-max-age.js';
 
-const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
+const MemberProfile = ({ imageLink, data, contributions, errorMessage }) => {
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
 
-  const { first_name = '', last_name = '' } = user;
-  const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
-
+  const memberName = `${data.user.first_name} ${data.user.last_name} | Member Real Dev Squad`;
   return (
     <Layout title={memberName}>
-      <Profile imageLink={imageLink} membersData={user} contributions={contributions} />
+      <Profile imageLink={imageLink} membersData={data} contributions={contributions} />
     </Layout>
   );
 };
@@ -24,10 +22,10 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const {
-    params: { id } //sumit
+    params: { id }
   } = context;
-  const jsonUrl = getMembersDataURL(id); //sumit
-  const contributionsURL = getContributionsURL(id); //sumit
+  const jsonUrl = getMembersDataURL(id);
+  const contributionsURL = getContributionsURL(id);
 
   try {
     const res = await fetch(jsonUrl);
@@ -36,13 +34,13 @@ export async function getServerSideProps(context) {
         `The user ${id} you're trying to find doesn't exist with us, please go to members to see all the available members we have`
       );
     }
-    const { user } = await res.data;
+    const data = await res.data;
 
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
-    const imageLink = getImgURL(id, 'img.png'); //sumit
+    const imageLink = getImgURL(id, 'img.png');
 
-    return { props: { imageLink, user, contributions } };
+    return { props: { imageLink, data, contributions } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
   }
@@ -50,7 +48,7 @@ export async function getServerSideProps(context) {
 
 MemberProfile.propTypes = {
   imageLink: PropTypes.string,
-  user: PropTypes.object,
+  data: PropTypes.object,
   contributions: PropTypes.shape({
     noteworthy: PropTypes.array,
     all: PropTypes.array
@@ -60,7 +58,7 @@ MemberProfile.propTypes = {
 
 MemberProfile.defaultProps = {
   imageLink: '',
-  user: {},
+  data: {},
   contributions: {
     noteworthy: [],
     all: []

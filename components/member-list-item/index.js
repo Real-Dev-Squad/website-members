@@ -12,7 +12,7 @@ const PreviewMember = ({ memberDetails }) => {
     <Link
       prefetch={false}
       href={{
-        pathname: '/[id]',
+        pathname: '/[username]',
         query: {
           first_name: `${memberDetails ? memberDetails.first_name : ''}`,
           last_name: `${memberDetails ? memberDetails.last_name : ''}`
