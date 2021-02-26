@@ -6,7 +6,7 @@ import { object } from 'prop-types';
 import { motion } from 'framer-motion';
 
 const PreviewMember = ({ memberDetails }) => {
-  const { id } = memberDetails;
+  const { username } = memberDetails;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
   return (
@@ -19,17 +19,19 @@ const PreviewMember = ({ memberDetails }) => {
           last_name: `${memberDetails ? memberDetails.last_name : ''}`
         }
       }}
-      as={`/${id}`}
-      key={id}>
+      as={`/${username}`}
+      key={username}>
       <div className={classNames.container}>
         <motion.img
-          layoutId={id}
+          layoutId={username}
           src={memberDetails.img_url}
           className={classNames.imgContainer}
-          alt={id}
+          alt={username}
         />
         <h2 className={classNames.nameOfPerson}>
-          {memberDetails ? `${memberDetails['first_name']} ${memberDetails['last_name']}` : id}
+          {memberDetails
+            ? `${memberDetails['first_name']} ${memberDetails['last_name']}`
+            : username}
         </h2>
         {memberDetails && (
           <div className={classNames.iconsContainer}>

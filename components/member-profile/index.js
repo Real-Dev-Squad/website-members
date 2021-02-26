@@ -27,7 +27,7 @@ const renderSocialMediaIcons = (socialMedia, membersData) =>
   );
 const Profile = (props) => {
   const {
-    membersData: { id, first_name, last_name, company, designation },
+    membersData: { username, first_name, last_name, company, designation },
     imageLink,
     contributions
   } = props;
@@ -37,16 +37,16 @@ const Profile = (props) => {
 
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
-  const rdsUserName = `@${id}`;
+  const rdsUserName = `@${username}`;
 
-  const badges = getBadges(id);
+  const badges = getBadges(username);
 
   return (
     <div className={classNames.container}>
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
           <motion.img
-            layoutId={id}
+            layoutId={username}
             src={imageLink}
             className={classNames.profilePic}
             alt="ProfilePicture"
@@ -90,7 +90,7 @@ const Profile = (props) => {
 Profile.propTypes = {
   imageLink: PropTypes.string,
   membersData: PropTypes.shape({
-    id: PropTypes.string,
+    username: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     company: PropTypes.string,
@@ -105,7 +105,7 @@ Profile.propTypes = {
 Profile.defaultProps = {
   imageLink: '',
   membersData: {
-    id: '',
+    username: '',
     first_name: '',
     last_name: '',
     company: '',
