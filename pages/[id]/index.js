@@ -24,10 +24,10 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const {
-    params: { id }
+    params: { id } //sumit
   } = context;
-  const jsonUrl = getMembersDataURL(id);
-  const contributionsURL = getContributionsURL(id);
+  const jsonUrl = getMembersDataURL(id); //sumit
+  const contributionsURL = getContributionsURL(id); //sumit
 
   try {
     const res = await fetch(jsonUrl);
