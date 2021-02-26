@@ -27,7 +27,7 @@ const renderSocialMediaIcons = (socialMedia, membersData) =>
   );
 const Profile = (props) => {
   const {
-    membersData: { username, first_name, last_name, company, designation },
+    membersData: { id, first_name, last_name, company, designation },
     imageLink,
     contributions
   } = props;
@@ -35,27 +35,27 @@ const Profile = (props) => {
   const { noteworthy, all } = contributions;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
-  const fullName = `${first_name} ${last_name}`;
-  const memberName = fullName.trim() || '--';
-  const rdsUserName = `@${username}`;
+  const fullName = `${props.membersData.user.first_name} ${props.membersData.user.last_name}`;
+  const rdsUserName = `${props.membersData.user.username}`;
 
-  const badges = getBadges(username);
+  const badges = getBadges(id);
+  const workPlace = props.membersData.user.designation;
 
   return (
     <div className={classNames.container}>
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
           <motion.img
-            layoutId={username}
+            layoutId={id}
             src={imageLink}
             className={classNames.profilePic}
             alt="ProfilePicture"
           />
           <div className={classNames.personalInfo}>
-            <h1 className={classNames.profileName}>{memberName}</h1>
+            <h1 className={classNames.profileName}>{fullName}</h1>
             <p className={classNames.userName}>{rdsUserName}</p>
             <p className={classNames.workDetails}>
-              {designation}
+              {workPlace}
               <br />
               <span className={classNames.userName}>{company}</span>
             </p>
@@ -90,7 +90,7 @@ const Profile = (props) => {
 Profile.propTypes = {
   imageLink: PropTypes.string,
   membersData: PropTypes.shape({
-    username: PropTypes.string,
+    id: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     company: PropTypes.string,
@@ -105,7 +105,7 @@ Profile.propTypes = {
 Profile.defaultProps = {
   imageLink: '',
   membersData: {
-    username: '',
+    id: '',
     first_name: '',
     last_name: '',
     company: '',
