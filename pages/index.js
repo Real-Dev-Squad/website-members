@@ -1,4 +1,4 @@
-import { getImgURL, getMembersURL } from 'helper-functions/urls';
+import { getMembersURL, getImgURL } from 'helper-functions/urls';
 import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
 import HomePage from '../components/pages';
@@ -30,7 +30,6 @@ export async function getServerSideProps(context) {
       );
     }
     const { members } = await res.json();
-
     members.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
     for (const memberData of members) {
       membersArr.push({

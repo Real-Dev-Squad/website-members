@@ -8,11 +8,12 @@ import { motion } from 'framer-motion';
 const PreviewMember = ({ memberDetails }) => {
   const { username } = memberDetails;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
+
   return (
     <Link
       prefetch={false}
       href={{
-        pathname: '/[username]',
+        pathname: '/[id]',
         query: {
           first_name: `${memberDetails ? memberDetails.first_name : ''}`,
           last_name: `${memberDetails ? memberDetails.last_name : ''}`
