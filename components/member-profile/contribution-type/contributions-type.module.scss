@@ -1,0 +1,39 @@
+.container {
+  margin: 15px 0;
+}
+
+.showContent {
+  display: block;
+}
+
+.hideContent {
+  display: none;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  border: 5px solid;
+  margin-left: 60px;
+  border-color: transparent black black transparent;
+  border-radius: 5px;
+  float: right;
+  transition: cubic-bezier(0, 1.17, 1, 0.91) 0.5s;
+}
+
+.arrowRight {
+  transform: rotate(-45deg);
+}
+
+.arrowDown {
+  transform: rotate(45deg);
+}
+
+.pointerCursor {
+  cursor: pointer;
+}
+
+.hrLine {
+  margin: 20px 0;
+  border-color: lightgray transparent transparent ;
+}
