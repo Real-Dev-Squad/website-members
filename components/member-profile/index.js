@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SocialMediaIcon from '../social-media-icon';
 import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
-import Contribution from './contribution/';
+import ContributionType from './contribution-type/';
 import { motion } from 'framer-motion';
 
 const renderBadgeImages = (badges) =>
@@ -11,15 +11,20 @@ const renderBadgeImages = (badges) =>
     <img src={badge.img} className={classNames.badge} alt={badge.title} key={badge.title} />
   ));
 
-const renderContributions = (contributions, fullName, imageLink) =>
-  contributions.map((noteWorthyContribution, index) => (
-    <Contribution
-      contribution={noteWorthyContribution}
+const CONTRIBUTIONTYPE = ['Noteworthy', 'All'];
+
+const renderContributionsTypes = (contributions, fullName, imageLink) => {
+  const { noteworthy, all } = contributions;
+  return CONTRIBUTIONTYPE.map((type, index) => (
+    <ContributionType
+      type={type}
       key={index}
+      contributions={type !== 'All' ? noteworthy : all}
       fullName={fullName}
       imageLink={imageLink}
     />
   ));
+};
 
 const renderSocialMediaIcons = (socialMedia, membersData) =>
   socialMedia.map(
@@ -32,7 +37,6 @@ const Profile = (props) => {
     contributions
   } = props;
   const { membersData } = props;
-  const { noteworthy, all } = contributions;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
 
   const fullName = `${first_name} ${last_name}`;
@@ -77,10 +81,7 @@ const Profile = (props) => {
         </div>
 
         <div className={(classNames.section, classNames.card)}>
-          <h2>Noteworthy Contributions</h2>
-          {renderContributions(noteworthy, fullName, imageLink)}
-          <h2>All Contributions</h2>
-          {renderContributions(all, fullName, imageLink)}
+          {renderContributionsTypes(contributions, fullName, imageLink)}
         </div>
       </div>
     </div>
