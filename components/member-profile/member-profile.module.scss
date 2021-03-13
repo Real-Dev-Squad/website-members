@@ -107,10 +107,38 @@
   font-size: 16px;
 }
 
+
+.getIntroButton {
+  font-size: 1.2rem;
+  padding: 8px 30px;
+//  background-color: #1d1283;
+  background-color: rgb(238, 26, 117);
+  color: #fff;
+  border-radius: 8px;
+//  border: 1px solid #1d1283;
+  transition-duration: 0.4s;
+//  font-weight: bold;
+}
+
+.getIntroButton:hover {
+  background-color: #fff;
+  color: rgb(238, 26, 117);
+  border-radius: 8px;
+  border: 1px solid rgb(238, 26, 117);
+}
+
+.modalCloseOff{
+  position: fixed;
+}
+
 .workDetails {
   margin-top: 5px;
   color: #0e141e;
   font-size: 18px;
+}
+
+.modalWindow{
+  width: 500px;
 }
 
 .iconsContainer {
