@@ -1,0 +1,42 @@
+.body{
+
+}
+.errorComp{
+    color:red;
+}
+  
+.select {
+    width:300px;
+}
+.tagWord{
+    margin: 10px;
+}
+
+.inputBox{
+    padding: 10px;
+    border: 1px solid rgb(39, 37, 37);
+    width: 100%;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.submitButton{
+    font-size: 1.2rem;
+    padding: 8px 15px;
+    background-color: rgb(238, 26, 117);
+    color: #fff;
+    border-radius: 8px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.submitButton:hover{
+
+    background-color: #1d1283;
+    color: #fff;
+
+}
+
+
