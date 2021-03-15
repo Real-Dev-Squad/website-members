@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '../social-media-icon';
 import getBadges from './mock/get-badges';
@@ -8,12 +8,10 @@ import { motion } from 'framer-motion';
 import Modalcomp from 'components/modal/Modal.component';
 import Modal from 'react-modal';
 
-
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
     <img src={badge.img} className={classNames.badge} alt={badge.title} key={badge.title} />
   ));
-  
 
 const CONTRIBUTIONTYPE = ['Noteworthy', 'All'];
 
@@ -48,10 +46,8 @@ const Profile = (props) => {
   const rdsUserName = `@${username}`;
 
   const badges = getBadges(username);
-  
-  const [modalIsOpen, setModalIsOpen] =useState(false);
 
-  
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <div className={classNames.container}>
@@ -76,17 +72,20 @@ const Profile = (props) => {
             {membersData && (
               <div className={classNames.iconsContainer}>
                 {renderSocialMediaIcons(socialMedia, membersData)}
-              </div>              
+              </div>
             )}
             <div>
-              <button className={classNames.getIntroButton} onMouseDown={()=>setModalIsOpen(true)}>
+              <button
+                className={classNames.getIntroButton}
+                onMouseDown={() => setModalIsOpen(true)}>
                 Get Intro
               </button>
-              <Modal className={classNames.modalWindow}  isOpen={modalIsOpen}>
-                <Modalcomp modalIsOpen={modalIsOpen} onClose={()=>setModalIsOpen(false)}/>
-                {/* <div>
-                <button onMouseDown={()=>setModalIsOpen(false)} className={classNames.closeButton}>Xhgj</button>
-                </div> */}
+              <Modal className={classNames.modalWindow} isOpen={modalIsOpen}>
+                <Modalcomp
+                  modalIsOpen={modalIsOpen}
+                  rdsusername={rdsUserName}
+                  onClose={() => setModalIsOpen(false)}
+                />
               </Modal>
             </div>
           </div>
