@@ -2,7 +2,7 @@
     position: relative;
     display:flex;
     width: 50%;
-    background-color: #f5f3e1;
+    background-color: #f5efd4;
     border-radius: 12px;
     padding: 15px 30px;
     flex-direction: column;
@@ -18,10 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    //overflow-y: hidden;
-    // opacity: 0;
-    // transition: all 0.3s ease-in-out;
-    // pointer-events: none;
+    backdrop-filter: blur(10px);
 }
 
 
