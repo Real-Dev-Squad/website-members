@@ -74,7 +74,7 @@ const Profile = (props) => {
         </div>
       </div>
 
-      <div className={(classNames.content, classNames.column)}>
+      <div className={classNames.content}>
         <div className={(classNames.section, classNames.card)}>
           <h2>Badges</h2>
           <div className={classNames.badgeContainer}>{badges && renderBadgeImages(badges)}</div>
