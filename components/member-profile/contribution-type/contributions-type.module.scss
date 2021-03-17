@@ -1,0 +1,43 @@
+.container {
+  margin: 15px 0;
+}
+
+.showContent {
+  opacity: 1;
+  max-height: 3000px;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.hideContent {
+  opacity: 0;
+  max-height: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  border: 5px solid;
+  margin-left: 60px;
+  border-color: transparent black black transparent;
+  border-radius: 5px;
+  float: right;
+  transition: cubic-bezier(0, 1.17, 1, 0.91) 0.5s;
+}
+
+.arrowRight {
+  transform: rotate(-45deg);
+}
+
+.arrowDown {
+  transform: rotate(45deg);
+}
+
+.pointerCursor {
+  cursor: pointer;
+}
+
+.hrLine {
+  margin: 20px 0;
+  border-color: lightgray transparent transparent ;
+}
