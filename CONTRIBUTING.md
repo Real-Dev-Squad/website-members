@@ -1,4 +1,4 @@
-# How can you make your first **Pull Request**
+# How can I contribute?
 
 1. **Forking repository**
 
@@ -24,8 +24,25 @@ Add the Real Dev Squad repository as a remote repository, so that you can anytim
 git remote add upstream https://github.com/Real-Dev-Squad/website-members/ 
 ```
 
+4. **Getting the latest code from the develop branch** (Can be skipped if you've cloned the repo just now)
 
-4. **Creating a branch**
+If it's been quite a while after you have cloned the repo/made the last pull request, it's recommended to take a pull from the develop branch. Reason being, there may be some changes which could have merged after you had cloned the repo/made the last pull request.
+
+To do so, make sure you're in the develop branch by checking out to the **develop** branch:
+
+```
+git checkout develop
+```
+
+Once you're in the **develop** branch, it's time to take a pull:
+
+```
+git pull upstream develop
+```
+
+Now that you've made sure that you've got latest changes, we can proceed to creating our branch
+
+5. **Creating a branch**
 
 
 
@@ -40,13 +57,13 @@ Command example:
 git checkout -b feature/login-form
 ```
 
-5. **Just do it!**
+6. **Just do it!**
 
 
 
 Perform the tasks you wanted to, can be anything, ranging from fixing simple typo to re-designing the whole page!
 
-6. **Committing your changes**
+7. **Committing your changes**
 
 
 
@@ -56,30 +73,37 @@ git add .
 git commit -m "Write message about your commit" 
 ```
 
-7. **Merging your branch into develop branch**
+8. **Making sure you have the latest changes from the develop branch**
 
+It may so happen that since the last time you cloned the repo/took a pull from develop, some changes may be merged in the develop branch. So to be on the safer side, we should have those changes as well.
 
+In order to do that, we first checkout to **develop** branch by:
 
-Now your branch (`feature/login-form`, in my case) has the changes you made, once you're sure that your code is stable, it's time to merge the changes into the develop branch of your *local version of your fork*. The following command takes you to the develop branch:
-``` 
+```
 git checkout develop
 ```
 
-It's recommended that you have the latest copy of the original repo into your develop branch before you merge your changes into it. So pull the latest changes again:
+Once we're in develop, it's time to take a pull:
+
 ```
 git pull upstream develop
 ```
-Now you can merge your branch into the develop branch.
+
+Now that our **local** develop branch is in sync with **remote** develop branch (of the Real Dev Squad Repository), we should let our branch know about the changes from the develop branch (if any). To do so we first checkout to our branch:
+
 ```
-git merge <branch-name>
+git checkout <branch-name>
 ```
 
-For example, if the branch name is feature/login-form:
+Once we're in our branch, we **rebase** our branch on top of the current develop branch (we change the base of our branch, so that it appears as if we have worked from the time the latest changes were merged in the develop branch). To do so:
+
 ```
-git merge feature/login-form
+git rebase develop
 ```
 
-8. **Pushing your code**
+You should solve the merge conflicts, if any.
+
+9. **Pushing your code**
 
 
 
@@ -88,7 +112,7 @@ Now it is the time to push the changes of your local develop branch to your fork
 git push origin
 ```
 
-9. **Pull request**
+10. **Pull request**
 
 
 
@@ -96,10 +120,10 @@ Now go to your forked repository and you'll see that **This branch is xx commits
 
 ![how-to-open-pull-request](https://i.imgur.com/NMAeWc2.png)
 
-10. **Review stage**
+11. **Review stage**
 
 
 
 Wait for it to get reviewed, make the changes required (if any) , commit your changes and hit **Pull Request** again, your commits will be added to the same pull request you had opened earlier (if it is NOT closed).
 
-11. **Congratulations on making your first Pull Request! 🎉**
+12. **Congratulations on making your first Pull Request! 🎉**
