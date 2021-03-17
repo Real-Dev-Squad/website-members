@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
+  width: 30%;
 }
 
 .profilePic {
@@ -27,7 +28,6 @@
   padding: 20px 30px 20px;
   background: white;
   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
-  width: 40vw;
 
   &:hover {
     box-shadow: 0 0 20px -7px rgba(0, 0, 0, 0.65);
@@ -51,6 +51,7 @@
 
 .content {
   flex-grow: 0;
+  width: 70%;
 }
 
 .heading {
@@ -128,6 +129,11 @@
 @media only screen and (max-width: 1024px) {
   .container {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .column, .content {
+    width: 100%;
   }
 
   .memberDetails {
