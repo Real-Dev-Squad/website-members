@@ -23,7 +23,7 @@ const ContributionType = (props) => {
 
   const fullName = `${first_name} ${last_name}`;
 
-  const [showMoreContent, setShowMoreContent] = useState(false);
+  const [showMoreContent, setShowMoreContent] = useState(true);
 
   const showMoreContentHandler = () => {
     setShowMoreContent((prevstate) => !prevstate);
