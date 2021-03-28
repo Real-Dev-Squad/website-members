@@ -1,18 +1,19 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import classNames from './modal.module.scss';
+import PropTypes from 'prop-types';
 import Register from './Register/register.component';
 import Header from './shared/Header/header.component';
 
 const Modalcomp = (props) => {
-  // eslint-disable-next-line react/prop-types
   if (!props.modalIsOpen) {
     return null;
   }
   return (
     <span className={classNames.modal}>
-      <span className={classNames['modal-content']} onMouseDown={(e) => e.stopPropagation()}>
+      <span
+        className={classNames['modal-content']}
+        onMouseDown={(e) => e.stopPropagation()}
+        aria-hidden="true">
         <span className={classNames['modal-header']}>
           <Header />
         </span>
@@ -30,3 +31,9 @@ const Modalcomp = (props) => {
 };
 
 export default Modalcomp;
+
+Modalcomp.propTypes = {
+  onClose: PropTypes.func,
+  rdsusername: PropTypes.string,
+  modalIsOpen: PropTypes.bool
+};
