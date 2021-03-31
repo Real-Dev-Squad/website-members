@@ -111,14 +111,11 @@
 .getIntroButton {
   font-size: 1.2rem;
   padding: 8px 30px;
-//  background-color: #1d1283;
   background-color: rgb(238, 26, 117);
   color: #fff;
   border-radius: 8px;
-//  border: 1px solid #1d1283;
   transition-duration: 0.4s;
-//  font-weight: bold;
-border: rgb(238, 26, 117);
+  border: rgb(238, 26, 117);
 }
 
 .getIntroButton:hover {
