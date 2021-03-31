@@ -7,16 +7,16 @@ import classNames from './register.component.module.scss';
 function Register(props) {
   const { register, handleSubmit, errors } = useForm();
   const getMembersIntroURL = (RDSID) => `https://api.realdevsquad.com/members/intro/${RDSID}`;
-  const parameters = props.rdsusername;
+  const parameters = props.rdsUserName;
   const onSubmit = (data) => {
-    console.log(data);
+    //console.log(data);
     function charRem(paramstr) {
       return paramstr.replace('@', '');
     }
 
     const parameter = charRem(parameters);
     const rdsApiURL = getMembersIntroURL(parameter);
-    console.log(rdsApiURL);
+    //console.log(rdsApiURL);
 
     fetch(rdsApiURL, {
       method: 'POST',
@@ -30,11 +30,16 @@ function Register(props) {
       .then((response) => {
         if (response.status === 'success') {
           alert('Message Sent.');
-          this.resetForm();
+          resetForm();
         } else if (response.status === 'fail') {
           alert('Message failed to send.');
+          resetForm();
         }
       });
+  };
+
+  const resetForm = () => {
+    props.setshowModal(false);
   };
 
   return (
@@ -45,7 +50,6 @@ function Register(props) {
         </label>
         <input
           id="company"
-          //            value={details.company}
           className={classNames.inputBox}
           type="text"
           placeholder="Eg: Amazon"
@@ -61,7 +65,6 @@ function Register(props) {
         </label>
         <input
           id="first_name"
-          //            value={details.first_name}
           className={classNames.inputBox}
           type="text"
           placeholder="Eg: John"
@@ -79,7 +82,6 @@ function Register(props) {
         </label>
         <input
           id="last_name"
-          //               value={details.last_name}
           className={classNames.inputBox}
           type="text"
           placeholder="Eg: Doe"
@@ -95,7 +97,6 @@ function Register(props) {
         </label>
         <input
           id="designation"
-          //                value={details.designation}
           className={classNames.inputBox}
           type="text"
           placeholder="Eg: HR executive"
@@ -117,7 +118,6 @@ function Register(props) {
         </label>
         <input
           id="reason"
-          //                value={details.reason}
           className={classNames.inputBox}
           type="text"
           placeholder="Your Reason why you are interested on this candidate(Max 100 characters)"
@@ -137,7 +137,6 @@ function Register(props) {
         </label>
         <input
           id="email"
-          //                value={details.email}
           className={classNames.inputBox}
           type="email"
           placeholder="Your Email address"
@@ -163,7 +162,6 @@ function Register(props) {
             id="currency"
             type="select"
             name="currency"
-            //                value={details.currency}
             className={classNames.inputBoxCur}
             ref={register({
               validate: (value) => value !== ''
@@ -188,7 +186,6 @@ function Register(props) {
         </label>
         <input
           id="package"
-          //                value={details.package}
           className={classNames.inputBox}
           type="number"
           placeholder="2000000"
@@ -212,5 +209,6 @@ function Register(props) {
 export default Register;
 
 Register.propTypes = {
-  rdsusername: PropTypes.string
+  rdsUserName: PropTypes.string,
+  setshowModal: PropTypes.bool
 };
