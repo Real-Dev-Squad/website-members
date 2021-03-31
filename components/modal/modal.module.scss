@@ -1,3 +1,4 @@
+
 .modal{
     position:fixed;
     left:0;
@@ -10,25 +11,32 @@
     justify-content: center;
     backdrop-filter: blur(10px);
     overflow-y: hidden;
+    //overflow: hidden;
+}
+.parentdiv{
+    overflow: scroll;
+    height: 90%;
+    width: 50%;
 }
 .modal-content{
     position: relative;
     display:flex;
-    width: 50%;
-    height: 90%;
+    //width: 50%;
+    //height: 90%;
     background-color: #f5efd4;
     border-radius: 12px;
     padding: 15px 30px;
     flex-direction: column;
     align-items: center;
-    overflow: auto;
+    //overflow: scroll;
+    //max-height: 90%;
 }
 .modal-body{
     padding: 10px;
     width: 75%;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    overflow-y: hidden;
+    //overflow-y: hidden;
 }
 
 .closeButton{
@@ -36,7 +44,7 @@
     margin: 5px;
     top: 0;
     right: 0;
-    padding: 3px 10px 7px 10px;
+    padding: 5px 10px 5px 10px;
     cursor: pointer;
     font-size: 20px;
     background-color: red;
@@ -44,8 +52,6 @@
     border:red;
     color: #fff;   
 }
-
-
 
 .modal-title {
     margin: 0;    

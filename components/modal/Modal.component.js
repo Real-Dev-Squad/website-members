@@ -5,28 +5,30 @@ import Register from './Register/register.component';
 import Header from './shared/Header/header.component';
 
 const Modalcomp = (props) => {
-  if (!props.modalIsOpen) {
+  if (!props.showModal) {
     return null;
   }
   return (
-    <span className={classNames.modal}>
-      <span
-        className={classNames['modal-content']}
-        onMouseDown={(e) => e.stopPropagation()}
-        aria-hidden="true">
-        <span className={classNames['modal-header']}>
-          <Header />
-        </span>
-        <span className={classNames['modal-body']}>
-          <Register rdsusername={props.rdsusername} />
-        </span>
-        <span className={classNames['modal-footer']}>
-          <button onClick={props.onClose} className={classNames.closeButton}>
-            &times;
-          </button>
-        </span>
-      </span>
-    </span>
+    <div className={classNames.modal}>
+      <div className={classNames.parentdiv}>
+        <div
+          className={classNames['modal-content']}
+          onMouseDown={(e) => e.stopPropagation()}
+          aria-hidden="true">
+          <div className={classNames['modal-header']}>
+            <Header />
+          </div>
+          <div className={classNames['modal-body']}>
+            <Register rdsUserName={props.rdsUserName} />
+          </div>
+          <div className={classNames['modal-footer']}>
+            <button onClick={props.onClose} className={classNames.closeButton}>
+              &times;
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -34,6 +36,6 @@ export default Modalcomp;
 
 Modalcomp.propTypes = {
   onClose: PropTypes.func,
-  rdsusername: PropTypes.string,
-  modalIsOpen: PropTypes.bool
+  rdsUserName: PropTypes.string,
+  showModal: PropTypes.bool
 };
