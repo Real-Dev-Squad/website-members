@@ -39,7 +39,7 @@ function Register(props) {
   };
 
   const resetForm = () => {
-    props.setshowModal(false);
+    props.setShowModal(false);
   };
 
   return (
@@ -210,5 +210,5 @@ export default Register;
 
 Register.propTypes = {
   rdsUserName: PropTypes.string,
-  setshowModal: PropTypes.bool
+  setShowModal: PropTypes.bool
 };
