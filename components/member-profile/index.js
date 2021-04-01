@@ -47,7 +47,7 @@ const Profile = (props) => {
 
   const badges = getBadges(username);
 
-  const [showModal, setshowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className={classNames.container}>
@@ -75,15 +75,15 @@ const Profile = (props) => {
               </div>
             )}
             <div>
-              <button className={classNames.getIntroButton} onMouseDown={() => setshowModal(true)}>
+              <button className={classNames.getIntroButton} onMouseDown={() => setShowModal(true)}>
                 Get Intro
               </button>
               <Modal className={classNames.modalWindow} isOpen={showModal}>
                 <Modalcomp
                   showModal={showModal}
                   rdsUserName={rdsUserName}
-                  setshowModal={setshowModal}
-                  onClose={() => setshowModal(false)}
+                  setShowModal={setShowModal}
+                  onClose={() => setShowModal(false)}
                 />
               </Modal>
             </div>
