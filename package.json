@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
     "framer-motion": "^3.2.1",
     "next": "10.0.4",
     "node": "^15.10.0",

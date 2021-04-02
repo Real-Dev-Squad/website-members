@@ -13,7 +13,6 @@ function Register(props) {
     function charRem(paramstr) {
       return paramstr.replace('@', '');
     }
-
     const parameter = charRem(parameters);
     const rdsApiURL = getMembersIntroURL(parameter);
     //console.log(rdsApiURL);
