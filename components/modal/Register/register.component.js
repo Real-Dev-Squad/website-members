@@ -16,7 +16,6 @@ function Register(props) {
     const parameter = charRem(parameters);
     const rdsApiURL = getMembersIntroURL(parameter);
     //console.log(rdsApiURL);
-
     fetch(rdsApiURL, {
       method: 'POST',
       body: JSON.stringify(data),
