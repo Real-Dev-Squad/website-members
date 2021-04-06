@@ -4,16 +4,16 @@ import { isEmail } from 'validator';
 import PropTypes from 'prop-types';
 import classNames from './register.component.module.scss';
 
-function Register(props) {
+const Register = (props) => {
   const { register, handleSubmit, errors } = useForm();
   const getMembersIntroURL = (RDSID) => `https://api.realdevsquad.com/members/intro/${RDSID}`;
   const parameters = props.rdsUserName;
   const onSubmit = (data) => {
     //console.log(data);
-    function charRem(paramstr) {
+    const cleanUserName = (paramstr) => {
       return paramstr.replace('@', '');
-    }
-    const parameter = charRem(parameters);
+    };
+    const parameter = cleanUserName(parameters);
     const rdsApiURL = getMembersIntroURL(parameter);
     //console.log(rdsApiURL);
     fetch(rdsApiURL, {
@@ -202,7 +202,7 @@ function Register(props) {
       </form>
     </div>
   );
-}
+};
 
 export default Register;
 
