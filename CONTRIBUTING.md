@@ -1,5 +1,14 @@
 # How can I contribute?
 
+- You can fix the typos (if any) in any documentation of this repo.
+- You can check for any **unassigned** [issues](https://github.com/Real-Dev-Squad/website-members/issues) and **comment** on that issue that you'd like to get that issue assigned to you. (Remember: Do not work on issues assigned to someone else and do not work on any issue without having it assigned to you.)
+- Create issue if you see any bug and then once you get approved from the admins, you can assign yourself and start working on it.
+
+# How can you make a **Pull Request** (PR)
+
+**Note**: Steps 1, 2 and 3 are **one-time** steps required for setup. If you have already cloned the repo and added upstream, consider following this documentation from step 4.
+
+
 1. **Forking repository**
 
 
