@@ -14,7 +14,7 @@ const Contribution = ({ contribution, fullName, imageLink }) => {
     task: { title, startedOn, endsOn, purpose, featureUrl, status },
     prList
   } = contribution;
-  const [showMoreContent, setShowMoreContent] = useState(false);
+  const [showMoreContent, setShowMoreContent] = useState(true);
 
   const showMoreContentHandler = () => {
     setShowMoreContent((prevstate) => !prevstate);
