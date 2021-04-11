@@ -1,21 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { isEmail } from 'validator';
+import { isEmail, isDecimal } from 'validator';
 import PropTypes from 'prop-types';
-import classNames from './register.component.module.scss';
+import classNames from './register.module.scss';
 
 const Register = (props) => {
   const { register, handleSubmit, errors } = useForm();
+
   const getMembersIntroURL = (RDSID) => `https://api.realdevsquad.com/members/intro/${RDSID}`;
   const parameters = props.rdsUserName;
+
   const onSubmit = (data) => {
-    //console.log(data);
     const cleanUserName = (paramstr) => {
       return paramstr.replace('@', '');
     };
     const parameter = cleanUserName(parameters);
     const rdsApiURL = getMembersIntroURL(parameter);
-    //console.log(rdsApiURL);
     fetch(rdsApiURL, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -31,6 +31,15 @@ const Register = (props) => {
           resetForm();
         } else if (response.status === 'fail') {
           alert('Message failed to send.');
+          resetForm();
+        }
+        throw response;
+      })
+      .catch((error) => {
+        console.error('Error' + error);
+      })
+      .finally(() => {
+        if (!confirm('Some error occurred!!! \nRETRY?')) {
           resetForm();
         }
       });
@@ -118,7 +127,7 @@ const Register = (props) => {
           id="reason"
           className={classNames.inputBox}
           type="text"
-          placeholder="Your Reason why you are interested on this candidate(Max 100 characters)"
+          placeholder="Why you are interested on this candidate(Max 100 characters)"
           name="reason"
           ref={register({
             required: true,
@@ -189,11 +198,15 @@ const Register = (props) => {
           placeholder="2000000"
           name="package"
           ref={register({
-            required: true
+            required: true,
+            validate: (value) => isDecimal(value) === true
           })}
         />
         {errors.package && (
           <p className={classNames['errorPrompt']}>Package offered cannot be blank</p>
+        )}
+        {errors.package?.type === 'validate' && (
+          <p className={classNames['errorPrompt']}>Package must be a number</p>
         )}
         <br />
         <button color="primary" type="submit" className={classNames['submitButton']}>
@@ -208,5 +221,5 @@ export default Register;
 
 Register.propTypes = {
   rdsUserName: PropTypes.string,
-  setShowModal: PropTypes.bool
+  setShowModal: PropTypes.func
 };

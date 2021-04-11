@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from './modal.module.scss';
 import PropTypes from 'prop-types';
-import Register from './Register/register.component';
-import Header from './shared/Header/header.component';
+import Register from './Register/register';
+import Header from './shared/Header/header';
 
 const Modalcomp = (props) => {
   if (!props.showModal) {
@@ -19,7 +19,7 @@ const Modalcomp = (props) => {
             <Header />
           </div>
           <div className={classNames['modal-body']}>
-            <Register rdsUserName={props.rdsUserName} />
+            <Register rdsUserName={props.rdsUserName} setShowModal={props.setShowModal} />
           </div>
           <div className={classNames['modal-footer']}>
             <button onClick={props.onClose} className={classNames.closeButton}>
@@ -37,5 +37,6 @@ export default Modalcomp;
 Modalcomp.propTypes = {
   onClose: PropTypes.func,
   rdsUserName: PropTypes.string,
-  showModal: PropTypes.bool
+  showModal: PropTypes.bool,
+  setShowModal: PropTypes.func
 };

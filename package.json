@@ -21,7 +21,6 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hook-form": "^6.15.5",
-    "react-modal": "^3.12.1",
     "sass": "^1.30.0",
     "validator": "^13.5.2"
   },
