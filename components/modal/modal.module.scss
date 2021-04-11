@@ -1,59 +1,48 @@
-
-.modal{
-    position:fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    background-color: rgba($color: #000000, $alpha: 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    overflow-y: hidden;
-    //overflow: hidden;
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
 }
-.parentdiv{
-    overflow: scroll;
-    height: 90%;
-    width: 50%;
+.parentdiv {
+  overflow: scroll;
+  height: 90%;
+  width: 40%;
 }
-.modal-content{
-    position: relative;
-    display:flex;
-    //width: 50%;
-    //height: 90%;
-    background-color: #f5efd4;
-    border-radius: 12px;
-    padding: 15px 30px;
-    flex-direction: column;
-    align-items: center;
-    //overflow: scroll;
-    //max-height: 90%;
+.modal-content {
+  position: relative;
+  display: flex;
+  background-color: #fcf7eb;
+  border-radius: 12px;
+  padding: 15px 30px;
+  flex-direction: column;
+  align-items: center;
 }
-.modal-body{
-    padding: 10px;
-    width: 75%;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    //overflow-y: hidden;
+.modal-body {
+  padding: 10px;
+  width: 75%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
-
-.closeButton{
-    position: absolute;
-    margin: 5px;
-    top: 0;
-    right: 0;
-    padding: 5px 10px 5px 10px;
-    cursor: pointer;
-    font-size: 20px;
-    background-color: red;
-    border-radius: 50%;
-    border:red;
-    color: #fff;   
+.closeButton {
+  position: absolute;
+  margin: 5px;
+  top: 0;
+  right: 0;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: red;
+  border-radius: 50%;
+  border: red;
+  color: #fff;
 }
-
 .modal-title {
-    margin: 0;    
+  margin: 0;
 }
-
