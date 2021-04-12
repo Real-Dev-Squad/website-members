@@ -127,7 +127,7 @@ const Register = (props) => {
           id="reason"
           className={classNames.inputBox}
           type="text"
-          placeholder="Why you are interested on this candidate(Max 100 characters)"
+          placeholder="Why you are interested in this candidate(Max 100 characters)"
           name="reason"
           ref={register({
             required: true,
