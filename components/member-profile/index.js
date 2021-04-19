@@ -5,7 +5,7 @@ import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 import ContributionType from './contribution-type/';
 import { motion } from 'framer-motion';
-import Modalcomp from 'components/modal/Modal';
+import Modal from 'components/modal/Modal';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -78,7 +78,7 @@ const Profile = (props) => {
                 Get Intro
               </button>
               <span className={classNames.modalWindow} isOpen={showModal}>
-                <Modalcomp
+                <Modal
                   showModal={showModal}
                   rdsUserName={rdsUserName}
                   setShowModal={setShowModal}
