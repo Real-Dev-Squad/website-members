@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Register from './Register/register';
 import Header from './shared/Header/header';
 
-const Modalcomp = (props) => {
+const Modal = (props) => {
   if (!props.showModal) {
     return null;
   }
@@ -32,9 +32,9 @@ const Modalcomp = (props) => {
   );
 };
 
-export default Modalcomp;
+export default Modal;
 
-Modalcomp.propTypes = {
+Modal.propTypes = {
   onClose: PropTypes.func,
   rdsUserName: PropTypes.string,
   showModal: PropTypes.bool,
