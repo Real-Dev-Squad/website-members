@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from './modal.module.scss';
 import PropTypes from 'prop-types';
-import Register from './Register/register';
-import Header from './shared/Header/header';
+import Register from './Register';
+import Header from './Header';
 
 const Modal = (props) => {
   if (!props.showModal) {

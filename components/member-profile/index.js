@@ -5,7 +5,7 @@ import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 import ContributionType from './contribution-type/';
 import { motion } from 'framer-motion';
-import Modal from 'components/modal/Modal';
+import Modal from 'components/modal';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
