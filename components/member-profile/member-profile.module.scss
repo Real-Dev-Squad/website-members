@@ -109,10 +109,10 @@
 
 .getIntroButton {
   font-size: 1.2rem;
-  padding: 8px 30px;
+  padding: 0.5rem 1.875rem;
   background-color: rgb(238, 26, 117);
   color: #fff;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   transition-duration: 0.4s;
   border: rgb(238, 26, 117);
 }
@@ -120,8 +120,8 @@
 .getIntroButton:hover {
   background-color: #fff;
   color: rgb(238, 26, 117);
-  border-radius: 8px;
-  border: 1px solid rgb(238, 26, 117);
+  border-radius: 0.5rem;
+  border: 0.069rem solid rgb(238, 26, 117);
 }
 
 .workDetails {

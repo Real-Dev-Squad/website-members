@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import classNames from './register.module.scss';
 
 const Register = (props) => {
+  const { rdsUserName, setShowModal } = props;
+
   const { register, handleSubmit, errors } = useForm();
 
   const getMembersIntroURL = (RDSID) => `https://api.realdevsquad.com/members/intro/${RDSID}`;
-  const parameters = props.rdsUserName;
+  const parameters = rdsUserName;
 
   const onSubmit = (data) => {
     const cleanUserName = (paramstr) => {
@@ -29,14 +31,10 @@ const Register = (props) => {
         if (response.status === 'success') {
           alert('Message Sent.');
           resetForm();
-        } else if (response.status === 'fail') {
-          alert('Message failed to send.');
-          resetForm();
         }
-        throw response;
       })
       .catch((error) => {
-        console.error('Error' + error);
+        alert('Error!!!\n' + error);
       })
       .finally(() => {
         if (!confirm('Some error occurred!!! \nRETRY?')) {
@@ -45,9 +43,7 @@ const Register = (props) => {
       });
   };
 
-  const resetForm = () => {
-    props.setShowModal(false);
-  };
+  const resetForm = () => setShowModal(false);
 
   return (
     <div>
@@ -220,6 +216,6 @@ const Register = (props) => {
 export default Register;
 
 Register.propTypes = {
-  rdsUserName: PropTypes.string,
-  setShowModal: PropTypes.func
+  rdsUserName: PropTypes.string.isRequired,
+  setShowModal: PropTypes.func.isRequired
 };
