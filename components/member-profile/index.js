@@ -74,7 +74,10 @@ const Profile = (props) => {
               </div>
             )}
             <div>
-              <button className={classNames.getIntroButton} onMouseDown={() => setShowModal(true)}>
+              <button
+                type="button"
+                className={classNames.getIntroButton}
+                onMouseDown={() => setShowModal(true)}>
                 Get Intro
               </button>
               <span className={classNames.modalWindow} isOpen={showModal}>
