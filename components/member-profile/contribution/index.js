@@ -13,14 +13,14 @@ const Contribution = ({ contribution, fullName, imageLink }) => {
     task: { title, startedOn, endsOn, status, purpose },
     prList
   } = contribution;
-  const isTaskAvailable = title ? true : false;
-  const featureTitle = isTaskAvailable ? title : prList[0].title;
+  const isTitleAvailable = title ? true : false;
+  const featureTitle = isTitleAvailable ? title : prList[0].title;
   let completedText = '';
   let completedDate = '';
   let featureLiveOnText = '';
   let featurLiveDate = '';
 
-  if (isTaskAvailable) {
+  if (isTitleAvailable) {
     if (status === 'Active') {
       completedText = <span>Estimated Completion: </span>;
       completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
