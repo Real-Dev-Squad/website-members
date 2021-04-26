@@ -6,10 +6,16 @@
 .leftSection{
   display: flex;
   flex-direction: column;
+  align-content: space-between;
 }
 .leftSection .featureTitle{
   color: #041187;
   padding: 4px 0;
+}
+.prDescription{
+  color: #636363;
+  padding: 4px 25px 4px 0;
+  text-align: justify;
 }
 .completedData{
   padding: 4px 0;
@@ -27,6 +33,8 @@
 }
 .rightSection{
   display: flex;
+  flex-direction: column;
+  align-content: space-between;
 }
 .featureLink{
   text-align: center;
@@ -36,6 +44,30 @@
   color: #041187;
   font-size: 16px;
   font-weight: 500;
+}
+.tags{
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+.tags button:nth-child(1){
+  background-color: #23f88e;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 4px 22px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  margin-right: 2px;
+}
+.tags button:nth-child(2) {
+  background-color: #8b5ff1;
+  color: white;
+  font-size: 18px;
+  padding: 4px 22px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
 }
 .line{
   margin-top: 10px;

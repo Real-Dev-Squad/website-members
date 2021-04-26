@@ -14,6 +14,7 @@ const Contribution = ({ contribution }) => {
     prList
   } = contribution;
   const isTaskAvailable = title ? true : false;
+  const featureTitle = isTaskAvailable ? title : prList[0].title;
   let completedText = '';
   let completedDate = '';
   let featureLiveOnText = '';
@@ -44,7 +45,12 @@ const Contribution = ({ contribution }) => {
     <div className={classNames.mainSection}>
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
-          <h3 className={classNames.featureTitle}>{isTaskAvailable ? title : prList[0].title}</h3>
+          <h3 className={classNames.featureTitle}>{featureTitle}</h3>
+          <p className={classNames.prDescription}>
+            This feature was important because it created a secure way of accessing details
+            regarding the active and completed tasks. Thanks to this, the Real Dev Squad members can
+            now have full visibility on the status of the tasks being done here
+          </p>
           <div className={classNames.completedData}>
             {completedText}
             <p className={classNames.completedDate}>{completedDate}</p>
@@ -53,6 +59,10 @@ const Contribution = ({ contribution }) => {
         </div>
         <div className={classNames.rightSection}>
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
+          <div className={classNames.tags}>
+            <button>DX</button>
+            <button>NodeJS</button>
+          </div>
         </div>
       </div>
       <div className={classNames.featureLink}>
