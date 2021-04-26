@@ -8,9 +8,9 @@ const renderPRLinks = (prList) =>
     return <PRLink link={url} key={index} />;
   });
 
-const Contribution = ({ contribution }) => {
+const Contribution = ({ contribution, fullName, imageLink }) => {
   const {
-    task: { title, startedOn, endsOn, status },
+    task: { title, startedOn, endsOn, status, purpose },
     prList
   } = contribution;
   const isTaskAvailable = title ? true : false;
@@ -42,15 +42,11 @@ const Contribution = ({ contribution }) => {
   }
 
   return (
-    <div className={classNames.mainSection}>
+    <div>
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
           <h3 className={classNames.featureTitle}>{featureTitle}</h3>
-          <p className={classNames.prDescription}>
-            This feature was important because it created a secure way of accessing details
-            regarding the active and completed tasks. Thanks to this, the Real Dev Squad members can
-            now have full visibility on the status of the tasks being done here
-          </p>
+          <p className={classNames.prDescription}>{purpose}</p>
           <div className={classNames.completedData}>
             {completedText}
             <p className={classNames.completedDate}>{completedDate}</p>
@@ -59,9 +55,13 @@ const Contribution = ({ contribution }) => {
         </div>
         <div className={classNames.rightSection}>
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
+          <div className={classNames.userIcon}>
+            <img src={imageLink} alt="participantsIcon" />
+            <span>{fullName}</span>
+          </div>
           <div className={classNames.tags}>
-            <button>DX</button>
-            <button>NodeJS</button>
+            <button type="button">DX</button>
+            <button type="button">NodeJS</button>
           </div>
         </div>
       </div>
