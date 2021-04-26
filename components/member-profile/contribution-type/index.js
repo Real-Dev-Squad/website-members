@@ -14,14 +14,7 @@ const renderContributions = (contributions, fullName, imageLink) =>
   ));
 
 const ContributionType = (props) => {
-  const {
-    membersData: { first_name, last_name },
-    type,
-    imageLink,
-    contributions
-  } = props;
-
-  const fullName = `${first_name} ${last_name}`;
+  const { fullName, type, imageLink, contributions } = props;
 
   const [showMoreContent, setShowMoreContent] = useState(true);
 
@@ -54,20 +47,13 @@ const ContributionType = (props) => {
 ContributionType.propTypes = {
   imageLink: PropTypes.string,
   type: PropTypes.string,
-  membersData: PropTypes.shape({
-    first_name: PropTypes.string,
-    last_name: PropTypes.string
-  }),
+  fullName: PropTypes.string.isRequired,
   contributions: PropTypes.array
 };
 
 ContributionType.defaultProps = {
   imageLink: '',
   type: '',
-  membersData: {
-    first_name: '',
-    last_name: ''
-  },
   contributions: []
 };
 
