@@ -54,10 +54,6 @@ ContributionType.propTypes = {
 ContributionType.defaultProps = {
   imageLink: '',
   type: '',
-  membersData: {
-    first_name: '',
-    last_name: ''
-  },
   contributions: []
 };
 
