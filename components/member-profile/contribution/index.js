@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from './contribution.module.scss';
 import PRLink from './pr-link/';
@@ -11,26 +10,17 @@ const renderPRLinks = (prList) =>
 
 const Contribution = ({ contribution, fullName, imageLink }) => {
   const {
-    task: { title, startedOn, endsOn, purpose, featureUrl, status },
+    task: { title, startedOn, endsOn, status, purpose },
     prList
   } = contribution;
-  const [showMoreContent, setShowMoreContent] = useState(true);
-
-  const showMoreContentHandler = () => {
-    setShowMoreContent((prevstate) => !prevstate);
-  };
-
-  const showText = showMoreContent ? 'Show less' : 'Show more';
-  const showMoreContentClass = showMoreContent ? classNames.showContent : classNames.hideContent;
-
-  const isTaskAvailable = title ? true : false;
-
+  const isTitleAvailable = title ? true : false;
+  const featureTitle = isTitleAvailable ? title : prList[0].title;
   let completedText = '';
   let completedDate = '';
   let featureLiveOnText = '';
   let featurLiveDate = '';
 
-  if (isTaskAvailable) {
+  if (isTitleAvailable) {
     if (status === 'Active') {
       completedText = <span>Estimated Completion: </span>;
       completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
@@ -45,43 +35,40 @@ const Contribution = ({ contribution, fullName, imageLink }) => {
     const updatedAt = +new Date(prList[0]['updatedAt']);
     if (prList[0]['state'] === 'closed') {
       completedDate = timeWas(createdAt, false, updatedAt);
-      completedText = <span>Completed in: </span>;
+      completedText = <span className={classNames.completedText}>Completed in </span>;
       featurLiveDate = timeWas(updatedAt, true);
       featureLiveOnText = `Feature live on ${featurLiveDate}`;
     }
   }
 
   return (
-    <div className={classNames.contributionContainer}>
-      <section className={classNames.heading}>
-        <span className={classNames.featureTitle}>{isTaskAvailable ? title : prList[0].title}</span>
-        <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
-      </section>
-      {isTaskAvailable && (
-        <div className={showMoreContentClass}>
-          <p className={classNames.featureDescription}>{purpose}</p>
-          <p className={classNames.userIcon}>
-            <img src={imageLink} className={classNames.participantIcon} alt="participantsIcon" />
-            <span>{fullName}</span>
-          </p>
-          <p className={classNames.featureLink}>
-            <a href={featureUrl} target="_blank" rel="noreferrer">
-              Click here to checkout this feature
-            </a>
-          </p>
+    <div>
+      <div className={classNames.contributionContainer}>
+        <div className={classNames.leftSection}>
+          <h3 className={classNames.featureTitle}>{featureTitle}</h3>
+          <p className={classNames.prDescription}>{purpose}</p>
+          <div className={classNames.completedData}>
+            {completedText}
+            <p className={classNames.completedDate}>{completedDate}</p>
+          </div>
+          <div className={classNames.featureLiveOnText}>{featureLiveOnText}</div>
         </div>
-      )}
-      <p>
-        {completedText} {completedDate}
-      </p>
-      <div className={classNames.featureBottomContainer}>
-        <div>{featureLiveOnText}</div>
-        {isTaskAvailable && (
-          <button onClick={showMoreContentHandler} onKeyPress={showMoreContentHandler}>
-            {showText}
-          </button>
-        )}
+        <div className={classNames.rightSection}>
+          <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
+          <div className={classNames.userIcon}>
+            <img src={imageLink} alt="participantsIcon" />
+            <span>{fullName}</span>
+          </div>
+          <div className={classNames.tags}>
+            <button type="button">DX</button>
+            <button type="button">NodeJS</button>
+          </div>
+        </div>
       </div>
+      <div className={classNames.featureLink}>
+        <a href="!#"> Check out this feature in action</a>
+      </div>
+      <hr className={classNames.line}></hr>
     </div>
   );
 };
