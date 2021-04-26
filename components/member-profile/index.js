@@ -5,10 +5,13 @@ import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 import ContributionType from './contribution-type/';
 import { motion } from 'framer-motion';
+import Tooltip from 'react-tooltip-lite';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
-    <img src={badge.img} className={classNames.badge} alt={badge.title} key={badge.title} />
+    <Tooltip key={badge.title} content={badge.title} useDefaultStyles direction="down">
+      <img src={badge.img} className={classNames.badge} alt={badge.title} />
+    </Tooltip>
   ));
 
 const CONTRIBUTIONTYPE = ['Noteworthy', 'All'];
