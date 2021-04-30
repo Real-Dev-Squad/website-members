@@ -6,12 +6,12 @@ import Layout from '../components/layout';
 import NotFound from 'components/not-found-page';
 import { CACHE_MAX_AGE } from '../constants/cache-max-age.js';
 
-const Index = ({ membersArr, errorMsg }) => {
+const Index = ({ membersArr, newMembersArr, errorMsg }) => {
   let loadComponent = '';
   if (errorMsg) {
     loadComponent = <NotFound errorMsg={errorMsg} />;
   } else {
-    loadComponent = <HomePage membersArr={membersArr} />;
+    loadComponent = <HomePage membersArr={membersArr} newMembersArr={newMembersArr} />;
   }
 
   return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
@@ -38,7 +38,15 @@ export async function getServerSideProps(context) {
       });
     }
 
-    return { props: { membersArr } };
+    const newMembersArr = [
+      {
+        username: 'pavan',
+        first_name: 'pavan',
+        last_name: 'bhat',
+        img_url: 'https://avatars.githubusercontent.com/u/45538392?v=4'
+      }
+    ];
+    return { props: { membersArr, newMembersArr } };
   } catch (e) {
     return { props: { errorMsg: e.message } };
   }
@@ -46,11 +54,13 @@ export async function getServerSideProps(context) {
 
 Index.propTypes = {
   membersArr: PropTypes.array,
+  newMembersArr: PropTypes.array,
   errorMsg: PropTypes.string
 };
 
 Index.defaultProps = {
   membersArr: [],
+  newMembersArr: [],
   errorMsg: ''
 };
 
