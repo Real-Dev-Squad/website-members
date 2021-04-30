@@ -1,0 +1,32 @@
+.container {
+  flex: 1 250px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid #f4f4f4;
+  padding: 20px 10px;
+  background: white;
+  max-width: 270px;
+
+  //addition of box-shadow and border radius to member card
+
+  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+  border-radius: 5%;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+.imgContainer {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin: 0px auto;
+}
+
+.nameOfPerson {
+  padding: 10px 10px;
+  margin: 16px 0;
+}
