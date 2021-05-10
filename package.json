@@ -20,7 +20,9 @@
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "sass": "^1.30.0"
+    "react-hook-form": "^6.15.5",
+    "sass": "^1.30.0",
+    "validator": "^13.5.2"
   },
   "devDependencies": {
     "eslint": "^7.16.0",
