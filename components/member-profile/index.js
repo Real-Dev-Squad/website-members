@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '../social-media-icon';
 import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 import ContributionType from './contribution-type/';
 import { motion } from 'framer-motion';
+import Modal from 'components/modal';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -45,6 +46,8 @@ const Profile = (props) => {
 
   const badges = getBadges(username);
 
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div className={classNames.container}>
       <div className={(classNames.sidebar, classNames.column)}>
@@ -70,6 +73,22 @@ const Profile = (props) => {
                 {renderSocialMediaIcons(socialMedia, membersData)}
               </div>
             )}
+            <div>
+              <button
+                type="button"
+                className={classNames.getIntroButton}
+                onMouseDown={() => setShowModal(true)}>
+                Get Intro
+              </button>
+              <span className={classNames.modalWindow} isOpen={showModal}>
+                <Modal
+                  showModal={showModal}
+                  rdsUserName={rdsUserName}
+                  setShowModal={setShowModal}
+                  onClose={() => setShowModal(false)}
+                />
+              </span>
+            </div>
           </div>
         </div>
       </div>

@@ -107,6 +107,23 @@
   font-size: 16px;
 }
 
+.getIntroButton {
+  font-size: 1.2rem;
+  padding: 0.5rem 1.875rem;
+  background-color: rgb(238, 26, 117);
+  color: #fff;
+  border-radius: 0.5rem;
+  transition-duration: 0.4s;
+  border: rgb(238, 26, 117);
+}
+
+.getIntroButton:hover {
+  background-color: #fff;
+  color: rgb(238, 26, 117);
+  border-radius: 0.5rem;
+  border: 0.069rem solid rgb(238, 26, 117);
+}
+
 .workDetails {
   margin-top: 5px;
   color: #0e141e;
@@ -132,7 +149,8 @@
     width: 100%;
   }
 
-  .column, .content {
+  .column,
+  .content {
     width: 100%;
   }
 
