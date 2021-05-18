@@ -20,7 +20,7 @@ const Index = ({ membersArr, newMembersArr, errorMsg }) => {
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
 
-  const membersArr = [];
+  const membersWithImage = [];
 
   try {
     const res = await fetch(getMembersURL);
@@ -30,22 +30,24 @@ export async function getServerSideProps(context) {
       );
     }
     const { members } = await res.json();
-    members.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
+
     for (const memberData of members) {
-      membersArr.push({
+      membersWithImage.push({
         ...memberData,
         img_url: getImgURL(memberData.username, 'img.png')
       });
     }
 
-    const newMembersArr = [
-      {
-        username: 'pavan',
-        first_name: 'pavan',
-        last_name: 'bhat',
-        img_url: 'https://avatars.githubusercontent.com/u/45538392?v=4'
-      }
-    ];
+    const membersArr = membersWithImage.filter((person) => {
+      return person.isMember;
+    });
+    membersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
+
+    const newMembersArr = membersWithImage.filter((person) => {
+      return !person.isMember;
+    });
+    newMembersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
+
     return { props: { membersArr, newMembersArr } };
   } catch (e) {
     return { props: { errorMsg: e.message } };

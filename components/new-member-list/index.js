@@ -8,7 +8,7 @@ const NewMemberList = ({ newMembersArr }) => {
     return (
       <div className={classNames.container}>
         {newMembersArr.map((ele) => (
-          <React.Fragment key={ele.img_url}>
+          <React.Fragment key={ele['id']}>
             <NewMemberListItem newMemberDetails={ele} />
           </React.Fragment>
         ))}
