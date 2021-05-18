@@ -4,27 +4,37 @@ import classNames from './new-member-list-item.module.scss';
 import { motion } from 'framer-motion';
 
 const NewMemberListItem = ({ newMemberDetails }) => {
-  const { first_name, username, img_url } = newMemberDetails;
+  const { username } = newMemberDetails;
+  const fullName = `${newMemberDetails.first_name + ' ' + newMemberDetails.last_name}`;
+
+  const brokenImageHandler = (e) => {
+    e.target.src = '/images/Avatar.png';
+  };
 
   return (
     <div className={classNames.container}>
       <motion.img
         layoutId={username}
-        src={img_url}
+        src={newMemberDetails.img_url + `?${Math.random() * 100}`}
+        onError={brokenImageHandler}
         className={classNames.imgContainer}
         alt={username}
       />
-      <h2 className={classNames.nameOfPerson}>{newMemberDetails && first_name}</h2>
+      <h2 className={classNames.nameOfPerson}>
+        {fullName.length > 1
+          ? `${newMemberDetails['first_name']} ${newMemberDetails['last_name']}`
+          : username}
+      </h2>
     </div>
   );
 };
 
 NewMemberListItem.propTypes = {
-  newMemberDetails: PropTypes.array
+  newMemberDetails: PropTypes.object
 };
 
 NewMemberListItem.defaultProps = {
-  newMemberDetails: []
+  newMemberDetails: {}
 };
 
 export default NewMemberListItem;
