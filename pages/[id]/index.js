@@ -15,8 +15,8 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
-  const router = useRouter();
-  const devUser = router.query.dev ? true : false;
+  const { query } = useRouter();
+  const devUser = !!query.dev;
 
   return (
     <Layout title={memberName}>
