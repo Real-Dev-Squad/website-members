@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { getMembersDataURL, getImgURL, getContributionsURL } from 'helper-functions/urls';
 import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
@@ -14,9 +15,17 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
+  const { query } = useRouter();
+  const devUser = !!query.dev;
+
   return (
     <Layout title={memberName}>
-      <Profile imageLink={imageLink} membersData={user} contributions={contributions} />
+      <Profile
+        imageLink={imageLink}
+        membersData={user}
+        contributions={contributions}
+        devUser={devUser}
+      />
     </Layout>
   );
 };
