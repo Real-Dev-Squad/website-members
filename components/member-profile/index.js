@@ -14,7 +14,7 @@ const renderBadgeImages = (badges) =>
 
 const CONTRIBUTIONTYPE = ['Noteworthy', 'All'];
 
-const renderContributionsTypes = (contributions, fullName, imageLink) => {
+const renderContributionsTypes = (contributions, fullName, imageLink, devUser) => {
   const { noteworthy, all } = contributions;
   return CONTRIBUTIONTYPE.map((type, index) => (
     <ContributionType
@@ -23,6 +23,7 @@ const renderContributionsTypes = (contributions, fullName, imageLink) => {
       contributions={type !== 'All' ? noteworthy : all}
       fullName={fullName}
       imageLink={imageLink}
+      devUser={devUser}
     />
   ));
 };
@@ -35,7 +36,8 @@ const Profile = (props) => {
   const {
     membersData: { username, first_name, last_name, company, designation },
     imageLink,
-    contributions
+    contributions,
+    devUser
   } = props;
   const { membersData } = props;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
@@ -94,13 +96,15 @@ const Profile = (props) => {
       </div>
 
       <div className={classNames.content}>
-        <div className={(classNames.section, classNames.card)}>
-          <h2>Badges</h2>
-          <div className={classNames.badgeContainer}>{badges && renderBadgeImages(badges)}</div>
-        </div>
+        {devUser && (
+          <div className={(classNames.section, classNames.card)}>
+            <h2>Badges</h2>
+            <div className={classNames.badgeContainer}>{badges && renderBadgeImages(badges)}</div>
+          </div>
+        )}
 
         <div className={(classNames.section, classNames.card)}>
-          {renderContributionsTypes(contributions, fullName, imageLink)}
+          {renderContributionsTypes(contributions, fullName, imageLink, devUser)}
         </div>
       </div>
     </div>
@@ -119,7 +123,8 @@ Profile.propTypes = {
   contributions: PropTypes.shape({
     noteworthy: PropTypes.array,
     all: PropTypes.array
-  })
+  }),
+  devUser: PropTypes.bool
 };
 
 Profile.defaultProps = {
@@ -134,7 +139,8 @@ Profile.defaultProps = {
   contributions: {
     noteworthy: [],
     all: []
-  }
+  },
+  devUser: false
 };
 
 export default Profile;

@@ -8,7 +8,7 @@ const renderPRLinks = (prList) =>
     return <PRLink link={url} key={index} />;
   });
 
-const Contribution = ({ contribution, fullName, imageLink }) => {
+const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const {
     task: { title, startedOn, endsOn, status, purpose },
     prList
@@ -59,10 +59,12 @@ const Contribution = ({ contribution, fullName, imageLink }) => {
             <img src={imageLink} alt="participantsIcon" />
             <span>{fullName}</span>
           </div>
-          <div className={classNames.tags}>
-            <button type="button">DX</button>
-            <button type="button">NodeJS</button>
-          </div>
+          {devUser && (
+            <div className={classNames.tags}>
+              <button type="button">DX</button>
+              <button type="button">NodeJS</button>
+            </div>
+          )}
         </div>
       </div>
       <div className={classNames.featureLink}>
@@ -79,7 +81,8 @@ Contribution.propTypes = {
     task: PropTypes.object
   }).isRequired,
   fullName: PropTypes.string.isRequired,
-  imageLink: PropTypes.string.isRequired
+  imageLink: PropTypes.string.isRequired,
+  devUser: PropTypes.bool
 };
 
 export default Contribution;
