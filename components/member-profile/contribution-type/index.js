@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from './contributions-type.module.scss';
 import Contribution from '../contribution/';
+import { INIT_CONTRIBUTIONS } from '../../../constants/contributions';
 
 const renderContributions = (contributions, fullName, imageLink, devUser) =>
   contributions.map((noteWorthyContribution, index) => (
@@ -18,9 +19,14 @@ const ContributionType = (props) => {
   const { fullName, type, imageLink, contributions, devUser } = props;
 
   const [showMoreContent, setShowMoreContent] = useState(true);
+  const [count, setCount] = useState(INIT_CONTRIBUTIONS);
 
   const showMoreContentHandler = () => {
     setShowMoreContent((prevstate) => !prevstate);
+  };
+
+  const loadMoreHandler = () => {
+    setCount((prevCount) => prevCount + INIT_CONTRIBUTIONS);
   };
 
   const showMoreContentClass = showMoreContent ? classNames.showContent : classNames.hideContent;
@@ -38,7 +44,8 @@ const ContributionType = (props) => {
         <div className={arrowWithDirection}></div>
       </h2>
       <div className={showMoreContentClass}>
-        {renderContributions(contributions, fullName, imageLink, devUser)}
+        {renderContributions(contributions.slice(0, count), fullName, imageLink, devUser)}
+        {count <= contributions.length && <button onClick={loadMoreHandler}>Load more</button>}
       </div>
       <hr className={classNames.hrLine}></hr>
     </div>
