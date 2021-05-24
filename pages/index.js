@@ -38,14 +38,10 @@ export async function getServerSideProps(context) {
       });
     }
 
-    const membersArr = membersWithImage.filter((person) => {
-      return person.isMember;
-    });
+    const membersArr = membersWithImage.filter((person) => person.isMember);
     membersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
 
-    const newMembersArr = membersWithImage.filter((person) => {
-      return !person.isMember;
-    });
+    const newMembersArr = membersWithImage.filter((person) => !person.isMember);
     newMembersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
 
     return { props: { membersArr, newMembersArr } };
