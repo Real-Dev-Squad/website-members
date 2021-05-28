@@ -12,9 +12,9 @@ const renderBadgeImages = (badges) =>
     <img src={badge.img} className={classNames.badge} alt={badge.title} key={badge.title} />
   ));
 
-const CONTRIBUTIONTYPE = ['Noteworthy', 'All'];
+const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All'];
 
-const renderContributionsTypes = (contributions, fullName, imageLink, devUser) => {
+const renderContributionsTypes = (contributions, fullName, imageLink, devUser, tasks) => {
   const { noteworthy, all } = contributions;
   return CONTRIBUTIONTYPE.map((type, index) => (
     <ContributionType
@@ -24,6 +24,7 @@ const renderContributionsTypes = (contributions, fullName, imageLink, devUser) =
       fullName={fullName}
       imageLink={imageLink}
       devUser={devUser}
+      tasks={tasks}
     />
   ));
 };
@@ -37,7 +38,8 @@ const Profile = (props) => {
     membersData: { username, first_name, last_name, company, designation },
     imageLink,
     contributions,
-    devUser
+    devUser,
+    tasks
   } = props;
   const { membersData } = props;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
@@ -104,7 +106,7 @@ const Profile = (props) => {
         )}
 
         <div className={(classNames.section, classNames.card)}>
-          {renderContributionsTypes(contributions, fullName, imageLink, devUser)}
+          {renderContributionsTypes(contributions, fullName, imageLink, devUser, tasks)}
         </div>
       </div>
     </div>
@@ -114,33 +116,35 @@ const Profile = (props) => {
 Profile.propTypes = {
   imageLink: PropTypes.string,
   membersData: PropTypes.shape({
-    username: PropTypes.string,
+        username: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     company: PropTypes.string,
     designation: PropTypes.string
   }),
   contributions: PropTypes.shape({
-    noteworthy: PropTypes.array,
+        noteworthy: PropTypes.array,
     all: PropTypes.array
   }),
-  devUser: PropTypes.bool
+  devUser: PropTypes.bool,
+  tasks: PropTypes.array
 };
 
 Profile.defaultProps = {
-  imageLink: '',
+        imageLink: '',
   membersData: {
-    username: '',
+        username: '',
     first_name: '',
     last_name: '',
     company: '',
     designation: ''
   },
   contributions: {
-    noteworthy: [],
+        noteworthy: [],
     all: []
   },
-  devUser: false
+  devUser: false,
+  tasks: []
 };
 
 export default Profile;

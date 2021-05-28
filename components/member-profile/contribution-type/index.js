@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from './contributions-type.module.scss';
 import Contribution from '../contribution/';
+import ActiveTask from '../active-task';
 
 const renderContributions = (contributions, fullName, imageLink, devUser) =>
   contributions.map((noteWorthyContribution, index) => (
@@ -14,8 +15,16 @@ const renderContributions = (contributions, fullName, imageLink, devUser) =>
     />
   ));
 
+const renderActiveTasks = (tasks) => {
+  return tasks.map((task, index) => {
+    if (task.status === 'active') {
+      return <ActiveTask key={index} taskDetails={task} />;
+    }
+  });
+};
+
 const ContributionType = (props) => {
-  const { fullName, type, imageLink, contributions, devUser } = props;
+  const { fullName, type, imageLink, contributions, devUser, tasks } = props;
 
   const [showMoreContent, setShowMoreContent] = useState(true);
 
@@ -34,11 +43,16 @@ const ContributionType = (props) => {
         onClick={showMoreContentHandler}
         onKeyPress={showMoreContentHandler}
         role="presentation">
-        {type} contributions
+        {type} {type !== 'Active tasks' ? 'contributions' : null}
         <div className={arrowWithDirection}></div>
       </h2>
       <div className={showMoreContentClass}>
-        {renderContributions(contributions, fullName, imageLink, devUser)}
+        {type !== 'Active tasks' ?
+          <div>
+          {renderContributions(contributions, fullName, imageLink, devUser)}
+          </div> :
+          <div>{renderActiveTasks(tasks)}</div>
+        }
       </div>
       <hr className={classNames.hrLine}></hr>
     </div>
@@ -50,14 +64,16 @@ ContributionType.propTypes = {
   type: PropTypes.string,
   fullName: PropTypes.string.isRequired,
   contributions: PropTypes.array,
-  devUser: PropTypes.bool
+  devUser: PropTypes.bool,
+  tasks: PropTypes.array
 };
 
 ContributionType.defaultProps = {
   imageLink: '',
   type: '',
   contributions: [],
-  devUser: false
+  devUser: false,
+  tasks: []
 };
 
 export default ContributionType;
