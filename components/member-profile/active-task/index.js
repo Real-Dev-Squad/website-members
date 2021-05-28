@@ -16,10 +16,8 @@ const ActiveTask = (props) => {
           <p className={classNames.completedDate}>{completedDate}</p>
         </div>
       </div>
-
     </div>
-  )
-
+  );
 };
 ActiveTask.propTypes = {
   taskDetails: PropTypes.object

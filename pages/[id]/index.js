@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { getMembersDataURL, getImgURL, getContributionsURL, getTasksURL } from 'helper-functions/urls';
+import {
+  getMembersDataURL,
+  getImgURL,
+  getContributionsURL,
+  getTasksURL
+} from 'helper-functions/urls';
 import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';

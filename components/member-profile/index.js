@@ -116,14 +116,14 @@ const Profile = (props) => {
 Profile.propTypes = {
   imageLink: PropTypes.string,
   membersData: PropTypes.shape({
-        username: PropTypes.string,
+    username: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     company: PropTypes.string,
     designation: PropTypes.string
   }),
   contributions: PropTypes.shape({
-        noteworthy: PropTypes.array,
+    noteworthy: PropTypes.array,
     all: PropTypes.array
   }),
   devUser: PropTypes.bool,
@@ -131,16 +131,16 @@ Profile.propTypes = {
 };
 
 Profile.defaultProps = {
-        imageLink: '',
+  imageLink: '',
   membersData: {
-        username: '',
+    username: '',
     first_name: '',
     last_name: '',
     company: '',
     designation: ''
   },
   contributions: {
-        noteworthy: [],
+    noteworthy: [],
     all: []
   },
   devUser: false,
