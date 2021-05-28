@@ -47,12 +47,11 @@ const ContributionType = (props) => {
         <div className={arrowWithDirection}></div>
       </h2>
       <div className={showMoreContentClass}>
-        {type !== 'Active tasks' ?
-          <div>
-          {renderContributions(contributions, fullName, imageLink, devUser)}
-          </div> :
+        {type !== 'Active tasks' ? (
+          <div>{renderContributions(contributions, fullName, imageLink, devUser)}</div>
+        ) : (
           <div>{renderActiveTasks(tasks)}</div>
-        }
+        )}
       </div>
       <hr className={classNames.hrLine}></hr>
     </div>
