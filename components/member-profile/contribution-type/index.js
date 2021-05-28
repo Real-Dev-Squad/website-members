@@ -19,10 +19,11 @@ const ContributionType = (props) => {
   const { fullName, type, imageLink, contributions, devUser } = props;
 
   const [showMoreContent, setShowMoreContent] = useState(true);
-  const [count, setCount] = useState(INIT_CONTRIBUTIONS);
+  const initCount = devUser === true ? INIT_CONTRIBUTIONS : contributions.length;
+  const [count, setCount] = useState(initCount);
 
   const showMoreContentHandler = () => {
-    setCount(INIT_CONTRIBUTIONS);
+    setCount(initCount);
     setShowMoreContent((prevstate) => !prevstate);
   };
 
@@ -46,7 +47,7 @@ const ContributionType = (props) => {
       </h2>
       <div className={showMoreContentClass}>
         {renderContributions(contributions.slice(0, count), fullName, imageLink, devUser)}
-        {count <= contributions.length && (
+        {count <= contributions.length && devUser && (
           <div className={classNames.loadDiv}>
             <button className={classNames.loadButton} onClick={loadMoreHandler}>
               Load more
