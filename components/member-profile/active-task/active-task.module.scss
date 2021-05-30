@@ -1,36 +1,42 @@
 .container{
-  margin: 24px 0;
+  margin: 1.5rem 0;
   display: flex;
   justify-content: space-between;
 }
+
 .taskSection{
   display: flex;
   flex-direction: column;
   align-items: space-between;
 }
+
 .taskSection .featureTitle{
   color: #041187;
-  padding: 4px 0;
+  padding: 0.25rem 0;
 }
+
 .prDescription{
   color: #636363;
-  padding: 4px 25px 4px 0;
+  padding: 0.25rem 1.5rem 0.25rem 0;
   text-align: justify;
 }
+
 .completedData{
-  padding: 4px 0;
+  padding: 0.25rem 0;
 }
+
 .completedDate{
   display: inline-block;
   font-weight: bold;
 }
 
 
-@media (max-width: 600px){
+@media (max-width: 37.5rem){
   .container{
     flex-direction: column;
   }
+  
   .taskSection .featureTitle{
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
