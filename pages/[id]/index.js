@@ -58,8 +58,7 @@ export async function getServerSideProps(context) {
     const contributions = await contributionsResponse.data;
     const imageLink = getImgURL(id, 'img.png');
     const tasksResponse = await fetch(tasksURL);
-    const tasksData = await tasksResponse.data;
-    const tasks = tasksData.tasks;
+    const { tasks } = await tasksResponse.data;
 
     return { props: { imageLink, user, contributions, tasks } };
   } catch (e) {
