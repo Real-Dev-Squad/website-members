@@ -20,7 +20,7 @@ const Index = ({ membersArr, newMembersArr, errorMsg }) => {
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
 
-  const membersWithImage = [];
+  const membersArray = [];
 
   try {
     const res = await fetch(getMembersURL);
@@ -32,16 +32,16 @@ export async function getServerSideProps(context) {
     const { members } = await res.json();
 
     for (const memberData of members) {
-      membersWithImage.push({
+      membersArray.push({
         ...memberData,
         img_url: getImgURL(memberData.username, 'img.png')
       });
     }
 
-    const membersArr = membersWithImage.filter((person) => person.isMember);
+    const membersArr = membersArray.filter((person) => person.isMember);
     membersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
 
-    const newMembersArr = membersWithImage.filter((person) => !person.isMember);
+    const newMembersArr = membersArray.filter((person) => !person.isMember);
     newMembersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
 
     return { props: { membersArr, newMembersArr } };
