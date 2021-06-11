@@ -9,7 +9,7 @@ const NewMemberList = ({ newMembersArr }) => {
       <div className={classNames.container}>
         {newMembersArr.map((ele) => (
           <React.Fragment key={ele['id']}>
-            <NewMemberListItem newMemberDetails={ele} />
+            {(ele.first_name || ele.username) && <NewMemberListItem newMemberDetails={ele} />}
           </React.Fragment>
         ))}
       </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'components/member-card';
-import { container } from '../member-card/card.module.scss';
+import { containerForNewMember } from '../member-card/card.module.scss';
 
 const NewMemberListItem = ({ newMemberDetails }) => {
   return (
-    <div className={container}>
+    <div className={containerForNewMember}>
       <Card developerInfo={newMemberDetails} />
     </div>
   );

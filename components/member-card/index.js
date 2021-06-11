@@ -19,10 +19,12 @@ const Card = ({ developerInfo }) => {
         layoutId={username}
         src={img_url + `?${Math.random() * 100}`}
         onError={brokenImageHandler}
-        className={classNames.imgContainer}
+        className={isMember ? classNames.imgContainer : classNames.imgContainerNewMember}
         alt={username}
       />
-      <h2 className={classNames.nameOfPerson}>{fullName.length > 1 ? fullName : username}</h2>
+      <h2 className={classNames.nameOfPerson}>
+        {fullName.length > 1 && last_name !== undefined ? fullName : username}
+      </h2>
       {isMember && (
         <div className={classNames.iconsContainer}>
           {socialMedia.map(
