@@ -9,7 +9,7 @@ const HomePage = ({ membersArr, newMembersArr }) => {
       <img className={classNames.img} src="/images/Real-Dev-Squad@1x.png" alt="real-dev squad" />
       <h1 className={classNames.heading}>Real Dev Squad Members</h1>
       <MemberList membersArr={membersArr} />
-      <h1 className={classNames.heading}>Real Dev Squad New Members</h1>
+      <h1 className={classNames.heading}>New Members</h1>
       <NewMemberList newMembersArr={newMembersArr} />
     </div>
   );
