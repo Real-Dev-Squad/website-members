@@ -41,8 +41,12 @@ export async function getServerSideProps(context) {
     const membersArr = membersArray.filter((person) => person.isMember);
     membersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
 
-    const newMembersArr = membersArray.filter((person) => !person.isMember);
-    newMembersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
+    const newMembersArr = membersArray.filter(
+      (person) => !person.isMember && person.first_name !== undefined
+    );
+    newMembersArr.sort((a, b) =>
+      a.first_name.toUpperCase() > b.first_name.toUpperCase() ? 1 : -1
+    );
 
     return { props: { membersArr, newMembersArr } };
   } catch (e) {
