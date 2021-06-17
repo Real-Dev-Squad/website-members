@@ -6,12 +6,12 @@ import Layout from '../components/layout';
 import NotFound from 'components/not-found-page';
 import { CACHE_MAX_AGE } from '../constants/cache-max-age.js';
 
-const Index = ({ membersArr, errorMsg }) => {
+const Index = ({ membersArr, newMembersArr, errorMsg }) => {
   let loadComponent = '';
   if (errorMsg) {
     loadComponent = <NotFound errorMsg={errorMsg} />;
   } else {
-    loadComponent = <HomePage membersArr={membersArr} />;
+    loadComponent = <HomePage membersArr={membersArr} newMembersArr={newMembersArr} />;
   }
 
   return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
@@ -20,7 +20,7 @@ const Index = ({ membersArr, errorMsg }) => {
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
 
-  const membersArr = [];
+  const membersArray = [];
 
   try {
     const res = await fetch(getMembersURL);
@@ -30,15 +30,21 @@ export async function getServerSideProps(context) {
       );
     }
     const { members } = await res.json();
-    members.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
+
     for (const memberData of members) {
-      membersArr.push({
+      membersArray.push({
         ...memberData,
         img_url: getImgURL(memberData.username, 'img.png')
       });
     }
 
-    return { props: { membersArr } };
+    const membersArr = membersArray.filter((person) => person.isMember);
+    membersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
+
+    const newMembersArr = membersArray.filter((person) => !person.isMember);
+    newMembersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
+
+    return { props: { membersArr, newMembersArr } };
   } catch (e) {
     return { props: { errorMsg: e.message } };
   }
@@ -46,11 +52,13 @@ export async function getServerSideProps(context) {
 
 Index.propTypes = {
   membersArr: PropTypes.array,
+  newMembersArr: PropTypes.array,
   errorMsg: PropTypes.string
 };
 
 Index.defaultProps = {
   membersArr: [],
+  newMembersArr: [],
   errorMsg: ''
 };
 
