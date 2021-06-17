@@ -8,22 +8,24 @@
   background: white;
   cursor: pointer;
   max-width: 270px;
-
   //addition of box-shadow and border radius to member card
 
   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
   border-radius: 5%;
   transition: transform 0.2s ease-in-out;
-
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 }
+
 .containerForNewMember{
    @extend.container;
    cursor: default;
+   flex: 0 160px;
+   height: 250px;
+   box-shadow: 0 0 15px -7px rgba(68, 68, 68, 0.65); 
    &:hover {
-    box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65); 
+    box-shadow: 0 0 15px -7px rgba(68, 68, 68, 0.65); 
   }
 }
 
@@ -42,6 +44,10 @@
 .nameOfPerson {
   padding: 10px 10px;
   margin: 16px 0;
+}
+.nameOfPersonForNewMember {
+  @extend.nameOfPerson;
+  font-size: 15px;
 }
 
 .iconsContainer {
