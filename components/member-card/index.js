@@ -22,8 +22,12 @@ const Card = ({ developerInfo }) => {
         className={isMember ? classNames.imgContainer : classNames.imgContainerNewMember}
         alt={username}
       />
-      <h2 className={classNames.nameOfPerson}>
-        {fullName.length > 1 && last_name !== undefined ? fullName : username}
+      <h2 className={isMember ? classNames.nameOfPerson : classNames.nameOfPersonForNewMember}>
+        {fullName.length > 1 && last_name !== undefined
+          ? fullName.length > 20
+            ? first_name
+            : fullName
+          : username}
       </h2>
       {isMember && (
         <div className={classNames.iconsContainer}>
