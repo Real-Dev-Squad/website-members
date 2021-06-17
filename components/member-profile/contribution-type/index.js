@@ -17,9 +17,7 @@ const renderContributions = (contributions, fullName, imageLink, devUser) =>
 
 const renderActiveTasks = (tasks) => {
   return tasks.map((task, index) => {
-    if (task.status === 'active') {
-      return <ActiveTask key={index} taskDetails={task} />;
-    }
+    return <ActiveTask key={index} taskDetails={task} />;
   });
 };
 
