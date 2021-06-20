@@ -21,11 +21,14 @@
 .containerForNewMember{
    @extend.container;
    cursor: default;
-   flex: 0 160px;
-   height: 250px;
-   box-shadow: 0 0 15px -7px rgba(68, 68, 68, 0.65); 
+   flex: 0 150px;
+   height: 160px;
+   overflow: hidden;
+   margin: 5px;
+   border-width: 2px;
+   box-shadow: none; 
    &:hover {
-    box-shadow: 0 0 15px -7px rgba(68, 68, 68, 0.65); 
+    box-shadow: none; 
   }
 }
 
@@ -37,13 +40,13 @@
 }
 .imgContainerNewMember {
   @extend.imgContainer;
-  width: 120px;
-  height: 120px;
+  width: 50px;
+  height: 50px;
 }
 
 .nameOfPerson {
   padding: 10px 10px;
-  margin: 16px 0;
+  margin: 15px 0;
 }
 .nameOfPersonForNewMember {
   @extend.nameOfPerson;
