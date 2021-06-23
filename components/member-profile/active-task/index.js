@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from './active-task.module.scss';
 import { timeWas } from '../../../helper-functions/time-was';
@@ -19,10 +18,13 @@ const ActiveTask = ({ taskDetails }) => {
     </div>
   );
 };
+
 ActiveTask.propTypes = {
   taskDetails: PropTypes.object
 };
+
 ActiveTask.defaultProps = {
   taskDetails: {}
 };
+
 export default ActiveTask;
