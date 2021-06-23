@@ -16,6 +16,11 @@ const Navbar = ({ drawerToggleClicked }) => {
           <span />
         </div>
         <ul>
+          <li className="nav-logo-li">
+            <a href="/" style={{ padding: '7px ' }}>
+              <img src="./images/Real-Dev-Squad@1x.png" alt="home nav logo" width="42" />
+            </a>
+          </li>
           <li>
             <a href="https://www.realdevsquad.com/">Home</a>
           </li>
@@ -32,6 +37,9 @@ const Navbar = ({ drawerToggleClicked }) => {
           </li>
           <li>
             <a href="https://crypto.realdevsquad.com/">Crypto</a>
+          </li>
+          <li>
+            <a href="https://status.realdevsquad.com/">Status</a>
           </li>
         </ul>
       </nav>
