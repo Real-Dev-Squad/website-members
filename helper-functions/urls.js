@@ -24,6 +24,6 @@ const getContributionsURL = (rdsId) => `${baseURL}/contributions/${rdsId}`;
  *
  * @param {string} rdsId
  */
-const getTasksURL = (rdsId) => `${baseURL}/tasks/${rdsId}`;
+const getActiveTasksURL = (rdsId) => `${baseURL}/tasks/${rdsId}?status=active`;
 
-export { getImgURL, getMembersDataURL, getContributionsURL, getMembersURL, getTasksURL };
+export { getImgURL, getMembersDataURL, getContributionsURL, getMembersURL, getActiveTasksURL };

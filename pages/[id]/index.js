@@ -4,7 +4,7 @@ import {
   getMembersDataURL,
   getImgURL,
   getContributionsURL,
-  getTasksURL
+  getActiveTasksURL
 } from 'helper-functions/urls';
 import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
   } = context;
   const jsonUrl = getMembersDataURL(id);
   const contributionsURL = getContributionsURL(id);
-  const tasksURL = getTasksURL(id);
+  const tasksURL = getActiveTasksURL(id);
 
   try {
     const res = await fetch(jsonUrl);
