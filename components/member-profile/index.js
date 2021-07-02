@@ -6,6 +6,7 @@ import classNames from './member-profile.module.scss';
 import ContributionType from './contribution-type/';
 import { motion } from 'framer-motion';
 import Modal from 'components/modal';
+import Showskills from '../member-card/showskills';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -77,6 +78,7 @@ const Profile = (props) => {
                 {renderSocialMediaIcons(socialMedia, membersData)}
               </div>
             )}
+            <Showskills />
             <div>
               <button
                 type="button"
