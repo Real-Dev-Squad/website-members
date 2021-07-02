@@ -3,6 +3,8 @@ import classNames from './card.module.scss';
 import { motion } from 'framer-motion';
 import SocialMediaIcon from '../social-media-icon';
 import PropTypes from 'prop-types';
+// import { skills } from './skills';
+import Showskills from './showskills';
 
 const Card = ({ developerInfo }) => {
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
@@ -29,6 +31,7 @@ const Card = ({ developerInfo }) => {
             : fullName
           : username}
       </h2>
+      {isMember && <Showskills />}
       {isMember && (
         <div className={classNames.iconsContainer}>
           {socialMedia.map(
