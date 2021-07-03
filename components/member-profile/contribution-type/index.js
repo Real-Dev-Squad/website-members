@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from './contributions-type.module.scss';
-import Contribution from '../contribution/';
-import ActiveTask from '../active-task';
+import Contribution from 'components/member-profile/contribution/';
+import ActiveTask from 'components/member-profile/active-task';
 
 const renderContributions = (contributions, fullName, imageLink, devUser) =>
   contributions.map((noteWorthyContribution, index) => (
