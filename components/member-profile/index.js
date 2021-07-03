@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import SocialMediaIcon from '../social-media-icon';
+import SocialMediaIcon from 'components/social-media-icon';
 import getBadges from './mock/get-badges';
 import classNames from './member-profile.module.scss';
 import ContributionType from './contribution-type/';
