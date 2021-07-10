@@ -1,16 +1,16 @@
-import { skills_data } from './skills';
+import { skills_data } from './mock-data/skills';
 import classNames from './card.module.scss';
 import PropTypes from 'prop-types';
 
-const Showskills = ({ show }) => {
+const ShowSkills = ({ show }) => {
   return (
-    <div className={classNames.showskills}>
+    <div className={show ? classNames.showMemberSkills : classNames.showSkills}>
       {skills_data.topskills.map((skill) => {
         return (
           <p
             style={{ background: `${skill.background}` }}
-            className={classNames.techskills}
-            key={skill.color}>
+            className={classNames.techSkills}
+            key={skill.id}>
             {skill.tech}
           </p>
         );
@@ -20,8 +20,8 @@ const Showskills = ({ show }) => {
           return (
             <p
               style={{ background: `${skill.background}` }}
-              className={classNames.techskills}
-              key={skill.color}>
+              className={classNames.techSkills}
+              key={skill.id}>
               {skill.tech}
             </p>
           );
@@ -30,7 +30,7 @@ const Showskills = ({ show }) => {
   );
 };
 
-Showskills.propTypes = {
+ShowSkills.propTypes = {
   show: PropTypes.bool.isRequired
 };
-export default Showskills;
+export default ShowSkills;

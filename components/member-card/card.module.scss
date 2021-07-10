@@ -64,14 +64,21 @@
   margin-right: 15px;
 }
 
-.showskills{
+.showSkills{
   display: flex;
   flex-wrap: wrap;
   margin:10px 0;
   justify-content: center;
 }
 
-.techskills{
+.showMemberSkills{
+  display: flex;
+  flex-wrap: wrap;
+  margin:10px 0;
+  justify-content: center;
+}
+
+.techSkills{
   margin: 2px 5px;
   color: #ffffff;
   padding: 0.2rem 0.4rem;
@@ -80,7 +87,7 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  .showskills{
+  .showMemberSkills{
     justify-content: flex-start;
   }
 }
