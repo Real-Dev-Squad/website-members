@@ -53,7 +53,7 @@
     }
   },
   "lint-staged": {
-    "./**/*.{js,jsx,ts,tsx,scss,md,json}": [
+    "./**/*.{js,jsx,ts,tsx,scss}": [
       "npm run lint-fix"
     ]
   }
