@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from './contributions-type.module.scss';
+import classNames from 'components/member-profile/contribution-type/contributions-type.module.scss';
 import Contribution from 'components/member-profile/contribution/';
 import ActiveTask from 'components/member-profile/active-task';
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from 'components/social-media-icon';
-import getBadges from './mock/get-badges';
-import classNames from './member-profile.module.scss';
-import ContributionType from './contribution-type/';
+import getBadges from 'components/member-profile/mock/get-badges';
+import classNames from 'components/member-profile/member-profile.module.scss';
+import ContributionType from 'components/member-profile/contribution-type/';
 import { motion } from 'framer-motion';
 import Modal from 'components/modal';
 

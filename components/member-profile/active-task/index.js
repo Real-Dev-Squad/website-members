@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import classNames from './active-task.module.scss';
+import classNames from 'components/member-profile/active-task/active-task.module.scss';
 import { timeWas } from 'helper-functions/time-was';
 const ActiveTask = ({ taskDetails }) => {
   const { title, purpose, startedOn, endsOn } = taskDetails;
