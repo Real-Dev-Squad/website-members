@@ -1,7 +1,7 @@
-import { IconMapper } from './social-media.constant';
+import { IconMapper } from 'components/social-media-icon/social-media.constant';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from './social-media-icon.module.scss';
+import classNames from 'components/social-media-icon/social-media-icon.module.scss';
 
 const SocialMediaIcon = (props) => {
   const { id, type } = props;

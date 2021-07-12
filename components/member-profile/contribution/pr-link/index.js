@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import classNames from './pr-link.module.scss';
+import classNames from 'components/member-profile/contribution/pr-link/pr-link.module.scss';
 
 const PRLink = ({ link }) => (
   <a href={link} target="_blank" rel="noreferrer">

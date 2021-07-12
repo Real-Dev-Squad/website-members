@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import classNames from './contribution.module.scss';
-import PRLink from './pr-link/';
+import classNames from 'components/member-profile/contribution/contribution.module.scss';
+import PRLink from 'components/member-profile/contribution/pr-link';
 import { timeWas } from 'helper-functions/time-was';
 
 const renderPRLinks = (prList) =>
