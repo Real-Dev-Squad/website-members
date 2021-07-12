@@ -1,10 +1,10 @@
 import { getMembersURL, getImgURL } from 'helper-functions/urls';
 import PropTypes from 'prop-types';
 import fetch from 'cross-fetch';
-import HomePage from '../components/pages';
-import Layout from '../components/layout';
+import HomePage from 'components/pages';
+import Layout from 'components/layout';
 import NotFound from 'components/not-found-page';
-import { CACHE_MAX_AGE } from '../constants/cache-max-age.js';
+import { CACHE_MAX_AGE } from 'constants/cache-max-age.js';
 
 const Index = ({ membersArr, newMembersArr, errorMsg }) => {
   let loadComponent = '';

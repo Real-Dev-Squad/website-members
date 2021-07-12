@@ -1,7 +1,7 @@
 import NewMemberListItem from 'components/new-member-list-item';
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from './new-member-list.module.scss';
+import classNames from 'components/new-member-list/new-member-list.module.scss';
 
 const NewMemberList = ({ newMembersArr }) => {
   if (newMembersArr) {

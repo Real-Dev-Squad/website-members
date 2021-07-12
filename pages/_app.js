@@ -1,10 +1,10 @@
-import '../styles/global-styles.scss';
+import 'styles/global-styles.scss';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import classNames from '../styles/layout-style.module.scss';
+import classNames from 'styles/layout-style.module.scss';
 import { AnimateSharedLayout } from 'framer-motion';
 import { useRouter } from 'next/router';
-import Spinner from '../components/UI/spinner';
+import Spinner from 'components/UI/spinner';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;

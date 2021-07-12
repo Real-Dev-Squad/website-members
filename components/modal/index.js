@@ -1,8 +1,8 @@
 import React from 'react';
-import classNames from './modal.module.scss';
+import classNames from 'components/modal/modal.module.scss';
 import PropTypes from 'prop-types';
-import Register from './Register';
-import Header from './Header';
+import Register from 'components/modal/Register';
+import Header from 'components/modal/Header';
 
 const Modal = (props) => {
   const { showModal, onClose, rdsUserName, setShowModal } = props;

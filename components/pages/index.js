@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import MemberList from 'components/members-list';
-import classNames from './home-page.module.scss';
+import classNames from 'components/pages/home-page.module.scss';
 import NewMemberList from 'components/new-member-list';
 
 const HomePage = ({ membersArr, newMembersArr }) => {

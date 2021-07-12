@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import classNames from './not-found-page.module.scss';
+import classNames from 'components/not-found-page/not-found-page.module.scss';
 
 const Index = ({ errorMsg }) => {
   return (

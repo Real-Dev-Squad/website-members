@@ -10,7 +10,7 @@ import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
 import NotFound from 'components/not-found-page';
 import Layout from 'components/layout';
-import { CACHE_MAX_AGE } from '../../constants/cache-max-age.js';
+import { CACHE_MAX_AGE } from 'constants/cache-max-age.js';
 
 const MemberProfile = ({ imageLink, user, contributions, tasks, errorMessage }) => {
   if (errorMessage) {
