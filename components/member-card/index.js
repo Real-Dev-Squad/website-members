@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from './card.module.scss';
 import { motion } from 'framer-motion';
 import SocialMediaIcon from '../social-media-icon';
 import PropTypes from 'prop-types';
+import StatusModal from '../modal/Status';
 
 const Card = ({ developerInfo }) => {
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
   const fullName = `${first_name + ' ' + last_name}`;
 
+  const [showModal, setShowModal] = useState(false);
+
   const brokenImageHandler = (e) => {
     e.target.src = '/images/Avatar.png';
   };
 
+  const showModalHandler = () => {
+    setShowModal((prevState) => !prevState);
+  };
+
   return (
-    <div>
+    <>
       <motion.img
         layoutId={username}
         src={img_url + `?${Math.random() * 100}`}
@@ -41,7 +48,21 @@ const Card = ({ developerInfo }) => {
           )}
         </div>
       )}
-    </div>
+      <button
+        className={classNames.statusIcon}
+        aria-label="Settings Icon"
+        title="Show Modal"
+        onClick={(e) => {
+          e.stopPropagation();
+          showModalHandler();
+        }}>
+        <span role="img" aria-label="gear">
+          ⚙️
+        </span>
+      </button>
+
+      {showModal ? <StatusModal name={username} close={showModalHandler}></StatusModal> : null}
+    </>
   );
 };
 
