@@ -1,36 +1,36 @@
-import { skills_data } from './mock-data/skills';
-import classNames from './card.module.scss';
+import { skills_data } from 'components/member-card/mock-data/skills';
+import classNames from 'components/member-card/card.module.scss';
 import PropTypes from 'prop-types';
 
 const ShowSkills = ({ show }) => {
   return (
     <div className={show ? classNames.showMemberSkills : classNames.showSkills}>
       {skills_data.topskills.map((skill) => {
-        return (
-          <p
-            style={{ background: `${skill.background}` }}
-            className={classNames.techSkills}
-            key={skill.id}>
-            {skill.tech}
-          </p>
-        );
+        return <RenderSkills {...skill} key={skill.id} />;
       })}
       {show &&
         skills_data.skills.map((skill) => {
-          return (
-            <p
-              style={{ background: `${skill.background}` }}
-              className={classNames.techSkills}
-              key={skill.id}>
-              {skill.tech}
-            </p>
-          );
+          return <RenderSkills {...skill} key={skill.id} />;
         })}
     </div>
   );
 };
 
+function RenderSkills(props) {
+  return (
+    <div style={{ background: `${props.background}` }} className={classNames.techSkills}>
+      {props.tech}
+    </div>
+  );
+}
+
 ShowSkills.propTypes = {
   show: PropTypes.bool.isRequired
 };
+
+RenderSkills.propTypes = {
+  tech: PropTypes.string.isRequired,
+  background: PropTypes.string.isRequired
+};
+
 export default ShowSkills;
