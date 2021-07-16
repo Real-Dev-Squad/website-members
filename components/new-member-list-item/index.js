@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'components/member-card';
-import { containerForNewMember } from '../member-card/card.module.scss';
+import { containerForNewMember } from 'components/member-card/card.module.scss';
 
 const NewMemberListItem = ({ newMemberDetails }) => {
   return (
