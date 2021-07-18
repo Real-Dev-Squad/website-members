@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'components/UI/navbar/navbar.module.scss';
@@ -9,6 +8,8 @@ const Navbar = ({ drawerToggleClicked }) => {
       <nav>
         <div
           className={classNames.DrawerToggle}
+          role="button"
+          tabIndex="0"
           onClick={drawerToggleClicked}
           onKeyPress={drawerToggleClicked}>
           <span />
@@ -32,6 +33,17 @@ const Navbar = ({ drawerToggleClicked }) => {
           </li>
           <li>
             <a href="https://crypto.realdevsquad.com/">Crypto</a>
+          </li>
+          <li>
+            <button
+              className={classNames.statusIcon}
+              aria-label="Settings Icon"
+              title="Show Modal"
+              onClick={() => console.log('Icon Clicked!!')}>
+              <span role="img" aria-label="Settings Icon" title="Show Status Icon">
+                ⚙️
+              </span>
+            </button>
           </li>
         </ul>
       </nav>

@@ -11,13 +11,13 @@
   transition: transform 0.3s ease-out;
   border-radius: 0 8px 8px 0;
 }
-.logoName{
+.logoName {
   font-weight: bolder;
   text-align: center;
   padding-top: 20px;
   color: #1d1283;
 }
-.saltire{
+.saltire {
   font-size: 18px;
   font-weight: bolder;
   margin-right: 20px;
@@ -36,6 +36,12 @@
 .SideDrawer li a {
   font-weight: bolder;
   text-decoration: none;
+}
+.SideDrawer nav li button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 .Open {
   transform: translateX(0);

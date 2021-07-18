@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   flex: 1 250px;
   display: flex;
   flex-direction: column;
@@ -8,7 +9,6 @@
   background: white;
   cursor: pointer;
   max-width: 270px;
-  //addition of box-shadow and border radius to member card
 
   box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
   border-radius: 5%;
@@ -18,17 +18,17 @@
   }
 }
 
-.containerForNewMember{
-   @extend.container;
-   cursor: default;
-   flex: 0 150px;
-   height: 160px;
-   overflow: hidden;
-   margin: 5px;
-   border-width: 2px;
-   box-shadow: none; 
-   &:hover {
-    box-shadow: none; 
+.containerForNewMember {
+  @extend.container !optional;
+  cursor: default;
+  flex: 0 150px;
+  height: 160px;
+  overflow: hidden;
+  margin: 5px;
+  border-width: 2px;
+  box-shadow: none;
+  &:hover {
+    box-shadow: none;
   }
 }
 
@@ -39,7 +39,7 @@
   margin: 0px auto;
 }
 .imgContainerNewMember {
-  @extend.imgContainer;
+  @extend.imgcontainer !optional;
   width: 50px;
   height: 50px;
 }
@@ -49,7 +49,7 @@
   margin: 15px 0;
 }
 .nameOfPersonForNewMember {
-  @extend.nameOfPerson;
+  @extend.nameofperson !optional;
   font-size: 15px;
 }
 
@@ -59,7 +59,24 @@
     width: 2rem;
   }
 }
-
 .iconsContainer:not(:last-child) {
   margin-right: 15px;
+}
+.statusIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+.label {
+  font-size: 1rem;
+  padding: .5rem;
+}
+.select {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 0.6rem;
 }

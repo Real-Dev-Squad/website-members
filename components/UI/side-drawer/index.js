@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'components/UI/side-drawer/side-drawer.module.scss';
 import Backdrop from 'components/UI/backdrop/';
@@ -7,8 +8,15 @@ const SideDrawer = ({ open, close }) => {
   if (open) {
     attachedClasses = [classNames.SideDrawer, classNames.Open];
   }
+
+  const [show, setShow] = useState(true);
+
+  const showHandler = () => {
+    setShow((prevState) => !prevState);
+  };
+
   return (
-    <div>
+    <>
       <Backdrop show={open} clicked={close} />
       <div className={attachedClasses.join(' ')}>
         <div className="brandname">
@@ -43,10 +51,25 @@ const SideDrawer = ({ open, close }) => {
             <li>
               <a href="https://crypto.realdevsquad.com/">Crypto</a>
             </li>
+            <li>
+              {show ? (
+                <button
+                  className={classNames.gearIcon}
+                  aria-label="Settings Icon"
+                  title="Show Modal"
+                  onClick={() => showHandler()}>
+                  <span role="img" aria-label="Settings Icon" title="Show Status Icon">
+                    ⚙️
+                  </span>
+                </button>
+              ) : (
+                ' '
+              )}
+            </li>
           </ul>
         </nav>
       </div>
-    </div>
+    </>
   );
 };
 
