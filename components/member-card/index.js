@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import classNames from './card.module.scss';
 import { motion } from 'framer-motion';
-import SocialMediaIcon from '../social-media-icon';
+import SocialMediaIcon from 'components/social-media-icon';
 import PropTypes from 'prop-types';
 import Modal from '../modal/Modal';
 import Header from '../modal/Modal/Header';

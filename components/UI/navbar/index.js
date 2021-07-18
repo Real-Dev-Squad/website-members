@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from './navbar.module.scss';
+import classNames from 'components/UI/navbar/navbar.module.scss';
 
 const Navbar = ({ drawerToggleClicked }) => {
   return (

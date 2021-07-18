@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import SocialMediaIcon from '../social-media-icon';
-import getBadges from './mock/get-badges';
-import classNames from './member-profile.module.scss';
-import ContributionType from './contribution-type/';
+import SocialMediaIcon from 'components/social-media-icon';
+import getBadges from 'components/member-profile/mock/get-badges';
+import classNames from 'components/member-profile/member-profile.module.scss';
+import ContributionType from 'components/member-profile/contribution-type/';
 import { motion } from 'framer-motion';
 import Modal from 'components/modal';
 
@@ -12,9 +12,9 @@ const renderBadgeImages = (badges) =>
     <img src={badge.img} className={classNames.badge} alt={badge.title} key={badge.title} />
   ));
 
-const CONTRIBUTIONTYPE = ['Noteworthy', 'All'];
+const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All'];
 
-const renderContributionsTypes = (contributions, fullName, imageLink, devUser) => {
+const renderContributionsTypes = (contributions, fullName, imageLink, devUser, tasks) => {
   const { noteworthy, all } = contributions;
   return CONTRIBUTIONTYPE.map((type, index) => (
     <ContributionType
@@ -24,6 +24,7 @@ const renderContributionsTypes = (contributions, fullName, imageLink, devUser) =
       fullName={fullName}
       imageLink={imageLink}
       devUser={devUser}
+      tasks={tasks}
     />
   ));
 };
@@ -37,7 +38,8 @@ const Profile = (props) => {
     membersData: { username, first_name, last_name, company, designation },
     imageLink,
     contributions,
-    devUser
+    devUser,
+    tasks
   } = props;
   const { membersData } = props;
   const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
@@ -104,7 +106,7 @@ const Profile = (props) => {
         )}
 
         <div className={(classNames.section, classNames.card)}>
-          {renderContributionsTypes(contributions, fullName, imageLink, devUser)}
+          {renderContributionsTypes(contributions, fullName, imageLink, devUser, tasks)}
         </div>
       </div>
     </div>
@@ -124,7 +126,8 @@ Profile.propTypes = {
     noteworthy: PropTypes.array,
     all: PropTypes.array
   }),
-  devUser: PropTypes.bool
+  devUser: PropTypes.bool,
+  tasks: PropTypes.array
 };
 
 Profile.defaultProps = {
@@ -140,7 +143,8 @@ Profile.defaultProps = {
     noteworthy: [],
     all: []
   },
-  devUser: false
+  devUser: false,
+  tasks: []
 };
 
 export default Profile;
