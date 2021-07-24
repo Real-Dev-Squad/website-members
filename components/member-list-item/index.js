@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { object } from 'prop-types';
 import Card from 'components/member-card';
-import { container } from '../member-card/card.module.scss';
+import { container } from 'components/member-card/card.module.scss';
 
 const PreviewMember = ({ memberDetails }) => {
   const { username, first_name, last_name } = memberDetails;

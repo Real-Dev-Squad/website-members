@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import PropTypes from 'prop-types';
-import classNames from './register.module.scss';
+import classNames from 'components/modal/Register/register.module.scss';
 
 const Register = (props) => {
   const { rdsUserName, setShowModal } = props;
