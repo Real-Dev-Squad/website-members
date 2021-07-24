@@ -3,34 +3,40 @@ export const skills_data = {
     {
       id: 1,
       tech: 'NodeJs',
-      background: '#3C873A'
+      background: '#F4DFDF',
+      borderColor: '#F27D7D'
     },
     {
       id: 2,
       tech: 'MongoDB',
-      background: '#3FA037'
+      background: '#FBE5D0',
+      borderColor: '#C56D1B'
     },
     {
       id: 3,
       tech: 'EmberJs',
-      background: '#CB4633'
+      background: '#DEF7FF',
+      borderColor: '#37C0EB'
     }
   ],
   skills: [
     {
       id: 4,
       tech: 'React',
-      background: '#35BBDE'
+      background: '#E9FFEB',
+      borderColor: '#0E8B1A'
     },
     {
       id: 5,
       tech: 'Javascript',
-      background: '#D9C643'
+      background: '#FFEAF9',
+      borderColor: '#DA4CB2'
     },
     {
       id: 6,
       tech: 'Firestore',
-      background: '#FFA611'
+      background: '#FFA611',
+      borderColor: '#'
     }
   ]
 };
