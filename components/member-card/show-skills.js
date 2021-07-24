@@ -18,7 +18,9 @@ const ShowSkills = ({ show }) => {
 
 function RenderSkills(props) {
   return (
-    <div style={{ background: `${props.background}` }} className={classNames.techSkills}>
+    <div
+      style={{ background: `${props.background}`, border: `0.3px solid ${props.borderColor}` }}
+      className={classNames.techSkills}>
       {props.tech}
     </div>
   );
@@ -30,7 +32,8 @@ ShowSkills.propTypes = {
 
 RenderSkills.propTypes = {
   tech: PropTypes.string.isRequired,
-  background: PropTypes.string.isRequired
+  background: PropTypes.string.isRequired,
+  borderColor: PropTypes.string.isRequired
 };
 
 export default ShowSkills;
