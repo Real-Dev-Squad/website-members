@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import classNames from './side-drawer.module.scss';
-import Backdrop from '../backdrop/';
+import classNames from 'components/UI/side-drawer/side-drawer.module.scss';
+import Backdrop from 'components/UI/backdrop/';
 
 const SideDrawer = ({ open, close }) => {
   let attachedClasses = [classNames.SideDrawer, classNames.Close];
