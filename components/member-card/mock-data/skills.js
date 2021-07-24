@@ -31,12 +31,6 @@ export const skills_data = {
       tech: 'Javascript',
       background: '#FFEAF9',
       borderColor: '#DA4CB2'
-    },
-    {
-      id: 6,
-      tech: 'Firestore',
-      background: '#FFA611',
-      borderColor: '#'
     }
   ]
 };
