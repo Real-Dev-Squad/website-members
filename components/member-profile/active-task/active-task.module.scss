@@ -1,129 +1,115 @@
-.container{
+.container {
   margin: 1.5rem 0;
   display: flex;
   justify-content: space-between;
 }
 
-.taskSection{
+.taskSection {
   display: flex;
   flex-direction: column;
   align-items: space-between;
 }
 
-.taskSection .featureTitle{
+.taskSection .featureTitle {
   color: #041187;
   padding: 0.25rem 0;
 }
 
-.prDescription{
+.prDescription {
   color: #636363;
   padding: 0.25rem 1.5rem 0.25rem 0;
   text-align: justify;
 }
 
-.completedData{
+.completedData {
   padding: 0.25rem 0;
 }
 
-.showTextGreen{
+.showTextGreen {
   display: inline-block;
   font-weight: bold;
   color: green;
 }
-.showTextOrange{
+.showTextOrange {
   display: inline-block;
   font-weight: bold;
   color: orange;
 }
-.showTextRed{
+.showTextRed {
   display: inline-block;
   font-weight: bold;
   color: red;
 }
-.showTextYellow{
+.showTextYellow {
   display: inline-block;
   font-weight: bold;
   color: yellow;
 }
 
-@media (max-width: 37.5rem){
-  .container{
+@media (max-width: 37.5rem) {
+  .container {
     flex-direction: column;
   }
-  
-  .taskSection .featureTitle{
+
+  .taskSection .featureTitle {
     font-size: 1rem;
   }
 }
 
-.progressSection{
-  width: 35%;
-  padding: 0.1em 2em;
+.progressSection {
+  width: 15rem;
+  padding: 0.1rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: space-between;
 }
 
-.progressText{
-  width: 162px;
-height: 31px;
-  font-family: Helvetica Neue;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 24px;
-display: flex;
-justify-content: center;
-color: #ABA9A9;
+.progressText {
+  width: 11rem;
+  height: 1.5rem;
+  font: normal normal 1.2rem/0.3rem Helvetica Neue;
+  display: flex;
+  justify-content: center;
+  color: #aba9a9;
 }
 
 .progressBar {
   width: 100%;
-  height: 5px;
+  height: 0.3rem;
   position: relative;
-  background-color:#e5e5e5;
+  background-color: #e5e5e5;
   border: 1px solid rgba(0, 0, 0, 0.24);
 }
 
-
-
-.showProgressOrange{
-  width: 1%;
-  height: 3px;
-  background-color:orange
+.showProgressOrange {
+  height: 0.2rem;
+  background-color: orange;
 }
 
-.showProgressRed{
-  width: 1%;
-  height: 3px;
-  background-color: red
+.showProgressRed {
+  height: 0.2rem;
+  background-color: red;
 }
 
-.showProgressYellow{
-  width: 1%;
-  height: 3px;
-  background-color: yellow
+.showProgressYellow {
+  height: 0.2rem;
+  background-color: yellow;
 }
 
 .showProgressGreen {
-  width: 1%;
-  height: 3px;
+  height: 0.2rem;
   background-color: green;
 }
 
-.showPercentCompletedText{
+.showPercentCompletedText {
   display: flex;
   justify-content: center;
   padding: 0.25em 0;
-height: 25px;
-width: 164px;
-color: #BEBEBE;
-font-family: Helvetica Neue;
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
-line-height: 14px;
-display: flex;
-align-items: center;
-text-align: center;
+  height: 2rem;
+  width: 11rem;
+  color: #bebebe;
+  font: normal normal 1rem Helvetica Neue;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
