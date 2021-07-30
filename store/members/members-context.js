@@ -18,7 +18,13 @@ export const MembersProvider = ({ children }) => {
   );
 };
 
-export const useMembers = () => useContext(MembersContext);
+export const useMembers = () => {
+  const context = useContext(MembersContext);
+  if (!context)
+    throw new Error(`useMembers context can only  
+        be used in a component wrapped with MembersContext`);
+  return context;
+};
 
 MembersProvider.propTypes = {
   children: PropTypes.node
