@@ -21,5 +21,5 @@ export const MembersProvider = ({ children }) => {
 export const useMembers = () => useContext(MembersContext);
 
 MembersProvider.propTypes = {
-  children: PropTypes.ReactNode
+  children: PropTypes.node
 };
