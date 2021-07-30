@@ -5,6 +5,8 @@ import HomePage from 'components/pages';
 import Layout from 'components/layout';
 import NotFound from 'components/not-found-page';
 import { CACHE_MAX_AGE } from 'constants/cache-max-age.js';
+// import { SET_ERRORS, SET_MEMBERS } from 'constants/members-constant';
+// import { useMembers } from 'store/members/members-context';
 
 const Index = ({ membersArr, newMembersArr, errorMsg }) => {
   let loadComponent = '';
@@ -19,7 +21,7 @@ const Index = ({ membersArr, newMembersArr, errorMsg }) => {
 
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
-
+  // const { membersDispatch: dispatch } = useMembers();
   const membersArray = [];
 
   try {
@@ -47,9 +49,10 @@ export async function getServerSideProps(context) {
     newMembersArr.sort((a, b) =>
       a.first_name.toUpperCase() > b.first_name.toUpperCase() ? 1 : -1
     );
-
+    // dispatch({ type: SET_MEMBERS, payload: { membersArr, newMembersArr } });
     return { props: { membersArr, newMembersArr } };
   } catch (e) {
+    // dispatch({ type: SET_ERRORS, payload: e.message });
     return { props: { errorMsg: e.message } };
   }
 }
