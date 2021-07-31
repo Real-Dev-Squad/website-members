@@ -1,4 +1,4 @@
-import { timeWas } from '../helper-functions/time-was';
+import { timeWas } from 'helper-functions/time-was';
 
 function percentageofDaysRemaining(startedOn, endsOn, completedDate) {
   const startDate = timeWas(startedOn * 1000, true, endsOn * 1000);
