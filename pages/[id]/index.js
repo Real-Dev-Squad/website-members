@@ -32,7 +32,6 @@ const MemberProfile = ({ imageLink, user, contributions, tasks, errorMessage }) 
         devUser={devUser}
         tasks={tasks}
       />
-        <br/><br/>
     </Layout>
   );
 };
