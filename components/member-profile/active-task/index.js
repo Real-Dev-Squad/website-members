@@ -1,40 +1,17 @@
 import PropTypes from 'prop-types';
-import classNames from './active-task.module.scss';
-import { timeWas } from '../../../helper-functions/time-was';
-import { percentageofDaysRemaining } from '../../../helper-functions/taskProgress';
+import classNames from 'components/member-profile/active-task/active-task.module.scss';
+import { timeWas } from 'helper-functions/time-was';
+import { percentageofDaysRemaining } from 'helper-functions/taskProgress';
+import { estimatedDays } from 'helper-functions/estimated-days';
+import { showProgressIndicatorColour } from 'helper-functions/showProgressIndicator';
 
 const ActiveTask = ({ taskDetails }) => {
   const { title, purpose, startedOn, endsOn, percentCompleted } = taskDetails;
-  let completedDate,
-    percentageOfDaysRemaining = '';
-  completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
-
-  let percentOfTaskLeft = 100 - percentCompleted;
-
-  percentageOfDaysRemaining = percentageofDaysRemaining(startedOn, endsOn, completedDate);
-
-  function estimatedDays() {
-    if (percentageOfDaysRemaining >= percentOfTaskLeft) {
-      return classNames.showTextGreen;
-    } else if (percentageOfDaysRemaining < 50 && percentOfTaskLeft > 75) {
-      return classNames.showTextOrange;
-    } else if (percentageOfDaysRemaining < 25 && percentOfTaskLeft > 35) {
-      return classNames.showTextRed;
-    }
-    return classNames.showTextYellow;
-  }
-  function showProgressIndicatorColour() {
-    const estimatedDaysOfTaskComplete = estimatedDays();
-    if (estimatedDaysOfTaskComplete === classNames.showTextGreen) {
-      return classNames.showProgressGreen;
-    } else if (estimatedDaysOfTaskComplete === classNames.showTextOrange) {
-      return classNames.showProgressOrange;
-    } else if (estimatedDaysOfTaskComplete === classNames.showTextRed) {
-      return classNames.showProgressRed;
-    } else {
-      classNames.showProgressYellow;
-    }
-  }
+  const completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
+  const percentOfTaskLeft = 100 - percentCompleted;
+  const percentageOfDaysRemaining = percentageofDaysRemaining(startedOn, endsOn, completedDate);
+  const showEstimatedDay = estimatedDays(percentageOfDaysRemaining, percentOfTaskLeft, classNames);
+  const showProgressIndicator = showProgressIndicatorColour(showEstimatedDay, classNames);
 
   return (
     <div className={classNames.container}>
@@ -43,17 +20,15 @@ const ActiveTask = ({ taskDetails }) => {
         <p className={classNames.prDescription}>{purpose}</p>
         <div className={classNames.completedData}>
           <span>Estimated Completion in </span>
-          <p className={estimatedDays()}>{completedDate}</p>
+          <p className={showEstimatedDay}>{completedDate}</p>
         </div>
       </div>
       <div className={classNames.progressSection}>
         <div className={classNames.progressText}>
-          {percentCompleted > 0 ? 'This is in progress' : null}
+          {percentCompleted > 0 && 'This is in progress'}
         </div>
         <div className={classNames.progressBar}>
-          <div
-            className={showProgressIndicatorColour()}
-            style={{ width: `${percentCompleted}%` }}></div>
+          <div className={showProgressIndicator} style={{ width: `${percentCompleted}%` }}></div>
         </div>
         <span
           className={classNames.showPercentCompletedText}>{`${percentCompleted}% complete`}</span>
