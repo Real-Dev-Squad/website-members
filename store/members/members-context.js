@@ -1,6 +1,6 @@
+import { createContext, useContext, useReducer } from 'react';
 import { membersReducer } from './members-reducer';
 import PropTypes from 'prop-types';
-const { createContext, useReducer, default: React, useContext } = require('react');
 
 const MembersContext = createContext({});
 const initialState = {
