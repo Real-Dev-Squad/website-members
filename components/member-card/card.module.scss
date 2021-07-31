@@ -64,14 +64,7 @@
   margin-right: 15px;
 }
 
-.showSkills{
-  display: flex;
-  flex-wrap: wrap;
-  margin:10px 0;
-  justify-content: center;
-}
-
-.showMemberSkills{
+.showSkills, .showMemberSkills{
   display: flex;
   flex-wrap: wrap;
   margin:10px 0;
