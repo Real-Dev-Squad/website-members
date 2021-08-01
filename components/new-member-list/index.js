@@ -2,8 +2,12 @@ import NewMemberListItem from 'components/new-member-list-item';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'components/new-member-list/new-member-list.module.scss';
+import { useMembers } from 'store/members/members-context';
 
-const NewMemberList = ({ newMembersArr }) => {
+const NewMemberList = () => {
+  const {
+    state: { newMembersArr }
+  } = useMembers();
   if (newMembersArr) {
     return (
       <div className={classNames.container}>
