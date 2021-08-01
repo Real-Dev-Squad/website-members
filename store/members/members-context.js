@@ -11,11 +11,7 @@ const initialState = {
 
 export const MembersProvider = ({ children }) => {
   const [state, dispatch] = useReducer(membersReducer, initialState);
-  return (
-    <MembersContext.Provider value={{ membersState: state, membersDispatch: dispatch }}>
-      {children}
-    </MembersContext.Provider>
-  );
+  return <MembersContext.Provider value={{ state, dispatch }}>{children}</MembersContext.Provider>;
 };
 
 export const useMembers = () => {

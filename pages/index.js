@@ -5,12 +5,12 @@ import HomePage from 'components/pages';
 import Layout from 'components/layout';
 import NotFound from 'components/not-found-page';
 import { CACHE_MAX_AGE } from 'constants/cache-max-age.js';
-import { SET_ERRORS, SET_MEMBERS } from 'constants/members-constant';
+import { SET_ERRORS, SET_MEMBERS } from 'constants/AppConstants';
 import { useMembers } from 'store/members/members-context';
 import { useEffect } from 'react';
 
 const Index = ({ membersArr, newMembersArr, errorMsg }) => {
-  const { membersDispatch: dispatch } = useMembers();
+  const { dispatch } = useMembers();
   let loadComponent = '';
   useEffect(() => {
     if (errorMsg) {
@@ -20,9 +20,9 @@ const Index = ({ membersArr, newMembersArr, errorMsg }) => {
     }
   }, []);
   if (errorMsg) {
-    loadComponent = <NotFound errorMsg={errorMsg} />;
+    loadComponent = <NotFound />;
   } else {
-    loadComponent = <HomePage membersArr={membersArr} newMembersArr={newMembersArr} />;
+    loadComponent = <HomePage />;
   }
 
   return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;

@@ -1,4 +1,4 @@
-import { SET_ERRORS, SET_MEMBERS } from 'constants/members-constant';
+import { SET_ERRORS, SET_MEMBERS } from 'constants/AppConstants';
 
 export const membersReducer = (state, { type, payload }) => {
   switch (type) {
