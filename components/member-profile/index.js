@@ -78,7 +78,7 @@ const Profile = (props) => {
                 {renderSocialMediaIcons(socialMedia, membersData)}
               </div>
             )}
-            <ShowSkills show={true} />
+            {devUser && <ShowSkills show={true} />}
             <div>
               <button
                 type="button"
