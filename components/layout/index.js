@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from 'components/footer';
 import Navbar from 'components/UI/navbar';
+import  classNames  from 'components/layout/index.module.scss'
 import SideDrawer from 'components/UI/side-drawer';
 const Layout = ({ children, title, description }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
@@ -12,7 +13,8 @@ const Layout = ({ children, title, description }) => {
   };
 
   return (
-    <div>
+    <div className={classNames.infoBody}>
+      <div className={classNames.infoContent}>
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
@@ -23,7 +25,8 @@ const Layout = ({ children, title, description }) => {
       <div className="container">
         <div>{children}</div>
       </div>
-      <Footer />
+      </div>
+      <Footer/>
     </div>
   );
 };
