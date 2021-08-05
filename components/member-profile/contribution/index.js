@@ -10,7 +10,7 @@ const renderPRLinks = (prList) =>
 
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const {
-    task: { title, startedOn, endsOn, status, purpose },
+    task: { title, startedOn, endsOn, status, purpose, featureUrl },
     prList
   } = contribution;
   const isTitleAvailable = title ? true : false;
@@ -68,7 +68,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         </div>
       </div>
       <div className={classNames.featureLink}>
-        <a href="!#"> Check out this feature in action</a>
+        <a href={featureUrl || prList[0]['url']} target="_blank"> Check out this feature in action</a>
       </div>
       <hr className={classNames.line}></hr>
     </div>
