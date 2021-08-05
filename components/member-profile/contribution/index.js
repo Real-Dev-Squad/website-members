@@ -42,7 +42,11 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   }
 
   return (
-    <div>
+    <div
+      className={classNames.contributionCard}
+      onClick={() => window.open(featureUrl || prList[0]['url'], '_blank')}
+      onKeyDown={() => {}}
+      aria-hidden="true">
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
           <h3 className={classNames.featureTitle}>{featureTitle}</h3>
