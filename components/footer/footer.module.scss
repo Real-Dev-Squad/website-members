@@ -1,7 +1,10 @@
 .infoRepo {
   font-weight: 100;
   text-align: center;
-  display: flex;
-  justify-content: center;
-  padding-top: 15px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  margin: 0 0 -40px 0;   
 }
