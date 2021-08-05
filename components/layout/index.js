@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from 'components/footer';
 import Navbar from 'components/UI/navbar';
-import  classNames  from 'components/layout/index.module.scss'
+import  classNames  from 'components/layout/index.module.scss';
 import SideDrawer from 'components/UI/side-drawer';
 const Layout = ({ children, title, description }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
