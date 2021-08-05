@@ -68,7 +68,9 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         </div>
       </div>
       <div className={classNames.featureLink}>
-        <a href={featureUrl || prList[0]['url']} target="_blank"> Check out this feature in action</a>
+        <a href={featureUrl || prList[0]['url']} target="_blank" rel="noreferrer">
+          Check out this feature in action
+        </a>
       </div>
       <hr className={classNames.line}></hr>
     </div>
