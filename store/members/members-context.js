@@ -14,10 +14,10 @@ export const MembersProvider = ({ children }) => {
   return <MembersContext.Provider value={{ state, dispatch }}>{children}</MembersContext.Provider>;
 };
 
-export const useMembers = () => {
+export const membersContext = () => {
   const context = useContext(MembersContext);
   if (!context)
-    throw new Error(`useMembers context can only  
+    throw new Error(`membersContext context can only  
         be used in a component wrapped with MembersContext`);
   return context;
 };

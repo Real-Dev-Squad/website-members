@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MemberListItem from 'components/member-list-item';
 import classNames from 'components/members-list/member-list.module.scss';
-import { useMembers } from 'store/members/members-context';
+import { membersContext } from 'store/members/members-context';
 
 const MembersList = () => {
   const {
     state: { membersArr }
-  } = useMembers();
+  } = membersContext();
   if (membersArr) {
     return (
       <div className={classNames.container}>

@@ -6,11 +6,11 @@ import Layout from 'components/layout';
 import NotFound from 'components/not-found-page';
 import { CACHE_MAX_AGE } from 'constants/cache-max-age.js';
 import { SET_ERRORS, SET_MEMBERS } from 'constants/AppConstants';
-import { useMembers } from 'store/members/members-context';
+import { membersContext } from 'store/members/members-context';
 import { useEffect } from 'react';
 
 const Index = ({ membersArr, newMembersArr, errorMsg }) => {
-  const { dispatch } = useMembers();
+  const { dispatch } = membersContext();
   let loadComponent = '';
   useEffect(() => {
     if (errorMsg) {
