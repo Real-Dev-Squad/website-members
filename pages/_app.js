@@ -5,7 +5,7 @@ import classNames from 'styles/layout-style.module.scss';
 import { AnimateSharedLayout } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Spinner from 'components/UI/spinner';
-import { MembersProvider } from 'store/members/members-context';
+import { MembersProvider } from 'store';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
