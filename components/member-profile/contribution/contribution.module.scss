@@ -3,6 +3,9 @@
   display: flex;
   justify-content: space-between;
 }
+.contributionCard{
+  cursor: pointer;
+}
 .contributionCard:hover{
   transform: scale(1.03);
 }
