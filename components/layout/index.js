@@ -13,17 +13,15 @@ const Layout = ({ children, title, description }) => {
 
   return (
     <div>
-      <div>
-        <Head>
-          <title>{title}</title>
-          <meta name="description" content={description} />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        </Head>
-        <Navbar drawerToggleClicked={sideDrawerToggleHandler} />
-        <SideDrawer open={showSideDrawer} close={sideDrawerToggleHandler} />
-        <div className="container">
-          <div>{children}</div>
-        </div>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Navbar drawerToggleClicked={sideDrawerToggleHandler} />
+      <SideDrawer open={showSideDrawer} close={sideDrawerToggleHandler} />
+      <div className="container">
+        <div>{children}</div>
       </div>
       <Footer />
     </div>
