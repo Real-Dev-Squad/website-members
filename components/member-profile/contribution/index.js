@@ -41,10 +41,12 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
     }
   }
 
+  let url = featureUrl || prList[0]['url'];
+
   return (
     <div
-      className={classNames.contributionCard}
-      onClick={() => window.open(featureUrl || prList[0]['url'], '_blank')}
+      className={url && classNames.contributionCard}
+      onClick={() => url && window.open(url, '_blank')}
       onKeyDown={() => {}}
       aria-hidden="true">
       <div className={classNames.contributionContainer}>
@@ -72,13 +74,11 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         </div>
       </div>
       <div className={classNames.featureLink}>
-        <a
-          href={featureUrl || prList[0]['url']}
-          onClick={(e) => e.stopPropagation()}
-          target="_blank"
-          rel="noreferrer">
-          Check out this feature in action
-        </a>
+        {url && (
+          <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+            Check out this feature in action
+          </a>
+        )}
       </div>
       <hr className={classNames.line}></hr>
     </div>
