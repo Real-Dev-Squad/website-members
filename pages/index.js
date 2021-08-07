@@ -5,13 +5,24 @@ import HomePage from 'components/pages';
 import Layout from 'components/layout';
 import NotFound from 'components/not-found-page';
 import { CACHE_MAX_AGE } from 'constants/cache-max-age.js';
+import { SET_ERRORS, SET_MEMBERS } from 'constants/AppConstants';
+import { membersContext } from 'store/members/members-context';
+import { useEffect } from 'react';
 
 const Index = ({ membersArr, newMembersArr, errorMsg }) => {
+  const { dispatch } = membersContext();
   let loadComponent = '';
+  useEffect(() => {
+    if (errorMsg) {
+      dispatch({ type: SET_ERRORS, payload: errorMsg });
+    } else {
+      dispatch({ type: SET_MEMBERS, payload: { membersArr, newMembersArr } });
+    }
+  }, []);
   if (errorMsg) {
-    loadComponent = <NotFound errorMsg={errorMsg} />;
+    loadComponent = <NotFound />;
   } else {
-    loadComponent = <HomePage membersArr={membersArr} newMembersArr={newMembersArr} />;
+    loadComponent = <HomePage />;
   }
 
   return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
@@ -19,7 +30,6 @@ const Index = ({ membersArr, newMembersArr, errorMsg }) => {
 
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
-
   const membersArray = [];
 
   try {
@@ -47,7 +57,6 @@ export async function getServerSideProps(context) {
     newMembersArr.sort((a, b) =>
       a.first_name.toUpperCase() > b.first_name.toUpperCase() ? 1 : -1
     );
-
     return { props: { membersArr, newMembersArr } };
   } catch (e) {
     return { props: { errorMsg: e.message } };
