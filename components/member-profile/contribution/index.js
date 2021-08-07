@@ -72,7 +72,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         </div>
       </div>
       <div className={classNames.featureLink}>
-        <a href={featureUrl || prList[0]['url']} target="_blank" rel="noreferrer">
+        <a href={featureUrl || prList[0]['url']} onClick={(e)=>e.stopPropagation()} target="_blank" rel="noreferrer">
           Check out this feature in action
         </a>
       </div>
