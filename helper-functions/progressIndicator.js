@@ -1,4 +1,4 @@
-function showProgressIndicatorColour(estimatedDaysOfTaskComplete, classNames) {
+function progressIndicator(estimatedDaysOfTaskComplete, classNames) {
   if (estimatedDaysOfTaskComplete === classNames.showTextGreen) {
     return classNames.showProgressGreen;
   } else if (estimatedDaysOfTaskComplete === classNames.showTextOrange) {
@@ -10,4 +10,4 @@ function showProgressIndicatorColour(estimatedDaysOfTaskComplete, classNames) {
   }
 }
 
-export { showProgressIndicatorColour };
+export { progressIndicator };
