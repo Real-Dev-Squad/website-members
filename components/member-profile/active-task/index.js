@@ -3,7 +3,7 @@ import classNames from 'components/member-profile/active-task/active-task.module
 import { timeWas } from 'helper-functions/time-was';
 import { percentageofDaysRemaining } from 'helper-functions/taskProgress';
 import { estimatedDays } from 'helper-functions/estimated-days';
-import { showProgressIndicatorColour } from 'helper-functions/showProgressIndicator';
+import { progressIndicator } from 'helper-functions/progressIndicator';
 
 const ActiveTask = ({ taskDetails }) => {
   const { title, purpose, startedOn, endsOn, percentCompleted } = taskDetails;
@@ -11,7 +11,7 @@ const ActiveTask = ({ taskDetails }) => {
   const percentOfTaskLeft = 100 - percentCompleted;
   const percentageOfDaysRemaining = percentageofDaysRemaining(startedOn, endsOn, completedDate);
   const showEstimatedDay = estimatedDays(percentageOfDaysRemaining, percentOfTaskLeft, classNames);
-  const showProgressIndicator = showProgressIndicatorColour(showEstimatedDay, classNames);
+  const showProgressIndicator = progressIndicator(showEstimatedDay, classNames);
 
   return (
     <div className={classNames.container}>
