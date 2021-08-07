@@ -41,7 +41,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
     }
   }
 
-  let url = featureUrl || (prList && prList.length > 0 && prList[0]['url']);
+  let url = featureUrl || prList[0]?.url;
 
   return (
     <div
