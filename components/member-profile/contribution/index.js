@@ -41,13 +41,13 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
     }
   }
 
-  let url = featureUrl || prList[0]?.url;
+  const url = featureUrl || prList[0]?.url;
 
   return (
     <div
       className={url && classNames.contributionCard}
       onClick={() => url && window.open(url, '_blank')}
-      onKeyDown={() => {}}
+      onKeyDown={() => url && window.open(url, '_blank')}
       aria-hidden="true">
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
