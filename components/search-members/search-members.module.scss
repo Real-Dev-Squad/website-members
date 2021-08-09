@@ -1,0 +1,16 @@
+.searchContainer {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+.searchBox {
+  float: left;
+  padding: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.397);
+  border-radius: 5px;
+  outline: none;
+}
+.searchButton {
+  margin-left: 2px;
+  cursor: pointer;
+}
