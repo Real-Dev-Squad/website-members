@@ -1,6 +1,11 @@
 const baseURL = `https://api.realdevsquad.com`;
 const imgBaseURL = `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main`;
 const getMembersURL = `${baseURL}/members`;
+const walletURL = `${baseURL}/wallet`;
+const CURRENCIES = {
+  NEELAM: 'neelam',
+  DINERO: 'dinero'
+};
 
 /**
  *
@@ -26,4 +31,12 @@ const getContributionsURL = (rdsId) => `${baseURL}/contributions/${rdsId}`;
  */
 const getActiveTasksURL = (rdsId) => `${baseURL}/tasks/${rdsId}?status=active`;
 
-export { getImgURL, getMembersDataURL, getContributionsURL, getMembersURL, getActiveTasksURL };
+export {
+  getImgURL,
+  getMembersDataURL,
+  getContributionsURL,
+  getMembersURL,
+  getActiveTasksURL,
+  walletURL,
+  CURRENCIES
+};
