@@ -7,6 +7,7 @@ import ContributionType from 'components/member-profile/contribution-type/';
 import { motion } from 'framer-motion';
 import Modal from 'components/modal';
 import ShowSkills from 'components/member-card/show-skills';
+import ShowWallet from 'components/member-card/show-wallet';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -79,6 +80,7 @@ const Profile = (props) => {
               </div>
             )}
             {devUser && <ShowSkills show={true} />}
+            {devUser && <ShowWallet show={true} />}
             <div>
               <button
                 type="button"
