@@ -46,6 +46,16 @@
   font-size: 16px;
   font-weight: 500;
 }
+.featureLink button{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  cursor: pointer;
+  text-decoration: none;
+  color: #041187;
+  font-size: 16px;
+  font-weight: 500;
+}
 .rightSection{
   display: flex;
   flex-direction: column;
@@ -107,6 +117,9 @@
     font-size: 16px;
   }
   .featureLink a{
+    font-size: 14px;
+  }
+  .featureLink button{
     font-size: 14px;
   }
   .rightSection{
