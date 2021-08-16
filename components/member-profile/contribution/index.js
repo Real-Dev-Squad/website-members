@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'components/member-profile/contribution/contribution.module.scss';
 import PRLink from 'components/member-profile/contribution/pr-link';
 import { timeWas } from 'helper-functions/time-was';
+import Link from 'next/link';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
@@ -42,12 +43,14 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   }
 
   const url = featureUrl || prList[0]?.url;
+  const gotoUrl = () => url && window.open(url, '_blank');
+  const urlObj = URL.parse(url)
 
   return (
     <div
       className={url && classNames.contributionCard}
-      onClick={() => url && window.open(url, '_blank')}
-      onKeyDown={() => url && window.open(url, '_blank')}
+      onClick={gotoUrl}
+      onKeyDown={gotoUrl}
       aria-hidden="true">
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
@@ -74,7 +77,13 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         </div>
       </div>
       <div className={classNames.featureLink}>
-        {url && (
+        {url && urlObj.host === "members.realdevsquad.com" ? (
+          <Link href={urlObj.path}>
+            <a onClick={(e) => e.stopPropagation()}>
+              Check out this feature in action
+            </a>
+          </Link>
+        ):(
           <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
             Check out this feature in action
           </a>
