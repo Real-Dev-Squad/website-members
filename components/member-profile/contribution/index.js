@@ -80,9 +80,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       <div className={classNames.featureLink}>
         {url && urlObj.host === 'members.realdevsquad.com' ? (
           <Link href={urlObj.path}>
-            <button onClick={(e) => e.stopPropagation()}>
-              Check out this feature in action
-            </button>
+            <button onClick={(e) => e.stopPropagation()}>Check out this feature in action</button>
           </Link>
         ) : (
           <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
