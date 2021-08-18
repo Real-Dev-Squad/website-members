@@ -12,7 +12,51 @@ const renderPRLinks = (prList) =>
 
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const {
-    task: { title, startedOn, endsOn, status, purpose, featureUrl },
+    task: { featureUrl },
+    prList
+  } = contribution;
+  const url = featureUrl || prList[0]['url'];
+  const gotoUrl = () => url && window.open(url, '_blank');
+  const urlObj = url && URL.parse(url);
+
+  return (
+    <div>
+      {urlObj?.host === 'members.realdevsquad.com' ? (
+        <Link href={urlObj.path}>
+          <div className={url && classNames.contributionCard}>
+            <ContributionCard
+              contribution={contribution}
+              fullName={fullName}
+              imageLink={imageLink}
+              devUser={devUser}
+              url={url}
+              urlObj={urlObj}
+            />
+          </div>
+        </Link>
+      ) : (
+        <div
+          className={url && classNames.contributionCard}
+          onClick={gotoUrl}
+          onKeyDown={gotoUrl}
+          aria-hidden="true">
+          <ContributionCard
+            contribution={contribution}
+            fullName={fullName}
+            imageLink={imageLink}
+            devUser={devUser}
+            url={url}
+            urlObj={urlObj}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, urlObj }) => {
+  const {
+    task: { title, startedOn, endsOn, status, purpose },
     prList
   } = contribution;
   const isTitleAvailable = title ? true : false;
@@ -42,17 +86,8 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       featureLiveOnText = `Feature live on ${featurLiveDate}`;
     }
   }
-
-  const url = featureUrl || prList[0]?.url;
-  const gotoUrl = () => url && window.open(url, '_blank');
-  const urlObj = URL.parse(url);
-
   return (
-    <div
-      className={url && classNames.contributionCard}
-      onClick={gotoUrl}
-      onKeyDown={gotoUrl}
-      aria-hidden="true">
+    <div>
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
           <h3 className={classNames.featureTitle}>{featureTitle}</h3>
@@ -78,15 +113,16 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         </div>
       </div>
       <div className={classNames.featureLink}>
-        {url && urlObj.host === 'members.realdevsquad.com' ? (
-          <Link href={urlObj.path}>
-            <button onClick={(e) => e.stopPropagation()}>Check out this feature in action</button>
-          </Link>
-        ) : (
-          <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
-            Check out this feature in action
-          </a>
-        )}
+        {url &&
+          (urlObj.host === 'members.realdevsquad.com' ? (
+            <Link href={urlObj.path}>
+              <button onClick={(e) => e.stopPropagation()}>Check out this feature in action</button>
+            </Link>
+          ) : (
+            <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+              Check out this feature in action
+            </a>
+          ))}
       </div>
       <hr className={classNames.line}></hr>
     </div>
@@ -101,6 +137,18 @@ Contribution.propTypes = {
   fullName: PropTypes.string.isRequired,
   imageLink: PropTypes.string.isRequired,
   devUser: PropTypes.bool
+};
+
+ContributionCard.propTypes = {
+  contribution: PropTypes.shape({
+    prList: PropTypes.array,
+    task: PropTypes.object
+  }).isRequired,
+  fullName: PropTypes.string.isRequired,
+  imageLink: PropTypes.string.isRequired,
+  devUser: PropTypes.bool,
+  url: PropTypes.string,
+  urlObj: PropTypes.object
 };
 
 export default Contribution;
