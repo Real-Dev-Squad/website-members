@@ -61,8 +61,8 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
     if (url) {
       if (urlObj.host === 'members.realdevsquad.com') {
         return (
-          <Link href={urlObj.pathname}>
-            <button onClick={(e) => e.stopPropagation()}>Check out this feature in action</button>
+          <Link href={urlObj.pathname} onClick={(e) => e.stopPropagation()}>
+            Check out this feature in action
           </Link>
         );
       } else {
