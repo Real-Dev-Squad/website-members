@@ -3,7 +3,6 @@ import classNames from 'components/member-profile/contribution/contribution.modu
 import PRLink from 'components/member-profile/contribution/pr-link';
 import { timeWas } from 'helper-functions/time-was';
 import Link from 'next/link';
-import URL from 'url';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
@@ -17,41 +16,38 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   } = contribution;
   const url = featureUrl || prList[0]['url'];
   const gotoUrl = () => url && window.open(url, '_blank');
-  const urlObj = url && URL.parse(url);
-
-  return (
-    <div>
-      {urlObj?.host === 'members.realdevsquad.com' ? (
-        <Link href={urlObj.path}>
-          <div className={url && classNames.contributionCard}>
-            <ContributionCard
-              contribution={contribution}
-              fullName={fullName}
-              imageLink={imageLink}
-              devUser={devUser}
-              url={url}
-              urlObj={urlObj}
-            />
-          </div>
+  const urlObj = url && new URL(url);
+  const card = () => (
+    <ContributionCard
+      contribution={contribution}
+      fullName={fullName}
+      imageLink={imageLink}
+      devUser={devUser}
+      url={url}
+      urlObj={urlObj}
+    />
+  );
+  const renderFeatureCard = () => {
+    if (urlObj?.host === 'members.realdevsquad.com') {
+      return (
+        <Link href={urlObj.pathname}>
+          <div className={url && classNames.contributionCard}>{card()}</div>
         </Link>
-      ) : (
+      );
+    } else {
+      return (
         <div
           className={url && classNames.contributionCard}
           onClick={gotoUrl}
           onKeyDown={gotoUrl}
           aria-hidden="true">
-          <ContributionCard
-            contribution={contribution}
-            fullName={fullName}
-            imageLink={imageLink}
-            devUser={devUser}
-            url={url}
-            urlObj={urlObj}
-          />
+          {card()}
         </div>
-      )}
-    </div>
-  );
+      );
+    }
+  };
+
+  return renderFeatureCard();
 };
 
 const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, urlObj }) => {
@@ -61,6 +57,24 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
   } = contribution;
   const isTitleAvailable = title ? true : false;
   const featureTitle = isTitleAvailable ? title : prList[0].title;
+  const renderFeatureUrl = (url, urlObj) => {
+    if (url) {
+      if (urlObj.host === 'members.realdevsquad.com') {
+        return (
+          <Link href={urlObj.pathname}>
+            <button onClick={(e) => e.stopPropagation()}>Check out this feature in action</button>
+          </Link>
+        );
+      } else {
+        return (
+          <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+            Check out this feature in action
+          </a>
+        );
+      }
+    }
+    return;
+  };
   let completedText = '';
   let completedDate = '';
   let featureLiveOnText = '';
@@ -112,18 +126,7 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
           )}
         </div>
       </div>
-      <div className={classNames.featureLink}>
-        {url &&
-          (urlObj.host === 'members.realdevsquad.com' ? (
-            <Link href={urlObj.path}>
-              <button onClick={(e) => e.stopPropagation()}>Check out this feature in action</button>
-            </Link>
-          ) : (
-            <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
-              Check out this feature in action
-            </a>
-          ))}
-      </div>
+      <div className={classNames.featureLink}>{renderFeatureUrl(url, urlObj)}</div>
       <hr className={classNames.line}></hr>
     </div>
   );
