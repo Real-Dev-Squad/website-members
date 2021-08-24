@@ -1,13 +1,15 @@
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import classNames from 'components/member-profile/contribution/contribution.module.scss';
 import PRLink from 'components/member-profile/contribution/pr-link';
 import { timeWas } from 'helper-functions/time-was';
-import Link from 'next/link';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
     return <PRLink link={url} key={index} />;
   });
+
+const memberSiteHostName = 'members.realdevsquad.com';
 
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const {
@@ -17,7 +19,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const url = featureUrl || prList[0]['url'];
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
-  const card = () => (
+  const contributionCard = () => (
     <ContributionCard
       contribution={contribution}
       fullName={fullName}
@@ -28,23 +30,22 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
     />
   );
   const renderFeatureCard = () => {
-    if (urlObj?.host === 'members.realdevsquad.com') {
+    if (urlObj?.host === memberSiteHostName) {
       return (
         <Link href={urlObj.pathname}>
-          <div className={url && classNames.contributionCard}>{card()}</div>
+          <div className={url && classNames.contributionCard}>{contributionCard()}</div>
         </Link>
       );
-    } else {
-      return (
-        <div
-          className={url && classNames.contributionCard}
-          onClick={gotoUrl}
-          onKeyDown={gotoUrl}
-          aria-hidden="true">
-          {card()}
-        </div>
-      );
     }
+    return (
+      <div
+        className={url && classNames.contributionCard}
+        onClick={gotoUrl}
+        onKeyDown={gotoUrl}
+        aria-hidden="true">
+        {contributionCard()}
+      </div>
+    );
   };
 
   return renderFeatureCard();
@@ -57,23 +58,22 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
   } = contribution;
   const isTitleAvailable = title ? true : false;
   const featureTitle = isTitleAvailable ? title : prList[0].title;
+
   const renderFeatureUrl = (url, urlObj) => {
     if (url) {
-      if (urlObj.host === 'members.realdevsquad.com') {
+      if (urlObj.host === memberSiteHostName) {
         return (
           <Link href={urlObj.pathname} onClick={(e) => e.stopPropagation()}>
             Check out this feature in action
           </Link>
         );
-      } else {
-        return (
-          <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
-            Check out this feature in action
-          </a>
-        );
       }
+      return (
+        <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+          Check out this feature in action
+        </a>
+      );
     }
-    return;
   };
   let completedText = '';
   let completedDate = '';
