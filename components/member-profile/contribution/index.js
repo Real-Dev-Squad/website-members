@@ -148,8 +148,8 @@ ContributionCard.propTypes = {
   fullName: PropTypes.string.isRequired,
   imageLink: PropTypes.string.isRequired,
   devUser: PropTypes.bool,
-  url: PropTypes.string,
-  urlObj: PropTypes.object
+  url: PropTypes.string.isRequired,
+  urlObj: PropTypes.object.isRequired
 };
 
 export default Contribution;
