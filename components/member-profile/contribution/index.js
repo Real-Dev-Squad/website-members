@@ -60,20 +60,18 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
   const featureTitle = isTitleAvailable ? title : prList[0].title;
 
   const renderFeatureUrl = (url, urlObj) => {
-    if (url) {
-      if (urlObj.host === memberSiteHostName) {
-        return (
-          <Link href={urlObj.pathname} onClick={(e) => e.stopPropagation()}>
-            Check out this feature in action
-          </Link>
-        );
-      }
+    if (urlObj.host === memberSiteHostName) {
       return (
-        <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+        <Link href={urlObj.pathname} onClick={(e) => e.stopPropagation()}>
           Check out this feature in action
-        </a>
+        </Link>
       );
     }
+    return (
+      <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+        Check out this feature in action
+      </a>
+    );
   };
   let completedText = '';
   let completedDate = '';
@@ -126,7 +124,7 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
           )}
         </div>
       </div>
-      <div className={classNames.featureLink}>{renderFeatureUrl(url, urlObj)}</div>
+      {url && <div className={classNames.featureLink}>{renderFeatureUrl(url, urlObj)}</div>}
       <hr className={classNames.line}></hr>
     </div>
   );
