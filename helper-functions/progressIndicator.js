@@ -1,3 +1,8 @@
+/**
+ * @param {Number} estimatedDaysOfTaskComplete
+ * @param {Object} classNames
+ * @returns {String} class
+ */
 function progressIndicator(estimatedDaysOfTaskComplete, classNames) {
   if (estimatedDaysOfTaskComplete === classNames.showTextGreen) {
     return classNames.showProgressGreen;
@@ -6,7 +11,7 @@ function progressIndicator(estimatedDaysOfTaskComplete, classNames) {
   } else if (estimatedDaysOfTaskComplete === classNames.showTextRed) {
     return classNames.showProgressRed;
   } else {
-    classNames.showProgressYellow;
+    return classNames.showProgressYellow;
   }
 }
 
