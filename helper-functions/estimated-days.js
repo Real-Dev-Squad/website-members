@@ -1,3 +1,9 @@
+/**
+ * @param {Number} percentageOfDaysRemaining
+ * @param {Number} percentOfTaskLeft
+ * @param {Object} classNames
+ * @returns {String} class
+ */
 function estimatedDays(percentageOfDaysRemaining, percentOfTaskLeft, classNames) {
   if (percentageOfDaysRemaining >= percentOfTaskLeft) {
     return classNames.showTextGreen;
