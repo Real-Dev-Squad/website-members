@@ -1,5 +1,12 @@
 const calc = (interval, cycle) => Math.floor(cycle / interval);
 
+/**
+ * Provide completion & estimation time in Human Readable Form
+ * @param {Number} timestamp
+ * @param {Boolean} completeDate
+ * @param {Number} differentNow
+ * @returns {String} time
+ */
 function timeWas(timestamp, completeDate = false, differentNow = Date.now()) {
   const timeInSec = Math.floor(differentNow - timestamp) / 1000;
 
