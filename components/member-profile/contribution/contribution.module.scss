@@ -3,6 +3,12 @@
   display: flex;
   justify-content: space-between;
 }
+.contributionCard{
+  cursor: pointer;
+}
+.contributionCard:hover{
+  transform: scale(1.03);
+}
 .leftSection{
   display: flex;
   flex-direction: column;
@@ -37,7 +43,7 @@
 .featureLink a{
   text-decoration: none;
   color: #041187;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
 }
 .rightSection{
@@ -101,6 +107,9 @@
     font-size: 16px;
   }
   .featureLink a{
+    font-size: 14px;
+  }
+  .featureLink button{
     font-size: 14px;
   }
   .rightSection{
