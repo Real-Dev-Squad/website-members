@@ -1,7 +1,9 @@
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import classNames from 'components/member-profile/contribution/contribution.module.scss';
 import PRLink from 'components/member-profile/contribution/pr-link';
 import { timeWas } from 'helper-functions/time-was';
+import { HOST_NAME } from 'constants/AppConstants';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
@@ -10,11 +12,66 @@ const renderPRLinks = (prList) =>
 
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const {
-    task: { title, startedOn, endsOn, status, purpose, featureUrl },
+    task: { featureUrl },
+    prList
+  } = contribution;
+  const url = featureUrl || prList[0]['url'];
+  const gotoUrl = () => url && window.open(url, '_blank');
+  const urlObj = url && new URL(url);
+  const contributionCard = () => (
+    <ContributionCard
+      contribution={contribution}
+      fullName={fullName}
+      imageLink={imageLink}
+      devUser={devUser}
+      url={url}
+      urlObj={urlObj}
+    />
+  );
+  const renderFeatureCard = () => {
+    if (urlObj?.host === HOST_NAME) {
+      return (
+        <Link href={urlObj.pathname}>
+          <div className={url && classNames.contributionCard}>{contributionCard()}</div>
+        </Link>
+      );
+    }
+    return (
+      <div
+        className={url && classNames.contributionCard}
+        onClick={gotoUrl}
+        onKeyDown={gotoUrl}
+        aria-hidden="true">
+        {contributionCard()}
+      </div>
+    );
+  };
+
+  return renderFeatureCard();
+};
+
+const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, urlObj }) => {
+  const {
+    task: { title, startedOn, endsOn, status, purpose },
     prList
   } = contribution;
   const isTitleAvailable = title ? true : false;
   const featureTitle = isTitleAvailable ? title : prList[0].title;
+
+  const renderFeatureUrl = (url, urlObj) => {
+    if (urlObj.host === HOST_NAME) {
+      return (
+        <Link href={urlObj.pathname} onClick={(e) => e.stopPropagation()}>
+          Check out this feature in action
+        </Link>
+      );
+    }
+    return (
+      <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+        Check out this feature in action
+      </a>
+    );
+  };
   let completedText = '';
   let completedDate = '';
   let featureLiveOnText = '';
@@ -40,7 +97,6 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       featureLiveOnText = `Feature live on ${featurLiveDate}`;
     }
   }
-
   return (
     <div>
       <div className={classNames.contributionContainer}>
@@ -67,11 +123,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
           )}
         </div>
       </div>
-      <div className={classNames.featureLink}>
-        <a href={featureUrl || prList[0]['url']} target="_blank" rel="noreferrer">
-          Check out this feature in action
-        </a>
-      </div>
+      {url && <div className={classNames.featureLink}>{renderFeatureUrl(url, urlObj)}</div>}
       <hr className={classNames.line}></hr>
     </div>
   );
@@ -85,6 +137,18 @@ Contribution.propTypes = {
   fullName: PropTypes.string.isRequired,
   imageLink: PropTypes.string.isRequired,
   devUser: PropTypes.bool
+};
+
+ContributionCard.propTypes = {
+  contribution: PropTypes.shape({
+    prList: PropTypes.array,
+    task: PropTypes.object
+  }).isRequired,
+  fullName: PropTypes.string.isRequired,
+  imageLink: PropTypes.string.isRequired,
+  devUser: PropTypes.bool,
+  url: PropTypes.string.isRequired,
+  urlObj: PropTypes.object.isRequired
 };
 
 export default Contribution;
