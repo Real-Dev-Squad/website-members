@@ -7,7 +7,7 @@ export default function SearchMembers({ handleChange }) {
     <div className={classNames.searchContainer}>
       <input
         type="text"
-        placeholder="&#128269; search members"
+        placeholder="&#128269; search members here"
         onChange={handleChange}
         className={classNames.searchBox}
       />
