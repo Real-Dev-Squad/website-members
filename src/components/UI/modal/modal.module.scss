@@ -1,7 +1,7 @@
   
-.Modal {
+.modal {
   position: fixed;
-  z-index: 500;
+  z-index: 2;
   background-color: white;
   width: 70%;
   border: 1px solid #ccc;
@@ -21,7 +21,7 @@
 }
 
 @media (min-width: 600px) {
-  .Modal {
+  .modal {
     width: 31.25rem;
     left: calc(50% - 15.625rem);
   }
