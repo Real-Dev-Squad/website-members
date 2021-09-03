@@ -9,7 +9,8 @@ const Footer = () => {
         <a
           href="https://github.com/Real-Dev-Squad/website-members"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           open sourced repo
         </a>
       </p>

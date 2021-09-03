@@ -17,7 +17,7 @@
     "award": "022-award_gys98n.png",
     "active": "025-award_swdg6r.png"
   },
-  
+
   "default": [
     {
       "title": "Coming soon",
@@ -136,5 +136,4 @@
       "imgKey": "ribbon"
     }
   ]
-
 }

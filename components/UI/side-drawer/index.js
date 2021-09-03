@@ -18,7 +18,8 @@ const SideDrawer = ({ open, close }) => {
               tabIndex={0}
               role="button"
               onKeyDown={close}
-              onClick={close}>
+              onClick={close}
+            >
               &#9747;
             </span>
             Real Dev Squad
@@ -36,7 +37,10 @@ const SideDrawer = ({ open, close }) => {
               <a href="https://www.realdevsquad.com/events.html">Events</a>
             </li>
             <li>
-              <a href="https://members.realdevsquad.com/" style={{ color: '#87D870' }}>
+              <a
+                href="https://members.realdevsquad.com/"
+                style={{ color: '#87D870' }}
+              >
                 Members
               </a>
             </li>
@@ -52,7 +56,7 @@ const SideDrawer = ({ open, close }) => {
 
 SideDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
-  close: PropTypes.func.isRequired
+  close: PropTypes.func.isRequired,
 };
 
 export default SideDrawer;

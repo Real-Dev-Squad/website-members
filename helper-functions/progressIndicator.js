@@ -1,13 +1,14 @@
-function progressIndicator(estimatedDaysOfTaskComplete, classNames) {
+const progressIndicator = (estimatedDaysOfTaskComplete, classNames) => {
   if (estimatedDaysOfTaskComplete === classNames.showTextGreen) {
     return classNames.showProgressGreen;
-  } else if (estimatedDaysOfTaskComplete === classNames.showTextOrange) {
-    return classNames.showProgressOrange;
-  } else if (estimatedDaysOfTaskComplete === classNames.showTextRed) {
-    return classNames.showProgressRed;
-  } else {
-    classNames.showProgressYellow;
   }
-}
+  if (estimatedDaysOfTaskComplete === classNames.showTextOrange) {
+    return classNames.showProgressOrange;
+  }
+  if (estimatedDaysOfTaskComplete === classNames.showTextRed) {
+    return classNames.showProgressRed;
+  }
+  return classNames.showProgressYellow;
+};
 
 export { progressIndicator };

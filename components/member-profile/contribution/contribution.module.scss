@@ -1,81 +1,81 @@
-.contributionContainer{
+.contributionContainer {
   margin: 24px 0;
   display: flex;
   justify-content: space-between;
 }
-.contributionCard{
+.contributionCard {
   cursor: pointer;
 }
-.contributionCard:hover{
+.contributionCard:hover {
   transform: scale(1.03);
 }
-.leftSection{
+.leftSection {
   display: flex;
   flex-direction: column;
   align-items: space-between;
 }
-.leftSection .featureTitle{
+.leftSection .featureTitle {
   color: #041187;
   padding: 4px 0;
 }
-.prDescription{
+.prDescription {
   color: #636363;
   padding: 4px 25px 4px 0;
   text-align: justify;
 }
-.completedData{
+.completedData {
   padding: 4px 0;
 }
-.completedText{
+.completedText {
   color: gray;
 }
-.completedDate{
+.completedDate {
   display: inline-block;
   font-weight: bold;
 }
-.featureLiveOnText{
+.featureLiveOnText {
   font-weight: bold;
   padding: 4px 0;
 }
-.featureLink{
+.featureLink {
   text-align: center;
 }
-.featureLink a{
+.featureLink a {
   text-decoration: none;
   color: #041187;
   font-size: 1rem;
   font-weight: 500;
 }
-.rightSection{
+.rightSection {
   display: flex;
   flex-direction: column;
   align-items: space-between;
 }
-.prLink{
+.prLink {
   text-align: center;
 }
-.userIcon{
+.userIcon {
   display: flex;
   padding: 8px 0px;
   justify-content: center;
   align-items: center;
 }
-.userIcon img{
+.userIcon img {
   border-radius: 50%;
   height: 40px;
 }
-.userIcon span{
+.userIcon span {
   color: black;
   font-weight: bold;
   padding: 0px 8px;
 }
-.tags{
+.tags {
   display: flex;
   justify-content: space-between;
   padding: 4px 0;
   margin: auto;
 }
-.tags button:nth-child(1){
+.tags button:nth-child(1) {
   background-color: #23f88e;
   font-size: 18px;
   font-weight: 600;
@@ -94,25 +94,25 @@
   border: none;
   border-radius: 20px;
 }
-.line{
+.line {
   margin-top: 10px;
   border: 1px solid #e5e5e58e;
 }
 
-@media (max-width: 600px){
-  .contributionContainer{
+@media (max-width: 600px) {
+  .contributionContainer {
     flex-direction: column;
   }
-  .leftSection .featureTitle{
+  .leftSection .featureTitle {
     font-size: 16px;
   }
-  .featureLink a{
+  .featureLink a {
     font-size: 14px;
   }
-  .featureLink button{
+  .featureLink button {
     font-size: 14px;
   }
-  .rightSection{
+  .rightSection {
     align-items: flex-start;
   }
 }

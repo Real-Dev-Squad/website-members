@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from 'components/social-media-icon';
@@ -10,12 +11,23 @@ import ShowSkills from 'components/member-card/show-skills';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
-    <img src={badge.img} className={classNames.badge} alt={badge.title} key={badge.title} />
+    <img
+      src={badge.img}
+      className={classNames.badge}
+      alt={badge.title}
+      key={badge.title}
+    />
   ));
 
 const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All'];
 
-const renderContributionsTypes = (contributions, fullName, imageLink, devUser, tasks) => {
+const renderContributionsTypes = (
+  contributions,
+  fullName,
+  imageLink,
+  devUser,
+  tasks
+) => {
   const { noteworthy, all } = contributions;
   return CONTRIBUTIONTYPE.map((type, index) => (
     <ContributionType
@@ -32,7 +44,10 @@ const renderContributionsTypes = (contributions, fullName, imageLink, devUser, t
 
 const renderSocialMediaIcons = (socialMedia, membersData) =>
   socialMedia.map(
-    (ele) => membersData[ele] && <SocialMediaIcon id={membersData[ele]} type={ele} key={ele} />
+    (ele) =>
+      membersData[ele] && (
+        <SocialMediaIcon id={membersData[ele]} type={ele} key={ele} />
+      )
   );
 const Profile = (props) => {
   const {
@@ -40,10 +55,15 @@ const Profile = (props) => {
     imageLink,
     contributions,
     devUser,
-    tasks
+    tasks,
   } = props;
   const { membersData } = props;
-  const socialMedia = ['twitter_id', 'github_id', 'linkedin_id', 'instagram_id'];
+  const socialMedia = [
+    'twitter_id',
+    'github_id',
+    'linkedin_id',
+    'instagram_id',
+  ];
 
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
@@ -78,12 +98,13 @@ const Profile = (props) => {
                 {renderSocialMediaIcons(socialMedia, membersData)}
               </div>
             )}
-            {devUser && <ShowSkills show={true} />}
+            {devUser && <ShowSkills show />}
             <div>
               <button
                 type="button"
                 className={classNames.getIntroButton}
-                onMouseDown={() => setShowModal(true)}>
+                onMouseDown={() => setShowModal(true)}
+              >
                 Get Intro
               </button>
               <span className={classNames.modalWindow} isOpen={showModal}>
@@ -103,12 +124,20 @@ const Profile = (props) => {
         {devUser && (
           <div className={(classNames.section, classNames.card)}>
             <h2>Badges</h2>
-            <div className={classNames.badgeContainer}>{badges && renderBadgeImages(badges)}</div>
+            <div className={classNames.badgeContainer}>
+              {badges && renderBadgeImages(badges)}
+            </div>
           </div>
         )}
 
         <div className={(classNames.section, classNames.card)}>
-          {renderContributionsTypes(contributions, fullName, imageLink, devUser, tasks)}
+          {renderContributionsTypes(
+            contributions,
+            fullName,
+            imageLink,
+            devUser,
+            tasks
+          )}
         </div>
       </div>
     </div>
@@ -122,14 +151,14 @@ Profile.propTypes = {
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     company: PropTypes.string,
-    designation: PropTypes.string
+    designation: PropTypes.string,
   }),
   contributions: PropTypes.shape({
-    noteworthy: PropTypes.array,
-    all: PropTypes.array
+    noteworthy: PropTypes.instanceOf(Array),
+    all: PropTypes.instanceOf(Array),
   }),
   devUser: PropTypes.bool,
-  tasks: PropTypes.array
+  tasks: PropTypes.instanceOf(Array),
 };
 
 Profile.defaultProps = {
@@ -139,14 +168,14 @@ Profile.defaultProps = {
     first_name: '',
     last_name: '',
     company: '',
-    designation: ''
+    designation: '',
   },
   contributions: {
     noteworthy: [],
-    all: []
+    all: [],
   },
   devUser: false,
-  tasks: []
+  tasks: [],
 };
 
 export default Profile;

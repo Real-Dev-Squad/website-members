@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Footer from 'components/footer';
 import Navbar from 'components/UI/navbar';
 import SideDrawer from 'components/UI/side-drawer';
+
 const Layout = ({ children, title, description }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
 
@@ -31,12 +32,12 @@ const Layout = ({ children, title, description }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
 };
 
 Layout.defaultProps = {
   title: 'Real Dev Squad',
-  description: ''
+  description: '',
 };
 
 export default Layout;

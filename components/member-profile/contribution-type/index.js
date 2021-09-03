@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'components/member-profile/contribution-type/contributions-type.module.scss';
@@ -30,7 +31,9 @@ const ContributionType = (props) => {
     setShowMoreContent((prevstate) => !prevstate);
   };
 
-  const showMoreContentClass = showMoreContent ? classNames.showContent : classNames.hideContent;
+  const showMoreContentClass = showMoreContent
+    ? classNames.showContent
+    : classNames.hideContent;
   const arrowWithDirection = showMoreContent
     ? `${classNames.arrow} ${classNames.arrowDown}`
     : `${classNames.arrow} ${classNames.arrowRight}`;
@@ -40,18 +43,21 @@ const ContributionType = (props) => {
         className={classNames.pointerCursor}
         onClick={showMoreContentHandler}
         onKeyPress={showMoreContentHandler}
-        role="presentation">
+        role="presentation"
+      >
         {type} {type !== 'Active tasks' ? 'contributions' : null}
-        <div className={arrowWithDirection}></div>
+        <div className={arrowWithDirection} />
       </h2>
       <div className={showMoreContentClass}>
         {type !== 'Active tasks' ? (
-          <div>{renderContributions(contributions, fullName, imageLink, devUser)}</div>
+          <div>
+            {renderContributions(contributions, fullName, imageLink, devUser)}
+          </div>
         ) : (
           <div>{renderActiveTasks(tasks)}</div>
         )}
       </div>
-      <hr className={classNames.hrLine}></hr>
+      <hr className={classNames.hrLine} />
     </div>
   );
 };
@@ -60,9 +66,9 @@ ContributionType.propTypes = {
   imageLink: PropTypes.string,
   type: PropTypes.string,
   fullName: PropTypes.string.isRequired,
-  contributions: PropTypes.array,
+  contributions: PropTypes.instanceOf(Array),
   devUser: PropTypes.bool,
-  tasks: PropTypes.array
+  tasks: PropTypes.instanceOf(Array),
 };
 
 ContributionType.defaultProps = {
@@ -70,7 +76,7 @@ ContributionType.defaultProps = {
   type: '',
   contributions: [],
   devUser: false,
-  tasks: []
+  tasks: [],
 };
 
 export default ContributionType;

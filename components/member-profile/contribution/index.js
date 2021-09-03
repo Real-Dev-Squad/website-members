@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import classNames from 'components/member-profile/contribution/contribution.module.scss';
@@ -13,9 +14,9 @@ const renderPRLinks = (prList) =>
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const {
     task: { featureUrl },
-    prList
+    prList,
   } = contribution;
-  const url = featureUrl || prList[0]['url'];
+  const url = featureUrl || prList[0].url;
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
   const contributionCard = () => (
@@ -32,7 +33,9 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
     if (urlObj?.host === HOST_NAME) {
       return (
         <Link href={urlObj.pathname}>
-          <div className={url && classNames.contributionCard}>{contributionCard()}</div>
+          <div className={url && classNames.contributionCard}>
+            {contributionCard()}
+          </div>
         </Link>
       );
     }
@@ -41,7 +44,8 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         className={url && classNames.contributionCard}
         onClick={gotoUrl}
         onKeyDown={gotoUrl}
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         {contributionCard()}
       </div>
     );
@@ -50,24 +54,39 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   return renderFeatureCard();
 };
 
-const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, urlObj }) => {
+const ContributionCard = ({
+  contribution,
+  fullName,
+  imageLink,
+  devUser,
+  url,
+  urlObj,
+}) => {
   const {
     task: { title, startedOn, endsOn, status, purpose },
-    prList
+    prList,
   } = contribution;
-  const isTitleAvailable = title ? true : false;
+  const isTitleAvailable = !!title;
   const featureTitle = isTitleAvailable ? title : prList[0].title;
 
-  const renderFeatureUrl = (url, urlObj) => {
-    if (urlObj.host === HOST_NAME) {
+  const renderFeatureUrl = (featureUrl, featureUrlObj) => {
+    if (featureUrlObj.host === HOST_NAME) {
       return (
-        <Link href={urlObj.pathname} onClick={(e) => e.stopPropagation()}>
+        <Link
+          href={featureUrlObj.pathname}
+          onClick={(e) => e.stopPropagation()}
+        >
           Check out this feature in action
         </Link>
       );
     }
     return (
-      <a href={url} onClick={(e) => e.stopPropagation()} target="_blank" rel="noreferrer">
+      <a
+        href={featureUrl}
+        onClick={(e) => e.stopPropagation()}
+        target="_blank"
+        rel="noreferrer"
+      >
         Check out this feature in action
       </a>
     );
@@ -88,11 +107,13 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
       featureLiveOnText = `Feature live on ${featurLiveDate}`;
     }
   } else {
-    const createdAt = +new Date(prList[0]['createdAt']);
-    const updatedAt = +new Date(prList[0]['updatedAt']);
-    if (prList[0]['state'] === 'closed') {
+    const createdAt = +new Date(prList[0].createdAt);
+    const updatedAt = +new Date(prList[0].updatedAt);
+    if (prList[0].state === 'closed') {
       completedDate = timeWas(createdAt, false, updatedAt);
-      completedText = <span className={classNames.completedText}>Completed in </span>;
+      completedText = (
+        <span className={classNames.completedText}>Completed in </span>
+      );
       featurLiveDate = timeWas(updatedAt, true);
       featureLiveOnText = `Feature live on ${featurLiveDate}`;
     }
@@ -107,7 +128,9 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
             {completedText}
             <p className={classNames.completedDate}>{completedDate}</p>
           </div>
-          <div className={classNames.featureLiveOnText}>{featureLiveOnText}</div>
+          <div className={classNames.featureLiveOnText}>
+            {featureLiveOnText}
+          </div>
         </div>
         <div className={classNames.rightSection}>
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
@@ -123,32 +146,36 @@ const ContributionCard = ({ contribution, fullName, imageLink, devUser, url, url
           )}
         </div>
       </div>
-      {url && <div className={classNames.featureLink}>{renderFeatureUrl(url, urlObj)}</div>}
-      <hr className={classNames.line}></hr>
+      {url && (
+        <div className={classNames.featureLink}>
+          {renderFeatureUrl(url, urlObj)}
+        </div>
+      )}
+      <hr className={classNames.line} />
     </div>
   );
 };
 
 Contribution.propTypes = {
   contribution: PropTypes.shape({
-    prList: PropTypes.array,
-    task: PropTypes.object
-  }).isRequired,
-  fullName: PropTypes.string.isRequired,
-  imageLink: PropTypes.string.isRequired,
-  devUser: PropTypes.bool
-};
-
-ContributionCard.propTypes = {
-  contribution: PropTypes.shape({
-    prList: PropTypes.array,
-    task: PropTypes.object
+    prList: PropTypes.instanceOf(Array),
+    task: PropTypes.instanceOf(Object),
   }).isRequired,
   fullName: PropTypes.string.isRequired,
   imageLink: PropTypes.string.isRequired,
   devUser: PropTypes.bool,
+};
+
+ContributionCard.propTypes = {
+  contribution: PropTypes.shape({
+    prList: PropTypes.instanceOf(Array),
+    task: PropTypes.instanceOf(Object),
+  }).isRequired,
+  fullName: PropTypes.string.isRequired,
+  imageLink: PropTypes.string.isRequired,
+  devUser: PropTypes.bool.isRequired,
   url: PropTypes.string.isRequired,
-  urlObj: PropTypes.object.isRequired
+  urlObj: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Contribution;

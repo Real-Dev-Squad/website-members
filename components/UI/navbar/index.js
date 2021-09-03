@@ -10,7 +10,8 @@ const Navbar = ({ drawerToggleClicked }) => {
         <div
           className={classNames.DrawerToggle}
           onClick={drawerToggleClicked}
-          onKeyPress={drawerToggleClicked}>
+          onKeyPress={drawerToggleClicked}
+        >
           <span />
           <span />
           <span />
@@ -26,7 +27,10 @@ const Navbar = ({ drawerToggleClicked }) => {
             <a href="https://www.realdevsquad.com/events.html">Events</a>
           </li>
           <li>
-            <a href="https://members.realdevsquad.com/" style={{ color: '#87D870' }}>
+            <a
+              href="https://members.realdevsquad.com/"
+              style={{ color: '#87D870' }}
+            >
               Members
             </a>
           </li>
@@ -40,7 +44,7 @@ const Navbar = ({ drawerToggleClicked }) => {
 };
 
 Navbar.propTypes = {
-  drawerToggleClicked: PropTypes.func.isRequired
+  drawerToggleClicked: PropTypes.func.isRequired,
 };
 
 export default Navbar;

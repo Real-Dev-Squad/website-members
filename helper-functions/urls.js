@@ -26,4 +26,10 @@ const getContributionsURL = (rdsId) => `${baseURL}/contributions/${rdsId}`;
  */
 const getActiveTasksURL = (rdsId) => `${baseURL}/tasks/${rdsId}?status=active`;
 
-export { getImgURL, getMembersDataURL, getContributionsURL, getMembersURL, getActiveTasksURL };
+export {
+  getImgURL,
+  getMembersDataURL,
+  getContributionsURL,
+  getMembersURL,
+  getActiveTasksURL,
+};

@@ -20,7 +20,7 @@
 .infoNavbar nav li a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.infoNavbar nav{
+.infoNavbar nav {
   background: #1d1283;
 }
 .DrawerToggle {
@@ -44,10 +44,10 @@
 }
 
 @media screen and (max-width: 600px) {
-  .infoNavbar nav ul{
+  .infoNavbar nav ul {
     display: none;
   }
-  .DrawerToggle{
+  .DrawerToggle {
     display: flex;
   }
 }

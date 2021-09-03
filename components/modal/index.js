@@ -13,7 +13,8 @@ const Modal = (props) => {
           <div
             className={classNames['modal-content']}
             onMouseDown={(e) => e.stopPropagation()}
-            aria-hidden="true">
+            aria-hidden="true"
+          >
             <div className={classNames['modal-header']}>
               <Header />
             </div>
@@ -21,7 +22,11 @@ const Modal = (props) => {
               <Register rdsUserName={rdsUserName} setShowModal={setShowModal} />
             </div>
             <div className={classNames['modal-footer']}>
-              <button onClick={onClose} className={classNames.closeButton}>
+              <button
+                type="button"
+                onClick={onClose}
+                className={classNames.closeButton}
+              >
                 &times;
               </button>
             </div>
@@ -29,9 +34,8 @@ const Modal = (props) => {
         </div>
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 };
 
 export default Modal;
@@ -40,5 +44,5 @@ Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   rdsUserName: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
-  setShowModal: PropTypes.func.isRequired
+  setShowModal: PropTypes.func.isRequired,
 };

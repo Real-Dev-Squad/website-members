@@ -1,5 +1,6 @@
-import { getMembersURL, getImgURL } from 'helper-functions/urls';
+/* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
+import { getMembersURL, getImgURL } from 'helper-functions/urls';
 import fetch from 'cross-fetch';
 import HomePage from 'components/pages';
 import Layout from 'components/layout';
@@ -25,7 +26,7 @@ const Index = ({ membersArr, newMembersArr, errorMsg }) => {
     loadComponent = <HomePage />;
   }
 
-  return <Layout title={'Members | Real Dev Squad'}>{loadComponent}</Layout>;
+  return <Layout title="Members | Real Dev Squad">{loadComponent}</Layout>;
 };
 
 export async function getServerSideProps(context) {
@@ -44,7 +45,7 @@ export async function getServerSideProps(context) {
     for (const memberData of members) {
       membersArray.push({
         ...memberData,
-        img_url: getImgURL(memberData.username, 'img.png')
+        img_url: getImgURL(memberData.username, 'img.png'),
       });
     }
 
@@ -64,15 +65,15 @@ export async function getServerSideProps(context) {
 }
 
 Index.propTypes = {
-  membersArr: PropTypes.array,
-  newMembersArr: PropTypes.array,
-  errorMsg: PropTypes.string
+  membersArr: PropTypes.instanceOf(Array),
+  newMembersArr: PropTypes.instanceOf(Array),
+  errorMsg: PropTypes.string,
 };
 
 Index.defaultProps = {
   membersArr: [],
   newMembersArr: [],
-  errorMsg: ''
+  errorMsg: '',
 };
 
 export default Index;

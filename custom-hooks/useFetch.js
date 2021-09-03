@@ -1,18 +1,19 @@
+/* eslint-disable no-shadow */
 import { useState, useEffect } from 'react';
 
-let defaults = {
+const defaults = {
   loading: false,
   error: undefined,
-  data: undefined
+  data: undefined,
 };
 
 /**
  * @param {string} url
  */
 const useFetch = (url) => {
-  let [loading, setLoading] = useState(defaults.loading);
-  let [error, setError] = useState(defaults.error);
-  let [data, setData] = useState(defaults.data);
+  const [loading, setLoading] = useState(defaults.loading);
+  const [error, setError] = useState(defaults.error);
+  const [data, setData] = useState(defaults.data);
 
   const setToLoading = () => {
     setLoading(true);
@@ -37,11 +38,11 @@ const useFetch = (url) => {
       try {
         setToLoading();
 
-        let response = await fetch(url);
+        const response = await fetch(url);
         if (response.status !== 200) {
           throw new Error(response.statusText);
         }
-        let data = await response.json();
+        const data = await response.json();
 
         setToData(data);
       } catch (e) {

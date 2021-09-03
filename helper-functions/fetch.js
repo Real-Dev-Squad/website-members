@@ -26,7 +26,7 @@ const fetch = async (
       params,
       data,
       headers,
-      ...options
+      ...options,
     });
     return response;
   } catch (err) {
