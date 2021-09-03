@@ -1,15 +1,21 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-use-before-define */
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import PropTypes from 'prop-types';
 import classNames from 'components/modal/Register/register.module.scss';
 
+// Needs Refactoring
+
 const Register = (props) => {
   const { rdsUserName, setShowModal } = props;
 
   const { register, handleSubmit, errors } = useForm();
 
-  const getMembersIntroURL = (RDSID) => `https://api.realdevsquad.com/members/intro/${RDSID}`;
+  const getMembersIntroURL = (RDSID) =>
+    `https://api.realdevsquad.com/members/intro/${RDSID}`;
   const parameters = rdsUserName;
 
   const onSubmit = (data) => {
@@ -23,8 +29,8 @@ const Register = (props) => {
       body: JSON.stringify(data),
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     })
       .then((response) => response.json())
       .then((response) => {
@@ -34,7 +40,7 @@ const Register = (props) => {
         }
       })
       .catch((error) => {
-        alert('Error!!!\n' + error);
+        alert(`Error!!!\n${error}`);
       })
       .finally(() => {
         if (!confirm('Some error occurred!!! \nRETRY?')) {
@@ -58,10 +64,12 @@ const Register = (props) => {
           placeholder="Eg: Amazon"
           name="company"
           ref={register({
-            required: true
+            required: true,
           })}
         />
-        {errors.company && <p className={classNames['errorPrompt']}>Company cannot be blank</p>}
+        {errors.company && (
+          <p className={classNames.errorPrompt}>Company cannot be blank</p>
+        )}
         <br />
         <label className={classNames.tagWord} htmlFor="first_name">
           First Name
@@ -73,11 +81,11 @@ const Register = (props) => {
           placeholder="Eg: John"
           name="first_name"
           ref={register({
-            required: true
+            required: true,
           })}
         />
         {errors.first_name && (
-          <p className={classNames['errorPrompt']}>First Name cannot be blank</p>
+          <p className={classNames.errorPrompt}>First Name cannot be blank</p>
         )}
         <br />
         <label className={classNames.tagWord} htmlFor="last_name">
@@ -90,10 +98,12 @@ const Register = (props) => {
           placeholder="Eg: Doe"
           name="last_name"
           ref={register({
-            required: true
+            required: true,
           })}
         />
-        {errors.last_name && <p className={classNames['errorPrompt']}>Last Name cannot be blank</p>}
+        {errors.last_name && (
+          <p className={classNames.errorPrompt}>Last Name cannot be blank</p>
+        )}
         <br />
         <label className={classNames.tagWord} htmlFor="designation">
           Designation
@@ -106,14 +116,14 @@ const Register = (props) => {
           name="designation"
           ref={register({
             required: true,
-            minLength: 2
+            minLength: 2,
           })}
         />
         {errors.designation?.type === 'required' && (
-          <p className={classNames['errorPrompt']}>Designation cannot be blank</p>
+          <p className={classNames.errorPrompt}>Designation cannot be blank</p>
         )}
         {errors.designation?.type === 'minLength' && (
-          <p className={classNames['errorPrompt']}>Designation too short</p>
+          <p className={classNames.errorPrompt}>Designation too short</p>
         )}
         <br />
         <label className={classNames.tagWord} htmlFor="reason">
@@ -127,12 +137,14 @@ const Register = (props) => {
           name="reason"
           ref={register({
             required: true,
-            maxlength: 100
+            maxlength: 100,
           })}
         />
-        {errors.reason && <p className={classNames['errorPrompt']}>Reason cannot be blank</p>}
+        {errors.reason && (
+          <p className={classNames.errorPrompt}>Reason cannot be blank</p>
+        )}
         {errors.reason?.type === 'maxLength' && (
-          <p className={classNames['errorPrompt']}>Character exceeded</p>
+          <p className={classNames.errorPrompt}>Character exceeded</p>
         )}
         <br />
         <label className={classNames.tagWord} htmlFor="email">
@@ -146,14 +158,16 @@ const Register = (props) => {
           name="email"
           ref={register({
             required: true,
-            validate: (value) => isEmail(value) === true
+            validate: (value) => isEmail(value) === true,
           })}
         />
         {errors.email?.type === 'required' && (
-          <p className={classNames['errorPrompt']}>Email cannot be blank</p>
+          <p className={classNames.errorPrompt}>Email cannot be blank</p>
         )}
         {errors.email?.type === 'validate' && (
-          <p className={classNames['errorPrompt']}>Provide a valid email address</p>
+          <p className={classNames.errorPrompt}>
+            Provide a valid email address
+          </p>
         )}
         <br />
         <label className={classNames.tagWord} htmlFor="currency">
@@ -167,8 +181,9 @@ const Register = (props) => {
             name="currency"
             className={classNames.inputBoxCur}
             ref={register({
-              validate: (value) => value !== ''
-            })}>
+              validate: (value) => value !== '',
+            })}
+          >
             <option value="">--Select--</option>
             <option value="INR">Indian Rupee(INR)</option>
             <option value="USD">United States Dollar(USD)</option>
@@ -180,7 +195,7 @@ const Register = (props) => {
             <option value="JPY">Japanese Yen(JPY)</option>
           </select>
           {errors.currency?.type === 'validate' && (
-            <p className={classNames['errorPrompt']}>Provide a valid currency</p>
+            <p className={classNames.errorPrompt}>Provide a valid currency</p>
           )}
         </div>
         <br />
@@ -195,17 +210,23 @@ const Register = (props) => {
           name="package"
           ref={register({
             required: true,
-            validate: (value) => isDecimal(value) === true
+            validate: (value) => isDecimal(value) === true,
           })}
         />
         {errors.package && (
-          <p className={classNames['errorPrompt']}>Package offered cannot be blank</p>
+          <p className={classNames.errorPrompt}>
+            Package offered cannot be blank
+          </p>
         )}
         {errors.package?.type === 'validate' && (
-          <p className={classNames['errorPrompt']}>Package must be a number</p>
+          <p className={classNames.errorPrompt}>Package must be a number</p>
         )}
         <br />
-        <button color="primary" type="submit" className={classNames['submitButton']}>
+        <button
+          color="primary"
+          type="submit"
+          className={classNames.submitButton}
+        >
           Submit
         </button>
       </form>
@@ -217,5 +238,5 @@ export default Register;
 
 Register.propTypes = {
   rdsUserName: PropTypes.string.isRequired,
-  setShowModal: PropTypes.func.isRequired
+  setShowModal: PropTypes.func.isRequired,
 };

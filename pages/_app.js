@@ -44,7 +44,7 @@ const MyApp = (props) => {
 
 MyApp.propTypes = {
   Component: PropTypes.func.isRequired,
-  pageProps: PropTypes.object.isRequired
+  pageProps: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default MyApp;

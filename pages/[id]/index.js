@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import {
   getMembersDataURL,
   getImgURL,
   getContributionsURL,
-  getActiveTasksURL
+  getActiveTasksURL,
 } from 'helper-functions/urls';
 import { fetch } from 'helper-functions/fetch';
 import Profile from 'components/member-profile';
@@ -12,7 +13,13 @@ import NotFound from 'components/not-found-page';
 import Layout from 'components/layout';
 import { CACHE_MAX_AGE } from 'constants/cache-max-age.js';
 
-const MemberProfile = ({ imageLink, user, contributions, tasks, errorMessage }) => {
+const MemberProfile = ({
+  imageLink,
+  user,
+  contributions,
+  tasks,
+  errorMessage,
+}) => {
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
@@ -20,7 +27,7 @@ const MemberProfile = ({ imageLink, user, contributions, tasks, errorMessage }) 
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
-  const { query } = useRouter();
+  const { query } = useRouter(); // this needs to be changed
   const devUser = !!query.dev;
 
   return (
@@ -39,7 +46,7 @@ const MemberProfile = ({ imageLink, user, contributions, tasks, errorMessage }) 
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const {
-    params: { id }
+    params: { id },
   } = context;
   const jsonUrl = getMembersDataURL(id);
   const contributionsURL = getContributionsURL(id);
@@ -68,13 +75,13 @@ export async function getServerSideProps(context) {
 
 MemberProfile.propTypes = {
   imageLink: PropTypes.string,
-  user: PropTypes.object,
+  user: PropTypes.instanceOf(Object),
   contributions: PropTypes.shape({
-    noteworthy: PropTypes.array,
-    all: PropTypes.array
+    noteworthy: PropTypes.instanceOf(Array),
+    all: PropTypes.instanceOf(Array),
   }),
-  tasks: PropTypes.array,
-  errorMessage: PropTypes.string
+  tasks: PropTypes.instanceOf(Array),
+  errorMessage: PropTypes.string,
 };
 
 MemberProfile.defaultProps = {
@@ -82,10 +89,10 @@ MemberProfile.defaultProps = {
   user: {},
   contributions: {
     noteworthy: [],
-    all: []
+    all: [],
   },
   tasks: [],
-  errorMessage: ''
+  errorMessage: '',
 };
 
 export default MemberProfile;

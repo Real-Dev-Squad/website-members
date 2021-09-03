@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { object } from 'prop-types';
+import PropTypes from 'prop-types';
 import Card from 'components/member-card';
 import { container } from 'components/member-card/card.module.scss';
 
@@ -13,11 +13,12 @@ const PreviewMember = ({ memberDetails }) => {
         pathname: '/[id]',
         query: {
           first_name: `${memberDetails ? first_name : ''}`,
-          last_name: `${memberDetails ? last_name : ''}`
-        }
+          last_name: `${memberDetails ? last_name : ''}`,
+        },
       }}
       as={`/${username}`}
-      key={username}>
+      key={username}
+    >
       <div className={container}>
         <Card developerInfo={memberDetails} />
       </div>
@@ -26,10 +27,14 @@ const PreviewMember = ({ memberDetails }) => {
 };
 
 PreviewMember.propTypes = {
-  memberDetails: object
+  memberDetails: PropTypes.shape({
+    username: PropTypes.string,
+    first_name: PropTypes.string,
+    last_name: PropTypes.string,
+  }),
 };
 PreviewMember.defaultProps = {
-  memberDetails: {}
+  memberDetails: {},
 };
 
 export default PreviewMember;

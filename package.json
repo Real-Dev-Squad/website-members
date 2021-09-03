@@ -7,15 +7,15 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "build-static": "next build && next export",
-    "lint": "eslint .",
-    "lint-fix": "eslint --fix .",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,scss,md,json}\"",
-    "hooks:pre-commit": "node ./git-hooks/pre-commit.js",
-    "hooks:pre-push": "node ./git-hooks/pre-push.js",
+    "check-lint": "eslint .",
+    "check-format": "prettier --check .",
+    "lint": "eslint --fix .",
+    "format": "prettier --write .",
     "test": "jest --env=jsdom"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "cross-fetch": "^3.1.4",
     "framer-motion": "^3.2.1",
     "next": "10.0.4",
     "prop-types": "^15.7.2",
@@ -30,26 +30,23 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "babel-jest": "^27.0.6",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-next": "^11.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
     "lint-staged": "^10.5.3",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "shelljs": "^0.8.4"
   },
   "engines": {
     "node": "14.x"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run hooks:pre-commit",
-      "pre-push": "npm run hooks:pre-push"
-    }
   }
 }

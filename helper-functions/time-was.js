@@ -27,7 +27,8 @@ function timeWas(timestamp, completeDate = false, differentNow = Date.now()) {
 
   if (timeInSec < 1) {
     return '0 second';
-  } else if (years > 0) {
+  }
+  if (years > 0) {
     result = years;
     cycle = 'year';
   } else if (months > 0) {

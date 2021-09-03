@@ -8,7 +8,7 @@ describe('Members Card', () => {
       first_name: 'Sumit',
       last_name: 'Dhanania',
       img_url: 'http://test.png',
-      isMember: true
+      isMember: true,
     };
 
     render(<MemberCard developerInfo={developerInfo} />);

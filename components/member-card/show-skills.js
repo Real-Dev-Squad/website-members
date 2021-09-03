@@ -1,39 +1,43 @@
-import { skills_data } from 'components/member-card/mock-data/skills';
+import skillsData from 'components/member-card/mock-data/skills';
 import classNames from 'components/member-card/card.module.scss';
 import PropTypes from 'prop-types';
 
 const ShowSkills = ({ show }) => {
   return (
     <div className={show ? classNames.showMemberSkills : classNames.showSkills}>
-      {skills_data.topskills.map((skill) => {
+      {skillsData.topskills.map((skill) => {
         return <RenderSkills {...skill} key={skill.id} />;
       })}
       {show &&
-        skills_data.skills.map((skill) => {
+        skillsData.skills.map((skill) => {
           return <RenderSkills {...skill} key={skill.id} />;
         })}
     </div>
   );
 };
 
-function RenderSkills(props) {
+function RenderSkills({ background, borderColor, tech }) {
   return (
     <div
-      style={{ background: `${props.background}`, border: `0.3px solid ${props.borderColor}` }}
-      className={classNames.techSkills}>
-      {props.tech}
+      style={{
+        background: `${background}`,
+        border: `0.3px solid ${borderColor}`,
+      }}
+      className={classNames.techSkills}
+    >
+      {tech}
     </div>
   );
 }
 
 ShowSkills.propTypes = {
-  show: PropTypes.bool.isRequired
+  show: PropTypes.bool.isRequired,
 };
 
 RenderSkills.propTypes = {
   tech: PropTypes.string.isRequired,
   background: PropTypes.string.isRequired,
-  borderColor: PropTypes.string.isRequired
+  borderColor: PropTypes.string.isRequired,
 };
 
 export default ShowSkills;

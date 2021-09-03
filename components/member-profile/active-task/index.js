@@ -9,8 +9,16 @@ const ActiveTask = ({ taskDetails }) => {
   const { title, purpose, startedOn, endsOn, percentCompleted } = taskDetails;
   const completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
   const percentOfTaskLeft = 100 - percentCompleted;
-  const percentageOfDaysRemaining = percentageofDaysRemaining(startedOn, endsOn, completedDate);
-  const showEstimatedDay = estimatedDays(percentageOfDaysRemaining, percentOfTaskLeft, classNames);
+  const percentageOfDaysRemaining = percentageofDaysRemaining(
+    startedOn,
+    endsOn,
+    completedDate
+  );
+  const showEstimatedDay = estimatedDays(
+    percentageOfDaysRemaining,
+    percentOfTaskLeft,
+    classNames
+  );
   const showProgressIndicator = progressIndicator(showEstimatedDay, classNames);
 
   return (
@@ -28,21 +36,31 @@ const ActiveTask = ({ taskDetails }) => {
           {percentCompleted > 0 && 'This is in progress'}
         </div>
         <div className={classNames.progressBar}>
-          <div className={showProgressIndicator} style={{ width: `${percentCompleted}%` }}></div>
+          <div
+            className={showProgressIndicator}
+            style={{ width: `${percentCompleted}%` }}
+          />
         </div>
         <span
-          className={classNames.showPercentCompletedText}>{`${percentCompleted}% complete`}</span>
+          className={classNames.showPercentCompletedText}
+        >{`${percentCompleted}% complete`}</span>
       </div>
     </div>
   );
 };
 
 ActiveTask.propTypes = {
-  taskDetails: PropTypes.object
+  taskDetails: PropTypes.shape({
+    title: PropTypes.string,
+    purpose: PropTypes.string,
+    startedOn: PropTypes.string,
+    endsOn: PropTypes.string,
+    percentCompleted: PropTypes.number,
+  }),
 };
 
 ActiveTask.defaultProps = {
-  taskDetails: {}
+  taskDetails: {},
 };
 
 export default ActiveTask;

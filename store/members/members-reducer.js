@@ -6,12 +6,12 @@ export const membersReducer = (state, { type, payload }) => {
       return {
         ...state,
         membersArr: payload.membersArr,
-        newMembersArr: payload.newMembersArr
+        newMembersArr: payload.newMembersArr,
       };
     case SET_ERRORS:
       return {
         ...state,
-        errorMsg: payload
+        errorMsg: payload,
       };
     default:
       return state;
