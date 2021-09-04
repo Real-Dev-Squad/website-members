@@ -1,0 +1,18 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo 'Lets check if the code is well formatted 😎'
+
+npm run check-format || (
+  echo 'oops! your format doesnt looks good. Run npm run format and try commiting again!';
+  false;
+)
+
+echo 'Ok, the format looks good, how about lint check? 😋'
+
+npm run check-lint || (
+  echo 'oops! you did not meet the linting standards!';
+  false;
+)
+
+echo 'Awesome, you passed all the checks 😍🎉'
