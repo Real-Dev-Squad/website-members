@@ -5,14 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start -p 7000",
     "build-static": "next build && next export",
     "check-lint": "eslint .",
     "check-format": "prettier --check .",
     "lint": "eslint --fix .",
     "format": "prettier --write .",
     "test": "jest --env=jsdom",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -27,6 +29,13 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.3.5",
+    "@storybook/addon-essentials": "^6.3.5",
+    "@storybook/addon-links": "^6.3.5",
+    "@storybook/builder-webpack5": "^6.3.5",
+    "@storybook/manager-webpack5": "^6.3.6",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/react": "^6.3.5",
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
