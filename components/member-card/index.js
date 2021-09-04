@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import ShowSkills from 'components/member-card/show-skills';
 
 const Card = ({ developerInfo }) => {
-  const { query } = useRouter();
+  const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
   const socialMedia = [
@@ -24,7 +24,7 @@ const Card = ({ developerInfo }) => {
   };
 
   const renderName = (userFullName, userName) =>
-    userFullName.length > 20 ? userFullName : userName;
+    userFullName.length > 20 ? userName : userFullName;
 
   return (
     <div>
