@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import MemberCard from '@components/member-card';
+import MemberCard from 'components/member-card';
 
 describe('Members Card', () => {
   it('should render members full name', () => {
