@@ -1,5 +1,5 @@
 .container {
-  margin: 15px 0;
+  margin: 2rem;
 }
 
 .showContent {
@@ -35,4 +35,10 @@
 .hrLine {
   margin: 20px 0;
   border-color: lightgray transparent transparent;
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    margin: 10px;
+  }
 }
