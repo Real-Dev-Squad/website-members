@@ -1,0 +1,139 @@
+{
+  "images": {
+    "baseURL": "https://res.cloudinary.com/realdevsquad/image/upload/v1608763376/badges/",
+    "trophy": "007-trophy_d7asne.png",
+    "treasure": "027-treasure_chest_dyv8hf.png",
+    "welcomer": "011-award_rt83qf.png",
+    "medal": "016-medal_i1nuyk.png",
+    "ribbon": "017-flag_hfx8bn.png",
+    "rosette": "021-award_ivizb3.png",
+    "shield": "019-award_j5hpsn.png",
+    "merit": "023-award_dbia37.png",
+    "glory": "025-award_juwt6i.png",
+    "certificate": "001-certificate_ojcdwm.png",
+    "accomplish": "008-trophy_sotyup.png",
+    "speedy": "026-gold_medal_fayvhv.png",
+    "boss": "028-throne_slrpdh.png",
+    "award": "022-award_gys98n.png",
+    "active": "025-award_swdg6r.png"
+  },
+
+  "default": [
+    {
+      "title": "Coming soon",
+      "imgKey": "treasure"
+    },
+    {
+      "title": "Member",
+      "imgKey": "ribbon"
+    }
+  ],
+  "swaraj": [
+    {
+      "title": "Speedy",
+      "imgKey": "speedy"
+    },
+    {
+      "title": "Award",
+      "imgKey": "award"
+    },
+    {
+      "title": "Persistent",
+      "imgKey": "glory"
+    },
+    {
+      "title": "Welcomer",
+      "imgKey": "welcomer"
+    },
+    {
+      "title": "Cross team",
+      "imgKey": "trophy"
+    },
+    {
+      "title": "Quick learner",
+      "imgKey": "medal"
+    },
+    {
+      "title": "Member",
+      "imgKey": "ribbon"
+    }
+  ],
+  "sumit": [
+    {
+      "title": "Speedy",
+      "imgKey": "speedy"
+    },
+    {
+      "title": "Award",
+      "imgKey": "award"
+    },
+    {
+      "title": "Persistent",
+      "imgKey": "glory"
+    },
+    {
+      "title": "Welcomer",
+      "imgKey": "welcomer"
+    },
+    {
+      "title": "Cross team",
+      "imgKey": "trophy"
+    },
+    {
+      "title": "Member",
+      "imgKey": "ribbon"
+    }
+  ],
+  "nikhil": [
+    {
+      "title": "Speedy",
+      "imgKey": "speedy"
+    },
+    {
+      "title": "Award",
+      "imgKey": "award"
+    },
+    {
+      "title": "Persistent",
+      "imgKey": "glory"
+    },
+    {
+      "title": "Welcomer",
+      "imgKey": "welcomer"
+    },
+    {
+      "title": "Cross team",
+      "imgKey": "trophy"
+    },
+    {
+      "title": "Member",
+      "imgKey": "ribbon"
+    }
+  ],
+  "rucha": [
+    {
+      "title": "Speedy",
+      "imgKey": "speedy"
+    },
+    {
+      "title": "Award",
+      "imgKey": "award"
+    },
+    {
+      "title": "Persistent",
+      "imgKey": "glory"
+    },
+    {
+      "title": "Welcomer",
+      "imgKey": "welcomer"
+    },
+    {
+      "title": "Cross team",
+      "imgKey": "trophy"
+    },
+    {
+      "title": "Member",
+      "imgKey": "ribbon"
+    }
+  ]
+}

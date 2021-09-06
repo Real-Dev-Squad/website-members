@@ -3,7 +3,7 @@
 # website-members
 
 The part of the website that shows the members of RDS
-This page is hosted on: https://members.realdevsquad.com/ 
+This page is hosted on: https://members.realdevsquad.com/
 
 # How can I contribute?
 
