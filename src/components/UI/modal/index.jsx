@@ -10,8 +10,9 @@ const Modal = ({ show, closeModal, children }) => (
       className={styles.modal}
       style={{
         transform: show ? 'translateY(0)' : 'translateY(-100vh)',
-        opacity: show ? '1' : '0'
-      }}>
+        opacity: show ? '1' : '0',
+      }}
+    >
       <span className={styles.crossIcon}>
         <i className="fa fa-times" aria-hidden="true" onClick={closeModal} />
       </span>
@@ -23,7 +24,7 @@ const Modal = ({ show, closeModal, children }) => (
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
 };
 
 export default Modal;
