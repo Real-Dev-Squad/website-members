@@ -111,9 +111,7 @@ const ContributionCard = ({
     const updatedAt = +new Date(prList[0].updatedAt);
     if (prList[0].state === 'closed') {
       completedDate = timeWas(createdAt, false, updatedAt);
-      completedText = (
-        <span className={classNames.completedText}>Completed in </span>
-      );
+      completedText = <span className={classNames.completedText}>Completed in </span>;
       featureLiveDate = timeWas(updatedAt, true);
       featureLiveOnText = featureLiveDate;
     }
@@ -128,11 +126,11 @@ const ContributionCard = ({
             {completedText}
             <p className={classNames.completedDate}>{completedDate}</p>
           </div>
-          {featureLiveOnText && (
+          {featureLiveOnText &&
             <div className={classNames.featureLiveOnText}>
               <span>Feature live on {featureLiveOnText}</span>
             </div>
-          )}
+          }
         </div>
         <div className={classNames.rightSection}>
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
