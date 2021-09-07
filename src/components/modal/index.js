@@ -9,15 +9,21 @@ const Modal = (props) => {
   const modalStyle = {
     top: '6%',
     overflowY: 'auto',
-    maxHeight: '90vh'
+    maxHeight: '90vh',
   };
   const modalChildren = (
-    <div style={{margin: '0 0.5rem'}}>
+    <div style={{ margin: '0 0.5rem' }}>
       <Header />
       <Register rdsUserName={rdsUserName} setShowModal={setShowModal} />
     </div>
   );
-  return <UIModal style={modalStyle} show={showModal} closeModal={onClose} children={modalChildren} /> 
+  return 
+    <UIModal
+      style={modalStyle}
+      show={showModal}
+      closeModal={onClose}
+      children={modalChildren} 
+    /> 
 };
 
 export default Modal;
