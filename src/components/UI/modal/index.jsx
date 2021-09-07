@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '@components/UI/modal/modal.module.scss';
 import Backdrop from '@components/UI/backdrop';
 
-const Modal = ({ show, closeModal, modalChildren, style }) => (
+const Modal = ({ show, closeModal, children, style }) => (
   <>
     <Backdrop show={show} clicked={closeModal} />
     <div
@@ -17,7 +17,7 @@ const Modal = ({ show, closeModal, modalChildren, style }) => (
       <span className={styles.crossIcon}>
         <i className="fa fa-times" aria-hidden="true" onClick={closeModal} />
       </span>
-      {modalChildren}
+      {children}
     </div>
   </>
 );
