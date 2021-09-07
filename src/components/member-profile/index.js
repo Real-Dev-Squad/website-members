@@ -75,14 +75,14 @@ const Profile = (props) => {
 
   return (
     <div className={classNames.container}>
-      {showModal &&
+      {showModal && (
         <Modal
           rdsUserName={rdsUserName}
           showModal={showModal}
           setShowModal={setShowModal}
           onClose={() => setShowModal(false)}
         />
-      }
+      )}
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
           <motion.img
@@ -106,7 +106,7 @@ const Profile = (props) => {
                 {renderSocialMediaIcons(socialMedia, membersData)}
               </div>
             )}
-            {devUser && 
+            {devUser && (
               <div>
                 <ShowSkills show />
                 <div>
@@ -119,7 +119,7 @@ const Profile = (props) => {
                   </button>
                 </div>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>
