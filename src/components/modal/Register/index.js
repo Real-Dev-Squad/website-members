@@ -173,7 +173,6 @@ const Register = (props) => {
         <label className={classNames.tagWord} htmlFor="currency">
           Currency
         </label>
-        <br />
         <div className={classNames.select}>
           <select
             id="currency"
