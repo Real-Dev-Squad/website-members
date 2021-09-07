@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from 'components/UI/modal/modal.module.scss';
-import Backdrop from 'components/UI/backdrop';
+import styles from '@components/UI/modal/modal.module.scss';
+import Backdrop from '@components/UI/backdrop';
 
-const Modal = ({ show, closeModal, children }) => (
+const Modal = ({ show, closeModal, modalChildren, style }) => (
   <>
     <Backdrop show={show} clicked={closeModal} />
     <div
       className={styles.modal}
       style={{
+        ...style,
         transform: show ? 'translateY(0)' : 'translateY(-100vh)',
         opacity: show ? '1' : '0',
       }}
@@ -16,7 +17,7 @@ const Modal = ({ show, closeModal, children }) => (
       <span className={styles.crossIcon}>
         <i className="fa fa-times" aria-hidden="true" onClick={closeModal} />
       </span>
-      {children}
+      {modalChildren}
     </div>
   </>
 );
