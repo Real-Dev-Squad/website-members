@@ -3,14 +3,14 @@
 }
 
 .select {
-  width: 18.75rem;
+  width: 100%;
+  margin-top: 0.625rem ;
+  margin-bottom: 0.625rem ;
 }
 .tagWord {
-  margin: 0.625rem;
-  margin-top: 0.625rem;
   font-family: 'Mono', sans-serif;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .inputBox {
@@ -19,7 +19,8 @@
   width: 100%;
   border-radius: 0.313rem;
   font-size: 0.938rem;
-  margin-top: 5px;
+  margin-top: 0.625rem ;
+  margin-bottom: 0.625rem ;
 }
 
 .inputBoxCur {
@@ -36,15 +37,14 @@
   background-color: rgb(238, 26, 117);
   color: #fff;
   border-radius: 0.5rem;
-  transition-duration: 0.1s;
+  transition-duration: 0.4s;
   cursor: pointer;
   display: block;
   margin: 0 auto;
   margin-top: 0.625rem;
-  border: rgb(238, 26, 117);
+  border: 0.069rem solid rgb(238, 26, 117);
 }
 .submitButton:hover {
-  zoom: 110%;
-  background-color: #1d1283;
-  color: #fff;
+  background-color: #fff;
+  color: rgb(238, 26, 117);
 }

@@ -75,6 +75,12 @@ const Profile = (props) => {
 
   return (
     <div className={classNames.container}>
+      {showModal && <Modal 
+        rdsUserName={rdsUserName}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        onClose={() => setShowModal(false)}
+      />}
       <div className={(classNames.sidebar, classNames.column)}>
         <div className={classNames.memberDetails}>
           <motion.img
@@ -98,24 +104,18 @@ const Profile = (props) => {
                 {renderSocialMediaIcons(socialMedia, membersData)}
               </div>
             )}
-            {devUser && <ShowSkills show />}
-            <div>
-              <button
-                type="button"
-                className={classNames.getIntroButton}
-                onMouseDown={() => setShowModal(true)}
-              >
-                Get Intro
-              </button>
-              <span className={classNames.modalWindow} isOpen={showModal}>
-                <Modal
-                  showModal={showModal}
-                  rdsUserName={rdsUserName}
-                  setShowModal={setShowModal}
-                  onClose={() => setShowModal(false)}
-                />
-              </span>
-            </div>
+            {devUser && <div>
+              <ShowSkills show />
+              <div>
+                <button
+                  type="button"
+                  className={classNames.getIntroButton}
+                  onMouseDown={() => setShowModal(true)}
+                >
+                  Get Intro
+                </button>
+              </div>
+            </div>}
           </div>
         </div>
       </div>

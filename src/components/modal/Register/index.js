@@ -198,7 +198,6 @@ const Register = (props) => {
             <p className={classNames.errorPrompt}>Provide a valid currency</p>
           )}
         </div>
-        <br />
         <label className={classNames.tagWord} htmlFor="package">
           Annual Package Offered
         </label>
