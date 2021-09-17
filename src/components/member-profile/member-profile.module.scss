@@ -108,19 +108,18 @@
 .getIntroButton {
   font-size: 1.2rem;
   padding: 0.5rem 1.875rem;
-  background-color: rgb(238, 26, 117);
+  background-color: #1d1283;
   color: #fff;
   border-radius: 0.5rem;
   transition-duration: 0.4s;
-  border: rgb(238, 26, 117);
-  display: none;
+  border: #1d1283;
 }
 
 .getIntroButton:hover {
   background-color: #fff;
-  color: rgb(238, 26, 117);
+  color: #1d1283;
   border-radius: 0.5rem;
-  border: 0.069rem solid rgb(238, 26, 117);
+  border: 0.069rem solid #1d1283;
 }
 
 .workDetails {
@@ -140,6 +139,64 @@
 .icon {
   width: 30px;
   margin: 0 10px;
+}
+
+.errorPrompt {
+  color: red;
+}
+
+.select {
+  width: 100%;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+.tagWord {
+  font-family: 'Mono', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.inputBox {
+  padding: 0.625rem;
+  border: 0.069rem solid #1d1283;
+  width: 100%;
+  border-radius: 0.313rem;
+  font-size: 0.938rem;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.inputBoxCur {
+  padding: 0.625rem;
+  border: 0.069rem solid #1d1283;
+  width: 70%;
+  border-radius: 0.313rem;
+  font-size: 0.938rem;
+}
+
+.submitButton {
+  font-size: 1.2rem;
+  padding: 0.5rem 0.938rem;
+  background-color: #1d1283;
+  color: #fff;
+  border-radius: 0.5rem;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-top: 0.625rem;
+  border: 0.069rem solid #1d1283;
+}
+.submitButton:hover {
+  background-color: #fff;
+  color: #1d1283;
+}
+
+.modalheader {
+  text-align: center;
+  padding-top: 0.625rem;
+  font-family: 'Arial';
+  color: #1d1283;
 }
 
 @media only screen and (max-width: 1024px) {
