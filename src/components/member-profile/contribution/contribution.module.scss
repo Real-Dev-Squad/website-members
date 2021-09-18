@@ -1,6 +1,6 @@
-@import "../../../styles/constants/colors";
+@import '../../../styles/constants/colors';
 
-.contributionContainer{
+.contributionContainer {
   margin: 24px 0;
   display: flex;
   justify-content: space-between;
@@ -27,22 +27,14 @@
   padding: 4px 0;
 }
 .completedText {
-<<<<<<< HEAD:src/components/member-profile/contribution/contribution.module.scss
-  color: gray;
-=======
   color: $color-light-grey;
->>>>>>> d8718f6 (Updated rem default to 16px and updated CSS on contributions page #245):components/member-profile/contribution/contribution.module.scss
 }
 .completedDate {
   display: inline-block;
   font-weight: bold;
 }
 .featureLiveOnText {
-<<<<<<< HEAD:src/components/member-profile/contribution/contribution.module.scss
-  font-weight: bold;
-=======
   color: $color-light-grey;
->>>>>>> d8718f6 (Updated rem default to 16px and updated CSS on contributions page #245):components/member-profile/contribution/contribution.module.scss
   padding: 4px 0;
 }
 .featureLink {
@@ -116,13 +108,8 @@
   .contributionContainer {
     flex-direction: column;
   }
-<<<<<<< HEAD:src/components/member-profile/contribution/contribution.module.scss
   .leftSection .featureTitle {
-    font-size: 16px;
-=======
-  .leftSection .featureTitle{
     font-size: 1rem;
->>>>>>> d8718f6 (Updated rem default to 16px and updated CSS on contributions page #245):components/member-profile/contribution/contribution.module.scss
   }
   .featureLink a {
     font-size: 14px;
