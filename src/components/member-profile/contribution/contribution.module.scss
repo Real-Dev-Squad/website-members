@@ -1,3 +1,5 @@
+@import '../../../styles/constants/colors';
+
 .contributionContainer {
   margin: 24px 0;
   display: flex;
@@ -14,6 +16,7 @@
 .leftSection .featureTitle {
   color: #041187;
   padding: 4px 0;
+  font-weight: 400;
 }
 .prDescription {
   color: #636363;
@@ -24,14 +27,14 @@
   padding: 4px 0;
 }
 .completedText {
-  color: gray;
+  color: $color-light-grey;
 }
 .completedDate {
   display: inline-block;
   font-weight: bold;
 }
 .featureLiveOnText {
-  font-weight: bold;
+  color: $color-light-grey;
   padding: 4px 0;
 }
 .featureLink {
@@ -39,9 +42,15 @@
 }
 .featureLink a {
   text-decoration: none;
-  color: #041187;
+  color: $color-light-grey;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: normal;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 .rightSection {
   display: flex;
@@ -63,7 +72,6 @@
 }
 .userIcon span {
   color: black;
-  font-weight: bold;
   padding: 0px 8px;
 }
 .tags {
@@ -101,7 +109,7 @@
     flex-direction: column;
   }
   .leftSection .featureTitle {
-    font-size: 16px;
+    font-size: 1rem;
   }
   .featureLink a {
     font-size: 14px;
