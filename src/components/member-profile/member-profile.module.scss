@@ -33,8 +33,7 @@
 }
 
 .card h2 {
-  color: #041484;
-  font-weight: bolder;
+  padding: 0.5rem 0;
 }
 
 .contributionContainer {
@@ -216,14 +215,6 @@
 }
 
 @media (max-width: 575.98px) {
-  .card {
-    padding: 8px;
-  }
-
-  .card h2 {
-    font-size: 16px;
-  }
-
   .container {
     width: 100%;
   }
