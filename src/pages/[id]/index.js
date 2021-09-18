@@ -22,12 +22,19 @@ const MemberProfile = ({
   errorMessage,
 }) => {
   const [activeTasksData, setActiveTasksData] = useState([tasks]);
+  const getId = () => {
+    const router = useRouter();
+    const { id } = router.query;
+    return { id };
+  };
   useEffect(() => {
-    const tasksURL = getActiveTasksURL(id);
-    const tasksResponse = await fetch(tasksURL);
-    const { tasks } = await tasksResponse.data;
-    setActiveTasksData(tasks);
-  },[]);
+    (async () => {
+      const tasksURL = getActiveTasksURL(getId);
+      const tasksResponse = await fetch(tasksURL);
+      const { taskResponse } = await tasksResponse.data;
+      setActiveTasksData(taskResponse);
+    })();
+  }, []);
 
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
@@ -73,7 +80,7 @@ export async function getServerSideProps(context) {
     const contributions = await contributionsResponse.data;
     const imageLink = getImgURL(id, 'img.png');
 
-    return { props: { imageLink, user, contributions, tasks } };
+    return { props: { imageLink, user, contributions } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
   }
