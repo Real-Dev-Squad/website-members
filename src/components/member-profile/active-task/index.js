@@ -28,20 +28,24 @@ const ActiveTask = ({ taskDetails }) => {
         <p className={classNames.prDescription}>{purpose}</p>
         <div className={classNames.completedData}>
           <span>Estimated Completion in </span>
-          <p className={showEstimatedDay}>{completedDate}</p>
+          <p data-testid="completeDate" className={showEstimatedDay}>
+            {completedDate}
+          </p>
         </div>
       </div>
       <div className={classNames.progressSection}>
-        <div className={classNames.progressText}>
+        <div data-testid="progressText" className={classNames.progressText}>
           {percentCompleted > 0 && 'This is in progress'}
         </div>
         <div className={classNames.progressBar}>
           <div
             className={showProgressIndicator}
             style={{ width: `${percentCompleted}%` }}
+            data-testid="progressIndicator"
           />
         </div>
         <span
+          data-testid="percentageCompleted"
           className={classNames.showPercentCompletedText}
         >{`${percentCompleted}% complete`}</span>
       </div>
