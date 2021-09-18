@@ -12,6 +12,7 @@
     "lint": "eslint --fix .",
     "format": "prettier --write .",
     "test": "jest --env=jsdom",
+    "test-watch": "jest --env=jsdom --watch",
     "prepare": "husky install",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
