@@ -128,11 +128,11 @@ const ContributionCard = ({
             {completedText}
             <p className={classNames.completedDate}>{completedDate}</p>
           </div>
-          <div className={classNames.featureLiveOnText}>
-            {featureLiveOnText && (
+          {featureLiveOnText && (
+            <div className={classNames.featureLiveOnText}>
               <span>Feature live on {featureLiveOnText}</span>
-            )}
-          </div>
+            </div>
+          )}
         </div>
         <div className={classNames.rightSection}>
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
