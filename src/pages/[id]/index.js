@@ -6,12 +6,14 @@ import {
   getImgURL,
   getContributionsURL,
   getActiveTasksURL,
+  getCloudinaryImgURL,
 } from '@helper-functions/urls';
 import { fetch } from '@helper-functions/fetch';
 import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
+import { MAX_WIDTH } from '@constants/profile-image';
 
 const MemberProfile = ({
   imageLink,
@@ -63,7 +65,9 @@ export async function getServerSideProps(context) {
 
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
-    const imageLink = getImgURL(id, 'img.png');
+    const imageLink = user.picture
+      ? getCloudinaryImgURL(user.picture.publicId, `w_${MAX_WIDTH}`)
+      : getImgURL(user.username, 'img.png');
     const tasksResponse = await fetch(tasksURL);
     const { tasks } = await tasksResponse.data;
 
