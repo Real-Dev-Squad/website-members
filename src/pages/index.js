@@ -1,11 +1,16 @@
 /* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
-import { getMembersURL, getImgURL } from '@helper-functions/urls';
+import {
+  getMembersURL,
+  getImgURL,
+  getCloudinaryImgURL,
+} from '@helper-functions/urls';
 import fetch from 'cross-fetch';
 import HomePage from '@components/pages';
 import Layout from '@components/layout';
 import NotFound from '@components/not-found-page';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
+import { MAX_WIDTH } from '@constants/profile-image';
 import { SET_ERRORS, SET_MEMBERS } from '@constants/AppConstants';
 import { membersContext } from '@store/members/members-context';
 import { useEffect } from 'react';
@@ -43,9 +48,12 @@ export async function getServerSideProps(context) {
     const { members } = await res.json();
 
     for (const memberData of members) {
+      const img_url = memberData.picture
+        ? getCloudinaryImgURL(memberData.picture.publicId, `w_${MAX_WIDTH}`)
+        : getImgURL(memberData.username, 'img.png');
       membersArray.push({
         ...memberData,
-        img_url: getImgURL(memberData.username, 'img.png'),
+        img_url,
       });
     }
 
