@@ -25,7 +25,7 @@ const MemberProfile = ({
   const getId = () => {
     const router = useRouter();
     const { id } = router.query;
-    return { id };
+    return id;
   };
   useEffect(() => {
     (async () => {
