@@ -107,6 +107,68 @@ const Profile = (props) => {
       });
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    setTimeout(function () {
+      document.querySelector('#introButton').focus();
+      document.querySelector('body').style.overflowY = 'auto';
+    }, 50);
+  };
+
+  const handleGetIntroClick = () => {
+    setShowModal(true);
+    setTimeout(function () {
+      document
+        .querySelector('#modelContent')
+        .querySelectorAll('form input')[0]
+        .focus();
+      document.querySelector('body').style.overflowY = 'hidden';
+      document
+        .querySelector('#modelContent')
+        .addEventListener('keydown', (e) => {
+          const KEY_TAB = 9;
+          const KEY_ESC = 27;
+          function handleBackwardTab() {
+            if (
+              document.activeElement ===
+              document
+                .querySelector('#modelContent')
+                .querySelectorAll('form input')[0]
+            ) {
+              e.preventDefault();
+              document.querySelector('#submitButton').focus();
+            }
+          }
+          function handleForwardTab() {
+            if (
+              document.activeElement === document.querySelector('#submitButton')
+            ) {
+              e.preventDefault();
+              document
+                .querySelector('#modelContent')
+                .querySelectorAll('form input')[0]
+                .focus();
+            }
+          }
+
+          switch (e.keyCode) {
+            case KEY_TAB:
+              if (e.shiftKey) {
+                handleBackwardTab();
+              } else {
+                handleForwardTab();
+              }
+              break;
+            case KEY_ESC:
+              closeModal();
+              break;
+            default:
+              break;
+          }
+        });
+    }, 50);
+  };
+
   const modalStyle = {
     top: '6%',
     overflowY: 'auto',
@@ -114,8 +176,10 @@ const Profile = (props) => {
   };
 
   const children = (
-    <div>
-      <h1 className={classNames.modalheader}>Send Your Interest</h1>
+    <div id="modelContent">
+      <h1 className={classNames.modalheader} id="dialog-title">
+        Send Your Interest
+      </h1>
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <label className={classNames.tagWord} htmlFor="company">
           Company
@@ -277,6 +341,7 @@ const Profile = (props) => {
           <p className={classNames.errorPrompt}>Package must be a number</p>
         )}
         <button
+          id="submitButton"
           color="primary"
           type="submit"
           className={classNames.submitButton}
@@ -288,78 +353,78 @@ const Profile = (props) => {
   );
 
   return (
-    <div className={classNames.container}>
+    <>
       {showModal && (
-        <Modal
-          style={modalStyle}
-          show={showModal}
-          closeModal={() => setShowModal(false)}
-        >
+        <Modal style={modalStyle} show={showModal} closeModal={closeModal}>
           {children}
         </Modal>
       )}
-      <div className={(classNames.sidebar, classNames.column)}>
-        <div className={classNames.memberDetails}>
-          <motion.img
-            layoutId={username}
-            src={imageLink}
-            className={classNames.profilePic}
-            alt="ProfilePicture"
-          />
-          <div className={classNames.personalInfo}>
-            <h1 className={classNames.profileName}>{memberName}</h1>
-            <p className={classNames.userName}>{rdsUserName}</p>
-            <p className={classNames.workDetails}>
-              {designation}
-              <br />
-              <span className={classNames.userName}>{company}</span>
-            </p>
-          </div>
-          <div className={classNames.iconsContainer}>
-            {membersData && (
-              <div className={classNames.iconsContainer}>
-                {renderSocialMediaIcons(socialMedia, membersData)}
-              </div>
-            )}
-            {devUser && (
-              <div>
-                <ShowSkills show />
-                <div>
-                  <button
-                    type="button"
-                    className={classNames.getIntroButton}
-                    onMouseDown={() => setShowModal(true)}
-                  >
-                    Get Intro
-                  </button>
+      <div className={classNames.container} id="mainContent">
+        <div className={(classNames.sidebar, classNames.column)}>
+          <div className={classNames.memberDetails}>
+            <motion.img
+              layoutId={username}
+              src={imageLink}
+              className={classNames.profilePic}
+              alt="ProfilePicture"
+            />
+            <div className={classNames.personalInfo}>
+              <h1 className={classNames.profileName}>{memberName}</h1>
+              <p className={classNames.userName}>{rdsUserName}</p>
+              <p className={classNames.workDetails}>
+                {designation}
+                <br />
+                <span className={classNames.userName}>{company}</span>
+              </p>
+            </div>
+            <div className={classNames.iconsContainer}>
+              {membersData && (
+                <div className={classNames.iconsContainer}>
+                  {renderSocialMediaIcons(socialMedia, membersData)}
                 </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className={classNames.content}>
-        {devUser && (
-          <div className={(classNames.section, classNames.card)}>
-            <h2>Badges</h2>
-            <div className={classNames.badgeContainer}>
-              {badges && renderBadgeImages(badges)}
+              )}
+              {devUser && (
+                <div>
+                  <ShowSkills show />
+                  <div>
+                    <button
+                      id="introButton"
+                      type="button"
+                      className={classNames.getIntroButton}
+                      onMouseDown={handleGetIntroClick}
+                      onKeyDown={handleGetIntroClick}
+                    >
+                      Get Intro
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        )}
+        </div>
 
-        <div className={(classNames.section, classNames.card)}>
-          {renderContributionsTypes(
-            contributions,
-            fullName,
-            imageLink,
-            devUser,
-            tasks
+        <div className={classNames.content}>
+          {devUser && (
+            <div className={(classNames.section, classNames.card)}>
+              <h2>Badges</h2>
+              <div className={classNames.badgeContainer}>
+                {badges && renderBadgeImages(badges)}
+              </div>
+            </div>
           )}
+
+          <div className={(classNames.section, classNames.card)}>
+            {renderContributionsTypes(
+              contributions,
+              fullName,
+              imageLink,
+              devUser,
+              tasks
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
