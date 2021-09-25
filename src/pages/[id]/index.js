@@ -12,6 +12,7 @@ import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
+import { useEffect, useState } from 'react';
 
 const MemberProfile = ({
   imageLink,
@@ -20,6 +21,21 @@ const MemberProfile = ({
   tasks,
   errorMessage,
 }) => {
+  const [activeTasksData, setActiveTasksData] = useState([tasks]);
+  const getId = () => {
+    const router = useRouter();
+    const { id } = router.query;
+    return id;
+  };
+  useEffect(() => {
+    (async () => {
+      const tasksURL = getActiveTasksURL(getId);
+      const tasksResponse = await fetch(tasksURL);
+      const { taskResponse } = await tasksResponse.data;
+      setActiveTasksData(taskResponse);
+    })();
+  }, []);
+
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
@@ -37,7 +53,7 @@ const MemberProfile = ({
         membersData={user}
         contributions={contributions}
         devUser={devUser}
-        tasks={tasks}
+        tasks={activeTasksData}
       />
     </Layout>
   );
@@ -50,7 +66,6 @@ export async function getServerSideProps(context) {
   } = context;
   const jsonUrl = getMembersDataURL(id);
   const contributionsURL = getContributionsURL(id);
-  const tasksURL = getActiveTasksURL(id);
 
   try {
     const res = await fetch(jsonUrl);
@@ -64,10 +79,8 @@ export async function getServerSideProps(context) {
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
     const imageLink = getImgURL(id, 'img.png');
-    const tasksResponse = await fetch(tasksURL);
-    const { tasks } = await tasksResponse.data;
 
-    return { props: { imageLink, user, contributions, tasks } };
+    return { props: { imageLink, user, contributions } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
   }
