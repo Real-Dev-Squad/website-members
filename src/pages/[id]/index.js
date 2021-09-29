@@ -22,14 +22,11 @@ const MemberProfile = ({
   errorMessage,
 }) => {
   const [activeTasksData, setActiveTasksData] = useState([tasks]);
-  const getId = () => {
-    const router = useRouter();
-    const { id } = router.query;
-    return id;
-  };
+  const router = useRouter();
+  const { id } = router.query;
   useEffect(() => {
     (async () => {
-      const tasksURL = getActiveTasksURL(getId);
+      const tasksURL = getActiveTasksURL(id);
       const tasksResponse = await fetch(tasksURL);
       const { taskResponse } = await tasksResponse.data;
       setActiveTasksData(taskResponse);
