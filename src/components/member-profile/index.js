@@ -21,7 +21,7 @@ const renderBadgeImages = (badges) =>
     />
   ));
 
-const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All'];
+const CONTRIBUTIONTYPE = ['Noteworthy', 'All'];
 
 const renderContributionsTypes = (
   contributions,
