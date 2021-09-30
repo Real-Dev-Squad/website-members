@@ -10,7 +10,7 @@ import HomePage from '@components/pages';
 import Layout from '@components/layout';
 import NotFound from '@components/not-found-page';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
-import { MAX_WIDTH } from '@constants/profile-image';
+import { CROP_FACE_W250 } from '@constants/profile-image';
 import { SET_ERRORS, SET_MEMBERS } from '@constants/AppConstants';
 import { membersContext } from '@store/members/members-context';
 import { useEffect } from 'react';
@@ -37,7 +37,9 @@ const Index = ({ membersArr, newMembersArr, errorMsg }) => {
 export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const membersArray = [];
-
+  const {
+    query: { dev },
+  } = context;
   try {
     const res = await fetch(getMembersURL);
     if (res.status !== 200) {
@@ -48,9 +50,10 @@ export async function getServerSideProps(context) {
     const { members } = await res.json();
 
     for (const memberData of members) {
-      const img_url = memberData.picture
-        ? getCloudinaryImgURL(memberData.picture.publicId, `w_${MAX_WIDTH}`)
-        : getImgURL(memberData.username, 'img.png');
+      const img_url =
+        !!dev && memberData.picture
+          ? getCloudinaryImgURL(memberData.picture.publicId, CROP_FACE_W250)
+          : getImgURL(memberData.username, 'img.png');
       membersArray.push({
         ...memberData,
         img_url,
