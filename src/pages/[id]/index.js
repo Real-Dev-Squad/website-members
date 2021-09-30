@@ -13,7 +13,7 @@ import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
-import { MAX_WIDTH } from '@constants/profile-image';
+import { CROP_FACE_W250 } from '@constants/profile-image';
 
 const MemberProfile = ({
   imageLink,
@@ -49,11 +49,11 @@ export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const {
     params: { id },
+    query: { dev },
   } = context;
   const jsonUrl = getMembersDataURL(id);
   const contributionsURL = getContributionsURL(id);
   const tasksURL = getActiveTasksURL(id);
-
   try {
     const res = await fetch(jsonUrl);
     if (res.status !== 200) {
@@ -65,9 +65,10 @@ export async function getServerSideProps(context) {
 
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
-    const imageLink = user.picture
-      ? getCloudinaryImgURL(user.picture.publicId, `w_${MAX_WIDTH}`)
-      : getImgURL(user.username, 'img.png');
+    const imageLink =
+      !!dev && user.picture
+        ? getCloudinaryImgURL(user.picture.publicId, CROP_FACE_W250)
+        : getImgURL(user.username, 'img.png');
     const tasksResponse = await fetch(tasksURL);
     const { tasks } = await tasksResponse.data;
 
