@@ -1,13 +1,23 @@
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import classNames from '@components/member-card/card.module.scss';
 import { motion } from 'framer-motion';
 import SocialMediaIcon from '@components/social-media-icon';
 import PropTypes from 'prop-types';
 import ShowSkills from '@components/member-card/show-skills';
+import UserContext from '@store/user/user-context';
 
 const Card = ({ developerInfo }) => {
+  const {
+    isSuperUserMode,
+    showMemberRoleUpdateModal,
+    setShowMemberRoleUpdateModal,
+    setSelectedMember,
+  } = useContext(UserContext);
+
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
@@ -26,8 +36,31 @@ const Card = ({ developerInfo }) => {
   const renderName = (userFullName, userName) =>
     userFullName.length > 20 ? userName : userFullName;
 
+  const shoeSuperUserOptions = () => {
+    return (
+      <div className={classNames.settingsContainer}>
+        <div
+          role="button"
+          className={classNames.settingsButton}
+          onClick={(e) => {
+            e.preventDefault();
+            setShowMemberRoleUpdateModal(!showMemberRoleUpdateModal);
+            setSelectedMember(username);
+          }}
+        >
+          <img
+            className={classNames.settingsImg}
+            src="/icons/settings.png"
+            alt="setting"
+          />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
+      {!isMember && isSuperUserMode && shoeSuperUserOptions()}
       <motion.img
         layoutId={username}
         src={`${img_url}?${Math.random() * 100}`}

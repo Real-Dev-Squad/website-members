@@ -82,6 +82,21 @@
   font-size: 0.88rem;
 }
 
+.settingsContainer {
+  position: relative;
+}
+
+.settingsButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.settingsImg {
+  width: 16px;
+}
+
 @media only screen and (min-width: 1024px) {
   .showMemberSkills {
     justify-content: flex-start;
