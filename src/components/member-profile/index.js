@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '@components/social-media-icon';
 import getBadges from '@components/member-profile/mock/get-badges';
@@ -75,6 +75,9 @@ const Profile = (props) => {
 
   const [showModal, setShowModal] = useState(false);
   const { register, handleSubmit, errors } = useForm();
+  const submitBtnRef = useRef(null);
+  const modalContent = useRef(null);
+  const introBtn = useRef(null);
 
   const getMembersIntroURL = (RDSID) =>
     `https://api.realdevsquad.com/members/intro/${RDSID}`;
@@ -110,7 +113,7 @@ const Profile = (props) => {
   const closeModal = () => {
     setShowModal(false);
     setTimeout(function () {
-      document.querySelector('#introButton').focus();
+      introBtn.current.focus();
       document.querySelector('body').style.overflowY = 'auto';
     }, 50);
   };
@@ -118,54 +121,42 @@ const Profile = (props) => {
   const handleGetIntroClick = () => {
     setShowModal(true);
     setTimeout(function () {
-      document
-        .querySelector('#modelContent')
-        .querySelectorAll('form input')[0]
-        .focus();
+      modalContent.current?.querySelectorAll('form input')[0].focus();
       document.querySelector('body').style.overflowY = 'hidden';
-      document
-        .querySelector('#modelContent')
-        .addEventListener('keydown', (e) => {
-          const KEY_TAB = 9;
-          const KEY_ESC = 27;
-          function handleBackwardTab() {
-            if (
-              document.activeElement ===
-              document
-                .querySelector('#modelContent')
-                .querySelectorAll('form input')[0]
-            ) {
-              e.preventDefault();
-              document.querySelector('#submitButton').focus();
-            }
+      modalContent.current?.addEventListener('keydown', (e) => {
+        const KEY_TAB = 9;
+        const KEY_ESC = 27;
+        function handleBackwardTab() {
+          if (
+            document.activeElement ===
+            modalContent.current?.querySelectorAll('form input')[0]
+          ) {
+            e.preventDefault();
+            submitBtnRef.current?.focus();
           }
-          function handleForwardTab() {
-            if (
-              document.activeElement === document.querySelector('#submitButton')
-            ) {
-              e.preventDefault();
-              document
-                .querySelector('#modelContent')
-                .querySelectorAll('form input')[0]
-                .focus();
-            }
+        }
+        function handleForwardTab() {
+          if (document.activeElement === submitBtnRef.current) {
+            e.preventDefault();
+            modalContent.current?.querySelectorAll('form input')[0].focus();
           }
+        }
 
-          switch (e.keyCode) {
-            case KEY_TAB:
-              if (e.shiftKey) {
-                handleBackwardTab();
-              } else {
-                handleForwardTab();
-              }
-              break;
-            case KEY_ESC:
-              closeModal();
-              break;
-            default:
-              break;
-          }
-        });
+        switch (e.keyCode) {
+          case KEY_TAB:
+            if (e.shiftKey) {
+              handleBackwardTab();
+            } else {
+              handleForwardTab();
+            }
+            break;
+          case KEY_ESC:
+            closeModal();
+            break;
+          default:
+            break;
+        }
+      });
     }, 50);
   };
 
@@ -176,7 +167,7 @@ const Profile = (props) => {
   };
 
   const children = (
-    <div id="modelContent">
+    <div ref={modalContent}>
       <h1 className={classNames.modalheader} id="dialog-title">
         Send Your Interest
       </h1>
@@ -341,7 +332,7 @@ const Profile = (props) => {
           <p className={classNames.errorPrompt}>Package must be a number</p>
         )}
         <button
-          id="submitButton"
+          ref={submitBtnRef}
           color="primary"
           type="submit"
           className={classNames.submitButton}
@@ -388,7 +379,7 @@ const Profile = (props) => {
                   <ShowSkills show />
                   <div>
                     <button
-                      id="introButton"
+                      ref={introBtn}
                       type="button"
                       className={classNames.getIntroButton}
                       onMouseDown={handleGetIntroClick}
