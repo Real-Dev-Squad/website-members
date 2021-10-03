@@ -1,23 +1,20 @@
-import classNames from 'components/member-card/card.module.scss';
-import { CURRENCIES, walletURL } from 'helper-functions/urls';
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'components/member-card/card.module.scss';
+import { CURRENCIES } from 'helper-functions/urls';
+import { walletDetails } from './mock-data/wallet';
 
-const Coins = (props) => {
-  const { coin, balance } = props;
-  return (
-    <div className={classNames.walletContainer}>
-      <div className={classNames.coinData}>
-        <p>{coin}</p>
-        <p>{balance}</p>
-      </div>
-      <div
-        className={
-          coin === CURRENCIES.NEELAM ? classNames.coinNeelam : classNames.coinDinero
-        }></div>
+const Currency = ({ coin, balance }) => (
+  <div className={classNames.walletContainer}>
+    <div className={classNames.coinData}>
+      <p className={classNames.coinType}>{coin}</p>
+      <p className={classNames.balance}>{balance}</p>
     </div>
-  );
-};
+    <div
+      className={classNames.coin}
+      style={{ backgroundColor: coin === CURRENCIES.NEELAM ? 'blue' : 'green' }}></div>
+  </div>
+);
 
 const ShowWallet = ({ show }) => {
   const [currencies, setCurrencies] = useState([]);
@@ -25,29 +22,22 @@ const ShowWallet = ({ show }) => {
   const [isError, setIsError] = useState(false);
   const coins = [];
   useEffect(() => {
-    const fetchData = async () => {
-      await fetch(walletURL, { credentials: 'include' })
-        .then((res) => {
-          if (res.status >= 400 && res.status < 600) {
-            throw new Error('Bad response from server');
-          }
-          return res.json();
-        })
-        .then((resJson) => {
-          const currencyBalance = resJson.wallet.currencies;
-          for (const name in currencyBalance) {
-            coins.push({
-              name,
-              balance: currencyBalance[name]
-            });
-          }
-          setCurrencies(coins);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setIsError(true);
-          console.log(err);
-        });
+    const fetchData = () => {
+      try {
+        const walletObj = walletDetails;
+        const currencyBalance = walletObj.wallet.currencies;
+        for (const name in currencyBalance) {
+          coins.push({
+            name,
+            balance: currencyBalance[name]
+          });
+        }
+        setCurrencies(coins);
+        setIsLoading(false);
+      } catch (err) {
+        setIsError(true);
+        console.log(err);
+      }
     };
 
     fetchData();
@@ -57,8 +47,12 @@ const ShowWallet = ({ show }) => {
     <div className={show ? classNames.showMemberSkills : classNames.showSkills}>
       {!isError && isLoading ? (
         <p>Loading...</p>
+      ) : isError ? (
+        <p>Error Loading Wallet...</p>
       ) : (
-        currencies.map((coin) => <Coins coin={coin.name} balance={coin.balance} key={coin.name} />)
+        currencies.map((coin) => (
+          <Currency coin={coin.name} balance={coin.balance} key={coin.name} />
+        ))
       )}
     </div>
   );
@@ -68,7 +62,7 @@ ShowWallet.propTypes = {
   show: PropTypes.bool.isRequired
 };
 
-Coins.propTypes = {
+Currency.propTypes = {
   coin: PropTypes.string.isRequired,
   balance: PropTypes.number.isRequired
 };

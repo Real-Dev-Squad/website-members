@@ -101,20 +101,19 @@
     height: 2px;
   }
 
-  .coinData>p:first-child {
-    font-size: 12px;
+  .coinType {
+    font-size: 0.75rem;
     font-weight: 500;
     transform: translateY(-25px);
     margin-right: 8px;
   }
 
-  .coinData>p:last-child {
-    font-size: 20px;
+  .balance {
+    font-size: 1.25rem;
     font-weight: 700;
   }
 
-  .coinDinero{
-    background-color: green;
+  .coin{
     width: 40px;
     height: 40px;
     border-radius: 50%;
