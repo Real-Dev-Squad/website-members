@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import classNames from 'components/not-found-page/not-found-page.module.scss';
+import { membersContext } from 'store/members/members-context';
 
-const Index = ({ errorMsg }) => {
+const Index = () => {
+  const {
+    state: { errorMsg }
+  } = membersContext();
   return (
     <div className={classNames.fullPageContainer}>
       <img
