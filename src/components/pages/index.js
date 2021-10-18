@@ -1,17 +1,20 @@
-import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import MemberList from '@components/members-list';
 import classNames from '@components/pages/home-page.module.scss';
 import NewMemberList from '@components/new-member-list';
 import UserProfile from '@components/user-profile';
 import MemberRoleUpdate from '@components/member-role-update';
-import UserContext from '@store/user/user-context';
+import { userContext } from '@store/user/user-context';
 
 const HomePage = () => {
-  const { showMemberRoleUpdateModal } = useContext(UserContext);
+  const { showMemberRoleUpdateModal } = userContext();
+
+  const { query } = useRouter() || { query: { dev: false } };
+  const { dev } = query;
 
   return (
     <div className={classNames.container}>
-      <UserProfile />
+      {dev && <UserProfile />}
       <img
         className={classNames.img}
         src="/images/Real-Dev-Squad@1x.png"

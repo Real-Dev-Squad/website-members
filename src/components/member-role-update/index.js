@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from '@components/UI/modal/index';
-import UserContext from '@store/user/user-context';
+import { userContext } from '@store/user/user-context';
 import Spinner from '@components/UI/spinner';
 import classNames from './member-role-update.module.scss';
 import { fetch } from '../../helper-functions/fetch';
@@ -12,7 +12,7 @@ const MemberRoleUpdate = () => {
     showMemberRoleUpdateModal,
     setShowMemberRoleUpdateModal,
     selectedMember,
-  } = useContext(UserContext);
+  } = userContext();
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateStatus, setUpdateStatus] = useState('');
