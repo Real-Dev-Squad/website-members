@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from '@components/member-card/card.module.scss';
 import PropTypes from 'prop-types';
-import UserContext from '@store/user/user-context';
+import { userContext } from '../../store/user/user-context';
 
 const SuperUserOptions = ({ username }) => {
   const {
@@ -11,7 +11,7 @@ const SuperUserOptions = ({ username }) => {
     showMemberRoleUpdateModal,
     setShowMemberRoleUpdateModal,
     setSelectedMember,
-  } = useContext(UserContext);
+  } = userContext();
 
   const shoeSuperUserOptions = () => {
     return (
