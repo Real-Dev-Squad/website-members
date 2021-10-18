@@ -30,7 +30,7 @@ const UserProfile = () => {
       setIsLoading(false);
       setUser(data);
       if (data) {
-        setIsSuperUser(data.roles.member);
+        setIsSuperUser(data.roles.super_user);
       }
     }
     getUSerProfile();
