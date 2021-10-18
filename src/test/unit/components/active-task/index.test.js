@@ -7,24 +7,18 @@ import { percentageofDaysRemaining } from '@helper-functions/taskProgress';
 
 describe('Active Taks', () => {
   const testActiveTaskComponent = (taskDetails) => {
-    const percentOfTaskLeft = 100 - taskDetails.percentCompleted;
-    const completedDate = timeWas(
-      taskDetails.startedOn * 1000,
-      false,
-      taskDetails.endsOn * 1000
-    );
+    const { title, purpose, percentCompleted, startedOn, endsOn } = taskDetails;
+
+    const percentOfTaskLeft = 100 - percentCompleted;
+    const completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
     const remainingPercentageDays = percentageofDaysRemaining(
-      taskDetails.startedOn,
-      taskDetails.endsOn,
+      startedOn,
+      endsOn,
       completedDate
     );
 
     const expectedData = {
-      completeDate: timeWas(
-        taskDetails.startedOn * 1000,
-        false,
-        taskDetails.endsOn * 1000
-      ),
+      completeDate: timeWas(startedOn * 1000, false, endsOn * 1000),
       showEstimateDay: estimatedDays(
         remainingPercentageDays,
         percentOfTaskLeft,
@@ -33,24 +27,24 @@ describe('Active Taks', () => {
     };
     render(<ActiveTask taskDetails={taskDetails} />);
 
-    const titleEl = screen.getByText(taskDetails.title);
-    const purposeEl = screen.getByText(taskDetails.purpose);
-    const completeDateEl = screen.getByTestId('completeDate');
-    const percentageCompletedEl = screen.getByTestId('percentageCompleted');
-    const progressIndicatorEl = screen.getByTestId('progressIndicator');
-    const progressTextEl = screen.getByTestId('progressText');
+    const titleElement = screen.getByText(title);
+    const purposeElement = screen.getByText(purpose);
+    const completeDateElement = screen.getByTestId('completeDate');
+    const percentageCompletedElement = screen.getByTestId(
+      'percentageCompleted'
+    );
+    const progressIndicatorElement = screen.getByTestId('progressIndicator');
+    const progressTextElement = screen.getByTestId('progressText');
 
-    expect(titleEl).toHaveTextContent(taskDetails.title);
-    expect(purposeEl).toHaveTextContent(taskDetails.purpose);
-    expect(completeDateEl).toHaveTextContent(expectedData.completeDate);
-    expect(percentageCompletedEl).toHaveTextContent(
-      `${taskDetails.percentCompleted}% complete`
+    expect(titleElement).toHaveTextContent(title);
+    expect(purposeElement).toHaveTextContent(purpose);
+    expect(completeDateElement).toHaveTextContent(expectedData.completeDate);
+    expect(percentageCompletedElement).toHaveTextContent(
+      `${percentCompleted}% complete`
     );
-    expect(progressIndicatorEl).toHaveStyle(
-      `width: ${taskDetails.percentCompleted}%`
-    );
-    expect(progressTextEl).toHaveTextContent(
-      taskDetails.percentCompleted > 0 ? 'This is in progress' : ''
+    expect(progressIndicatorElement).toHaveStyle(`width: ${percentCompleted}%`);
+    expect(progressTextElement).toHaveTextContent(
+      percentCompleted > 0 ? 'This is in progress' : ''
     );
   };
 
