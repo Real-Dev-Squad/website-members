@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import { createContext, useState, useContext } from 'react';
 
 const UserContext = createContext();
 
@@ -29,4 +30,10 @@ export const UserContextProvider = ({ children }) => {
   );
 };
 
-export default UserContext;
+export const userContext = () => {
+  const context = useContext(UserContext);
+  if (!context)
+    throw new Error(`userContext context can only  
+        be used in a component wrapped with UserContext`);
+  return context;
+};

@@ -1,6 +1,5 @@
-// import useSWR from 'swr';
-import { useContext, useState, useEffect } from 'react';
-import UserContext from '@store/user/user-context';
+import { useState, useEffect } from 'react';
+import { userContext } from '@store/user/user-context';
 import classNames from '@components/user-profile/user-profile.module.scss';
 import { getUserProfileSelf } from '../../helper-functions/urls';
 import { fetch } from '../../helper-functions/fetch';
@@ -14,7 +13,7 @@ const UserProfile = () => {
     setIsSuperUser,
     isSuperUserMode,
     setIsSuperUserMode,
-  } = useContext(UserContext);
+  } = userContext();
 
   useEffect(() => {
     async function getUSerProfile() {
@@ -31,7 +30,7 @@ const UserProfile = () => {
       setIsLoading(false);
       setUser(data);
       if (data) {
-        setIsSuperUser(data.roles.super_user);
+        setIsSuperUser(data.roles.member);
       }
     }
     getUSerProfile();
