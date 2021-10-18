@@ -118,8 +118,7 @@ const Profile = (props) => {
     }, 50);
   };
 
-  const handleGetIntroClick = () => {
-    setShowModal(true);
+  const ModalAccessibility = () => {
     setTimeout(function () {
       modalContent.current?.querySelectorAll('form input')[0].focus();
       document.querySelector('body').style.overflowY = 'hidden';
@@ -158,6 +157,11 @@ const Profile = (props) => {
         }
       });
     }, 50);
+  };
+
+  const handleGetIntroClick = () => {
+    setShowModal(true);
+    ModalAccessibility();
   };
 
   const modalStyle = {
