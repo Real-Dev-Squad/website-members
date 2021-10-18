@@ -5,7 +5,10 @@ import { userContext } from '@store/user/user-context';
 import Spinner from '@components/UI/spinner';
 import classNames from './member-role-update.module.scss';
 import { fetch } from '../../helper-functions/fetch';
-import { getAddMemberRoleURL } from '../../helper-functions/urls';
+import {
+  getAddMemberRoleURL,
+  getArchiveMemberUrl,
+} from '../../helper-functions/urls';
 
 const MemberRoleUpdate = () => {
   const {
@@ -36,6 +39,25 @@ const MemberRoleUpdate = () => {
       setUpdateStatus('Some error occured, please contact admin');
     }
   };
+  const archiveMember = async (user) => {
+    setIsUpdating(true);
+    const { status } = await fetch(
+      getArchiveMemberUrl(user),
+      'patch',
+      null,
+      null,
+      null,
+      {
+        withCredentials: true,
+      }
+    );
+    setIsUpdating(false);
+    if (status === 204) {
+      setUpdateStatus('User archived!');
+    } else {
+      setUpdateStatus('Some error occured, please contact admin');
+    }
+  };
 
   const renderPromoteButton = () => {
     return (
@@ -46,6 +68,14 @@ const MemberRoleUpdate = () => {
           onClick={() => promoteToMember(selectedMember)}
         >
           Promote to Member
+        </button>
+
+        <button
+          className={classNames.moveToMember}
+          type="button"
+          onClick={() => archiveMember(selectedMember)}
+        >
+          Archive Member
         </button>
         <br />
         <p>{updateStatus}</p>
