@@ -2,6 +2,11 @@ const baseURL = `https://api.realdevsquad.com`;
 const imgBaseURL = `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main`;
 const getMembersURL = `${baseURL}/members`;
 const cloudinaryImageUrl = `https://res.cloudinary.com/realdevsquad/image/upload`;
+const walletURL = `${baseURL}/wallet`;
+const CURRENCIES = {
+  NEELAM: 'neelam',
+  DINERO: 'dinero',
+};
 
 /**
  *
@@ -42,4 +47,6 @@ export {
   getMembersURL,
   getCloudinaryImgURL,
   getActiveTasksURL,
+  walletURL,
+  CURRENCIES,
 };

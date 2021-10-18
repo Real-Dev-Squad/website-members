@@ -10,6 +10,7 @@ import Modal from '@components/UI/modal';
 import ShowSkills from '@components/member-card/show-skills';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
+import ShowWallet from '@components/member-card/show-wallet';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -324,6 +325,7 @@ const Profile = (props) => {
             {devUser && (
               <div>
                 <ShowSkills show />
+                <ShowWallet show />
                 <div>
                   <button
                     type="button"

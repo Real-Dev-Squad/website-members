@@ -82,6 +82,49 @@
   font-size: 0.88rem;
 }
 
+.walletContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 2px;
+  width: 150px;
+  height: 70px;
+  padding: 10px 5px 2px;
+  margin-bottom: 8px;
+  margin-left: 6px;
+  background-color: #eeeeee;
+
+  .coinData {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .coinData > p {
+    height: 2px;
+  }
+
+  .coinType {
+    font-size: 0.75rem;
+    font-weight: 500;
+    transform: translateY(-25px);
+    margin-right: 8px;
+  }
+
+  .balance {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .coin {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: rgb(0, 0, 0) 3px 3px 3px;
+    border: 1px solid green;
+  }
+}
+
 @media only screen and (min-width: 1024px) {
   .showMemberSkills {
     justify-content: flex-start;
