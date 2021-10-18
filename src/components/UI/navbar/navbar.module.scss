@@ -1,3 +1,7 @@
+.infoNavbar nav {
+  display: flex;
+  justify-content: space-between;
+}
 .infoNavbar nav ul {
   list-style-type: none;
   margin: 0;
@@ -22,6 +26,9 @@
 }
 .infoNavbar nav {
   background: #1d1283;
+}
+.infoNavbar nav .darkTheme {
+  padding: 14px 16px;
 }
 .DrawerToggle {
   position: relative;
