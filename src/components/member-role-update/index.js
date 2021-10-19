@@ -4,8 +4,7 @@ import Modal from '@components/UI/modal/index';
 import { userContext } from '@store/user/user-context';
 import Spinner from '@components/UI/spinner';
 import classNames from './member-role-update.module.scss';
-import { fetch } from '../../helper-functions/fetch';
-import { getAddMemberRoleURL } from '../../helper-functions/urls';
+import { moveToMember } from '../../helper-functions/action-handlers';
 
 const MemberRoleUpdate = () => {
   const {
@@ -19,16 +18,7 @@ const MemberRoleUpdate = () => {
 
   const promoteToMember = async (user) => {
     setIsUpdating(true);
-    const { status } = await fetch(
-      getAddMemberRoleURL(user),
-      'patch',
-      null,
-      null,
-      null,
-      {
-        withCredentials: true,
-      }
-    );
+    const { status } = await moveToMember(user);
     setIsUpdating(false);
     if (status === 204) {
       setUpdateStatus('User moved to member');

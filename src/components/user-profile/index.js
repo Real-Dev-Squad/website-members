@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { userContext } from '@store/user/user-context';
 import classNames from '@components/user-profile/user-profile.module.scss';
-import { getUserProfileSelf } from '../../helper-functions/urls';
-import { fetch } from '../../helper-functions/fetch';
+import { getUserSelf } from '../../helper-functions/action-handlers';
 
 const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,24 +15,15 @@ const UserProfile = () => {
   } = userContext();
 
   useEffect(() => {
-    async function getUSerProfile() {
-      const { data } = await fetch(
-        getUserProfileSelf,
-        'get',
-        null,
-        null,
-        null,
-        {
-          withCredentials: true,
-        }
-      );
+    async function getUserProfile() {
+      const { data } = await getUserSelf();
       setIsLoading(false);
       setUser(data);
       if (data) {
         setIsSuperUser(data.roles.super_user);
       }
     }
-    getUSerProfile();
+    getUserProfile();
   }, [setUser, setIsSuperUser]);
 
   const showSuperUserOptions = () => {

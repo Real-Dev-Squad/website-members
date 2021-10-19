@@ -11,7 +11,7 @@ const SuperUserOptions = ({ username }) => {
     setSelectedMember,
   } = userContext();
 
-  const showModel = (e) => {
+  const showModal = (e) => {
     e.preventDefault();
     setShowMemberRoleUpdateModal(!showMemberRoleUpdateModal);
     setSelectedMember(username);
@@ -23,7 +23,7 @@ const SuperUserOptions = ({ username }) => {
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <div
           className={classNames.settingsButton}
-          onClick={showModel}
+          onClick={showModal}
           role="button"
           tabIndex="0"
         >
