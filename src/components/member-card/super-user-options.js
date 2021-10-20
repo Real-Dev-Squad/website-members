@@ -17,27 +17,25 @@ const SuperUserOptions = ({ username }) => {
     setSelectedMember(username);
   };
 
-  const shoeSuperUserOptions = () => {
+  const showSuperUserOptions = () => {
     return (
       <div className={classNames.settingsContainer}>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-        <div
+        <button
           className={classNames.settingsButton}
+          type="button"
           onClick={showModal}
-          role="button"
-          tabIndex="0"
         >
           <img
             className={classNames.settingsIcon}
             src="/icons/settings.png"
             alt="setting"
           />
-        </div>
+        </button>
       </div>
     );
   };
 
-  return <>{isSuperUserMode && shoeSuperUserOptions()}</>;
+  return <>{isSuperUserMode && showSuperUserOptions()}</>;
 };
 
 SuperUserOptions.propTypes = {
