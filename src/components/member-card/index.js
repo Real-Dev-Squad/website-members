@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import { useRouter } from 'next/router';
 import classNames from '@components/member-card/card.module.scss';
@@ -6,6 +5,7 @@ import { motion } from 'framer-motion';
 import SocialMediaIcon from '@components/social-media-icon';
 import PropTypes from 'prop-types';
 import ShowSkills from '@components/member-card/show-skills';
+import SuperUserOptions from '@components/member-card/super-user-options';
 
 const Card = ({ developerInfo }) => {
   const { query } = useRouter() || { query: { dev: false } };
@@ -28,6 +28,7 @@ const Card = ({ developerInfo }) => {
 
   return (
     <div>
+      {!isMember && dev && <SuperUserOptions username={username} />}
       <motion.img
         layoutId={username}
         src={`${img_url}?${Math.random() * 100}`}

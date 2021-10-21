@@ -30,8 +30,8 @@ const fetch = async (
     });
     return response;
   } catch (err) {
-    console.log('Something went wrong. Please contact admin', err);
-    throw err;
+    console.error('Something went wrong. Please contact admin', err);
+    return err;
   }
 };
 
