@@ -91,10 +91,12 @@
   top: 0;
   right: 0;
   cursor: pointer;
+  border: none;
+  background: none;
 }
 
-.settingsImg {
-  width: 16px;
+.settingsIcon {
+  width: 1rem;
 }
 
 @media only screen and (min-width: 1024px) {

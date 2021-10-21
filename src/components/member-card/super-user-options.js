@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import classNames from '@components/member-card/card.module.scss';
 import PropTypes from 'prop-types';
@@ -13,29 +11,31 @@ const SuperUserOptions = ({ username }) => {
     setSelectedMember,
   } = userContext();
 
-  const shoeSuperUserOptions = () => {
+  const showModal = (e) => {
+    e.preventDefault();
+    setShowMemberRoleUpdateModal(!showMemberRoleUpdateModal);
+    setSelectedMember(username);
+  };
+
+  const showSuperUserOptions = () => {
     return (
       <div className={classNames.settingsContainer}>
-        <div
-          role="button"
+        <button
           className={classNames.settingsButton}
-          onClick={(e) => {
-            e.preventDefault();
-            setShowMemberRoleUpdateModal(!showMemberRoleUpdateModal);
-            setSelectedMember(username);
-          }}
+          type="button"
+          onClick={showModal}
         >
           <img
-            className={classNames.settingsImg}
+            className={classNames.settingsIcon}
             src="/icons/settings.png"
             alt="setting"
           />
-        </div>
+        </button>
       </div>
     );
   };
 
-  return <>{isSuperUserMode && shoeSuperUserOptions()}</>;
+  return <>{isSuperUserMode && showSuperUserOptions()}</>;
 };
 
 SuperUserOptions.propTypes = {

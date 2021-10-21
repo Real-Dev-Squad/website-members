@@ -7,7 +7,7 @@ import MemberRoleUpdate from '@components/member-role-update';
 import { userContext } from '@store/user/user-context';
 
 const HomePage = () => {
-  const { showMemberRoleUpdateModal } = userContext();
+  const { showMemberRoleUpdateModal, isSuperUserMode } = userContext();
 
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
@@ -21,9 +21,11 @@ const HomePage = () => {
         alt="real-dev squad"
       />
       <h1 className={classNames.heading}>Real Dev Squad Members</h1>
-      <div id="memberRoleUpdateModal">
-        {showMemberRoleUpdateModal && <MemberRoleUpdate />}
-      </div>
+      {isSuperUserMode && (
+        <div id="memberRoleUpdateModal">
+          {showMemberRoleUpdateModal && <MemberRoleUpdate />}
+        </div>
+      )}
       <MemberList />
       <h1 className={classNames.heading}>New Members</h1>
       <NewMemberList />
