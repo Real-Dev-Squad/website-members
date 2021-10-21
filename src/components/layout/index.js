@@ -1,37 +1,25 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from '@components/footer';
 import Navbar from '@components/UI/navbar';
 import SideDrawer from '@components/UI/side-drawer';
 import GlobalStyles from '@components/Dark-Theme/globalStyles';
 import { ThemeProvider } from 'styled-components';
+import { useDarkMode } from '@custom-hooks/useDarkMode';
 import { lightTheme, darkTheme } from '@/components/Dark-Theme/Themes';
 
 const Layout = ({ children, title, description }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
-  const [theme, setTheme] = useState('light');
-  const setMode = (mode) => {
-    window.localStorage.setItem('theme', mode);
-    setTheme(mode);
-  };
-
-  const themeToggler = () => {
-    const toggle = theme === 'light' ? setMode('dark') : setMode('light');
-    return toggle;
-  };
+  const [theme, setTheme] = useDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   const sideDrawerToggleHandler = () => {
     setShowSideDrawer((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme');
-    setTheme(localTheme);
-  }, [theme]);
-
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyles />
         <div>
@@ -46,7 +34,7 @@ const Layout = ({ children, title, description }) => {
           <Navbar
             drawerToggleClicked={sideDrawerToggleHandler}
             theme={theme}
-            themeToggler={themeToggler}
+            themeToggler={setTheme}
           />
           <SideDrawer open={showSideDrawer} close={sideDrawerToggleHandler} />
           <div className="container">

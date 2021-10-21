@@ -4,12 +4,13 @@
   flex-direction: column;
   margin: 20px;
   border: 1px solid #413f3f;
+  border-color: var(--cardbBorderColor);
   padding: 20px 10px;
-  background: white;
+  background: var(--cardBackground);
   cursor: pointer;
   max-width: 270px;
   //addition of box-shadow and border radius to member card
-  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+  box-shadow: var(--cardBoxShadow);
   border-radius: 5%;
   transition: 0.38s box-shadow ease-out;
   &:hover {

@@ -14,7 +14,7 @@
   align-items: space-between;
 }
 .leftSection .featureTitle {
-  color: #041187;
+  color: var(--linkColor);
   padding: 4px 0;
   font-weight: 400;
 }
@@ -71,7 +71,7 @@
   height: 40px;
 }
 .userIcon span {
-  color: black;
+  color: var(--text);
   padding: 0px 8px;
 }
 .tags {
