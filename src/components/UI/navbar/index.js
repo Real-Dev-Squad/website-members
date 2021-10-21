@@ -29,9 +29,6 @@ const Navbar = ({ drawerToggleClicked }) => {
             </a>
           </li>
           <li>
-            <a href="https://www.realdevsquad.com/">Home</a>
-          </li>
-          <li>
             <a href="https://welcome.realdevsquad.com/">Welcome</a>
           </li>
           <li>
@@ -47,6 +44,9 @@ const Navbar = ({ drawerToggleClicked }) => {
           </li>
           <li>
             <a href="https://crypto.realdevsquad.com/">Crypto</a>
+          </li>
+          <li>
+            <a href="https://status.realdevsquad.com/">Status</a>
           </li>
         </ul>
       </nav>
