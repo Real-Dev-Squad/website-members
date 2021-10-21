@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import classNames from '@components/UI/navbar/navbar.module.scss';
 
@@ -17,6 +18,16 @@ const Navbar = ({ drawerToggleClicked }) => {
           <span />
         </div>
         <ul>
+          <li>
+            <a href="https://realdevsquad.com">
+              <Image
+                width="45px"
+                height="45px"
+                src="/images/Real-Dev-Squad@1x.png"
+                alt="real-dev squad"
+              />
+            </a>
+          </li>
           <li>
             <a href="https://www.realdevsquad.com/">Home</a>
           </li>
