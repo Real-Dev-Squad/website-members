@@ -14,23 +14,18 @@ import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
 import { useEffect, useState } from 'react';
 
-const MemberProfile = ({
-  imageLink,
-  user,
-  contributions,
-  tasks,
-  errorMessage,
-}) => {
-  const [activeTasksData, setActiveTasksData] = useState([tasks]);
+const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
+  const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
-    (async () => {
+    const fetchActiveTasks = async () => {
       const tasksURL = getActiveTasksURL(id);
       const tasksResponse = await fetch(tasksURL);
-      const { taskResponse } = await tasksResponse.data;
-      setActiveTasksData(taskResponse);
-    })();
+      const { tasks } = await tasksResponse.data;
+      setActiveTasksData(tasks);
+    };
+    fetchActiveTasks();
   }, []);
 
   if (errorMessage) {
@@ -90,7 +85,6 @@ MemberProfile.propTypes = {
     noteworthy: PropTypes.instanceOf(Array),
     all: PropTypes.instanceOf(Array),
   }),
-  tasks: PropTypes.instanceOf(Array),
   errorMessage: PropTypes.string,
 };
 
@@ -101,7 +95,6 @@ MemberProfile.defaultProps = {
     noteworthy: [],
     all: [],
   },
-  tasks: [],
   errorMessage: '',
 };
 
