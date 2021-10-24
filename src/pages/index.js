@@ -64,7 +64,10 @@ export async function getServerSideProps(context) {
     membersArr.sort((a, b) => (a.first_name > b.first_name ? 1 : -1));
 
     const newMembersArr = membersArray.filter(
-      (person) => !person.isMember && person.first_name !== undefined
+      (person) =>
+        !person.isMember &&
+        person.first_name !== undefined &&
+        !person.archived_member
     );
     newMembersArr.sort((a, b) =>
       a.first_name.toUpperCase() > b.first_name.toUpperCase() ? 1 : -1
