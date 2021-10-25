@@ -10,7 +10,7 @@ import HomePage from '@components/pages';
 import Layout from '@components/layout';
 import NotFound from '@components/not-found-page';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
-import { CROP_FACE_W250 } from '@constants/profile-image';
+import { MAX_WIDTH } from '@constants/profile-image';
 import { SET_ERRORS, SET_MEMBERS } from '@constants/AppConstants';
 import { membersContext } from '@store/members/members-context';
 import { useEffect } from 'react';
@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
     for (const memberData of members) {
       const img_url =
         !!dev && memberData.picture
-          ? getCloudinaryImgURL(memberData.picture.publicId, CROP_FACE_W250)
+          ? getCloudinaryImgURL(memberData.picture.publicId, MAX_WIDTH)
           : getImgURL(memberData.username, 'img.png');
       membersArray.push({
         ...memberData,
