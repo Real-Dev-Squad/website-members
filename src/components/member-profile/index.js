@@ -10,6 +10,7 @@ import Modal from '@components/UI/modal';
 import ShowSkills from '@components/member-card/show-skills';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
+import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -123,8 +124,6 @@ const Profile = (props) => {
       modalContent.current?.querySelectorAll('form input')[0].focus();
       document.querySelector('body').style.overflowY = 'hidden';
       modalContent.current?.addEventListener('keydown', (e) => {
-        const KEY_TAB = 9;
-        const KEY_ESC = 27;
         function handleBackwardTab() {
           if (
             document.activeElement ===
@@ -354,7 +353,7 @@ const Profile = (props) => {
           {children}
         </Modal>
       )}
-      <div className={classNames.container} id="mainContent">
+      <div className={classNames.container}>
         <div className={(classNames.sidebar, classNames.column)}>
           <div className={classNames.memberDetails}>
             <motion.img
