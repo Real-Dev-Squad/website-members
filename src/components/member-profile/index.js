@@ -302,7 +302,7 @@ const Profile = (props) => {
         <div className={classNames.memberDetails}>
           <motion.img
             layoutId={username}
-            src={imageLink}
+            src={imageLink.profile}
             className={classNames.profilePic}
             alt="ProfilePicture"
           />
@@ -353,7 +353,7 @@ const Profile = (props) => {
           {renderContributionsTypes(
             contributions,
             fullName,
-            imageLink,
+            imageLink.contributions,
             devUser,
             tasks
           )}
@@ -364,7 +364,10 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-  imageLink: PropTypes.string,
+  imageLink: PropTypes.shape({
+    profile: PropTypes.string,
+    contributions: PropTypes.string,
+  }),
   membersData: PropTypes.shape({
     username: PropTypes.string,
     first_name: PropTypes.string,
@@ -381,7 +384,10 @@ Profile.propTypes = {
 };
 
 Profile.defaultProps = {
-  imageLink: '',
+  imageLink: {
+    profile: '',
+    contributions: '',
+  },
   membersData: {
     username: '',
     first_name: '',
