@@ -13,7 +13,12 @@ import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
-import { MAX_WIDTH } from '@constants/profile-image';
+import {
+  WIDTH_200PX,
+  WIDTH_40PX,
+  HEIGHT_200PX,
+  HEIGHT_40PX,
+} from '@constants/profile-image';
 import { useEffect, useState } from 'react';
 
 const MemberProfile = ({
@@ -77,10 +82,22 @@ export async function getServerSideProps(context) {
 
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
-    const imageLink =
-      !!dev && user.picture
-        ? getCloudinaryImgURL(user.picture.publicId, MAX_WIDTH)
-        : getImgURL(user.username, 'img.png');
+    const imageLink = {
+      profile:
+        !!dev && user.picture
+          ? getCloudinaryImgURL(
+              user.picture.publicId,
+              `${WIDTH_200PX},${HEIGHT_200PX}`
+            )
+          : getImgURL(user.username, 'img.png'),
+      contributions:
+        !!dev && user.picture
+          ? getCloudinaryImgURL(
+              user.picture.publicId,
+              `${WIDTH_40PX},${HEIGHT_40PX}`
+            )
+          : getImgURL(user.username, 'img.png'),
+    };
     return { props: { imageLink, user, contributions } };
   } catch (e) {
     return { props: { errorMessage: e.message } };
@@ -88,7 +105,10 @@ export async function getServerSideProps(context) {
 }
 
 MemberProfile.propTypes = {
-  imageLink: PropTypes.string,
+  imageLink: PropTypes.shape({
+    profile: PropTypes.string,
+    contributions: PropTypes.string,
+  }),
   user: PropTypes.instanceOf(Object),
   contributions: PropTypes.shape({
     noteworthy: PropTypes.instanceOf(Array),
@@ -99,7 +119,10 @@ MemberProfile.propTypes = {
 };
 
 MemberProfile.defaultProps = {
-  imageLink: '',
+  imageLink: {
+    profile: '',
+    contributions: '',
+  },
   user: {},
   contributions: {
     noteworthy: [],
