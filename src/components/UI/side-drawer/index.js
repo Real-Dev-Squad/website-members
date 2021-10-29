@@ -27,8 +27,8 @@ const SideDrawer = ({ open, close }) => {
             {/* <div>Real Dev Squad</div> */}
             <a className={classNames.logo} href="https://realdevsquad.com">
               <Image
-                width="150px"
-                height="150px"
+                width="110px"
+                height="110px"
                 src="/images/Real-Dev-Squad@1x.png"
                 alt="real-dev squad"
               />
