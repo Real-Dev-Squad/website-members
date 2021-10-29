@@ -23,8 +23,6 @@ const SideDrawer = ({ open, close }) => {
             >
               &#9747;
             </span>
-
-            
             <a className={classNames.logo} href="https://realdevsquad.com">
               <Image
                 width="110px"
