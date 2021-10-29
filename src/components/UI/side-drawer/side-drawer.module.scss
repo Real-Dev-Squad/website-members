@@ -16,7 +16,13 @@
   text-align: center;
   padding-top: 20px;
   color: #1d1283;
+  display: flex;
+  flex-direction: row-reverse;
 }
+.logo {
+  margin-right: 25px;
+}
+
 .saltire {
   font-size: 18px;
   font-weight: bolder;
