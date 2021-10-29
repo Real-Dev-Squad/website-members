@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from '@components/UI/side-drawer/side-drawer.module.scss';
 import Backdrop from '@components/UI/backdrop/';
+import Image from 'next/image';
 
 const SideDrawer = ({ open, close }) => {
   let attachedClasses = [classNames.SideDrawer, classNames.Close];
@@ -22,7 +23,16 @@ const SideDrawer = ({ open, close }) => {
             >
               &#9747;
             </span>
-            Real Dev Squad
+
+            {/* <div>Real Dev Squad</div> */}
+            <a className={classNames.logo} href="https://realdevsquad.com">
+              <Image
+                width="150px"
+                height="150px"
+                src="/images/Real-Dev-Squad@1x.png"
+                alt="real-dev squad"
+              />
+            </a>
           </h2>
         </div>
         <nav>
@@ -47,13 +57,15 @@ const SideDrawer = ({ open, close }) => {
             <li>
               <a href="https://crypto.realdevsquad.com/">Crypto</a>
             </li>
+            <li>
+              <a href="https://status.realdevsquad.com/">Status</a>
+            </li>
           </ul>
         </nav>
       </div>
     </div>
   );
 };
-
 SideDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
