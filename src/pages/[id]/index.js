@@ -79,24 +79,16 @@ export async function getServerSideProps(context) {
       );
     }
     const { user } = await res.data;
-
+    const getImageLink = (transformString) => {
+      return !!dev && user.picture
+        ? getCloudinaryImgURL(user.picture.publicId, transformString)
+        : getImgURL(user.username, 'img.png');
+    };
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
     const imageLink = {
-      profile:
-        !!dev && user.picture
-          ? getCloudinaryImgURL(
-              user.picture.publicId,
-              `${WIDTH_200PX},${HEIGHT_200PX}`
-            )
-          : getImgURL(user.username, 'img.png'),
-      contributions:
-        !!dev && user.picture
-          ? getCloudinaryImgURL(
-              user.picture.publicId,
-              `${WIDTH_40PX},${HEIGHT_40PX}`
-            )
-          : getImgURL(user.username, 'img.png'),
+      w_200: getImageLink(`${WIDTH_200PX},${HEIGHT_200PX}`),
+      w_40: getImageLink(`${WIDTH_40PX},${HEIGHT_40PX}`),
     };
     return { props: { imageLink, user, contributions } };
   } catch (e) {
@@ -106,8 +98,8 @@ export async function getServerSideProps(context) {
 
 MemberProfile.propTypes = {
   imageLink: PropTypes.shape({
-    profile: PropTypes.string,
-    contributions: PropTypes.string,
+    w_200: PropTypes.string,
+    w_40: PropTypes.string,
   }),
   user: PropTypes.instanceOf(Object),
   contributions: PropTypes.shape({
@@ -120,8 +112,8 @@ MemberProfile.propTypes = {
 
 MemberProfile.defaultProps = {
   imageLink: {
-    profile: '',
-    contributions: '',
+    w_200: '',
+    w_40: '',
   },
   user: {},
   contributions: {
