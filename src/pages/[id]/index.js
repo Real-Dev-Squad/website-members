@@ -13,7 +13,7 @@ import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
-import { CROP_FACE_W250 } from '@constants/profile-image';
+import { MAX_WIDTH } from '@constants/profile-image';
 import { useEffect, useState } from 'react';
 
 const MemberProfile = ({
@@ -79,7 +79,7 @@ export async function getServerSideProps(context) {
     const contributions = await contributionsResponse.data;
     const imageLink =
       !!dev && user.picture
-        ? getCloudinaryImgURL(user.picture.publicId, CROP_FACE_W250)
+        ? getCloudinaryImgURL(user.picture.publicId, MAX_WIDTH)
         : getImgURL(user.username, 'img.png');
     return { props: { imageLink, user, contributions } };
   } catch (e) {
