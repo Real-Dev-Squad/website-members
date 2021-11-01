@@ -2,7 +2,7 @@ import { fetch } from './fetch';
 import {
   getAddMemberRoleURL,
   getUserProfileSelf,
-  getArchiveMemberUrl,
+  getArchiveMemberURL,
 } from './urls';
 
 const moveToMember = (user) =>
@@ -16,7 +16,7 @@ const getUserSelf = () =>
   });
 
 const archiveMember = (user) =>
-  fetch(getArchiveMemberUrl(user), 'patch', null, null, null, {
+  fetch(getArchiveMemberURL(user), 'patch', null, null, null, {
     withCredentials: true,
   });
 

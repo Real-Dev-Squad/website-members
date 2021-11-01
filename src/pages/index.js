@@ -67,7 +67,7 @@ export async function getServerSideProps(context) {
       (person) =>
         !person.isMember &&
         person.first_name !== undefined &&
-        !person.archived_member
+        !person.archivedMember
     );
     newMembersArr.sort((a, b) =>
       a.first_name.toUpperCase() > b.first_name.toUpperCase() ? 1 : -1
