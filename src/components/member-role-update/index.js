@@ -26,6 +26,16 @@ const MemberRoleUpdate = () => {
       setUpdateStatus('Some error occured, please contact admin');
     }
   };
+  const archiveMember = async (user) => {
+    setIsUpdating(true);
+    const { status } = await archiveMember(user);
+    setIsUpdating(false);
+    if (status === 204) {
+      setUpdateStatus('User archived!');
+    } else {
+      setUpdateStatus('Some error occured, please contact admin');
+    }
+  };
 
   const renderPromoteButton = () => {
     return (
@@ -36,6 +46,14 @@ const MemberRoleUpdate = () => {
           onClick={() => promoteToMember(selectedMember)}
         >
           Promote to Member
+        </button>
+
+        <button
+          className={classNames.moveToMember}
+          type="button"
+          onClick={() => archiveMember(selectedMember)}
+        >
+          Archive Member
         </button>
         <br />
         <p>{updateStatus}</p>
