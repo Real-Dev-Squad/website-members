@@ -1,3 +1,21 @@
+.descriptionDivStyle {
+  background-color: rgb(0, 0, 0, 0.5);
+  position: absolute;
+  display: none;
+  color: white;
+  flex: 1 250px;
+  flex-direction: column;
+  border: none;
+  border-radius: 5%;
+  margin-top: -1.3rem;
+  margin-left: -0.65rem;
+  padding: 2rem;
+}
+
+.pstyle {
+  margin: 0.5rem;
+}
+
 .container {
   flex: 1 250px;
   display: flex;
