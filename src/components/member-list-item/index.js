@@ -18,11 +18,9 @@ const PreviewMember = ({ memberDetails }) => {
   const { dev } = query;
 
   let timer = 0;
-  console.log(TIMEOUT);
 
   const mouseEnter = () => {
     timer = setTimeout(() => {
-      console.log('in');
       divref.current.style.display = 'flex';
       divref.current.style.height = `${cardRef.current.offsetHeight}px`;
       divref.current.style.width = `${cardRef.current.offsetWidth}px`;
@@ -30,7 +28,6 @@ const PreviewMember = ({ memberDetails }) => {
   };
 
   const mouseLeave = () => {
-    console.log('out');
     divref.current.style.display = 'none';
     clearTimeout(timer);
   };
