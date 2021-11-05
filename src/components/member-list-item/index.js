@@ -2,8 +2,13 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Card from '@components/member-card';
-import { container } from '@components/member-card/card.module.scss';
+import {
+  container,
+  descriptionDivStyle,
+  pstyle,
+} from '@components/member-card/card.module.scss';
 import { useRouter } from 'next/router';
+import { TIMEOUT } from '@constants/AppConstants';
 
 const PreviewMember = ({ memberDetails }) => {
   const { username, first_name, last_name } = memberDetails;
@@ -11,39 +16,24 @@ const PreviewMember = ({ memberDetails }) => {
   const cardRef = useRef(null);
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
-  const descriptionDivStyle = {
-    backgroundColor: 'rgb(0, 0, 0, 0.5)',
-    position: 'absolute',
-    display: 'none',
-    color: 'white',
-    flex: '1 250px',
-    flexDirection: 'column',
-    border: 'none',
-    borderRadius: '5%',
-    marginTop: '-1.3rem',
-    marginLeft: '-0.65rem',
-    padding: '2rem',
-  };
-
-  const pstyle = {
-    margin: '0.5rem',
-  };
 
   let timer = 0;
-  const TIMEOUT = 3000;
+  console.log(TIMEOUT);
 
-  function mouseEnter() {
+  const mouseEnter = () => {
     timer = setTimeout(() => {
+      console.log('in');
       divref.current.style.display = 'flex';
       divref.current.style.height = `${cardRef.current.offsetHeight}px`;
       divref.current.style.width = `${cardRef.current.offsetWidth}px`;
     }, TIMEOUT);
-  }
+  };
 
-  function mouseLeave() {
+  const mouseLeave = () => {
+    console.log('out');
     divref.current.style.display = 'none';
     clearTimeout(timer);
-  }
+  };
   return (
     <Link
       prefetch={false}
@@ -65,13 +55,16 @@ const PreviewMember = ({ memberDetails }) => {
       >
         <Card developerInfo={memberDetails} />
         {dev && (
-          <div ref={divref} style={descriptionDivStyle}>
-            <p style={pstyle}>Company: {memberDetails?.company || 'nil'}</p>
-            <p style={pstyle}>
-              Designation: {memberDetails?.deesignation || 'nil'}
+          <div ref={divref} className={descriptionDivStyle}>
+            <p className={pstyle}>Company: {memberDetails?.company || 'NA'}</p>
+            <p className={pstyle}>
+              Designation: {memberDetails?.deesignation || 'NA'}
             </p>
-            <p style={pstyle}>
-              Years Of Experience: {memberDetails?.yoe || 'Not Experienced'}
+            <p className={pstyle}>
+              Years Of Experience:{' '}
+              {memberDetails?.yoe || memberDetails.yoe === 0
+                ? 'Just Starting Out'
+                : memberDetails.yoe}
             </p>
           </div>
         )}
