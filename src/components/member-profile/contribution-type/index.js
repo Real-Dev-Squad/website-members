@@ -17,9 +17,12 @@ const renderContributions = (contributions, fullName, imageLink, devUser) =>
   ));
 
 const renderActiveTasks = (tasks) => {
-  return tasks.map((task, index) => {
-    return <ActiveTask key={index} taskDetails={task} />;
-  });
+  return (
+    tasks &&
+    tasks.map((task, index) => {
+      return <ActiveTask key={index} taskDetails={task} />;
+    })
+  );
 };
 
 const ContributionType = (props) => {
