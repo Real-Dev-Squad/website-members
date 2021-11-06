@@ -3,6 +3,14 @@ import React from 'react';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import classNames from '@components/UI/navbar/navbar.module.scss';
+import {
+  HOST_NAME,
+  WELCOME_LINK,
+  EVENTS_LINK,
+  MEMBERS_LINK,
+  CRYPTO_LINK,
+  STATUS_LINK,
+} from '@constants/AppConstants';
 
 const Navbar = ({ drawerToggleClicked }) => {
   return (
@@ -19,7 +27,7 @@ const Navbar = ({ drawerToggleClicked }) => {
         </div>
         <ul>
           <li>
-            <a href="https://realdevsquad.com">
+            <a href={HOST_NAME}>
               <Image
                 width="45px"
                 height="45px"
@@ -29,24 +37,21 @@ const Navbar = ({ drawerToggleClicked }) => {
             </a>
           </li>
           <li>
-            <a href="https://welcome.realdevsquad.com/">Welcome</a>
+            <a href={WELCOME_LINK}>Welcome</a>
           </li>
           <li>
-            <a href="https://www.realdevsquad.com/events.html">Events</a>
+            <a href={EVENTS_LINK}>Events</a>
           </li>
           <li>
-            <a
-              href="https://members.realdevsquad.com/"
-              style={{ color: '#87D870' }}
-            >
+            <a href={MEMBERS_LINK} style={{ color: '#87D870' }}>
               Members
             </a>
           </li>
           <li>
-            <a href="https://crypto.realdevsquad.com/">Crypto</a>
+            <a href={CRYPTO_LINK}>Crypto</a>
           </li>
           <li>
-            <a href="https://status.realdevsquad.com/">Status</a>
+            <a href={STATUS_LINK}>Status</a>
           </li>
         </ul>
       </nav>
