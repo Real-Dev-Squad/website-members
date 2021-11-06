@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 import classNames from '@components/UI/side-drawer/side-drawer.module.scss';
 import Backdrop from '@components/UI/backdrop/';
+import {
+  HOST_NAME,
+  WELCOME_LINK,
+  EVENTS_LINK,
+  MEMBERS_LINK,
+  CRYPTO_LINK,
+  STATUS_LINK,
+} from '@constants/AppConstants';
 import Image from 'next/image';
 
 const SideDrawer = ({ open, close }) => {
@@ -23,7 +31,7 @@ const SideDrawer = ({ open, close }) => {
             >
               &#9747;
             </span>
-            <a className={classNames.logo} href="https://realdevsquad.com">
+            <a className={classNames.logo} href={HOST_NAME}>
               <Image
                 width="110px"
                 height="110px"
@@ -36,27 +44,24 @@ const SideDrawer = ({ open, close }) => {
         <nav>
           <ul>
             <li>
-              <a href="https://www.realdevsquad.com/">Home</a>
+              <a href={HOST_NAME}>Home</a>
             </li>
             <li>
-              <a href="https://welcome.realdevsquad.com/">Welcome</a>
+              <a href={WELCOME_LINK}>Welcome</a>
             </li>
             <li>
-              <a href="https://www.realdevsquad.com/events.html">Events</a>
+              <a href={EVENTS_LINK}>Events</a>
             </li>
             <li>
-              <a
-                href="https://members.realdevsquad.com/"
-                style={{ color: '#87D870' }}
-              >
+              <a href={MEMBERS_LINK} style={{ color: '#87D870' }}>
                 Members
               </a>
             </li>
             <li>
-              <a href="https://crypto.realdevsquad.com/">Crypto</a>
+              <a href={CRYPTO_LINK}>Crypto</a>
             </li>
             <li>
-              <a href="https://status.realdevsquad.com/">Status</a>
+              <a href={STATUS_LINK}>Status</a>
             </li>
           </ul>
         </nav>
