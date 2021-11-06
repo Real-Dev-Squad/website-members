@@ -49,12 +49,12 @@ const ShowWallet = ({ show }) => {
     <div className={show ? classNames.showMemberSkills : classNames.showSkills}>
       {!isError && isLoading ? (
         <p>Loading...</p>
-      ) : isError ? (
-        <p>Error Loading Wallet...</p>
-      ) : (
+      ) : currencies && !isError ? (
         currencies.map((coin) => (
           <Currency coin={coin.name} balance={coin.balance} key={coin.name} />
         ))
+      ) : (
+        <p>Error Loading Wallet...</p>
       )}
     </div>
   );
