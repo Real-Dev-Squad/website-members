@@ -32,7 +32,7 @@ const Navbar = ({ drawerToggleClicked }) => {
                 width="45px"
                 height="45px"
                 src="/images/Real-Dev-Squad@1x.png"
-                alt="real-dev squad"
+                alt="real-dev-squad"
               />
             </a>
           </li>
