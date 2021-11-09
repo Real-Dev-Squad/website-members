@@ -8,6 +8,8 @@ const GlobalStyles = createGlobalStyle`
   --cardBoxShadow: ${({ theme }) => theme.cardBoxShadow};
   --prLink: ${({ theme }) => theme.prLink};
   --text: ${({ theme }) => theme.text};
+  --modalBackground: ${({ theme }) => theme.modalBackground};
+  --modalHeader: ${({ theme }) => theme.modalHeader};
 }
   body {
     background: ${({ theme }) => theme.body};
