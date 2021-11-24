@@ -111,14 +111,13 @@
   color: #fff;
   border-radius: 0.5rem;
   transition-duration: 0.4s;
-  border: #1d1283;
+  border: 0.069rem solid #1d1283;
+  cursor: pointer;
 }
 
 .getIntroButton:hover {
   background-color: #fff;
   color: #1d1283;
-  border-radius: 0.5rem;
-  border: 0.069rem solid #1d1283;
 }
 
 .workDetails {
