@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '@components/social-media-icon';
 import getBadges from '@components/member-profile/mock/get-badges';
@@ -10,6 +10,7 @@ import Modal from '@components/UI/modal';
 import ShowSkills from '@components/member-card/show-skills';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
+import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -75,6 +76,9 @@ const Profile = (props) => {
 
   const [showModal, setShowModal] = useState(false);
   const { register, handleSubmit, errors } = useForm();
+  const submitBtnRef = useRef(null);
+  const modalContent = useRef(null);
+  const introBtn = useRef(null);
 
   const getMembersIntroURL = (RDSID) =>
     `https://api.realdevsquad.com/members/intro/${RDSID}`;
@@ -107,6 +111,58 @@ const Profile = (props) => {
       });
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    setTimeout(function () {
+      introBtn.current.focus();
+      document.querySelector('body').style.overflowY = 'auto';
+    }, 50);
+  };
+
+  const ModalAccessibility = () => {
+    setTimeout(function () {
+      modalContent.current?.querySelectorAll('form input')[0].focus();
+      document.querySelector('body').style.overflowY = 'hidden';
+      modalContent.current?.addEventListener('keydown', (e) => {
+        function handleBackwardTab() {
+          if (
+            document.activeElement ===
+            modalContent.current?.querySelectorAll('form input')[0]
+          ) {
+            e.preventDefault();
+            submitBtnRef.current?.focus();
+          }
+        }
+        function handleForwardTab() {
+          if (document.activeElement === submitBtnRef.current) {
+            e.preventDefault();
+            modalContent.current?.querySelectorAll('form input')[0].focus();
+          }
+        }
+
+        switch (e.keyCode) {
+          case KEY_TAB:
+            if (e.shiftKey) {
+              handleBackwardTab();
+            } else {
+              handleForwardTab();
+            }
+            break;
+          case KEY_ESC:
+            closeModal();
+            break;
+          default:
+            break;
+        }
+      });
+    }, 50);
+  };
+
+  const handleGetIntroClick = () => {
+    setShowModal(true);
+    ModalAccessibility();
+  };
+
   const modalStyle = {
     top: '6%',
     overflowY: 'auto',
@@ -114,8 +170,10 @@ const Profile = (props) => {
   };
 
   const children = (
-    <div>
-      <h1 className={classNames.modalheader}>Send Your Interest</h1>
+    <div ref={modalContent}>
+      <h1 className={classNames.modalheader} id="dialog-title">
+        Send Your Interest
+      </h1>
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <label className={classNames.tagWord} htmlFor="company">
           Company
@@ -277,6 +335,7 @@ const Profile = (props) => {
           <p className={classNames.errorPrompt}>Package must be a number</p>
         )}
         <button
+          ref={submitBtnRef}
           color="primary"
           type="submit"
           className={classNames.submitButton}
@@ -288,78 +347,78 @@ const Profile = (props) => {
   );
 
   return (
-    <div className={classNames.container}>
+    <>
       {showModal && (
-        <Modal
-          style={modalStyle}
-          show={showModal}
-          closeModal={() => setShowModal(false)}
-        >
+        <Modal style={modalStyle} show={showModal} closeModal={closeModal}>
           {children}
         </Modal>
       )}
-      <div className={(classNames.sidebar, classNames.column)}>
-        <div className={classNames.memberDetails}>
-          <motion.img
-            layoutId={username}
-            src={imageLink.w_200}
-            className={classNames.profilePic}
-            alt="ProfilePicture"
-          />
-          <div className={classNames.personalInfo}>
-            <h1 className={classNames.profileName}>{memberName}</h1>
-            <p className={classNames.userName}>{rdsUserName}</p>
-            <p className={classNames.workDetails}>
-              {designation}
-              <br />
-              <span className={classNames.userName}>{company}</span>
-            </p>
-          </div>
-          <div className={classNames.iconsContainer}>
-            {membersData && (
-              <div className={classNames.iconsContainer}>
-                {renderSocialMediaIcons(socialMedia, membersData)}
-              </div>
-            )}
-            {devUser && (
-              <div>
-                <ShowSkills show />
-                <div>
-                  <button
-                    type="button"
-                    className={classNames.getIntroButton}
-                    onMouseDown={() => setShowModal(true)}
-                  >
-                    Get Intro
-                  </button>
+      <div className={classNames.container}>
+        <div className={(classNames.sidebar, classNames.column)}>
+          <div className={classNames.memberDetails}>
+            <motion.img
+              layoutId={username}
+              src={imageLink}
+              className={classNames.profilePic}
+              alt="ProfilePicture"
+            />
+            <div className={classNames.personalInfo}>
+              <h1 className={classNames.profileName}>{memberName}</h1>
+              <p className={classNames.userName}>{rdsUserName}</p>
+              <p className={classNames.workDetails}>
+                {designation}
+                <br />
+                <span className={classNames.userName}>{company}</span>
+              </p>
+            </div>
+            <div className={classNames.iconsContainer}>
+              {membersData && (
+                <div className={classNames.iconsContainer}>
+                  {renderSocialMediaIcons(socialMedia, membersData)}
                 </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className={classNames.content}>
-        {devUser && (
-          <div className={(classNames.section, classNames.card)}>
-            <h2>Badges</h2>
-            <div className={classNames.badgeContainer}>
-              {badges && renderBadgeImages(badges)}
+              )}
+              {devUser && (
+                <div>
+                  <ShowSkills show />
+                  <div>
+                    <button
+                      ref={introBtn}
+                      type="button"
+                      className={classNames.getIntroButton}
+                      onMouseDown={handleGetIntroClick}
+                      onKeyDown={handleGetIntroClick}
+                    >
+                      Get Intro
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        )}
+        </div>
 
-        <div className={(classNames.section, classNames.card)}>
-          {renderContributionsTypes(
-            contributions,
-            fullName,
-            imageLink.w_40,
-            devUser,
-            tasks
+        <div className={classNames.content}>
+          {devUser && (
+            <div className={(classNames.section, classNames.card)}>
+              <h2>Badges</h2>
+              <div className={classNames.badgeContainer}>
+                {badges && renderBadgeImages(badges)}
+              </div>
+            </div>
           )}
+
+          <div className={(classNames.section, classNames.card)}>
+            {renderContributionsTypes(
+              contributions,
+              fullName,
+              imageLink.w_40,
+              devUser,
+              tasks
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
