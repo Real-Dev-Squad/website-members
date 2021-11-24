@@ -1,0 +1,33 @@
+{
+  "designers": [
+    {
+      "id": "designerSoujanya",
+      "last_name": "Bagi",
+      "yoe": "2",
+      "incompleteUserDetails": false,
+      "roles": {
+        "member": true
+      },
+      "first_name": "Soujanya",
+      "company": "Real Dev Squad",
+      "linkedin_id": "soujanyabagi",
+      "username": "soujanya",
+      "isMember": true,
+      "img_url": ""
+    },
+    {
+      "id": "designerArushi",
+      "last_name": "",
+      "yoe": "2",
+      "incompleteUserDetails": false,
+      "roles": {
+        "member": true
+      },
+      "first_name": "Arushi",
+      "company": "Real Deb Squad",
+      "username": "arushi",
+      "isMember": true,
+      "img_url": ""
+    }
+  ]
+}
