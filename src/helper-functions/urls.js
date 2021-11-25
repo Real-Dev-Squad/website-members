@@ -43,6 +43,9 @@ const getActiveTasksURL = (rdsId) => `${baseURL}/tasks/${rdsId}?status=active`;
 const getAddMemberRoleURL = (rdsId) =>
   `${baseURL}/members/moveToMembers/${rdsId}`;
 
+const getArchiveMemberURL = (rdsId) =>
+  `${baseURL}/members/archiveMembers/${rdsId}`;
+
 export {
   getImgURL,
   getMembersDataURL,
@@ -52,4 +55,5 @@ export {
   getActiveTasksURL,
   getUserProfileSelf,
   getAddMemberRoleURL,
+  getArchiveMemberURL,
 };
