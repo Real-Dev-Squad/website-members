@@ -4,6 +4,7 @@ import classNames from '@components/pages/home-page.module.scss';
 import NewMemberList from '@components/new-member-list';
 import UserProfile from '@components/user-profile';
 import MemberRoleUpdate from '@components/member-role-update';
+import Designers from '@components/designers';
 import { userContext } from '@store/user/user-context';
 
 const HomePage = () => {
@@ -20,6 +21,12 @@ const HomePage = () => {
         src="/images/Real-Dev-Squad@1x.png"
         alt="real-dev squad"
       />
+      {dev && (
+        <>
+          <h1 className={classNames.heading}>Designers</h1>
+          <Designers />
+        </>
+      )}
       <h1 className={classNames.heading}>Real Dev Squad Members</h1>
       {isSuperUserMode && (
         <div id="memberRoleUpdateModal">
