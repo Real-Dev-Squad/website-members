@@ -1,8 +1,8 @@
-.descriptionDivStyle {
-  background-color: rgb(0, 0, 0, 0.5);
+.descriptiondiv {
+  background-color: rgb(255, 255, 255, 0.9);
   position: absolute;
   display: none;
-  color: white;
+  color: black;
   flex: 1 250px;
   flex-direction: column;
   border: none;
@@ -12,7 +12,7 @@
   padding: 2rem;
 }
 
-.pstyle {
+.detaildiv {
   margin: 0.5rem;
 }
 
