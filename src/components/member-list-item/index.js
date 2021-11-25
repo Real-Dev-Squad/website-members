@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Card from '@components/member-card';
 import {
   container,
-  descriptionDivStyle,
-  pstyle,
+  descriptiondiv,
+  detaildiv,
 } from '@components/member-card/card.module.scss';
 import { useRouter } from 'next/router';
 import { TIMEOUT } from '@constants/AppConstants';
@@ -52,17 +52,23 @@ const PreviewMember = ({ memberDetails }) => {
       >
         <Card developerInfo={memberDetails} />
         {dev && (
-          <div ref={divref} className={descriptionDivStyle}>
-            <p className={pstyle}>Company: {memberDetails?.company || 'NA'}</p>
-            <p className={pstyle}>
-              Designation: {memberDetails?.deesignation || 'NA'}
-            </p>
-            <p className={pstyle}>
-              Years Of Experience:{' '}
-              {memberDetails?.yoe || memberDetails.yoe === 0
-                ? 'Just Starting Out'
-                : memberDetails.yoe}
-            </p>
+          <div ref={divref} className={descriptiondiv}>
+            <div className={detaildiv}>
+              <p style={{ fontWeight: '900' }}>Company: </p>
+              <p>{memberDetails?.company || 'NA'}</p>
+            </div>
+            <div className={detaildiv}>
+              <p style={{ fontWeight: '900' }}>Designation: </p>
+              <p>{memberDetails?.deesignation || 'NA'}</p>
+            </div>
+            <div className={detaildiv}>
+              <p style={{ fontWeight: '900' }}>Years Of Experience: </p>
+              <p>
+                {memberDetails?.yoe !== undefined || memberDetails.yoe === 0
+                  ? 'Just Starting Out'
+                  : memberDetails.yoe}
+              </p>
+            </div>
           </div>
         )}
       </div>
