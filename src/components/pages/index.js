@@ -5,7 +5,7 @@ import classNames from '@components/pages/home-page.module.scss';
 import NewMemberList from '@components/new-member-list';
 import UserProfile from '@components/user-profile';
 import MemberRoleUpdate from '@components/member-role-update';
-import SearchMembers from '@components/search-members/index';
+import SearchMemberBox from '@components/search-members/index';
 import { userContext } from '@store/user/user-context';
 
 const HomePage = () => {
@@ -16,7 +16,7 @@ const HomePage = () => {
 
   return (
     <div className={classNames.container}>
-      <SearchMembers
+      <SearchMemberBox
         handleChange={(event) => setSearchTerm(event.target.value)}
       />
       {dev && <UserProfile />}

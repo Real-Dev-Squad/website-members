@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
 import React from 'react';
 import MemberListItem from '@components/member-list-item';
 import classNames from '@components/members-list/member-list.module.scss';
@@ -14,25 +12,20 @@ const MembersList = ({ searchTerm }) => {
       <div className={classNames.container}>
         {membersArr.length > 0 &&
           membersArr
-            .filter((ele) => {
-              if (searchTerm !== '') {
-                if (
-                  ele.first_name
-                    .toLowerCase()
-                    .includes(searchTerm.toLocaleLowerCase()) ||
-                  ele.last_name
-                    .toLowerCase()
-                    .includes(searchTerm.toLocaleLowerCase())
-                ) {
-                  return ele;
-                }
-              } else {
-                return ele;
-              }
-            })
+            .filter(
+              (ele) =>
+                ele.first_name
+                  .toLowerCase()
+                  .includes(searchTerm.toLocaleLowerCase()) ||
+                ele.last_name
+                  .toLowerCase()
+                  .includes(searchTerm.toLocaleLowerCase())
+            )
             .map((ele) => (
               <React.Fragment key={ele.id}>
-                <MemberListItem memberDetails={ele} />
+                {(ele.first_name || ele.username) && (
+                  <MemberListItem memberDetails={ele} />
+                )}
               </React.Fragment>
             ))}
       </div>
