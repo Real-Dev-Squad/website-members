@@ -1,3 +1,21 @@
+.descriptiondiv {
+  background-color: rgb(255, 255, 255, 0.9);
+  position: absolute;
+  display: none;
+  color: black;
+  flex: 1 250px;
+  flex-direction: column;
+  border: none;
+  border-radius: 5%;
+  margin-top: -1.3rem;
+  margin-left: -0.65rem;
+  padding: 2rem;
+}
+
+.detaildiv {
+  margin: 0.5rem;
+}
+
 .container {
   flex: 1 250px;
   display: flex;
