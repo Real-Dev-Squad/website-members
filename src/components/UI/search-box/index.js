@@ -1,7 +1,7 @@
 import React from 'react';
-import classNames from './search-members.module.scss';
+import classNames from './search-box.module.scss';
 
-export default function SearchMemberBox({ handleChange }) {
+const SearchBox = ({ handleChange }) => {
   return (
     <div className={classNames.searchContainer}>
       <input
@@ -12,4 +12,6 @@ export default function SearchMemberBox({ handleChange }) {
       />
     </div>
   );
-}
+};
+
+export default SearchBox;

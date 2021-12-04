@@ -13,18 +13,18 @@ const MembersList = ({ searchTerm }) => {
         {membersArr.length > 0 &&
           membersArr
             .filter(
-              (ele) =>
-                ele.first_name
+              (member) =>
+                member.first_name
                   .toLowerCase()
                   .includes(searchTerm.toLocaleLowerCase()) ||
-                ele.last_name
+                member.last_name
                   .toLowerCase()
                   .includes(searchTerm.toLocaleLowerCase())
             )
-            .map((ele) => (
-              <React.Fragment key={ele.id}>
-                {(ele.first_name || ele.username) && (
-                  <MemberListItem memberDetails={ele} />
+            .map((member) => (
+              <React.Fragment key={member.id}>
+                {(member.first_name || member.username) && (
+                  <MemberListItem memberDetails={member} />
                 )}
               </React.Fragment>
             ))}
