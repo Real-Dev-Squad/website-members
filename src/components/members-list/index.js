@@ -2,11 +2,13 @@ import React from 'react';
 import MemberListItem from '@components/member-list-item';
 import classNames from '@components/members-list/member-list.module.scss';
 import { membersContext } from '@store/members/members-context';
+import { searchMemberContext } from '@store/searchbox/searchMember-context';
 
-const MembersList = ({ searchTerm }) => {
+const MembersList = () => {
   const {
     state: { membersArr },
   } = membersContext();
+  const { searchTerm } = searchMemberContext();
   if (membersArr) {
     return (
       <div className={classNames.container}>

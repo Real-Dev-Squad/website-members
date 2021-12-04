@@ -6,21 +6,15 @@ import UserProfile from '@components/user-profile';
 import MemberRoleUpdate from '@components/member-role-update';
 import SearchBox from '@components/UI/search-box/index';
 import { userContext } from '@store/user/user-context';
-import { searchMemberContext } from '@store/searchbox/searchMember-context';
 
 const HomePage = () => {
   const { showMemberRoleUpdateModal, isSuperUserMode } = userContext();
-  const { searchTerm, setSearchTerm } = searchMemberContext();
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
 
   return (
     <div className={classNames.container}>
-      {dev && (
-        <SearchBox
-          handleChange={({ target: { value } }) => setSearchTerm(value)}
-        />
-      )}
+      {dev && <SearchBox />}
       {dev && <UserProfile />}
       <img
         className={classNames.img}
@@ -33,9 +27,9 @@ const HomePage = () => {
           {showMemberRoleUpdateModal && <MemberRoleUpdate />}
         </div>
       )}
-      <MemberList searchTerm={searchTerm} />
+      <MemberList />
       <h1 className={classNames.heading}>New Members</h1>
-      <NewMemberList searchTerm={searchTerm} />
+      <NewMemberList />
     </div>
   );
 };
