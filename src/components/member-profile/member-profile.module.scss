@@ -28,8 +28,8 @@
   margin: 10px;
   border: 1px solid #f4f4f4;
   padding: 20px 30px 20px;
-  background: white;
-  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+  background: var(--cardBackground);
+  box-shadow: var(--cardBoxShadow);
 }
 
 .card h2 {
@@ -122,7 +122,7 @@
 
 .workDetails {
   margin-top: 5px;
-  color: #0e141e;
+  color: var(--text);
   font-size: 18px;
 }
 
@@ -162,6 +162,7 @@
   font-size: 0.938rem;
   margin-top: 0.625rem;
   margin-bottom: 0.625rem;
+  background-color: var(--cardBackground);
 }
 
 .inputBoxCur {
@@ -170,6 +171,10 @@
   width: 70%;
   border-radius: 0.313rem;
   font-size: 0.938rem;
+  background-color: var(--cardBackground);
+}
+.inputBoxCur option {
+  background: white;
 }
 
 .submitButton {
@@ -194,7 +199,10 @@
   text-align: center;
   padding-top: 0.625rem;
   font-family: 'Arial';
-  color: #1d1283;
+  color: var(--modalHeader);
+}
+.modalheader + form {
+  padding-top: 20px;
 }
 
 @media only screen and (max-width: 1024px) {

@@ -4,28 +4,46 @@ import PropTypes from 'prop-types';
 import Footer from '@components/footer';
 import Navbar from '@components/UI/navbar';
 import SideDrawer from '@components/UI/side-drawer';
+import GlobalStyles from '@components/Dark-Theme/globalStyles';
+import { ThemeProvider } from 'styled-components';
+import { useDarkMode } from '@custom-hooks/useDarkMode';
+import { lightTheme, darkTheme } from '@/components/Dark-Theme/Themes';
 
 const Layout = ({ children, title, description }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
+  const [theme, setTheme] = useDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   const sideDrawerToggleHandler = () => {
     setShowSideDrawer((prevState) => !prevState);
   };
 
   return (
-    <div>
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <Navbar drawerToggleClicked={sideDrawerToggleHandler} />
-      <SideDrawer open={showSideDrawer} close={sideDrawerToggleHandler} />
-      <div className="container">
-        <div>{children}</div>
-      </div>
-      <Footer />
-    </div>
+    <ThemeProvider theme={themeMode}>
+      <>
+        <GlobalStyles />
+        <div>
+          <Head>
+            <title>{title}</title>
+            <meta name="description" content={description} />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+          </Head>
+          <Navbar
+            drawerToggleClicked={sideDrawerToggleHandler}
+            theme={theme}
+            themeToggler={setTheme}
+          />
+          <SideDrawer open={showSideDrawer} close={sideDrawerToggleHandler} />
+          <div className="container">
+            <div>{children}</div>
+          </div>
+          <Footer />
+        </div>
+      </>
+    </ThemeProvider>
   );
 };
 

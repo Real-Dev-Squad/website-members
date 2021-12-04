@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React from 'react';
 import PropTypes from 'prop-types';
+import DarkThemeIcon from '@components/dark-theme-icon/index';
 import classNames from '@components/UI/navbar/navbar.module.scss';
 
-const Navbar = ({ drawerToggleClicked }) => {
+const Navbar = ({ drawerToggleClicked, theme, themeToggler }) => {
   return (
     <div className={classNames.infoNavbar}>
       <nav>
@@ -38,6 +38,9 @@ const Navbar = ({ drawerToggleClicked }) => {
             <a href="https://crypto.realdevsquad.com/">Crypto</a>
           </li>
         </ul>
+        <div className={classNames.darkTheme}>
+          <DarkThemeIcon theme={theme} themeToggleHandler={themeToggler} />
+        </div>
       </nav>
     </div>
   );

@@ -1,10 +1,10 @@
 .modal {
   position: fixed;
   z-index: 2;
-  background-color: white;
+  background: var(--modalBackground);
   width: 70%;
   border: 1px solid #ccc;
-  box-shadow: 1px 1px 1px black;
+  box-shadow: var(--cardBoxShadow);
   padding: 1rem;
   left: 15%;
   top: 30%;
@@ -16,7 +16,9 @@
 .crossIcon i {
   position: absolute;
   cursor: pointer;
-  right: 5%;
+  right: 2%;
+  top: 2%;
+  color: var(--text);
 }
 
 @media (min-width: 600px) {
