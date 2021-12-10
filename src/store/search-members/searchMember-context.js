@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from 'react';
 
 const SearchMemberContext = createContext();
 
-export const SearchMemberContextProvider = ({ children }) => {
+export const SearchMemberProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const initialSearchMemberContext = {
     searchTerm,

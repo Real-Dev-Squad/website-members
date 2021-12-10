@@ -1,5 +1,5 @@
 import React from 'react';
-import { searchMemberContext } from '@store/searchbox/searchMember-context';
+import { searchMemberContext } from '@store/search-members/searchMember-context';
 import classNames from './search-box.module.scss';
 
 const SearchBox = () => {
