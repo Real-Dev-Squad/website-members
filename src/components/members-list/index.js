@@ -17,9 +17,7 @@ const MembersList = () => {
         {filterMembers.length > 0 &&
           filterMembers.map((member) => (
             <React.Fragment key={member.id}>
-              {(member.first_name || member.username) && (
-                <MemberListItem memberDetails={member} />
-              )}
+              <MemberListItem memberDetails={member} />
             </React.Fragment>
           ))}
       </div>
