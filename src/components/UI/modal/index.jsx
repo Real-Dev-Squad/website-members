@@ -7,6 +7,8 @@ const Modal = ({ show, closeModal, children, style }) => (
   <>
     <Backdrop show={show} clicked={closeModal} />
     <div
+      role="dialog"
+      aria-labelledby="dialog-title"
       className={styles.modal}
       style={{
         ...style,
