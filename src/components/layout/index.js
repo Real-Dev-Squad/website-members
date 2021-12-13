@@ -4,16 +4,20 @@ import PropTypes from 'prop-types';
 import Footer from '@components/footer';
 import Navbar from '@components/UI/navbar';
 import SideDrawer from '@components/UI/side-drawer';
+import { darkModeContext } from '@store/dark-mode/dark-mode-context';
 
 const Layout = ({ children, title, description }) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
-
+  const { theme } = darkModeContext();
   const sideDrawerToggleHandler = () => {
     setShowSideDrawer((prevState) => !prevState);
   };
 
   return (
-    <div>
+    <div
+      data-theme={theme}
+      style={{ background: theme === 'light' ? 'white' : 'black' }}
+    >
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />

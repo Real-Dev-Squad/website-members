@@ -1,6 +1,37 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css';
 @import './variables.scss';
 
+:root {
+  --backgroundColor: #ffffff;
+  --text: #363537;
+  --cardBackground: #fff;
+  --linkColor: #0000ff;
+  --cardBoxShadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+  --prLink: #455a64;
+  --modalBackground: #ffffff;
+  --modalHeader: #0000ff;
+  --featureTitle: #041187;
+  --featureLink: #90a4ae;
+  --formLabel: #000000;
+  --inputBorderColor: #1d1283;
+}
+
+[data-theme='dark'] {
+  --backgroundColor: #000000;
+  --text: #e3e3e3;
+  --cardBackground: linear-gradient(#0f2027, #203a43, #2c5364);
+  --linkColor: #4db2ff;
+  --cardbBorderColor: #e1e1ec;
+  --cardBoxShadow: 2px 2px 4px 2px rgba(225, 225, 236, 0.25);
+  --prLink: #2cececfa;
+  --modalBackground: #111316;
+  --modalHeader: #ffffff;
+  --featureTitle: #ee82ee;
+  --featureLink: #23f88e;
+  --formLabel: #ffffff;
+  --inputBorderColor: #00ffff;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
 }
@@ -18,12 +49,15 @@ html {
 
 h1 {
   font-size: 2.75rem;
+  color: var(--text);
 }
 
 h2 {
   font-size: 2.25rem;
+  color: var(--text);
 }
 
 h3 {
   font-size: 1.33rem;
+  color: var(--text);
 }

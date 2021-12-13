@@ -7,4 +7,10 @@
   bottom: 0;
   height: 45px;
   margin: 0 0 -45px 0;
+  color: var(--text);
+  background: var(--backgroundColor);
+}
+
+.infoRepo a {
+  color: var(--linkColor);
 }

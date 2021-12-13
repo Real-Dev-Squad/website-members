@@ -1,3 +1,8 @@
+.infoNavbar nav {
+  display: flex;
+  justify-content: space-between;
+}
+
 .infoNavbar nav ul {
   list-style-type: none;
   margin: 0;
@@ -5,9 +10,11 @@
   overflow: hidden;
   background-color: #1d1283;
 }
+
 .infoNavbar nav li {
   float: left;
 }
+
 .infoNavbar nav li a {
   display: block;
   border-radius: 0.5rem;
@@ -17,12 +24,19 @@
   padding: 14px 16px;
   text-decoration: none;
 }
+
 .infoNavbar nav li a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
+
 .infoNavbar nav {
   background: #1d1283;
 }
+
+.infoNavbar nav .darkTheme {
+  padding: 14px 16px;
+}
+
 .DrawerToggle {
   position: relative;
   width: 35px;
@@ -36,6 +50,7 @@
   cursor: pointer;
   display: none;
 }
+
 .DrawerToggle span {
   background-color: white;
   width: 70%;
@@ -47,6 +62,7 @@
   .infoNavbar nav ul {
     display: none;
   }
+
   .DrawerToggle {
     display: flex;
   }

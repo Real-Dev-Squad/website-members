@@ -5,81 +5,100 @@
   display: flex;
   justify-content: space-between;
 }
+
 .contributionCard {
   cursor: pointer;
 }
+
 .leftSection {
   display: flex;
   flex-direction: column;
   align-items: space-between;
 }
+
 .leftSection .featureTitle {
-  color: #041187;
+  color: var(--featureTitle);
   padding: 4px 0;
   font-weight: 400;
 }
+
 .prDescription {
-  color: #636363;
+  color: var(--text);
   padding: 4px 25px 4px 0;
   text-align: justify;
 }
+
 .completedData {
   padding: 4px 0;
+  color: var(--text);
 }
+
 .completedText {
-  color: $color-light-grey;
+  color: var(--text);
 }
+
 .completedDate {
   display: inline-block;
   font-weight: bold;
+  color: var(--featureLink);
 }
+
 .featureLiveOnText {
-  color: $color-light-grey;
+  color: var(--text);
   padding: 4px 0;
 }
+
 .featureLink {
   text-align: center;
 }
+
 .featureLink a {
   text-decoration: none;
-  color: $color-light-grey;
+  color: var(--featureLink);
   font-size: 1rem;
   font-weight: normal;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: opacity 0.2s ease-in-out;
 
   &:hover {
     opacity: 1;
   }
 }
+
 .rightSection {
   display: flex;
   flex-direction: column;
   align-items: space-between;
 }
+
 .prLink {
   text-align: center;
 }
+
 .userIcon {
   display: flex;
   padding: 8px 0px;
   justify-content: center;
   align-items: center;
 }
+
 .userIcon img {
   border-radius: 50%;
   height: 40px;
 }
+
 .userIcon span {
-  color: black;
+  color: var(--text);
   padding: 0px 8px;
 }
+
 .tags {
   display: flex;
   justify-content: space-between;
   padding: 4px 0;
   margin: auto;
 }
+
 .tags button:nth-child(1) {
   background-color: #23f88e;
   font-size: 18px;
@@ -90,6 +109,7 @@
   border-radius: 20px;
   margin-right: 2px;
 }
+
 .tags button:nth-child(2) {
   background-color: #8b5ff1;
   color: white;
@@ -99,6 +119,7 @@
   border: none;
   border-radius: 20px;
 }
+
 .line {
   margin-top: 10px;
   border: 1px solid #e5e5e58e;
@@ -108,15 +129,19 @@
   .contributionContainer {
     flex-direction: column;
   }
+
   .leftSection .featureTitle {
     font-size: 1rem;
   }
+
   .featureLink a {
     font-size: 14px;
   }
+
   .featureLink button {
     font-size: 14px;
   }
+
   .rightSection {
     align-items: flex-start;
   }
