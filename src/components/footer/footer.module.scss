@@ -1,12 +1,11 @@
 .infoRepo {
   font-weight: 100;
+  margin-top: auto;
   text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
+  padding: 15px 0px;
+  width: 100%;
+  position: relative;
   bottom: 0;
-  height: 45px;
-  margin: 0 0 -45px 0;
   color: var(--text);
   background: var(--backgroundColor);
 }
