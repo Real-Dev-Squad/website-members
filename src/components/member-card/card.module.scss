@@ -21,16 +21,17 @@
   display: flex;
   flex-direction: column;
   margin: 20px;
-  border: 1px solid #413f3f;
+  border: 1px solid var(--cardbBorderColor);
   padding: 20px 10px;
-  background: white;
+  background: var(--cardBackground);
   cursor: pointer;
   max-width: 270px;
   //addition of box-shadow and border radius to member card
 
-  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
+  box-shadow: var(--cardBoxShadow);
   border-radius: 5%;
   transition: 0.38s box-shadow ease-out;
+
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -42,9 +43,10 @@
   flex: 0 150px;
   height: 160px;
   overflow: hidden;
-  margin: auto;
-  border: 0;
+  margin: 5px;
+  border: none;
   box-shadow: none;
+
   &:hover {
     box-shadow: none;
   }
@@ -56,6 +58,7 @@
   border-radius: 50%;
   margin: 0px auto;
 }
+
 .imgContainerNewMember {
   /* prettier-ignore */
   @extend.imgContainer;
@@ -67,6 +70,7 @@
   padding: 10px 10px 0 10px;
   font-size: 1.43rem;
 }
+
 .nameOfPersonForNewMember {
   /* prettier-ignore */
   @extend.nameOfPerson;
@@ -75,6 +79,7 @@
 
 .iconsContainer {
   margin-top: auto;
+
   img {
     width: 2rem;
   }

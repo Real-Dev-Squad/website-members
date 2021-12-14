@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from '@components/UI/navbar/navbar.module.scss';
+import DarkThemeIcon from '@components/dark-theme-icon/index';
 
 const Navbar = ({ drawerToggleClicked }) => {
   return (
@@ -38,6 +39,9 @@ const Navbar = ({ drawerToggleClicked }) => {
             <a href="https://crypto.realdevsquad.com/">Crypto</a>
           </li>
         </ul>
+        <div className={classNames.darkTheme}>
+          <DarkThemeIcon />
+        </div>
       </nav>
     </div>
   );
