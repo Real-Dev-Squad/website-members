@@ -19,6 +19,10 @@ const Card = ({ developerInfo }) => {
   ];
   const fullName = `${`${first_name} ${last_name}`}`;
 
+  const brokenImageHandler = (e) => {
+    e.target.src = '/images/Avatar.png';
+  };
+
   const renderName = (userFullName, userName) =>
     userFullName.length > 20 ? userName : userFullName;
 
@@ -28,6 +32,7 @@ const Card = ({ developerInfo }) => {
       <motion.img
         layoutId={username}
         src={img_url}
+        onError={brokenImageHandler}
         className={
           isMember ? classNames.imgContainer : classNames.imgContainerNewMember
         }
