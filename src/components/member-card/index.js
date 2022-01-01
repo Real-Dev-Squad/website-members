@@ -28,7 +28,7 @@ const Card = ({ developerInfo }) => {
 
   return (
     <div>
-      {!isMember && dev && <SuperUserOptions username={username} />}
+      {dev && <SuperUserOptions username={username} />}
       <motion.img
         layoutId={username}
         src={`${img_url}?${Math.random() * 100}`}
