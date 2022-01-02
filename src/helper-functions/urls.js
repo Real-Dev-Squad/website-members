@@ -1,14 +1,7 @@
 const baseURL = `https://api.realdevsquad.com`;
-const imgBaseURL = `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main`;
 const getMembersURL = `${baseURL}/members`;
 const cloudinaryImageUrl = `https://res.cloudinary.com/realdevsquad/image/upload`;
 const getUserProfileSelf = `${baseURL}/users/self`;
-
-/**
- *
- * @param {string} rdsId
- */
-const getImgURL = (rdsId, img) => `${imgBaseURL}/members/${rdsId}/${img}`;
 
 /**
  *
@@ -47,7 +40,6 @@ const getArchiveMemberURL = (rdsId) =>
   `${baseURL}/members/archiveMembers/${rdsId}`;
 
 export {
-  getImgURL,
   getMembersDataURL,
   getContributionsURL,
   getMembersURL,
