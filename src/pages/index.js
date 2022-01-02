@@ -27,7 +27,7 @@ const Index = ({ members, newMembers, errorMsg }) => {
         payload: { members, newMembers },
       });
     }
-  }, []);
+  }, [dispatch, errorMsg, members, newMembers]);
 
   loadComponent = errorMsg ? <NotFound /> : <Home />;
 
