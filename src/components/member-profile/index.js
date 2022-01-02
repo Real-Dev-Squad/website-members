@@ -113,14 +113,14 @@ const Profile = (props) => {
 
   const closeModal = () => {
     setShowModal(false);
-    setTimeout(function () {
+    setTimeout(() => {
       introBtn.current.focus();
       document.querySelector('body').style.overflowY = 'auto';
     }, 50);
   };
 
   const ModalAccessibility = () => {
-    setTimeout(function () {
+    setTimeout(() => {
       modalContent.current?.querySelectorAll('form input')[0].focus();
       document.querySelector('body').style.overflowY = 'hidden';
       modalContent.current?.addEventListener('keydown', (e) => {
