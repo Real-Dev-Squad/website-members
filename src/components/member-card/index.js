@@ -42,7 +42,7 @@ const Card = ({ developerInfo, optionKey }) => {
         setShowSettings(false);
       }}
     >
-      {!isMember && dev && (
+      {dev && (
         <SuperUserOptions username={username} showSettings={showSettings} />
       )}
       <motion.img
