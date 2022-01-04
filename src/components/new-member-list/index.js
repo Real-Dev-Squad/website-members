@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from '@components/new-member-list/new-member-list.module.scss';
 import { membersContext } from '@store/members/members-context';
 
-const NewMemberList = () => {
+const NewMemberList = ({ optionKey }) => {
   const {
     state: { newMembersArr },
   } = membersContext();
@@ -13,7 +13,7 @@ const NewMemberList = () => {
         {newMembersArr.map((ele) => (
           <React.Fragment key={ele.id}>
             {(ele.first_name || ele.username) && (
-              <NewMemberListItem newMemberDetails={ele} />
+              <NewMemberListItem newMemberDetails={ele} optionKey={optionKey} />
             )}
           </React.Fragment>
         ))}
