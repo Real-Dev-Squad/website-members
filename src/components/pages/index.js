@@ -6,15 +6,29 @@ import UserProfile from '@components/user-profile';
 import MemberRoleUpdate from '@components/member-role-update';
 import Designers from '@components/designers';
 import { userContext } from '@store/user/user-context';
+import { useState } from 'react';
 
 const HomePage = () => {
   const { showMemberRoleUpdateModal, isSuperUserMode } = userContext();
 
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
+  const [optionKey, setOptionKey] = useState(false);
 
   return (
-    <div className={classNames.container}>
+    <div
+      className={classNames.container}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Alt') {
+          setOptionKey(true);
+        }
+      }}
+      onKeyUp={() => {
+        setOptionKey(false);
+      }}
+    >
       {dev && <UserProfile />}
       <img
         className={classNames.img}
@@ -33,9 +47,9 @@ const HomePage = () => {
           {showMemberRoleUpdateModal && <MemberRoleUpdate />}
         </div>
       )}
-      <MemberList />
+      <MemberList optionKey={optionKey} />
       <h1 className={classNames.heading}>New Members</h1>
-      <NewMemberList />
+      <NewMemberList optionKey={optionKey} />
     </div>
   );
 };

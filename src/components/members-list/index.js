@@ -3,7 +3,7 @@ import MemberListItem from '@components/member-list-item';
 import classNames from '@components/members-list/member-list.module.scss';
 import { membersContext } from '@store/members/members-context';
 
-const MembersList = () => {
+const MembersList = ({ optionKey }) => {
   const {
     state: { membersArr },
   } = membersContext();
@@ -12,7 +12,7 @@ const MembersList = () => {
       <div className={classNames.container}>
         {membersArr.map((ele) => (
           <React.Fragment key={ele.id}>
-            <MemberListItem memberDetails={ele} />
+            <MemberListItem memberDetails={ele} optionKey={optionKey} />
           </React.Fragment>
         ))}
       </div>

@@ -10,7 +10,7 @@ import {
 import { useRouter } from 'next/router';
 import { TIMEOUT } from '@constants/AppConstants';
 
-const PreviewMember = ({ memberDetails }) => {
+const PreviewMember = ({ memberDetails, optionKey }) => {
   const { username, first_name, last_name } = memberDetails;
   const divref = useRef(null);
   const cardRef = useRef(null);
@@ -50,7 +50,7 @@ const PreviewMember = ({ memberDetails }) => {
         onMouseEnter={dev && mouseEnter}
         onMouseLeave={dev && mouseLeave}
       >
-        <Card developerInfo={memberDetails} />
+        <Card developerInfo={memberDetails} optionKey={optionKey} />
         {dev && (
           <div ref={divref} className={descriptiondiv}>
             <div className={detaildiv}>

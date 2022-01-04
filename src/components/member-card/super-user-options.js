@@ -3,7 +3,7 @@ import classNames from '@components/member-card/card.module.scss';
 import PropTypes from 'prop-types';
 import { userContext } from '../../store/user/user-context';
 
-const SuperUserOptions = ({ username }) => {
+const SuperUserOptions = ({ username, showSettings }) => {
   const {
     isSuperUserMode,
     showMemberRoleUpdateModal,
@@ -19,7 +19,11 @@ const SuperUserOptions = ({ username }) => {
 
   const showSuperUserOptions = () => {
     return (
-      <div className={classNames.settingsContainer}>
+      <div
+        className={`${classNames.settingsContainer} ${
+          !showSettings ? classNames.hidden : ''
+        }`}
+      >
         <button
           className={classNames.settingsButton}
           type="button"
