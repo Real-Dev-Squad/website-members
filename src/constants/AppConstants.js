@@ -1,8 +1,29 @@
-export const SET_MEMBERS = 'SET_MEMBERS';
-export const SET_ERRORS = 'SET_ERRORS';
-export const HOST_NAME = 'members.realdevsquad.com';
-export const WELCOME_LINK = 'https://welcome.realdevsquad.com/';
-export const EVENTS_LINK = 'https://www.realdevsquad.com/events.html';
-export const MEMBERS_LINK = 'https://members.realdevsquad.com/';
-export const CRYPTO_LINK = 'https://crypto.realdevsquad.com/';
-export const STATUS_LINK = 'https://status.realdevsquad.com/';
+const BASE_IMAGE_URL =
+  'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/members';
+const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
+const USER_DATA_URL = `${BASE_API_URL}/users/self`;
+const PATHS = {
+  HOME: 'https://www.realdevsquad.com',
+  WELCOME: 'https://welcome.realdevsquad.com/',
+  EVENTS: 'https://www.realdevsquad.com/events.html',
+  MEMBERS: 'https://members.realdevsquad.com/',
+  CRYPTO: 'https://crypto.realdevsquad.com/',
+  STATUS: 'https://status.realdevsquad.com/',
+};
+const SET_ERRORS = 'SET_ERRORS';
+const SET_MEMBERS = 'SET_MEMBERS';
+const HOST_NAME = 'members.realdevsquad.com';
+const LOGIN_URL =
+  'https://github.com/login/oauth/authorize?client_id=23c78f66ab7964e5ef97';
+const USER_PROFILE_URL = 'https://my.realdevsquad.com/profile';
+export {
+  BASE_IMAGE_URL,
+  BASE_API_URL,
+  USER_DATA_URL,
+  LOGIN_URL,
+  PATHS,
+  SET_ERRORS,
+  SET_MEMBERS,
+  HOST_NAME,
+  USER_PROFILE_URL,
+};
