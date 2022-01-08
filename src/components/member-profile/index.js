@@ -346,6 +346,10 @@ const Profile = (props) => {
     </div>
   );
 
+  const fallbackImageHandler = (e) => {
+    e.target.src = '/images/Avatar.png';
+  };
+
   return (
     <>
       {showModal && (
@@ -358,7 +362,8 @@ const Profile = (props) => {
           <div className={classNames.memberDetails}>
             <motion.img
               layoutId={username}
-              src={imageLink.w_200 ?? '/icons/user.png'}
+              src={imageLink.w_200 ?? '/images/Avatar.png'}
+              onError={fallbackImageHandler}
               className={classNames.profilePic}
               alt={fullName}
             />
