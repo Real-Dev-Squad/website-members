@@ -5,8 +5,8 @@ export const membersReducer = (state, { type, payload }) => {
     case SET_MEMBERS:
       return {
         ...state,
-        membersArr: payload.membersArr,
-        newMembersArr: payload.newMembersArr,
+        members: payload.members,
+        newMembers: payload.newMembers,
       };
     case SET_ERRORS:
       return {
