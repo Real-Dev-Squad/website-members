@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 40px auto 40px;
+  justify-content: center;
+}
+
+.containerForNewMember {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  background: white;
+  max-width: 270px;
+  border-radius: 5%;
+  transition: 0.38s box-shadow ease-out;
+  cursor: default;
+  flex: 0 150px;
+  height: 160px;
+  overflow: hidden;
+  margin: auto;
+  border: 0;
+  box-shadow: none;
+  &:hover {
+    box-shadow: none;
+  }
+}

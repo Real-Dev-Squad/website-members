@@ -1,15 +1,16 @@
 import React from 'react';
-import MemberListItem from '@components/member-list-item';
-import classNames from '@components/members-list/member-list.module.scss';
+import PreviewContainer from '@components/preview-container';
 import designersMockJSON from '@components/designers/mock-data';
+
+import styles from '@components/members/members.module.scss';
 
 const Designers = () => {
   const { designers } = designersMockJSON;
   return (
-    <div className={classNames.container}>
-      {designers.map((ele) => (
-        <React.Fragment key={ele.id}>
-          <MemberListItem memberDetails={ele} />
+    <div className={styles.container}>
+      {designers.map((designer) => (
+        <React.Fragment key={designer.id}>
+          <PreviewContainer memberDetails={designer} designer />
         </React.Fragment>
       ))}
     </div>

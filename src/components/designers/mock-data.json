@@ -1,33 +1,20 @@
 {
   "designers": [
     {
-      "id": "designerSoujanya",
-      "last_name": "Bagi",
-      "yoe": "2",
-      "incompleteUserDetails": false,
-      "roles": {
-        "member": true
-      },
-      "first_name": "Soujanya",
-      "company": "Real Dev Squad",
-      "linkedin_id": "soujanyabagi",
-      "username": "soujanya",
-      "isMember": true,
-      "img_url": ""
-    },
-    {
       "id": "designerArushi",
-      "last_name": "",
+      "last_name": "Bajpai",
       "yoe": "2",
       "incompleteUserDetails": false,
       "roles": {
         "member": true
       },
+      "linkedin_id": "arushi-bajpai",
+      "twitter_id": "ArushiBajpai03",
       "first_name": "Arushi",
-      "company": "Real Deb Squad",
+      "company": "Trynocode",
       "username": "arushi",
       "isMember": true,
-      "img_url": ""
+      "img_url": "/images/designer_arushi.jpg"
     }
   ]
 }
