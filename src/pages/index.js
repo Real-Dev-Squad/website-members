@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
 import {
@@ -50,13 +51,17 @@ export async function getServerSideProps(context) {
     for (const memberData of members) {
       const { picture, username, isMember, first_name, archivedMember } =
         memberData;
-      const img_url = picture
-        ? getCloudinaryImgURL(
-            picture.publicId,
-            `${WIDTH_200PX},${HEIGHT_200PX}`
-          )
-        : getImgURL(username, 'img.png');
+      const img_url = getImgURL(username, 'img.png');
 
+      // eslint-disable-next-line spaced-comment
+      //TODO: This is just a mitigation we have resolve a live issue. Ticket No: #300
+
+      // const img_url = picture
+      //   ? getImgURL(username, 'img.png')
+      // : getCloudinaryImgURL(
+      //     picture.publicId,
+      //     `${WIDTH_200PX},${HEIGHT_200PX}`
+      //   );
       // Filtering Members
       if (isMember) {
         membersDetails.push({
