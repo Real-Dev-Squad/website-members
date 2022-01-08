@@ -2,13 +2,10 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import Card from '@components/member-card';
-import {
-  container,
-  descriptiondiv,
-  detaildiv,
-} from '@components/member-card/card.module.scss';
 import { useRouter } from 'next/router';
 import { TIMEOUT } from '@constants/AppConstants';
+
+import styles from '@components/preview-container/preview-member/preview-member.module.scss';
 
 const PreviewMember = ({ memberDetails }) => {
   const { username, first_name, last_name } = memberDetails;
@@ -46,22 +43,22 @@ const PreviewMember = ({ memberDetails }) => {
     >
       <div
         ref={cardRef}
-        className={container}
+        className={styles.container}
         onMouseEnter={dev && mouseEnter}
         onMouseLeave={dev && mouseLeave}
       >
         <Card developerInfo={memberDetails} />
         {dev && (
-          <div ref={divref} className={descriptiondiv}>
-            <div className={detaildiv}>
+          <div ref={divref} className={styles.previewMember}>
+            <div style={{ margin: '0.5rem' }}>
               <p style={{ fontWeight: '900' }}>Company: </p>
               <p>{memberDetails?.company || 'NA'}</p>
             </div>
-            <div className={detaildiv}>
+            <div style={{ margin: '0.5rem' }}>
               <p style={{ fontWeight: '900' }}>Designation: </p>
               <p>{memberDetails?.deesignation || 'NA'}</p>
             </div>
-            <div className={detaildiv}>
+            <div style={{ margin: '0.5rem' }}>
               <p style={{ fontWeight: '900' }}>Years Of Experience: </p>
               <p>
                 {memberDetails?.yoe !== undefined || memberDetails.yoe === 0
