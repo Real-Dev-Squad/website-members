@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
 import {
@@ -50,12 +51,16 @@ export async function getServerSideProps(context) {
     for (const memberData of members) {
       const { picture, username, isMember, first_name, archivedMember } =
         memberData;
-      const img_url = picture
-        ? getCloudinaryImgURL(
-            picture.publicId,
-            `${WIDTH_200PX},${HEIGHT_200PX}`
-          )
-        : getImgURL(username, 'img.png');
+      const img_url = getImgURL(username, 'img.png');
+
+      // #TODO: We have termporarily mitigated the issue,
+      // Please fix https://github.com/Real-Dev-Squad/website-members/issues/300
+      // const img_url = picture
+      //   ? getImgURL(username, 'img.png')
+      // : getCloudinaryImgURL(
+      //     picture.publicId,
+      //     `${WIDTH_200PX},${HEIGHT_200PX}`
+      //   );
 
       // Filtering Members
       if (isMember) {
