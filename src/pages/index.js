@@ -53,15 +53,15 @@ export async function getServerSideProps(context) {
         memberData;
       const img_url = getImgURL(username, 'img.png');
 
-      // eslint-disable-next-line spaced-comment
-      //TODO: This is just a mitigation we have resolve a live issue. Ticket No: #300
-
+      // #TODO: We have termporarily mitigated the issue,
+      // Please fix https://github.com/Real-Dev-Squad/website-members/issues/300
       // const img_url = picture
       //   ? getImgURL(username, 'img.png')
       // : getCloudinaryImgURL(
       //     picture.publicId,
       //     `${WIDTH_200PX},${HEIGHT_200PX}`
       //   );
+
       // Filtering Members
       if (isMember) {
         membersDetails.push({
