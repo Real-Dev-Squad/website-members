@@ -5,6 +5,7 @@ import UserProfile from '@components/user-profile';
 import MemberRoleUpdate from '@components/member-role-update';
 import Designers from '@components/designers';
 import { userContext } from '@store/user/user-context';
+import { useState } from 'react';
 
 import styles from '@components/home/home.module.scss';
 
@@ -19,9 +20,22 @@ const Home = () => {
 
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
+  const [optionKey, setOptionKey] = useState(false);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Alt') {
+          setOptionKey(true);
+        }
+      }}
+      onKeyUp={() => {
+        setOptionKey(false);
+      }}
+    >
       {dev && <UserProfile />}
       <img
         className={styles.img}
@@ -36,9 +50,9 @@ const Home = () => {
           {showMemberRoleUpdateModal && <MemberRoleUpdate />}
         </div>
       )}
-      <Members />
+      <Members optionKey={optionKey} />
       <h1 className={styles.heading}>{NEW_MEMBERS_TITLE}</h1>
-      <NewMembers />
+      <NewMembers optionKey={optionKey} />
     </div>
   );
 };

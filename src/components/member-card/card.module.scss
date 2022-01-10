@@ -35,6 +35,10 @@
   margin-right: 15px;
 }
 
+.hidden {
+  display: none;
+}
+
 .showSkills,
 .showMemberSkills {
   display: flex;
@@ -53,6 +57,7 @@
 
 .settingsContainer {
   position: relative;
+  z-index: 1;
 }
 
 .settingsButton {

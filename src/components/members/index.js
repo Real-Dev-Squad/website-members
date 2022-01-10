@@ -4,7 +4,7 @@ import { membersContext } from '@store/members/members-context';
 
 import styles from '@components/members/members.module.scss';
 
-const Members = () => {
+const Members = ({ optionKey }) => {
   const {
     state: { members },
   } = membersContext();
@@ -14,7 +14,7 @@ const Members = () => {
       <div className={styles.container}>
         {members.map((member) => (
           <React.Fragment key={member.id}>
-            <PreviewContainer memberDetails={member} />
+            <PreviewContainer optionKey={optionKey} memberDetails={member} />
           </React.Fragment>
         ))}
       </div>

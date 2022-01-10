@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import classNames from '@components/member-card/card.module.scss';
 import { motion } from 'framer-motion';
@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ShowSkills from '@components/member-card/show-skills';
 import SuperUserOptions from '@components/member-card/super-user-options';
 
-const Card = ({ developerInfo }) => {
+const Card = ({ developerInfo, optionKey }) => {
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
@@ -19,6 +19,13 @@ const Card = ({ developerInfo }) => {
   ];
   const fullName = `${`${first_name} ${last_name}`}`;
 
+  const [showSettings, setShowSettings] = useState(false);
+  const handleSettingsButton = () => {
+    if (optionKey) {
+      setShowSettings(true);
+    }
+  };
+
   const brokenImageHandler = (e) => {
     e.target.src = '/images/Avatar.png';
   };
@@ -27,8 +34,17 @@ const Card = ({ developerInfo }) => {
     userFullName.length > 20 ? userName : userFullName;
 
   return (
-    <div>
-      {dev && <SuperUserOptions username={username} />}
+    <div
+      role="button"
+      tabIndex={0}
+      onMouseEnter={handleSettingsButton}
+      onMouseLeave={() => {
+        setShowSettings(false);
+      }}
+    >
+      {dev && (
+        <SuperUserOptions username={username} showSettings={showSettings} />
+      )}
       <motion.img
         layoutId={username}
         src={`${img_url}?${Math.random() * 100}`}

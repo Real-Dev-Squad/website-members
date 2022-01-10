@@ -7,7 +7,7 @@ import { TIMEOUT } from '@constants/AppConstants';
 
 import styles from '@components/preview-container/preview-member/preview-member.module.scss';
 
-const PreviewMember = ({ memberDetails }) => {
+const PreviewMember = ({ memberDetails, optionKey }) => {
   const { username, first_name, last_name } = memberDetails;
   const divref = useRef(null);
   const cardRef = useRef(null);
@@ -47,8 +47,8 @@ const PreviewMember = ({ memberDetails }) => {
         onMouseEnter={dev && mouseEnter}
         onMouseLeave={dev && mouseLeave}
       >
-        <Card developerInfo={memberDetails} />
-        {dev && (
+        <Card developerInfo={memberDetails} optionKey={optionKey} />
+        {dev && !optionKey && (
           <div ref={divref} className={styles.previewMember}>
             <div style={{ margin: '0.5rem' }}>
               <p style={{ fontWeight: '900' }}>Company: </p>
