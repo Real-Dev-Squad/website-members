@@ -30,6 +30,7 @@ const fetch = async (
     });
     return response;
   } catch (err) {
+    console.error('Something went wrong. Please contact admin', err);
     return err;
   }
 };
