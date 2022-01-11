@@ -362,7 +362,7 @@ const Profile = (props) => {
           <div className={classNames.memberDetails}>
             <motion.img
               layoutId={username}
-              src={imageLink.w_200 ?? '/images/Avatar.png'}
+              src={imageLink.w_200}
               onError={fallbackImageHandler}
               className={classNames.profilePic}
               alt={fullName}
