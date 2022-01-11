@@ -59,15 +59,16 @@
   color: white;
   cursor: pointer;
   border: 2px solid white;
+  display: flex;
 }
 
 .userGreet {
   color: #ffffff;
   margin: 23px;
-  display:none;
+  display: none;
 }
 
-.navBarLoginLi .userGreet a{
+.navBarLoginLi .userGreet a {
   padding: 0px;
 }
 
@@ -106,6 +107,8 @@
 
 .githubLogo {
   margin-left: 4px;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .header {
@@ -130,16 +133,30 @@
 .active {
   color: #e30464;
 }
+.Homes {
+  display: none;
+}
 
 @media screen and (max-width: 970px) {
   .navBar {
     background: #1d1283;
   }
-
+  .Homes {
+    display: block;
+  }
   .hamburger {
-    margin: 20px;
+    height: 73px;
+    width: 73px;
+    padding: 20px;
     display: inline-block;
     cursor: pointer;
+    font-size: 30px;
+    color: white;
+
+    .icon {
+      margin-top: 4px;
+      padding-left: 2px;
+    }
   }
 
   .navBarMenu {
@@ -191,136 +208,3 @@
     margin: 0px;
   }
 }
-
-// **************************************************************
-
-// .infoNavbar nav ul {
-//   list-style-type: none;
-//   margin: 0;
-//   padding: 0;
-//   overflow: hidden;
-//   background-color: #1d1283;
-//   display: flex;
-//   align-items: center;
-//   height: 4.25rem;
-// }
-// .infoNavbar nav li {
-//   float: left;
-
-// }
-// .infoNavbar nav li a {
-//   font: Roboto;
-//   font-size: 1rem;
-//   display: block;
-//   color: #ffffff;
-//   font-weight: 700;
-//   text-align: center;
-//   margin: 0;
-//   margin: auto 1.25rem;
-//   text-decoration: none;
-//   // height: 4.25rem;
-// }
-// .infoNavbar nav li a:hover {
-//   // border-bottom: 3px solid #88d870;
-//   color: #88d870;
-// }
-// .infoNavbar nav {
-//   width: 100%;
-//   background-color: #1d1283;
-//   height: 4.875rem;
-//   height: 4.25rem;
-//   // display: flex;
-//   align-items: center;
-// }
-// .DrawerToggle {
-//   position: relative;
-//   width: 35px;
-//   height: 55%;
-//   left: 10px;
-//   flex-flow: column;
-//   justify-content: space-around;
-//   align-items: center;
-//   padding: 10px 0;
-//   box-sizing: border-box;
-//   cursor: pointer;
-//   display: none;
-// }
-// .DrawerToggle span {
-//   background-color: white;
-//   width: 70%;
-//   height: 3px;
-//   margin: 2px 0;
-// }
-
-// @media screen and (max-width: 970px) {
-//   .infoNavbar nav ul {
-//     display: none;
-//   }
-//   .DrawerToggle {
-//     display: flex;
-//   }
-//   .activeTab {
-//     color: #49a82e !important;
-//     text-decoration: underline !important;
-//     text-decoration-thickness: 3px !important;
-//     text-underline-offset: 10px !important;
-//   }
-// }
-// .navBarLoginLi {
-//   float: right !important;
-// }
-// .btnLogin {
-//   font-size: 18px;
-//   float: right;
-// }
-
-// .loginBtnText {
-//   font-size: 16px;
-//   border-radius: 6px;
-//   padding: 0.3rem;
-//   background-color: #041484;
-//   color: white;
-//   cursor: pointer;
-//   border: 2px solid white;
-// }
-
-// .githubLogo {
-//   margin-left: 5px;
-//   width: 15px;
-//   height: 15px;
-// }
-// .userGreet {
-//   display: none;
-//   font-size: 18px;
-//   color: #ffffff;
-//   text-align: center;
-//   padding: 30px 20px 10px;
-//   text-decoration: none;
-// }
-
-// .userProfilePic {
-//   width: 2em;
-//   height: 2em;
-//   border-radius: 50%;
-//   display: inline;
-//   vertical-align: middle;
-// }
-// .userGreetMsg {
-//   font-size: 1em;
-//   display: inline;
-//   vertical-align: middle;
-//   margin-right: 10px;
-// }
-
-// .profilePic {
-//   display: none;
-//   margin-right: 1em;
-//   width: 4em;
-//   height: 4em;
-// }
-// .profilePic > img {
-//   width: 100%;
-//   height: 100%;
-//   border-radius: 50%;
-//   cursor: pointer;
-// }

@@ -16,6 +16,32 @@ const HOST_NAME = 'members.realdevsquad.com';
 const LOGIN_URL =
   'https://github.com/login/oauth/authorize?client_id=23c78f66ab7964e5ef97';
 const USER_PROFILE_URL = 'https://my.realdevsquad.com/profile';
+const NAVMENU = [
+  {
+    name: 'Home',
+    path: 'https://www.realdevsquad.com',
+  },
+  {
+    name: 'Welcome',
+    path: 'https://welcome.realdevsquad.com/',
+  },
+  {
+    name: 'Events',
+    path: 'https://www.realdevsquad.com/events.html',
+  },
+  {
+    name: 'Members',
+    path: 'https://members.realdevsquad.com/',
+  },
+  {
+    name: 'Crypto',
+    path: 'https://crypto.realdevsquad.com/',
+  },
+  {
+    name: 'Status',
+    path: 'https://status.realdevsquad.com/',
+  },
+];
 export {
   BASE_IMAGE_URL,
   BASE_API_URL,
@@ -26,4 +52,5 @@ export {
   SET_MEMBERS,
   HOST_NAME,
   USER_PROFILE_URL,
+  NAVMENU,
 };
