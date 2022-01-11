@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import {
   PATHS,
   LOGIN_URL,
   USER_DATA_URL,
   USER_PROFILE_URL,
+  NAVMENU,
 } from '@constants/AppConstants';
 import Link from 'next/link';
 
@@ -65,6 +67,9 @@ const Navbar = () => {
 
     fetchData();
   }, []);
+  const sidebarToggle = () => {
+    setToggle(!toggle);
+  };
   return (
     <div className={styles.wrapper}>
       <>
@@ -72,12 +77,10 @@ const Navbar = () => {
           <div
             className={styles.hamburger}
             ref={navbarRef}
-            onClick={() => setToggle(!toggle)}
-            onKeyDown={() => setToggle(!toggle)}
+            onClick={sidebarToggle}
+            onKeyDown={sidebarToggle}
           >
-            <span className={styles.bar} />
-            <span className={styles.bar} />
-            <span className={styles.bar} />
+            <GiHamburgerMenu className="icon" />
           </div>
           <div
             className={
@@ -150,23 +153,21 @@ const Navbar = () => {
                 />
               </a>
             </li>
-            <li>
-              <Link href={PATHS.WELCOME}>Welcome</Link>
-            </li>
-            <li>
-              <Link href={PATHS.EVENTS}>Events</Link>
-            </li>
-            <li>
-              <Link href={PATHS.MEMBERS}>
-                <a style={{ color: '#87D870' }}>Members</a>
-              </Link>
-            </li>
-            <li>
-              <Link href={PATHS.CRYPTO}>Crypto</Link>
-            </li>
-            <li>
-              <Link href={PATHS.STATUS}>Status</Link>
-            </li>
+            {NAVMENU.map((nav) => {
+              return (
+                <li className={nav.name === 'Home' ? `${styles.Homes}` : null}>
+                  <Link href={nav.path}>
+                    <a
+                      className={
+                        nav.name === 'Members' ? `${styles.activeTab}` : null
+                      }
+                    >
+                      {nav.name}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
             <li
               className={
                 mountedComponent
