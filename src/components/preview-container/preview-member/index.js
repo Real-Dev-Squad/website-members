@@ -17,16 +17,20 @@ const PreviewMember = ({ memberDetails, optionKey }) => {
   let timer = 0;
 
   const mouseEnter = () => {
-    timer = setTimeout(() => {
-      divref.current.style.display = 'flex';
-      divref.current.style.height = `${cardRef.current.offsetHeight}px`;
-      divref.current.style.width = `${cardRef.current.offsetWidth}px`;
-    }, TIMEOUT);
+    if (!optionKey) {
+      timer = setTimeout(() => {
+        divref.current.style.display = 'flex';
+        divref.current.style.height = `${cardRef.current.offsetHeight}px`;
+        divref.current.style.width = `${cardRef.current.offsetWidth}px`;
+      }, TIMEOUT);
+    }
   };
 
   const mouseLeave = () => {
-    divref.current.style.display = 'none';
-    clearTimeout(timer);
+    if (!optionKey) {
+      divref.current.style.display = 'none';
+      clearTimeout(timer);
+    }
   };
   return (
     <Link
