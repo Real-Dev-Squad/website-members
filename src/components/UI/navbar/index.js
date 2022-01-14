@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import {
   PATHS,
   LOGIN_URL,
@@ -28,6 +27,7 @@ const GenericClosePopUp = (ref, callback) => {
     };
   });
 };
+
 const Navbar = () => {
   const GITHUB_LOGO = '/icons/github.png';
   const DEFAULT_AVATAR = '/images/Avatar.png';
@@ -55,6 +55,9 @@ const Navbar = () => {
             setUserData({
               userName: responseJson.username,
               firstName: responseJson.first_name,
+              profilePicture: responseJson.picture
+                ? responseJson.picture.url
+                : DEFAULT_AVATAR,
             });
           }
           return window.location.replace('https://my.realdevsquad.com/signup');
@@ -80,7 +83,7 @@ const Navbar = () => {
             onClick={sidebarToggle}
             onKeyDown={sidebarToggle}
           >
-            <GiHamburgerMenu className="icon" />
+            <img className="icon" src="/icons/ham.png" alt="hamburger_logo" />
           </div>
           <div
             className={
@@ -90,13 +93,7 @@ const Navbar = () => {
             }
           >
             <Link href={LOGIN_URL}>
-              <a
-                className={
-                  isLoggedIn
-                    ? `${styles.btnLogin} d-none`
-                    : `${styles.btnLogin}`
-                }
-              >
+              <a className={`${styles.btnLogin}${isLoggedIn ? 'd-none' : ''}`}>
                 <button type="button" className={styles.btnLoginText}>
                   Sign In
                   <img
@@ -109,13 +106,7 @@ const Navbar = () => {
                 </button>
               </a>
             </Link>
-            <div
-              className={
-                isLoggedIn
-                  ? `${styles.userGreet}`
-                  : `${styles.userGreet} d-none`
-              }
-            >
+            <div className={`${styles.userGreet}${isLoggedIn ? 'd-none' : ''}`}>
               <Link href={USER_PROFILE_URL}>
                 <a>
                   <div className={styles.userGreetMsg}>
@@ -127,7 +118,7 @@ const Navbar = () => {
                     className={styles.userProfilePic}
                     src={
                       isLoggedIn
-                        ? `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/members/${userData.userName}/img.png`
+                        ? `${userData.profilePicture}`
                         : `${DEFAULT_AVATAR}`
                     }
                     alt="Profile pic"
@@ -137,11 +128,9 @@ const Navbar = () => {
             </div>
           </div>
           <ul
-            className={
-              toggle
-                ? `${styles.navBarMenu} ${styles.active}`
-                : styles.navBarMenu
-            }
+            className={`${styles.navBarMenu} ${
+              toggle ? `${styles.active}` : ''
+            }`}
           >
             <li className={styles.navBarLogoLi}>
               <a href={PATHS.HOME}>
@@ -155,7 +144,10 @@ const Navbar = () => {
             </li>
             {NAVMENU.map((nav) => {
               return (
-                <li className={nav.name === 'Home' ? `${styles.Homes}` : null}>
+                <li
+                  className={nav.name === 'Home' ? `${styles.homes}` : null}
+                  key
+                >
                   <Link href={nav.path}>
                     <a
                       className={
@@ -177,11 +169,7 @@ const Navbar = () => {
             >
               <Link href={LOGIN_URL}>
                 <a
-                  className={
-                    isLoggedIn
-                      ? `${styles.btnLogin} d-none`
-                      : `${styles.btnLogin}`
-                  }
+                  className={`${styles.btnLogin}${isLoggedIn ? 'd-none' : ''}`}
                 >
                   <button type="button" className={styles.btnLoginText}>
                     Sign In With GitHub
@@ -213,7 +201,7 @@ const Navbar = () => {
                       className={styles.userProfilePic}
                       src={
                         isLoggedIn
-                          ? `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/members/${userData.userName}/img.png`
+                          ? `${userData.profilePicture}`
                           : `${DEFAULT_AVATAR}`
                       }
                       alt="Profile Pic"

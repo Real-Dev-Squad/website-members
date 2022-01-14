@@ -60,6 +60,7 @@
   cursor: pointer;
   border: 2px solid white;
   display: flex;
+  justify-content: space-around;
 }
 
 .userGreet {
@@ -107,8 +108,9 @@
 
 .githubLogo {
   margin-left: 4px;
-  background-color: white;
+  // background-color: white;
   border-radius: 50%;
+  height : 15px; width : 15px;
 }
 
 .header {
@@ -133,7 +135,7 @@
 .active {
   color: #e30464;
 }
-.Homes {
+.homes {
   display: none;
 }
 
@@ -141,22 +143,20 @@
   .navBar {
     background: #1d1283;
   }
-  .Homes {
+  .homes {
     display: block;
   }
   .hamburger {
     height: 73px;
     width: 73px;
-    padding: 20px;
+    padding: 18px;
     display: inline-block;
     cursor: pointer;
-    font-size: 30px;
+    // font-size: 30px;
     color: white;
-
-    .icon {
-      margin-top: 4px;
-      padding-left: 2px;
-    }
+  }
+  .icon {
+    height: 32px;
   }
 
   .navBarMenu {
