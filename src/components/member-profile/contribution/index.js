@@ -16,7 +16,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
     task: { featureUrl },
     prList,
   } = contribution;
-  const url = featureUrl || prList[0].url;
+  const url = featureUrl || prList[0]?.url;
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
   const contributionCard = () => (
