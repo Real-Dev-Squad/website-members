@@ -77,6 +77,8 @@ git add .
 git commit -m "Write message about your commit"
 ```
 
+**Note** ⚠️: Please make sure to run `npm run format` before committing your files. Otherwise if there are any formatting issues in your code, checks will fail on your PR (pull request). You will then have to run the fix script to fix those issues and push the formatted code again and now the checks should pass.
+
 8. **Making sure you have the latest changes from the develop branch**
 
 It may so happen that since the last time you cloned the repo/took a pull from develop, some changes may be merged in the develop branch. So to be on the safer side, we should have those changes as well.
