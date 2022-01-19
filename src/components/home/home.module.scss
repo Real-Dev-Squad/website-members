@@ -14,3 +14,10 @@
 .heading {
   text-align: center;
 }
+
+@media (min-width: 420px) {
+  .img {
+    width: 400px;
+    height: 400px;
+  }
+}
