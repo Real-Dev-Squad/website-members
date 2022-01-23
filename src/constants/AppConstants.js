@@ -18,26 +18,32 @@ const LOGIN_URL =
 const USER_PROFILE_URL = 'https://my.realdevsquad.com/profile';
 const NAVMENU = [
   {
+    id: '1',
     name: 'Home',
     path: 'https://www.realdevsquad.com',
   },
   {
+    id: '2',
     name: 'Welcome',
     path: 'https://welcome.realdevsquad.com/',
   },
   {
+    id: '3',
     name: 'Events',
     path: 'https://www.realdevsquad.com/events.html',
   },
   {
+    id: '4',
     name: 'Members',
     path: 'https://members.realdevsquad.com/',
   },
   {
+    id: '5',
     name: 'Crypto',
     path: 'https://crypto.realdevsquad.com/',
   },
   {
+    id: '6',
     name: 'Status',
     path: 'https://status.realdevsquad.com/',
   },

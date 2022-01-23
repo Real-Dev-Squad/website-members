@@ -55,12 +55,10 @@ const Navbar = () => {
             setUserData({
               userName: responseJson.username,
               firstName: responseJson.first_name,
-              profilePicture: responseJson.picture
-                ? responseJson.picture.url
-                : DEFAULT_AVATAR,
+              profilePicture: responseJson.picture.url?.DEFAULT_AVATAR,
             });
           }
-          return window.location.replace('https://my.realdevsquad.com/signup');
+          return window.open('https://my.realdevsquad.com/signup');
         })
         .catch((err) => {
           return err;
@@ -83,7 +81,11 @@ const Navbar = () => {
             onClick={sidebarToggle}
             onKeyDown={sidebarToggle}
           >
-            <img className="icon" src="/icons/ham.png" alt="hamburger_logo" />
+            <img
+              className={styles.icon}
+              src="/icons/ham.png"
+              alt="hamburger_logo"
+            />
           </div>
           <div
             className={
@@ -146,7 +148,7 @@ const Navbar = () => {
               return (
                 <li
                   className={nav.name === 'Home' ? `${styles.homes}` : null}
-                  key
+                  key={nav.id}
                 >
                   <Link href={nav.path}>
                     <a
