@@ -9,6 +9,7 @@ const Backdrop = ({ show, clicked }) =>
       onClick={clicked}
       onKeyDown={clicked}
       aria-hidden
+      tabIndex="-1"
     />
   ) : null;
 

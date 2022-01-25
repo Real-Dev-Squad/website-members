@@ -60,3 +60,12 @@ export {
   USER_PROFILE_URL,
   NAVMENU,
 };
+export const BRAND_NAME = 'Real Dev Squad';
+export const MEMBERS_TITLE = 'Members';
+export const NEW_MEMBERS_TITLE = 'New Members';
+export const SET_MEMBERS = 'SET_MEMBERS';
+export const SET_ERRORS = 'SET_ERRORS';
+export const HOST_NAME = 'members.realdevsquad.com';
+export const TIMEOUT = 1000;
+export const KEY_TAB = 9;
+export const KEY_ESC = 27;

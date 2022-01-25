@@ -5,5 +5,6 @@ module.exports = {
     '^@components(.*)$': '<rootDir>/src/components$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1',
     '^@styles(.*)$': '<rootDir>/src/styles$1',
+    '^@helper-functions(.*)$': '<rootDir>/src/helper-functions$1',
   },
 };
