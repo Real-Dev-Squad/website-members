@@ -6,6 +6,7 @@ import { AnimateSharedLayout } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Spinner from '@components/UI/spinner';
 import { MembersProvider } from '@store';
+import { UserContextProvider } from '@store/user/user-context';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -30,14 +31,16 @@ const MyApp = (props) => {
 
   return (
     <AnimateSharedLayout>
-      <MembersProvider>
-        <div className={classNames.root}>
-          <div className={classNames.main}>
-            {loading && <Spinner />}
-            <Component {...pageProps} />
+      <UserContextProvider>
+        <MembersProvider>
+          <div className={classNames.root}>
+            <div className={classNames.main}>
+              {loading && <Spinner />}
+              <Component {...pageProps} />
+            </div>
           </div>
-        </div>
-      </MembersProvider>
+        </MembersProvider>
+      </UserContextProvider>
     </AnimateSharedLayout>
   );
 };

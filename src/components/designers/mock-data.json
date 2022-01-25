@@ -1,0 +1,20 @@
+{
+  "designers": [
+    {
+      "id": "designerArushi",
+      "last_name": "Bajpai",
+      "yoe": "2",
+      "incompleteUserDetails": false,
+      "roles": {
+        "member": true
+      },
+      "linkedin_id": "arushi-bajpai",
+      "twitter_id": "ArushiBajpai03",
+      "first_name": "Arushi",
+      "company": "Trynocode",
+      "username": "arushi",
+      "isMember": true,
+      "img_url": "/images/designer_arushi.jpg"
+    }
+  ]
+}

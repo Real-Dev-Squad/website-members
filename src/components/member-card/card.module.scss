@@ -1,42 +1,11 @@
-.container {
-  flex: 1 250px;
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  border: 1px solid #413f3f;
-  padding: 20px 10px;
-  background: white;
-  cursor: pointer;
-  max-width: 270px;
-  //addition of box-shadow and border radius to member card
-
-  box-shadow: 0 0 15px -7px rgba(0, 0, 0, 0.65);
-  border-radius: 5%;
-  transition: 0.38s box-shadow ease-out;
-  &:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-}
-
-.containerForNewMember {
-  @extend.container;
-  cursor: default;
-  flex: 0 150px;
-  height: 160px;
-  overflow: hidden;
-  margin: auto;
-  border: 0;
-  box-shadow: none;
-  &:hover {
-    box-shadow: none;
-  }
-}
-
 .imgContainer {
   width: 12rem;
   height: 12rem;
   border-radius: 50%;
   margin: 0px auto;
+  // FIXME: Remove Important
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 .imgContainerNewMember {
   /* prettier-ignore */
@@ -80,6 +49,23 @@
   padding: 0.2rem 0.4rem;
   border-radius: 6px;
   font-size: 0.88rem;
+}
+
+.settingsContainer {
+  position: relative;
+}
+
+.settingsButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.settingsIcon {
+  width: 1rem;
 }
 
 @media only screen and (min-width: 1024px) {
