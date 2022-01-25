@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:next": "next dev -p 3000",
+    "dev:https-link": "local-ssl-proxy --source 443 --target 3000",
     "build": "next build",
     "start": "next start -p $PORT",
     "build-static": "next build && next export",
@@ -21,6 +23,7 @@
     "axios": "^0.21.1",
     "cross-fetch": "^3.1.4",
     "framer-motion": "^3.2.1",
+    "local-ssl-proxy": "^1.3.0",
     "next": "^10.0.4",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
@@ -53,6 +56,7 @@
     "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.3.0"
   },
   "engines": {
