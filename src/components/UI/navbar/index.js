@@ -47,21 +47,23 @@ const Navbar = () => {
             setIsLoggedIn(false);
             throw new Error(`${response.status} (${response.statusText})`);
           }
+
           return response.json();
         })
         .then((responseJson) => {
-          if (!responseJson.incompleteUserDetails) {
-            setIsLoggedIn(true);
-            setUserData({
-              userName: responseJson.username,
-              firstName: responseJson.first_name,
-              profilePicture: responseJson.picture.url?.DEFAULT_AVATAR,
-            });
+          if (responseJson.incompleteUserDetails) {
+            window.open('https://my.realdevsquad.com/signup', '_blank');
           }
-          return window.open('https://my.realdevsquad.com/signup');
+
+          setIsLoggedIn(true);
+          setUserData({
+            userName: responseJson.username,
+            firstName: responseJson.first_name,
+            profilePicture: responseJson.picture?.url ?? DEFAULT_AVATAR,
+          });
         })
         .catch((err) => {
-          return err;
+          console.error(err);
         });
       setMountedComponent(true);
     };
@@ -71,6 +73,7 @@ const Navbar = () => {
   const sidebarToggle = () => {
     setToggle(!toggle);
   };
+
   return (
     <div className={styles.wrapper}>
       <>
@@ -95,7 +98,7 @@ const Navbar = () => {
             }
           >
             <Link href={LOGIN_URL}>
-              <a className={`${styles.btnLogin}${isLoggedIn ? 'd-none' : ''}`}>
+              <a className={`${styles.btnLogin} ${isLoggedIn ? 'd-none' : ''}`}>
                 <button type="button" className={styles.btnLoginText}>
                   Sign In
                   <img
@@ -171,10 +174,10 @@ const Navbar = () => {
             >
               <Link href={LOGIN_URL}>
                 <a
-                  className={`${styles.btnLogin}${isLoggedIn ? 'd-none' : ''}`}
+                  className={`${styles.btnLogin} ${isLoggedIn ? 'd-none' : ''}`}
                 >
                   <button type="button" className={styles.btnLoginText}>
-                    Sign In With GitHub
+                    Sign In With GitHub {isLoggedIn}
                     <img
                       className={styles.githubLogo}
                       src={GITHUB_LOGO}
