@@ -111,13 +111,13 @@ const Navbar = () => {
                 </button>
               </a>
             </Link>
-            <div className={`${styles.userGreet}${isLoggedIn ? 'd-none' : ''}`}>
+            <div
+              className={`${styles.userGreet} ${isLoggedIn ? '' : 'd-none'}`}
+            >
               <Link href={USER_PROFILE_URL}>
                 <a>
                   <div className={styles.userGreetMsg}>
-                    {isLoggedIn
-                      ? `Hello, ${userData.firstName}!`
-                      : `Hello, User!`}
+                    {`Hello ${isLoggedIn ? `${userData.firstName}` : 'User'}!`}
                   </div>
                   <img
                     className={styles.userProfilePic}
