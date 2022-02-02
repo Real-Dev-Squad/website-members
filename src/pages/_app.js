@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import Spinner from '@components/UI/spinner';
 import { MembersProvider } from '@store';
 import { UserContextProvider } from '@store/user/user-context';
+import { SearchMemberProvider } from '@store/search-members/searchMembers-context';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -33,12 +34,14 @@ const MyApp = (props) => {
     <AnimateSharedLayout>
       <UserContextProvider>
         <MembersProvider>
-          <div className={classNames.root}>
-            <div className={classNames.main}>
-              {loading && <Spinner />}
-              <Component {...pageProps} />
+          <SearchMemberProvider>
+            <div className={classNames.root}>
+              <div className={classNames.main}>
+                {loading && <Spinner />}
+                <Component {...pageProps} />
+              </div>
             </div>
-          </div>
+          </SearchMemberProvider>
         </MembersProvider>
       </UserContextProvider>
     </AnimateSharedLayout>
