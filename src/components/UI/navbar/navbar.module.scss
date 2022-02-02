@@ -1,6 +1,6 @@
 .wrapper {
   font: 700 16px 'Roboto', sans-serif;
-  width: 100%;
+  margin-bottom: 25px;
 }
 
 .navBar li a {
@@ -136,6 +136,12 @@
   color: #e30464;
 }
 .homes {
+  display: none;
+}
+.navBar li.navBarLoginLi .d-none {
+  display: none;
+}
+.navBar li.navBarLoginLi .d-none {
   display: none;
 }
 

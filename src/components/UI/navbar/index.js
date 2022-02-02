@@ -52,15 +52,19 @@ const Navbar = () => {
         })
         .then((responseJson) => {
           if (responseJson.incompleteUserDetails) {
-            window.open('https://my.realdevsquad.com/signup', '_blank');
+            window.open(
+              'https://my.realdevsquad.com/signup',
+              '_blank',
+              'noopener'
+            );
           }
-
           setIsLoggedIn(true);
           setUserData({
             userName: responseJson.username,
             firstName: responseJson.first_name,
             profilePicture: responseJson.picture?.url ?? DEFAULT_AVATAR,
           });
+          console.log(userData);
         })
         .catch((err) => {
           console.error(err);
@@ -90,48 +94,48 @@ const Navbar = () => {
               alt="hamburger_logo"
             />
           </div>
-          <div
-            className={
-              mountedComponent
-                ? `${styles.navBarLogin}`
-                : `${styles.navBarLogin} d-none`
-            }
-          >
-            <Link href={LOGIN_URL}>
-              <a className={`${styles.btnLogin} ${isLoggedIn ? 'd-none' : ''}`}>
-                <button type="button" className={styles.btnLoginText}>
-                  Sign In
-                  <img
-                    className={styles.githubLogo}
-                    src={GITHUB_LOGO}
-                    alt="GitHub Icon"
-                    height="15px"
-                    width="15px"
-                  />
-                </button>
-              </a>
-            </Link>
-            <div
-              className={`${styles.userGreet} ${isLoggedIn ? '' : 'd-none'}`}
-            >
-              <Link href={USER_PROFILE_URL}>
-                <a>
-                  <div className={styles.userGreetMsg}>
-                    {`Hello ${isLoggedIn ? `${userData.firstName}` : 'User'}!`}
-                  </div>
-                  <img
-                    className={styles.userProfilePic}
-                    src={
-                      isLoggedIn
-                        ? `${userData.profilePicture}`
-                        : `${DEFAULT_AVATAR}`
-                    }
-                    alt="Profile pic"
-                  />
-                </a>
-              </Link>
+          {mountedComponent && (
+            <div className={styles.navBarLogin}>
+              {!isLoggedIn && (
+                <Link href={LOGIN_URL}>
+                  <a className={styles.btnLogin}>
+                    <button type="button" className={styles.btnLoginText}>
+                      Sign In
+                      <img
+                        className={styles.githubLogo}
+                        src={GITHUB_LOGO}
+                        alt="GitHub Icon"
+                        height="15px"
+                        width="15px"
+                      />
+                    </button>
+                  </a>
+                </Link>
+              )}
+              {isLoggedIn && (
+                <div className={styles.userGreet}>
+                  <Link href={USER_PROFILE_URL}>
+                    <a>
+                      <div className={styles.userGreetMsg}>
+                        {`Hello ${
+                          isLoggedIn ? `${userData.firstName}` : 'User'
+                        }!`}
+                      </div>
+                      <img
+                        className={styles.userProfilePic}
+                        src={
+                          isLoggedIn
+                            ? `${userData.profilePicture}`
+                            : `${DEFAULT_AVATAR}`
+                        }
+                        alt="Profile pic"
+                      />
+                    </a>
+                  </Link>
+                </div>
+              )}
             </div>
-          </div>
+          )}
           <ul
             className={`${styles.navBarMenu} ${
               toggle ? `${styles.active}` : ''
@@ -165,56 +169,48 @@ const Navbar = () => {
                 </li>
               );
             })}
-            <li
-              className={
-                mountedComponent
-                  ? `${styles.navBarLoginLi}`
-                  : `${styles.navBarLoginLi} d-none`
-              }
-            >
-              <Link href={LOGIN_URL}>
-                <a
-                  className={`${styles.btnLogin} ${isLoggedIn ? 'd-none' : ''}`}
-                >
-                  <button type="button" className={styles.btnLoginText}>
-                    Sign In With GitHub {isLoggedIn}
-                    <img
-                      className={styles.githubLogo}
-                      src={GITHUB_LOGO}
-                      alt="GitHub Icon"
-                      height="15px"
-                      width="15px"
-                    />
-                  </button>
-                </a>
-              </Link>
-              <div
-                className={
-                  isLoggedIn
-                    ? `${styles.userGreet}`
-                    : `${styles.userGreet} d-none`
-                }
-              >
-                <Link href={USER_PROFILE_URL}>
-                  <a>
-                    <div className={styles.userGreetMsg}>
-                      {isLoggedIn
-                        ? `Hello, ${userData.firstName}!`
-                        : `Hello, User!`}
-                    </div>
-                    <img
-                      className={styles.userProfilePic}
-                      src={
-                        isLoggedIn
-                          ? `${userData.profilePicture}`
-                          : `${DEFAULT_AVATAR}`
-                      }
-                      alt="Profile Pic"
-                    />
-                  </a>
-                </Link>
-              </div>
-            </li>
+            {mountedComponent && (
+              <li className={styles.navBarLoginLi}>
+                {!isLoggedIn && (
+                  <Link href={LOGIN_URL}>
+                    <a className={styles.btnLogin}>
+                      <button type="button" className={styles.btnLoginText}>
+                        Sign In With GitHub
+                        <img
+                          className={styles.githubLogo}
+                          src={GITHUB_LOGO}
+                          alt="GitHub Icon"
+                          height="15px"
+                          width="15px"
+                        />
+                      </button>
+                    </a>
+                  </Link>
+                )}
+                {isLoggedIn && (
+                  <div className={styles.userGreet}>
+                    <Link href={USER_PROFILE_URL}>
+                      <a>
+                        <div className={styles.userGreetMsg}>
+                          {isLoggedIn
+                            ? `Hello, ${userData.firstName}!`
+                            : `Hello, User!`}
+                        </div>
+                        <img
+                          className={styles.userProfilePic}
+                          src={
+                            isLoggedIn
+                              ? `${userData.profilePicture}`
+                              : `${DEFAULT_AVATAR}`
+                          }
+                          alt="Profile Pic"
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                )}
+              </li>
+            )}
           </ul>
         </nav>
       </>
