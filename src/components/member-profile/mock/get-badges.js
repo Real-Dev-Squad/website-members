@@ -2,7 +2,7 @@ import badgesData from './data.json';
 
 const imgBaseURL = badgesData.images.baseURL;
 
-export default function (memberId) {
+export default function getMemberBadges(memberId) {
   let memberBadges = badgesData[memberId];
 
   if (!memberBadges) {

@@ -43,6 +43,8 @@ module.exports = {
     ],
     'react/jsx-props-no-spreading': 'off',
     'import/no-unresolved': [0, { caseSensitive: false }],
+    'no-console': ['error', { allow: ['error'] }],
+    'no-alert': 'off',
   },
   settings: {
     'import/resolver': {
