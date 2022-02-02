@@ -13,6 +13,7 @@ const PATHS = {
 const LOGIN_URL =
   'https://github.com/login/oauth/authorize?client_id=23c78f66ab7964e5ef97';
 const USER_PROFILE_URL = 'https://my.realdevsquad.com/profile';
+const SEARCHBOX_PLACEHOLDER = 'search members here';
 const NAVMENU = [
   {
     id: '1',
@@ -53,6 +54,7 @@ export {
   PATHS,
   USER_PROFILE_URL,
   NAVMENU,
+  SEARCHBOX_PLACEHOLDER,
 };
 export const BRAND_NAME = 'Real Dev Squad';
 export const MEMBERS_TITLE = 'Members';

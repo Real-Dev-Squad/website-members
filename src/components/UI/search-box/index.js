@@ -1,5 +1,6 @@
 import React from 'react';
 import { searchMemberContext } from '@store/search-members/searchMembers-context';
+import { SEARCHBOX_PLACEHOLDER } from '@constants/AppConstants';
 import classNames from './search-box.module.scss';
 
 const SearchBox = () => {
@@ -8,7 +9,7 @@ const SearchBox = () => {
     <div className={classNames.searchContainer}>
       <input
         type="text"
-        placeholder="&#128269; search members here"
+        placeholder={SEARCHBOX_PLACEHOLDER}
         onChange={({ target: { value } }) => setSearchTerm(value)}
         className={classNames.searchBox}
       />
