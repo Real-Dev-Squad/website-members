@@ -64,7 +64,6 @@ const Navbar = () => {
             firstName: responseJson.first_name,
             profilePicture: responseJson.picture?.url ?? DEFAULT_AVATAR,
           });
-          console.log(userData);
         })
         .catch((err) => {
           console.error(err);
