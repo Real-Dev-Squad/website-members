@@ -29,7 +29,7 @@ const GenericClosePopUp = (ref, callback) => {
 };
 
 const Navbar = () => {
-  const GITHUB_LOGO = '/icons/github.png';
+  const GITHUB_LOGO = '/icons/github-white.png';
   const DEFAULT_AVATAR = '/images/Avatar.png';
   const [userData, setUserData] = useState({});
   const [toggle, setToggle] = useState(false);
