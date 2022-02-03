@@ -22,7 +22,7 @@
   background-color: rgb(255, 255, 255, 0.9);
   position: absolute;
   display: none;
-  color: black;
+  color: blue;
   flex: 1 250px;
   flex-direction: column;
   border: none;
@@ -30,4 +30,9 @@
   margin-top: -1.3rem;
   margin-left: -0.65rem;
   padding: 2rem;
+  opacity: 50%;
+}
+.previewMember:hover {
+  opacity: 100%;
+  transition: opacity 0.25s;
 }
