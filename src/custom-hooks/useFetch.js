@@ -50,7 +50,7 @@ const useFetch = (url) => {
       }
     };
     fetchUrl();
-  }, []);
+  }, [url]);
 
   return { loading, error, data };
 };
