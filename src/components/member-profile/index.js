@@ -358,7 +358,7 @@ const Profile = (props) => {
           <div className={classNames.memberDetails}>
             <motion.img
               layoutId={username}
-              src={imageLink.w_200}
+              src={imageLink.w_200 ?? '/icons/user.png'}
               className={classNames.profilePic}
               alt={fullName}
             />
