@@ -39,6 +39,10 @@ export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const membersDetails = [];
   const newMembersDetails = [];
+  const {
+    query: { dev },
+  } = context;
+
   try {
     const res = await fetch(getMembersURL);
     if (res.status !== 200) {
@@ -51,16 +55,18 @@ export async function getServerSideProps(context) {
     for (const memberData of members) {
       const { picture, username, isMember, first_name, archivedMember } =
         memberData;
-      const img_url = getImgURL(username, 'img.png');
 
-      // #TODO: We have termporarily mitigated the issue,
-      // Please fix https://github.com/Real-Dev-Squad/website-members/issues/300
-      // const img_url = picture
-      //   ? getImgURL(username, 'img.png')
-      // : getCloudinaryImgURL(
-      //     picture.publicId,
-      //     `${WIDTH_200PX},${HEIGHT_200PX}`
-      //   );
+      let img_url;
+      if (dev && picture) {
+        img_url = getCloudinaryImgURL(
+          picture.publicId,
+          `${WIDTH_200PX},${HEIGHT_200PX}`
+        );
+      } else {
+        img_url = '';
+      }
+
+      img_url = dev ? img_url : getImgURL(username, 'img.png');
 
       // Filtering Members
       if (isMember) {
