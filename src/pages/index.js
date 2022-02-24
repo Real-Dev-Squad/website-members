@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
 import {
@@ -62,7 +61,7 @@ export async function getServerSideProps(context) {
               picture.publicId,
               `${WIDTH_200PX},${HEIGHT_200PX}`
             )
-          : '';
+          : '/images/Avatar.png';
       if (!dev) img_url = getImgURL(username, 'img.png');
 
       // Filtering Members
