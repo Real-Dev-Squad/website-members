@@ -55,14 +55,17 @@ export async function getServerSideProps(context) {
       const { picture, username, isMember, first_name, archivedMember } =
         memberData;
 
-      let img_url =
-        dev && picture
+      let img_url;
+      if (dev) {
+        img_url = picture
           ? getCloudinaryImgURL(
               picture.publicId,
               `${WIDTH_200PX},${HEIGHT_200PX}`
             )
           : '/images/Avatar.png';
-      if (!dev) img_url = getImgURL(username, 'img.png');
+      } else {
+        img_url = getImgURL(username, 'img.png');
+      }
 
       // Filtering Members
       if (isMember) {
