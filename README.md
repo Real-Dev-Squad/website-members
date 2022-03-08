@@ -78,7 +78,7 @@ export default BlogsPage;
 
 ```
 
-> Note: Do not create individual files in `/components` or `/pages`. Put every file in folders with appropiate names.
+> Note: Do not create individual files in `/components` or `/pages`. Put every file in folders with appropriate names.
 
 ### Public
 
