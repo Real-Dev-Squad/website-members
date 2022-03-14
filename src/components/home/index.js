@@ -7,6 +7,7 @@ import Designers from '@components/designers';
 import SearchBox from '@components/UI/search-box/index';
 import styles from '@components/home/home.module.scss';
 import { userContext } from '@store/user/user-context';
+import { useState } from 'react';
 import {
   BRAND_NAME,
   MEMBERS_TITLE,
@@ -17,9 +18,22 @@ const Home = () => {
   const { showMemberRoleUpdateModal, isSuperUserMode } = userContext();
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
+  const [isOptionKey, setIsOptionKey] = useState(false);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Alt') {
+          setIsOptionKey(true);
+        }
+      }}
+      onKeyUp={() => {
+        setIsOptionKey(false);
+      }}
+    >
       {dev && <UserProfile />}
       {dev && <SearchBox />}
       <img
@@ -35,9 +49,9 @@ const Home = () => {
           {showMemberRoleUpdateModal && <MemberRoleUpdate />}
         </div>
       )}
-      <Members />
+      <Members isOptionKey={isOptionKey} />
       <h1 className={styles.heading}>{NEW_MEMBERS_TITLE}</h1>
-      <NewMembers />
+      <NewMembers isOptionKey={isOptionKey} />
     </div>
   );
 };
