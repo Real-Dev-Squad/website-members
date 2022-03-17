@@ -19,12 +19,22 @@ import {
   HEIGHT_200PX,
   HEIGHT_40PX,
 } from '@constants/profile-image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import contributionsData from '@components/member-profile/mock/contributions.json';
+import { ContributionContext, ContributionsProvider } from '@store/contributions/ContributionContext.js';
+
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
+  // const { contributions, dispatch } = useContext(ContributionContext);
+  //const pcp = useContext(ContributionContext);
+  console.log("context");
+  console.log(contributions);
+  console.log("error");
+  console.log(errorMessage);
+  //console.log(pcp);
   useEffect(() => {
     (async () => {
       const tasksURL = getActiveTasksURL(id);
@@ -32,8 +42,7 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
       const { tasks } = await tasksResponse.data;
       setActiveTasksData(tasks);
     })();
-  }, []);
-
+  }, [contributions]);//contributions
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
@@ -46,13 +55,15 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
 
   return (
     <Layout title={memberName}>
-      <Profile
-        imageLink={imageLink}
-        membersData={user}
-        contributions={contributions}
-        devUser={devUser}
-        tasks={activeTasksData}
-      />
+      <ContributionsProvider>
+        <Profile
+          imageLink={imageLink}
+          membersData={user}
+          contributions={contributions}
+          devUser={devUser}
+          tasks={activeTasksData}
+        />
+      </ContributionsProvider>
     </Layout>
   );
 };
@@ -78,8 +89,11 @@ export async function getServerSideProps(context) {
         ? getCloudinaryImgURL(user.picture.publicId, transformString)
         : getImgURL(user.username, 'img.png');
     };
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    //console.log(contributionsData);
     const contributionsResponse = await fetch(contributionsURL);
-    const contributions = await contributionsResponse.data;
+    const contributions = await contributionsResponse.data//contributionsData
+    console.log(contributions);
     const imageLink = {
       w_200: getImageLink(`${WIDTH_200PX},${HEIGHT_200PX}`),
       w_40: getImageLink(`${WIDTH_40PX},${HEIGHT_40PX}`),
@@ -99,6 +113,7 @@ MemberProfile.propTypes = {
   contributions: PropTypes.shape({
     noteworthy: PropTypes.instanceOf(Array),
     all: PropTypes.instanceOf(Array),
+    other: PropTypes.instanceOf(Array),
   }),
   errorMessage: PropTypes.string,
 };
@@ -112,6 +127,7 @@ MemberProfile.defaultProps = {
   contributions: {
     noteworthy: [],
     all: [],
+    other: [],
   },
   errorMessage: '',
 };

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '@components/social-media-icon';
 import getBadges from '@components/member-profile/mock/get-badges';
@@ -11,6 +11,7 @@ import ShowSkills from '@components/member-card/show-skills';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
+import { ContributionContext, ContributionsProvider } from '@store/contributions/ContributionContext.js';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -22,7 +23,7 @@ const renderBadgeImages = (badges) =>
     />
   ));
 
-const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All'];
+const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All', 'Other'];
 
 const renderContributionsTypes = (
   contributions,
@@ -31,12 +32,12 @@ const renderContributionsTypes = (
   devUser,
   tasks
 ) => {
-  const { noteworthy, all } = contributions;
+  const { noteworthy, all, other } = contributions;
   return CONTRIBUTIONTYPE.map((type, index) => (
     <ContributionType
       type={type}
       key={index}
-      contributions={type !== 'All' ? noteworthy : all}
+      contributions={type === 'All' ? all : type === 'Noteworthy' ? noteworthy : other}
       fullName={fullName}
       imageLink={imageLink}
       devUser={devUser}
@@ -67,7 +68,21 @@ const Profile = (props) => {
     'linkedin_id',
     'instagram_id',
   ];
-
+  const { contributionsState, dispatch } = useContext(ContributionContext);
+  // const contributions = useState(contributions);
+  console.log("contribution");
+  console.log(contributions);
+  useEffect(() => {
+    (async () => {
+      dispatch({ type: 'set_contributions', payload: { contributions: contributions } });
+      //console.log(contributionsState.noteworthy.length);
+      //console.log(contributionsState.all.length);
+    })();
+  }, [contributions]);
+  useEffect(() => { console.log("contributions changed"); console.log(contributionsState); }, [JSON.stringify(contributionsState)]);
+  //[contributions.noteworthy.length, contributions.all.length]
+  console.log("profile");
+  console.log(contributions);
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
   const rdsUserName = `@${username}`;
@@ -409,7 +424,7 @@ const Profile = (props) => {
 
           <div className={(classNames.section, classNames.card)}>
             {renderContributionsTypes(
-              contributions,
+              contributionsState,
               fullName,
               imageLink.w_40,
               devUser,
@@ -437,6 +452,7 @@ Profile.propTypes = {
   contributions: PropTypes.shape({
     noteworthy: PropTypes.instanceOf(Array),
     all: PropTypes.instanceOf(Array),
+    other: PropTypes.instanceOf(Array),
   }),
   devUser: PropTypes.bool,
   tasks: PropTypes.instanceOf(Array),
@@ -457,6 +473,7 @@ Profile.defaultProps = {
   contributions: {
     noteworthy: [],
     all: [],
+    other: [],
   },
   devUser: false,
   tasks: [],

@@ -121,3 +121,41 @@
     align-items: flex-start;
   }
 }
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.closeButton {
+  padding: 15px 10px;
+  margin: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.settingsContainer {
+  position: relative;
+}
+
+.settingsButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.settingsIcon {
+  width: 1rem;
+}
