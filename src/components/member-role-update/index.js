@@ -4,7 +4,7 @@ import Modal from '@components/UI/modal/index';
 import { userContext } from '@store/user/user-context';
 import Spinner from '@components/UI/spinner';
 import classNames from './member-role-update.module.scss';
-import { moveToMember } from '../../helper-functions/action-handlers';
+import { archiveMember, moveToMember } from '../../helper-functions/action-handlers';
 
 const MemberRoleUpdate = () => {
   const {
@@ -26,7 +26,7 @@ const MemberRoleUpdate = () => {
       setUpdateStatus('Some error occured, please contact admin');
     }
   };
-  const archiveMember = async (user) => {
+  const archiveTheMember = async (user) => {
     setIsUpdating(true);
     const { status } = await archiveMember(user);
     setIsUpdating(false);
@@ -51,7 +51,7 @@ const MemberRoleUpdate = () => {
         <button
           className={classNames.moveToMember}
           type="button"
-          onClick={() => archiveMember(selectedMember)}
+          onClick={() => archiveTheMember(selectedMember)}
         >
           Archive Member
         </button>
