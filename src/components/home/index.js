@@ -36,11 +36,6 @@ const Home = () => {
     >
       {dev && <UserProfile />}
       {dev && <SearchBox />}
-      <img
-        className={styles.img}
-        src="/images/Real-Dev-Squad@1x.png"
-        alt="real-dev squad"
-      />
       <h1 className={styles.heading}>Designers</h1>
       <Designers />
       <h1 className={styles.heading}>{`${BRAND_NAME} ${MEMBERS_TITLE}`}</h1>
