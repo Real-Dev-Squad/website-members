@@ -1,10 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
-import {
-  getMembersURL,
-  getImgURL,
-  getCloudinaryImgURL,
-} from '@helper-functions/urls';
+import { getMembersURL, getCloudinaryImgURL } from '@helper-functions/urls';
 import fetch from 'cross-fetch';
 import Home from '@components/home';
 import Layout from '@components/layout';
@@ -38,9 +34,6 @@ export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const membersDetails = [];
   const newMembersDetails = [];
-  const {
-    query: { dev },
-  } = context;
 
   try {
     const res = await fetch(getMembersURL);
@@ -52,20 +45,14 @@ export async function getServerSideProps(context) {
     const { members } = await res.json();
 
     for (const memberData of members) {
-      const { picture, username, isMember, first_name, archivedMember } =
-        memberData;
+      const { picture, isMember, first_name, archivedMember } = memberData;
 
-      let img_url;
-      if (dev) {
-        img_url = picture
-          ? getCloudinaryImgURL(
-              picture.publicId,
-              `${WIDTH_200PX},${HEIGHT_200PX}`
-            )
-          : '/images/Avatar.png';
-      } else {
-        img_url = getImgURL(username, 'img.png');
-      }
+      const img_url = picture
+        ? getCloudinaryImgURL(
+            picture.publicId,
+            `${WIDTH_200PX},${HEIGHT_200PX}`
+          )
+        : '/images/Avatar.png';
 
       // Filtering Members
       if (isMember) {
