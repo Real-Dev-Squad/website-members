@@ -1,5 +1,8 @@
 .wrapper {
   font: 700 16px 'Roboto', sans-serif;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
 .navBar li a {
