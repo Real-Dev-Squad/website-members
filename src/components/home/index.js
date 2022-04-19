@@ -32,9 +32,7 @@ const Home = () => {
           setOptionKey(true);
         }
       }}
-      onKeyUp={() => {
-        setOptionKey(false);
-      }}
+      onKeyUp={() => setOptionKey(false)}
     >
       {dev && <UserProfile />}
       <img
