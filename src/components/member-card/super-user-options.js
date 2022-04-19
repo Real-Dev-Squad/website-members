@@ -21,7 +21,7 @@ const SuperUserOptions = ({ username, showSettings }) => {
     return (
       <div
         className={`${classNames.settingsContainer} ${
-          !showSettings ? classNames.hidden : ''
+          !showSettings && classNames.hidden 
         }`}
       >
         <button
