@@ -38,9 +38,9 @@ const Card = ({ developerInfo, optionKey }) => {
       role="button"
       tabIndex={0}
       onMouseEnter={handleSettingsButton}
-      onMouseLeave={() => {
-        setShowSettings(false);
-      }}
+      onMouseLeave={() => 
+        setShowSettings(false)
+      }
     >
       {dev && (
         <SuperUserOptions username={username} showSettings={showSettings} />
