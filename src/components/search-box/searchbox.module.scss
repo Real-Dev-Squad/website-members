@@ -1,0 +1,29 @@
+.searchbox_container {
+  background-color: #fefeff;
+  opacity: 1;
+  width: 60%;
+  height: 100px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px grey;
+  margin: 5% auto;
+}
+.button {
+  background-color: #382bd0;
+  color: white;
+  font-weight: bold;
+  width: 17%;
+  height: 60px;
+  margin: 20px 20px 2px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+}
+.searchbox {
+  background: #e4e5e4;
+  width: 75%;
+  height: 60px;
+  border-radius: 5px;
+  padding-left: 70px;
+  margin: 20px 20px 2px 10px;
+  border: none;
+}
