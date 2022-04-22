@@ -12,7 +12,7 @@ const Modal = ({ show, closeModal, children, style }) => (
       className={styles.modal}
       style={{
         ...style,
-        transform: show ? 'translateY(0)' : 'translateY(-100vh)',
+        transform: show ? 'translateY(0)' : 'translateY(-10vh)',
         opacity: show ? '1' : '0',
       }}
     >

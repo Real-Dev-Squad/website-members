@@ -7,7 +7,7 @@ import { TIMEOUT } from '@constants/AppConstants';
 
 import styles from '@components/preview-container/preview-member/preview-member.module.scss';
 
-const PreviewMember = ({ memberDetails, optionKey }) => {
+const PreviewMember = ({ memberDetails, isOptionKey }) => {
   const { username, first_name, last_name } = memberDetails;
   const divref = useRef(null);
   const cardRef = useRef(null);
@@ -17,7 +17,7 @@ const PreviewMember = ({ memberDetails, optionKey }) => {
   let timer = 0;
 
   const mouseEnter = () => {
-    if (!optionKey) {
+    if (!isOptionKey) {
       timer = setTimeout(() => {
         divref.current.style.display = 'flex';
         divref.current.style.height = `${cardRef.current.offsetHeight}px`;
@@ -27,7 +27,7 @@ const PreviewMember = ({ memberDetails, optionKey }) => {
   };
 
   const mouseLeave = () => {
-    if (!optionKey) {
+    if (!isOptionKey) {
       divref.current.style.display = 'none';
       clearTimeout(timer);
     }
@@ -51,8 +51,8 @@ const PreviewMember = ({ memberDetails, optionKey }) => {
         onMouseEnter={dev && mouseEnter}
         onMouseLeave={dev && mouseLeave}
       >
-        <Card developerInfo={memberDetails} optionKey={optionKey} />
-        {dev && !optionKey && (
+        <Card developerInfo={memberDetails} isOptionKey={isOptionKey} />
+        {dev && !isOptionKey && (
           <div ref={divref} className={styles.previewMember}>
             <div style={{ margin: '0.5rem' }}>
               <p style={{ fontWeight: '900' }}>Company: </p>
@@ -82,6 +82,7 @@ PreviewMember.propTypes = {
     username: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
+    isOptionKey: PropTypes.bool,
   }),
 };
 PreviewMember.defaultProps = {

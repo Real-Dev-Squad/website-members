@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ShowSkills from '@components/member-card/show-skills';
 import SuperUserOptions from '@components/member-card/super-user-options';
 
-const Card = ({ developerInfo, optionKey }) => {
+const Card = ({ developerInfo, isOptionKey }) => {
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
@@ -21,7 +21,7 @@ const Card = ({ developerInfo, optionKey }) => {
 
   const [showSettings, setShowSettings] = useState(false);
   const handleSettingsButton = () => {
-    if (optionKey) {
+    if (isOptionKey) {
       setShowSettings(true);
     }
   };
@@ -38,16 +38,18 @@ const Card = ({ developerInfo, optionKey }) => {
       role="button"
       tabIndex={0}
       onMouseEnter={handleSettingsButton}
-      onMouseLeave={() => 
-        setShowSettings(false)
-      }
+      onMouseLeave={() => {
+        setShowSettings(false);
+      }}
     >
       {dev && (
         <SuperUserOptions username={username} showSettings={showSettings} />
       )}
       <motion.img
         layoutId={username}
-        src={`${img_url}?${Math.random() * 100}`}
+        src={
+          isMember ? `${img_url}?${Math.random() * 100}` : '/images/Avatar.png'
+        }
         onError={brokenImageHandler}
         className={
           isMember ? classNames.imgContainer : classNames.imgContainerNewMember
@@ -90,6 +92,10 @@ Card.propTypes = {
     img_url: PropTypes.string.isRequired,
     isMember: PropTypes.bool.isRequired,
   }).isRequired,
+  isOptionKey: PropTypes.bool,
+};
+Card.defaultProps = {
+  isOptionKey: false,
 };
 
 export default Card;

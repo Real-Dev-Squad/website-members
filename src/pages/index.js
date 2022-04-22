@@ -1,10 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
-import {
-  getMembersURL,
-  getImgURL,
-  getCloudinaryImgURL,
-} from '@helper-functions/urls';
+import { getMembersURL, getCloudinaryImgURL } from '@helper-functions/urls';
 import fetch from 'cross-fetch';
 import Home from '@components/home';
 import Layout from '@components/layout';
@@ -27,7 +23,7 @@ const Index = ({ members, newMembers, errorMsg }) => {
         payload: { members, newMembers },
       });
     }
-  }, []);
+  }, [dispatch, errorMsg, members, newMembers]);
 
   loadComponent = errorMsg ? <NotFound /> : <Home />;
 
@@ -38,6 +34,7 @@ export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const membersDetails = [];
   const newMembersDetails = [];
+
   try {
     const res = await fetch(getMembersURL);
     if (res.status !== 200) {
@@ -48,14 +45,14 @@ export async function getServerSideProps(context) {
     const { members } = await res.json();
 
     for (const memberData of members) {
-      const { picture, username, isMember, first_name, archivedMember } =
-        memberData;
+      const { picture, isMember, first_name, archivedMember } = memberData;
+
       const img_url = picture
         ? getCloudinaryImgURL(
             picture.publicId,
             `${WIDTH_200PX},${HEIGHT_200PX}`
           )
-        : getImgURL(username, 'img.png');
+        : '/images/Avatar.png';
 
       // Filtering Members
       if (isMember) {

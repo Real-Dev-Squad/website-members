@@ -32,7 +32,7 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
       const { tasks } = await tasksResponse.data;
       setActiveTasksData(tasks);
     })();
-  }, []);
+  }, [id]);
 
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;

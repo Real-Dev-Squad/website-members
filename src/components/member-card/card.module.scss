@@ -31,6 +31,10 @@
   }
 }
 
+.hidden {
+  display: none;
+}
+
 .iconsContainer:not(:last-child) {
   margin-right: 15px;
 }

@@ -21,7 +21,7 @@ const SuperUserOptions = ({ username, showSettings }) => {
     return (
       <div
         className={`${classNames.settingsContainer} ${
-          !showSettings && classNames.hidden 
+          !showSettings && classNames.hidden
         }`}
       >
         <button
@@ -44,6 +44,10 @@ const SuperUserOptions = ({ username, showSettings }) => {
 
 SuperUserOptions.propTypes = {
   username: PropTypes.string.isRequired,
+  showSettings: PropTypes.bool,
+};
+SuperUserOptions.defaultProps = {
+  showSettings: false,
 };
 
 export default SuperUserOptions;

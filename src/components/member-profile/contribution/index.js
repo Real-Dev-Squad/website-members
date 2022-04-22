@@ -16,7 +16,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
     task: { featureUrl },
     prList,
   } = contribution;
-  const url = featureUrl || prList[0].url;
+  const url = featureUrl || prList[0]?.url;
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
   const contributionCard = () => (
@@ -97,11 +97,11 @@ const ContributionCard = ({
   let featureLiveDate = '';
 
   if (isTitleAvailable) {
-    if (status === 'Active') {
+    if (status !== 'VERIFIED') {
       completedText = <span>Estimated Completion: </span>;
       completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
     } else {
-      completedDate = timeWas(endsOn * 1000);
+      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
       completedText = <span>Completed in: </span>;
       featureLiveDate = timeWas(endsOn * 1000, true);
       featureLiveOnText = featureLiveDate;

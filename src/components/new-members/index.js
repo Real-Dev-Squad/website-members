@@ -1,55 +1,34 @@
 import React from 'react';
-import { membersContext } from '@store/members/members-context';
 import Card from '@components/member-card';
-import { useRouter } from 'next/router';
-import { userContext } from '@store/user/user-context';
-import Link from 'next/link';
-
+import PropTypes from 'prop-types';
 import styles from '@components/new-members/new-members.module.scss';
+import { membersContext } from '@store/members/members-context';
+import { searchMemberContext } from '@store/search-members/searchMembers-context';
+import { searchMembers } from '@helper-functions/search-members';
 
 // returns card which shows details of new member
-const RenderNewMemberCard = (newMember, optionKey) => (
+const renderNewMember = (newMember, isOptionKey) => (
   <div className={styles.containerForNewMember}>
-    <Card optionKey={optionKey} developerInfo={newMember} isMember={false} />
+    <Card
+      developerInfo={newMember}
+      isMember={false}
+      isOptionKey={isOptionKey}
+    />
   </div>
 );
 
-const RenderNewMember = (newMember, optionKey) => {
-  const { username, first_name, last_name } = newMember;
-  const { query } = useRouter() || { query: { dev: false } };
-  const { dev } = query;
-  const { isSuperUserMode } = userContext();
-  return isSuperUserMode && dev && optionKey ? (
-    <Link
-      prefetch={false}
-      href={{
-        pathname: '/[id]',
-        query: {
-          first_name: `${newMember ? first_name : ''}`,
-          last_name: `${newMember ? last_name : ''}`,
-        },
-      }}
-      as={`/${username}`}
-      key={username}
-    >
-      {RenderNewMemberCard(newMember, optionKey)}
-    </Link>
-  ) : (
-    RenderNewMemberCard(newMember, optionKey)
-  );
-};
-
-const NewMemberList = ({ optionKey }) => {
+const NewMemberList = ({ isOptionKey }) => {
   const {
     state: { newMembers },
   } = membersContext();
-
+  const { searchTerm } = searchMemberContext();
+  const filterMembers = searchMembers(newMembers, searchTerm);
   if (newMembers) {
     return (
       <div className={styles.container}>
-        {newMembers.map((newMember) => (
+        {filterMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
-            {RenderNewMember(newMember, optionKey)}
+            {renderNewMember(newMember, isOptionKey)}
           </React.Fragment>
         ))}
       </div>
@@ -59,3 +38,10 @@ const NewMemberList = ({ optionKey }) => {
 };
 
 export default NewMemberList;
+
+NewMemberList.propTypes = {
+  isOptionKey: PropTypes.bool,
+};
+NewMemberList.defaultProps = {
+  isOptionKey: false,
+};
