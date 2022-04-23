@@ -13,10 +13,15 @@ Wish to contribute? You can find a detailed guide [here](./CONTRIBUTING.md)!
 
 ### Setup
 
-We use `npm` for managing packages.
-It is installed by default along with node.js.
+We use `yarn` for managing packages.
 
-Please install `volta`
+Install `yarn` preferably using npm.
+
+```
+npm install --global yarn
+```
+
+Also install `volta`
 
 [Why Volta?](https://docs.volta.sh/guide/#why-volta)
 
@@ -27,7 +32,7 @@ To install Volta, please follow the [process](https://docs.volta.sh/guide/gettin
 Step 1:
 
 ```
-npm install
+yarn install
 ```
 
 The above command installs all the essential packages for this project via `package.json` file.
@@ -37,17 +42,17 @@ Step 2:
 These scripts refer to the different stages of developing an application:
 
 ```bash
-> npm run dev
+> yarn run dev
 # starts development server locally on port 3000
 # open http://localhost:3000 from your browser.
 
-> npm run build
+> yarn run build
 # builds application for production grade usage.
 
-> npm run build-static
+> yarn run build-static
 # runs next build && next export which builds the application and have a static version of app in the 'out' directory.
 
-> npm run start
+> yarn run start
 # starts a Next.js production server.
 # to be used after a production build.
 
@@ -56,10 +61,10 @@ These scripts refer to the different stages of developing an application:
 Step 3: Check for lint and prettier issues before raising a PR
 
 ```bash
-> npm run check-lint
+> yarn run check-lint
 # checks for common syntax and style errors in the code base.
 
-> npm run check-format
+> yarn run check-format
 # examines files for errors in style,spacing,single quotes vs double quotes etc.
 
 ```
