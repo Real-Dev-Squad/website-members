@@ -11,16 +11,17 @@ import ShowSkills from '@components/member-card/show-skills';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
+import Tooltip from 'react-tooltip-lite';
 
 const renderBadgeImages = (badges) =>
-  badges.map((badge) => (
-    <img
-      src={badge.img}
-      className={classNames.badge}
-      alt={badge.title}
-      key={badge.title}
-    />
-  ));
+  badges.map((badge) => {
+    const { img, title } = badge;
+    return (
+      <Tooltip key={title} content={title} useDefaultStyles direction="down">
+        <img src={img} className={classNames.badge} alt={title} />
+      </Tooltip>
+    );
+  });
 
 const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All'];
 
