@@ -1,9 +1,12 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from '@components/member-profile/contribution-type/contributions-type.module.scss';
 import Contribution from '@components/member-profile/contribution/';
 import ActiveTask from '@components/member-profile/active-task';
+
+const INIT_CONTRIBUTIONS = 3;
 
 const renderContributions = (contributions, fullName, imageLink, devUser) =>
   contributions.map((noteWorthyContribution, index) => (
@@ -29,9 +32,17 @@ const ContributionType = (props) => {
   const { fullName, type, imageLink, contributions, devUser, tasks } = props;
 
   const [showMoreContent, setShowMoreContent] = useState(true);
+  const initCount =
+    devUser === true ? INIT_CONTRIBUTIONS : contributions.length;
+  const [count, setCount] = useState(initCount);
 
   const showMoreContentHandler = () => {
+    setCount(initCount);
     setShowMoreContent((prevstate) => !prevstate);
+  };
+
+  const loadMoreHandler = () => {
+    setCount((prevCount) => prevCount + INIT_CONTRIBUTIONS);
   };
 
   const showMoreContentClass = showMoreContent
@@ -54,7 +65,22 @@ const ContributionType = (props) => {
       <div className={showMoreContentClass}>
         {type !== 'Active tasks' ? (
           <div>
-            {renderContributions(contributions, fullName, imageLink, devUser)}
+            {renderContributions(
+              contributions.slice(0, count),
+              fullName,
+              imageLink,
+              devUser
+            )}
+            {count <= contributions.length && devUser && (
+              <div className={classNames.loadDiv}>
+                <button
+                  className={classNames.loadButton}
+                  onClick={loadMoreHandler}
+                >
+                  Load more
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div>{renderActiveTasks(tasks)}</div>
