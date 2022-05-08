@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import {
   getMembersDataURL,
-  getImgURL,
   getContributionsURL,
   getActiveTasksURL,
   getCloudinaryImgURL,
@@ -75,7 +74,7 @@ export async function getServerSideProps(context) {
     const getImageLink = (transformString) => {
       return user.picture
         ? getCloudinaryImgURL(user.picture.publicId, transformString)
-        : getImgURL(user.username, 'img.png');
+        : '/images/Avatar.png';
     };
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
