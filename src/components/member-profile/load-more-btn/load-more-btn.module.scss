@@ -1,0 +1,24 @@
+.loadButton {
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  padding: 8px 8px;
+  font-size: 16px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out;
+}
+
+.loadButton:hover {
+  color: white;
+  background-color: #041484;
+  transition: background-color 0.2s ease-in;
+  outline: #041484;
+}
+
+.loadDiv {
+  text-align: center;
+  margin-top: 1.5em;
+}

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from '@components/member-profile/contribution-type/contributions-type.module.scss';
 import Contribution from '@components/member-profile/contribution/';
 import ActiveTask from '@components/member-profile/active-task';
+import LoadMoreButton from '@components/member-profile/load-more-btn';
 
 const INIT_CONTRIBUTIONS = 3;
 
@@ -30,27 +31,35 @@ const renderActiveTasks = (tasks) => {
 
 const ContributionType = (props) => {
   const { fullName, type, imageLink, contributions, devUser, tasks } = props;
-
-  const [showMoreContent, setShowMoreContent] = useState(true);
   const initCount =
     devUser === true ? INIT_CONTRIBUTIONS : contributions.length;
+
+  const [showMoreContent, setShowMoreContent] = useState(true);
   const [count, setCount] = useState(initCount);
+
+  const showMoreContentClass = showMoreContent
+    ? classNames.showContent
+    : classNames.hideContent;
+
+  const arrowWithDirection = showMoreContent
+    ? `${classNames.arrow} ${classNames.arrowDown}`
+    : `${classNames.arrow} ${classNames.arrowRight}`;
+
+  const contributionInformation = renderContributions(
+    contributions.slice(0, count),
+    fullName,
+    imageLink,
+    devUser
+  );
 
   const showMoreContentHandler = () => {
     setCount(initCount);
     setShowMoreContent((prevstate) => !prevstate);
   };
 
-  const loadMoreHandler = () => {
+  const loadMoreHandler = () =>
     setCount((prevCount) => prevCount + INIT_CONTRIBUTIONS);
-  };
 
-  const showMoreContentClass = showMoreContent
-    ? classNames.showContent
-    : classNames.hideContent;
-  const arrowWithDirection = showMoreContent
-    ? `${classNames.arrow} ${classNames.arrowDown}`
-    : `${classNames.arrow} ${classNames.arrowRight}`;
   return (
     <div className={classNames.container}>
       <h2
@@ -65,21 +74,9 @@ const ContributionType = (props) => {
       <div className={showMoreContentClass}>
         {type !== 'Active tasks' ? (
           <div>
-            {renderContributions(
-              contributions.slice(0, count),
-              fullName,
-              imageLink,
-              devUser
-            )}
+            {contributionInformation}
             {count <= contributions.length && devUser && (
-              <div className={classNames.loadDiv}>
-                <button
-                  className={classNames.loadButton}
-                  onClick={loadMoreHandler}
-                >
-                  Load more
-                </button>
-              </div>
+              <LoadMoreButton loadMoreHandler={loadMoreHandler} />
             )}
           </div>
         ) : (
