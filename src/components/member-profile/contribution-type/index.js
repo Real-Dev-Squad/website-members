@@ -52,6 +52,8 @@ const ContributionType = (props) => {
     devUser
   );
 
+  const activeTasks = renderActiveTasks(tasks);
+
   const showMoreContentHandler = () => {
     setCount(initCount);
     setShowMoreContent((prevstate) => !prevstate);
@@ -80,7 +82,7 @@ const ContributionType = (props) => {
             )}
           </div>
         ) : (
-          <div>{renderActiveTasks(tasks)}</div>
+          <div>{activeTasks}</div>
         )}
       </div>
       <hr className={classNames.hrLine} />
