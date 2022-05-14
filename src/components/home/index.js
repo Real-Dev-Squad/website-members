@@ -4,7 +4,7 @@ import NewMembers from '@components/new-members';
 import UserProfile from '@components/user-profile';
 import MemberRoleUpdate from '@components/member-role-update';
 import Designers from '@components/designers';
-import SearchBox from '@components/search-box/index';
+import SearchBox from '@components/UI/search-box/index';
 import styles from '@components/home/home.module.scss';
 import { userContext } from '@store/user/user-context';
 import { useState } from 'react';
@@ -35,7 +35,7 @@ const Home = () => {
       }}
     >
       {dev && <UserProfile />}
-      {!dev && <SearchBox />}
+      {dev && <SearchBox />}
       <h1 className={styles.heading}>Designers</h1>
       <Designers />
       <h1 className={styles.heading}>{`${BRAND_NAME} ${MEMBERS_TITLE}`}</h1>
