@@ -4,7 +4,10 @@ import Modal from '@components/UI/modal/index';
 import { userContext } from '@store/user/user-context';
 import Spinner from '@components/UI/spinner';
 import classNames from './member-role-update.module.scss';
-import { archiveMember, moveToMember } from '../../helper-functions/action-handlers';
+import {
+  archiveMember,
+  moveToMember,
+} from '../../helper-functions/action-handlers';
 
 const MemberRoleUpdate = () => {
   const {

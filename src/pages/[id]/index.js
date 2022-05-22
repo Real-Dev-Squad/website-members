@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import {
   getMembersDataURL,
-  getImgURL,
   getContributionsURL,
   getActiveTasksURL,
   getCloudinaryImgURL,
@@ -61,7 +60,6 @@ export async function getServerSideProps(context) {
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const {
     params: { id },
-    query: { dev },
   } = context;
   const jsonUrl = getMembersDataURL(id);
   const contributionsURL = getContributionsURL(id);
@@ -74,9 +72,9 @@ export async function getServerSideProps(context) {
     }
     const { user } = await res.data;
     const getImageLink = (transformString) => {
-      return !!dev && user.picture
+      return user.picture
         ? getCloudinaryImgURL(user.picture.publicId, transformString)
-        : getImgURL(user.username, 'img.png');
+        : '/images/Avatar.png';
     };
     const contributionsResponse = await fetch(contributionsURL);
     const contributions = await contributionsResponse.data;
