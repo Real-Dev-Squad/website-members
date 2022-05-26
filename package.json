@@ -39,7 +39,7 @@
     "@storybook/addon-essentials": "^6.5.5",
     "@storybook/addon-links": "^6.3.5",
     "@storybook/builder-webpack5": "^6.5.5",
-    "@storybook/manager-webpack5": "^6.3.6",
+    "@storybook/manager-webpack5": "^6.5.5",
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.5.5",
     "@testing-library/dom": "^8.1.0",
