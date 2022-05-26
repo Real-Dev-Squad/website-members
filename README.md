@@ -152,4 +152,4 @@ These scripts refer to the different stages of developing an application:
 
 #### start - Runs next start which starts a Next.js production server.
 
-Licensed under the [MIT License](LICENSE) 
+Licensed under the [MIT License](LICENSE)
