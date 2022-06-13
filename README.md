@@ -151,3 +151,5 @@ These scripts refer to the different stages of developing an application:
 #### build-static - Runs next build && next export which builds the application and have a static version of app in the 'out' directory.
 
 #### start - Runs next start which starts a Next.js production server.
+
+Licensed under the [MIT License](LICENSE)
