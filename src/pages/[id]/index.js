@@ -19,8 +19,10 @@ import {
   HEIGHT_40PX,
 } from '@constants/profile-image';
 import { useEffect, useState } from 'react';
+import { userContext } from '@store/user/user-context';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
+  const { isSuperUserMode } = userContext();
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
@@ -35,6 +37,10 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
 
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
+  }
+
+  if (!user.isMember && !isSuperUserMode) {
+    return <NotFound errorMsg="Member not found" />;
   }
 
   const { first_name = '', last_name = '' } = user;
