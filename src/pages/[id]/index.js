@@ -39,7 +39,7 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
 
-  if (!user.isMember && !isSuperUserMode) {
+  if (!user.roles?.member && !isSuperUserMode) {
     return <NotFound errorMsg="Member not found" />;
   }
 
