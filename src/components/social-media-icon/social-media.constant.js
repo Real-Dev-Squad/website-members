@@ -2,12 +2,12 @@ const iconMapper = {
   twitter_id: {
     alt: 'twitter',
     src: '/icons/twitter.png',
-    href: '//twitter.com/',
+    href: '//twitter.com',
   },
   github_id: {
     alt: 'github',
     src: '/icons/github.png',
-    href: '//github.com/',
+    href: '//github.com',
   },
   instagram_id: {
     alt: 'instagram',
@@ -17,7 +17,7 @@ const iconMapper = {
   linkedin_id: {
     alt: 'linkedIn',
     src: '/icons/linkedin.png',
-    href: '//linkedin.com/in/',
+    href: '//linkedin.com/in',
   },
 };
 
