@@ -3,9 +3,9 @@
   height: 12rem;
   border-radius: 50%;
   margin: 0px auto;
-  // FIXME: Remove Important
-  visibility: visible !important;
-  opacity: 1 !important;
+
+  visibility: visible;
+  opacity: 1;
 }
 .imgContainerNewMember {
   /* prettier-ignore */
@@ -70,6 +70,21 @@
 
 .settingsIcon {
   width: 1rem;
+}
+
+.new_member_img_absent_container {
+  height: 80px;
+  width: 80px;
+  border-radius: 56px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new_member_img_absent_container_text {
+  font-size: 36px;
+  letter-spacing: -1px;
+  font-weight: 900;
 }
 
 @media only screen and (min-width: 1024px) {

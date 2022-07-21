@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import classNames from '@components/member-card/card.module.scss';
 import { motion } from 'framer-motion';
@@ -7,16 +7,32 @@ import PropTypes from 'prop-types';
 import ShowSkills from '@components/member-card/show-skills';
 import SuperUserOptions from '@components/member-card/super-user-options';
 
-const Card = ({ developerInfo, isOptionKey }) => {
+const Card = ({ developerInfo, isOptionKey, colorCombination }) => {
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
+  const { color_primary, color_secondary } = colorCombination;
+  const cardRef = useRef();
+  const textRef = useRef();
+
   const socialMedia = [
     'twitter_id',
     'github_id',
     'linkedin_id',
     'instagram_id',
   ];
+
+  useEffect(() => {
+    const cardElement = cardRef.current;
+    const textElement = textRef.current;
+    if (cardElement) {
+      cardElement.style.color = color_primary;
+      cardElement.style.border = `2px solid ${color_primary}`;
+      cardElement.style.backgroundColor = color_secondary;
+      textElement.innerText = `${first_name[0].toUpperCase()} ${last_name[0].toUpperCase()}`;
+    }
+  }, []);
+
   const fullName = `${`${first_name} ${last_name}`}`;
 
   const [showSettings, setShowSettings] = useState(false);
@@ -45,17 +61,37 @@ const Card = ({ developerInfo, isOptionKey }) => {
       {dev && (
         <SuperUserOptions username={username} showSettings={showSettings} />
       )}
-      <motion.img
-        layoutId={username}
-        src={
-          isMember ? `${img_url}?${Math.random() * 100}` : '/images/Avatar.png'
-        }
-        onError={brokenImageHandler}
-        className={
-          isMember ? classNames.imgContainer : classNames.imgContainerNewMember
-        }
-        alt={username}
-      />
+
+      {isMember && (
+        <motion.img
+          layoutId={username}
+          src={
+            isMember
+              ? `${img_url}?${Math.random() * 100}`
+              : '/images/Avatar.png'
+          }
+          onError={brokenImageHandler}
+          className={
+            isMember
+              ? classNames.imgContainer
+              : classNames.imgContainerNewMember
+          }
+          alt={username}
+        />
+      )}
+
+      {!isMember && (
+        <div
+          className={classNames.new_member_img_absent_container}
+          ref={cardRef}
+        >
+          <p
+            ref={textRef}
+            className={classNames.new_member_img_absent_container_text}
+          />
+        </div>
+      )}
+
       <h2
         className={
           isMember
@@ -92,10 +128,20 @@ Card.propTypes = {
     img_url: PropTypes.string.isRequired,
     isMember: PropTypes.bool.isRequired,
   }).isRequired,
+
   isOptionKey: PropTypes.bool,
+
+  colorCombination: PropTypes.shape({
+    color_primary: PropTypes.string.isRequired,
+    color_secondary: PropTypes.string.isRequired,
+  }),
 };
 Card.defaultProps = {
   isOptionKey: false,
+  colorCombination: {
+    color_primary: '#DB1212',
+    color_secondary: '#F88181',
+  },
 };
 
 export default Card;
