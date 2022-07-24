@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import classNames from '@components/member-card/card.module.scss';
 import { motion } from 'framer-motion';
@@ -12,8 +12,6 @@ const Card = ({ developerInfo, isOptionKey, colorCombination }) => {
   const { dev } = query;
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
   const { color_primary, color_secondary } = colorCombination;
-  const cardRef = useRef();
-  const textRef = useRef();
 
   const socialMedia = [
     'twitter_id',
@@ -21,17 +19,6 @@ const Card = ({ developerInfo, isOptionKey, colorCombination }) => {
     'linkedin_id',
     'instagram_id',
   ];
-
-  useEffect(() => {
-    const cardElement = cardRef.current;
-    const textElement = textRef.current;
-    if (cardElement) {
-      cardElement.style.color = color_primary;
-      cardElement.style.border = `2px solid ${color_primary}`;
-      cardElement.style.backgroundColor = color_secondary;
-      textElement.innerText = `${first_name[0].toUpperCase()} ${last_name[0].toUpperCase()}`;
-    }
-  }, []);
 
   const fullName = `${`${first_name} ${last_name}`}`;
 
@@ -81,15 +68,18 @@ const Card = ({ developerInfo, isOptionKey, colorCombination }) => {
       )}
 
       {!isMember && (
-        <div
-          className={classNames.new_member_img_absent_container}
-          ref={cardRef}
+        <section
+          className={classNames.newMemberImgAbsentContainer}
+          style={{
+            color: color_primary,
+            border: `2px solid ${color_primary}`,
+            backgroundColor: color_secondary,
+          }}
         >
-          <p
-            ref={textRef}
-            className={classNames.new_member_img_absent_container_text}
-          />
-        </div>
+          <p className={classNames.newMemberImgAbsentContainerText}>
+            {`${first_name[0].toUpperCase()} ${last_name[0].toUpperCase()}`}
+          </p>
+        </section>
       )}
 
       <h2
