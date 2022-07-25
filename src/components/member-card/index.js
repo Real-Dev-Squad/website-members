@@ -49,14 +49,10 @@ const Card = ({ developerInfo, isOptionKey, colorCombination }) => {
         <SuperUserOptions username={username} showSettings={showSettings} />
       )}
 
-      {isMember && (
+      {isMember ? (
         <motion.img
           layoutId={username}
-          src={
-            isMember
-              ? `${img_url}?${Math.random() * 100}`
-              : '/images/Avatar.png'
-          }
+          src={`${img_url}?${Math.random() * 100}`}
           onError={brokenImageHandler}
           className={
             isMember
@@ -65,9 +61,7 @@ const Card = ({ developerInfo, isOptionKey, colorCombination }) => {
           }
           alt={username}
         />
-      )}
-
-      {!isMember && (
+      ) : (
         <section
           className={classNames.newMemberImgAbsentContainer}
           style={{
