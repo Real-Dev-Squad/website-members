@@ -40,16 +40,11 @@ const renderNewUser = (newMember, isOptionKey) => {
   return renderNewUserCard(newMember, isOptionKey);
 };
 
-const NewMemberList = ({ isOptionKey }) => {
-  const {
-    state: { newMembers },
-  } = membersContext();
-  const { searchTerm } = searchMemberContext();
-  const filterMembers = searchMembers(newMembers, searchTerm);
-  if (newMembers) {
+const NewMemberList = ({ isOptionKey, newMembers }) => {
+  if (newMembers?.length) {
     return (
       <div className={styles.container}>
-        {filterMembers.map((newMember) => (
+        {newMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
             {renderNewUser(newMember, isOptionKey)}
           </React.Fragment>

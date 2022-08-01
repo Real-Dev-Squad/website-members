@@ -7,7 +7,8 @@ import Designers from '@components/designers';
 import SearchBox from '@components/UI/search-box/index';
 import styles from '@components/home/home.module.scss';
 import { userContext } from '@store/user/user-context';
-import { useState } from 'react';
+import { membersContext } from '@store/members/members-context';
+import { useState, useEffect } from 'react';
 import {
   BRAND_NAME,
   MEMBERS_TITLE,
@@ -16,9 +17,37 @@ import {
 
 const Home = () => {
   const { showMemberRoleUpdateModal, isSuperUserMode } = userContext();
+  const {
+    state: { newMembers: newMembersList },
+  } = membersContext();
+
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const [isOptionKey, setIsOptionKey] = useState(false);
+  const [newMembers, setNewMembers] = useState([]);
+
+  let scrollCount = 1;
+  const membersToShow = 20;
+
+  const fetchNewMembers = () => {
+    const noOfMembersToShow = scrollCount * membersToShow;
+    const slicedNewMembersList = newMembersList.slice(0, noOfMembersToShow);
+    setNewMembers(slicedNewMembersList);
+  };
+
+  const handleScroll = () => {
+    const userScrollHeight = window.innerHeight + window.scrollY;
+    const windowBottomHeight = document.documentElement.offsetHeight;
+    if (userScrollHeight >= windowBottomHeight) {
+      scrollCount += 1;
+      fetchNewMembers();
+    }
+  };
+
+  useEffect(() => {
+    fetchNewMembers();
+    window.addEventListener('scroll', handleScroll);
+  }, [newMembersList]);
 
   return (
     <div
@@ -46,7 +75,7 @@ const Home = () => {
       )}
       <Members isOptionKey={isOptionKey} />
       <h1 className={styles.heading}>{NEW_MEMBERS_TITLE}</h1>
-      <NewMembers isOptionKey={isOptionKey} />
+      <NewMembers newMembers={newMembers} isOptionKey={isOptionKey} />
     </div>
   );
 };
