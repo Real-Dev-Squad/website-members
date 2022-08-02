@@ -8,6 +8,7 @@ import Spinner from '@components/UI/spinner';
 import { MembersProvider } from '@store';
 import { UserContextProvider } from '@store/user/user-context';
 import { SearchMemberProvider } from '@store/search-members/searchMembers-context';
+import { usePostHog } from 'next-use-posthog';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -28,6 +29,13 @@ const MyApp = (props) => {
       router.events.off('routeChangeComplete', handleComplete);
       router.events.off('routeChangeError', handleComplete);
     };
+  });
+
+  usePostHog('phc_SRQcmzRDT5aNlAEkcrGgU2FqxKRaec66c7tdrntqAbs', {
+    api_host: 'https://app.posthog.com',
+    loaded: (posthog) => {
+      if (process.env.NODE_ENV === 'development') posthog.opt_out_capturing();
+    },
   });
 
   return (
