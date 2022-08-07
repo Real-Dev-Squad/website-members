@@ -19,23 +19,37 @@ import {
   HEIGHT_40PX,
 } from '@constants/profile-image';
 import { useEffect, useState } from 'react';
+import { userContext } from '@store/user/user-context';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
+  const { isSuperUserMode } = userContext();
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
-  useEffect(() => {
-    (async () => {
-      const tasksURL = getActiveTasksURL(id);
-      const tasksResponse = await fetch(tasksURL);
-      const { tasks } = await tasksResponse.data;
-      setActiveTasksData(tasks);
-    })();
-  }, [id]);
 
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
+  if (!user.roles?.member && !isSuperUserMode) {
+    return (
+      <NotFound errorMsg="You dont have the necassary permissions to view this page." />
+    );
+  }
+
+  const fillActiveTasksArray = async () => {
+    const tasksURL = getActiveTasksURL(id);
+    try {
+      const tasksResponse = await fetch(tasksURL);
+      const { tasks } = await tasksResponse.data;
+      setActiveTasksData(tasks);
+    } catch {
+      setActiveTasksData([]);
+    }
+  };
+
+  useEffect(() => {
+    fillActiveTasksArray();
+  }, [id]);
 
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
