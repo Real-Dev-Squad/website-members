@@ -31,9 +31,7 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
   if (!user.roles?.member && !isSuperUserMode) {
-    return (
-      <NotFound errorMsg="You dont have the necassary permissions to view this page." />
-    );
+    return <NotFound errorMsg="Unauthorized to view this page." />;
   }
 
   const fillActiveTasksArray = async () => {
