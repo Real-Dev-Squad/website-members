@@ -9,6 +9,66 @@ This page is hosted on: https://members.realdevsquad.com/
 
 Wish to contribute? You can find a detailed guide [here](./CONTRIBUTING.md)!
 
+## How to start ?
+
+### Setup
+
+We use `yarn` for managing packages.
+
+Install `yarn` preferably using npm.
+
+```
+npm install --global yarn
+```
+
+Also install `volta`
+
+[Why Volta?](https://docs.volta.sh/guide/#why-volta)
+
+To install Volta, please follow the [process](https://docs.volta.sh/guide/getting-started)
+
+### How to run the project locally
+
+Step 1:
+
+```
+yarn install
+```
+
+The above command installs all the essential packages for this project via `package.json` file.
+
+Step 2:
+
+These scripts refer to the different stages of developing an application:
+
+```bash
+> yarn run dev
+# starts development server locally on port 3000
+# open http://localhost:3000 from your browser.
+
+> yarn run build
+# builds application for production grade usage.
+
+> yarn run build-static
+# runs next build && next export which builds the application and have a static version of app in the 'out' directory.
+
+> yarn run start
+# starts a Next.js production server.
+# to be used after a production build.
+
+```
+
+Step 3: Check for lint and prettier issues before raising a PR
+
+```bash
+> yarn run check-lint
+# checks for common syntax and style errors in the code base.
+
+> yarn run check-format
+# examines files for errors in style,spacing,single quotes vs double quotes etc.
+
+```
+
 ## Project Structure
 
 We are using Next.js for this project. Next.js has a well defined directory structure that must be used to make sure the apps runs properly. Read more about Next.js [here](https://nextjs.org/learn/basics/create-nextjs-app?utm_source=next-site&utm_medium=homepage-cta&utm_campaign=next-website)
@@ -138,16 +198,5 @@ const Button = () => {
 export default Button;
 ```
 
-Importing styles in this way will scope all the styles to their respective files. So classname `.btn` is converted to `[filename]_btn__[hash]`. Read [this](https://nextjs.org/docs/basic-features/built-in-css-support) guide for more info on CSS support in Next.js.
-
-## How to start ?
-
-These scripts refer to the different stages of developing an application:
-
-#### dev - Runs next which starts Next.js in development mode.
-
-#### build - Runs next build which builds the application for production usage.
-
-#### build-static - Runs next build && next export which builds the application and have a static version of app in the 'out' directory.
-
-#### start - Runs next start which starts a Next.js production server.
+Importing styles in this way will scope all the styles to their respective files. So classname `.btn` is converted to `[filename]_btn__[hash]`.
+Read [this](https://nextjs.org/docs/basic-features/built-in-css-support) guide for more info on CSS support in Next.js.
