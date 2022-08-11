@@ -12,13 +12,14 @@ import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
+import { unAuthorizedPageViewError } from '@constants/error-messages';
 import {
   WIDTH_200PX,
   WIDTH_40PX,
   HEIGHT_200PX,
   HEIGHT_40PX,
 } from '@constants/profile-image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { userContext } from '@store/user/user-context';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
@@ -31,10 +32,10 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
   if (!user.roles?.member && !isSuperUserMode) {
-    return <NotFound errorMsg="Unauthorized to view this page." />;
+    return <NotFound errorMsg={unAuthorizedPageViewError} />;
   }
 
-  const fillActiveTasksArray = async () => {
+  const fillActiveTasksArray = useCallback(async () => {
     const tasksURL = getActiveTasksURL(id);
     try {
       const tasksResponse = await fetch(tasksURL);
@@ -43,11 +44,11 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     } catch {
       setActiveTasksData([]);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     fillActiveTasksArray();
-  }, [id]);
+  }, [fillActiveTasksArray]);
 
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
