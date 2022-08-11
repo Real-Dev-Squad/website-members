@@ -1,10 +1,6 @@
 import classNames from '@components/not-found-page/not-found-page.module.scss';
-import { membersContext } from '@store/members/members-context';
 
-const Index = () => {
-  const {
-    state: { errorMsg },
-  } = membersContext();
+const Index = ({ errorMsg }) => {
   return (
     <div className={classNames.fullPageContainer}>
       <img
