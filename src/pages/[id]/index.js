@@ -12,7 +12,7 @@ import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
-import { unAuthorizedPageViewError } from '@constants/error-messages';
+
 import {
   WIDTH_200PX,
   WIDTH_40PX,
@@ -20,10 +20,10 @@ import {
   HEIGHT_40PX,
 } from '@constants/profile-image';
 import { useEffect, useState, useCallback } from 'react';
-import { userContext } from '@store/user/user-context';
+import { getUserSelf } from '@helper-functions/action-handlers';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
-  const { isSuperUserMode } = userContext();
+  const [isSuperUser, setIsSuperUser] = useState(false);
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
@@ -31,11 +31,12 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
-  if (!user.roles?.member && !isSuperUserMode) {
-    return <NotFound errorMsg={unAuthorizedPageViewError} />;
-  }
 
   const fillActiveTasksArray = useCallback(async () => {
+    const { data } = await getUserSelf();
+    if (data) {
+      setIsSuperUser(Boolean(data.roles?.super_user));
+    }
     const tasksURL = getActiveTasksURL(id);
     try {
       const tasksResponse = await fetch(tasksURL);
@@ -50,6 +51,12 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     fillActiveTasksArray();
   }, [fillActiveTasksArray]);
 
+  if (!isSuperUser && !user.roles?.member) {
+    const errorMsg = `The Member Page for ${
+      id.charAt(0).toUpperCase() + id.slice(1)
+    } is not yet generated.`;
+    return <NotFound errorMsg={errorMsg} />;
+  }
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
