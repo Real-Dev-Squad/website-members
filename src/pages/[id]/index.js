@@ -28,10 +28,6 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const router = useRouter();
   const { id } = router.query;
 
-  if (errorMessage) {
-    return <NotFound errorMsg={errorMessage} />;
-  }
-
   const fillActiveTasksArray = useCallback(async () => {
     const { data } = await getUserSelf();
     if (data) {
@@ -51,6 +47,10 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     fillActiveTasksArray();
   }, [fillActiveTasksArray]);
 
+  if (errorMessage) {
+    return <NotFound errorMsg={errorMessage} />;
+  }
+
   if (!isSuperUser && !user.roles?.member) {
     const errorMsg = `The Member Page for ${
       id.charAt(0).toUpperCase() + id.slice(1)
@@ -60,8 +60,8 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
-  const { query } = useRouter(); // this needs to be changed
-  const devUser = !!query.dev;
+  // const { query } = useRouter(); // this needs to be changed
+  const devUser = !!router.query.dev;
 
   return (
     <Layout title={memberName}>
