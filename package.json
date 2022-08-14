@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm-run-all --parallel dev:*",
+    "dev": "yarn --parallel dev:*",
     "dev:next": "next dev -p 3000",
     "dev:https-link": "local-ssl-proxy --source 443 --target 3000",
     "build": "next build",
@@ -62,10 +62,10 @@
     "prettier": "^2.3.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "volta": {
-    "node": "14.19.1",
-    "yarn": "1.19.2"
+    "node": "16.16.0",
+    "yarn": "1.22.17"
   }
 }
