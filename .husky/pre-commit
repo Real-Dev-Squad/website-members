@@ -3,14 +3,14 @@
 
 echo 'Lets check if the code is well formatted 😎'
 
-npm run check-format || (
-  echo 'oops! your format doesnt looks good. Run npm run format and try commiting again!';
+yarn check-format || (
+  echo 'oops! your format doesnt looks good. Run yarn format and try commiting again!';
   false;
 )
 
 echo 'Ok, the format looks good, how about lint check? 😋'
 
-npm run check-lint || (
+yarn check-lint || (
   echo 'oops! you did not meet the linting standards!';
   false;
 )
