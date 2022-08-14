@@ -20,6 +20,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run check-lint
-      - run: npm run check-format
+      - run: yarn install --frozen-lockfile
+      - run: yarn check-lint
+      - run: yarn check-format
