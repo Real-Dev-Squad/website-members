@@ -11,6 +11,10 @@ import ShowSkills from '@components/member-card/show-skills';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
+import MemberTaskUpdate from '@components/member-task-update';
+import { userContext } from '@store/user/user-context';
+import UserProfile from '@components/user-profile';
+import { useRouter } from 'next/router';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -67,6 +71,10 @@ const Profile = (props) => {
     'linkedin_id',
     'instagram_id',
   ];
+  const { showMemberTaskUpdateModal, setIsOptionKey } = userContext();
+
+  const { query } = useRouter() || { query: { dev: false } };
+  const { dev } = query;
 
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
@@ -351,12 +359,22 @@ const Profile = (props) => {
   };
 
   return (
-    <>
+    <div
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.ctrlKey || e.metaKey) {
+          setIsOptionKey(true);
+        }
+      }}
+    >
+      {dev && <UserProfile />}
       {showModal && (
         <Modal style={modalStyle} show={showModal} closeModal={closeModal}>
           {children}
         </Modal>
       )}
+      <div>{showMemberTaskUpdateModal && <MemberTaskUpdate />}</div>
       <div className={classNames.container}>
         <div className={(classNames.sidebar, classNames.column)}>
           <div className={classNames.memberDetails}>
@@ -423,7 +441,7 @@ const Profile = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

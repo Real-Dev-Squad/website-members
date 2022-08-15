@@ -5,6 +5,9 @@ import classNames from '@components/member-profile/contribution/contribution.mod
 import PRLink from '@components/member-profile/contribution/pr-link';
 import { timeWas } from '@helper-functions/time-was';
 import { HOST_NAME } from '@constants/AppConstants';
+import { useState } from 'react';
+import { userContext } from '@store/user/user-context';
+import SuperUserOptions from '../super-user-options';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
@@ -63,11 +66,19 @@ const ContributionCard = ({
   urlObj,
 }) => {
   const {
-    task: { title, startedOn, endsOn, status, purpose },
+    task: { id, title, startedOn, endsOn, status, purpose, isNoteworthy },
     prList,
   } = contribution;
   const isTitleAvailable = !!title;
   const featureTitle = isTitleAvailable ? title : prList[0].title;
+  const [showSettings, setShowSettings] = useState(false);
+  const { isOptionKey, setIsOptionKey } = userContext();
+
+  const handleSettingsButton = () => {
+    if (isOptionKey) {
+      setShowSettings(true);
+    }
+  };
 
   const renderFeatureUrl = (featureUrl, featureUrlObj) => {
     if (featureUrlObj.host === HOST_NAME) {
@@ -119,7 +130,13 @@ const ContributionCard = ({
     }
   }
   return (
-    <div>
+    <div
+      onMouseEnter={handleSettingsButton}
+      onMouseLeave={() => {
+        setShowSettings(false);
+        setIsOptionKey(false);
+      }}
+    >
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
           <h3 className={classNames.featureTitle}>{featureTitle}</h3>
@@ -135,6 +152,13 @@ const ContributionCard = ({
           )}
         </div>
         <div className={classNames.rightSection}>
+          {isNoteworthy !== undefined ? (
+            <SuperUserOptions
+              showSettings={showSettings}
+              isNoteworthy={isNoteworthy}
+              TaskId={id}
+            />
+          ) : null}
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
           <div className={classNames.userIcon}>
             <img src={imageLink} alt="participantsIcon" />
