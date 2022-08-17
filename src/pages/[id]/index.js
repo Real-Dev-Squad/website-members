@@ -20,19 +20,19 @@ import {
   HEIGHT_40PX,
 } from '@constants/profile-image';
 import { useEffect, useState, useCallback } from 'react';
-import { getUserSelf } from '@helper-functions/action-handlers';
+import { userContext } from '@store/user/user-context';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
-  const [isSuperUser, setIsSuperUser] = useState(false);
+  const {
+    isSuperUser,
+    apiCalledToVerifySuperUser,
+    makeApiCallToVerifySuperUser,
+  } = userContext();
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
 
   const fillActiveTasksArray = useCallback(async () => {
-    const { data } = await getUserSelf();
-    if (data) {
-      setIsSuperUser(Boolean(data.roles?.super_user));
-    }
     const tasksURL = getActiveTasksURL(id);
     try {
       const tasksResponse = await fetch(tasksURL);
@@ -51,6 +51,11 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
 
+  if (!isSuperUser) {
+    if (!apiCalledToVerifySuperUser) {
+      makeApiCallToVerifySuperUser();
+    }
+  }
   if (!isSuperUser && !user.roles?.member) {
     const errorMsg = `The Member Page for ${
       id.charAt(0).toUpperCase() + id.slice(1)

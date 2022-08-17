@@ -12,6 +12,7 @@ const UserProfile = () => {
     setIsSuperUser,
     isSuperUserMode,
     setIsSuperUserMode,
+    setApiCalledToVerifySuperUser,
   } = userContext();
 
   useEffect(() => {
@@ -20,7 +21,8 @@ const UserProfile = () => {
       setIsLoading(false);
       setUser(data);
       if (data) {
-        setIsSuperUser(data.roles.super_user);
+        setIsSuperUser(Boolean(data.roles?.super_user));
+        setApiCalledToVerifySuperUser(true);
       }
     }
     getUserProfile();
