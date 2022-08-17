@@ -34,7 +34,7 @@ const Home = () => {
         setIsOptionKey(false);
       }}
     >
-      {dev && <UserProfile />}
+      <UserProfile />
       {dev && <SearchBox />}
       <h1 className={styles.heading}>Designers</h1>
       <Designers />
