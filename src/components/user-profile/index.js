@@ -26,7 +26,7 @@ const UserProfile = () => {
       }
     }
     getUserProfile();
-  }, [setUser, setIsSuperUser]);
+  }, [setUser, setIsSuperUser, setApiCalledToVerifySuperUser]);
 
   const showSuperUserOptions = () => {
     return (
