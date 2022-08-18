@@ -41,6 +41,7 @@ const Card = ({ developerInfo, isOptionKey }) => {
       onMouseLeave={() => {
         setShowSettings(false);
       }}
+      className={isMember ? [] : classNames.removedPointerEvent}
     >
       {dev && (
         <SuperUserOptions username={username} showSettings={showSettings} />
