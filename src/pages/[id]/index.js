@@ -65,7 +65,6 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const { first_name = '', last_name = '' } = user;
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
-  // const { query } = useRouter(); // this needs to be changed
   const devUser = !!router.query.dev;
 
   return (
