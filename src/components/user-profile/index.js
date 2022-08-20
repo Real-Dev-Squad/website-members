@@ -1,32 +1,23 @@
 import { useState, useEffect } from 'react';
 import { userContext } from '@store/user/user-context';
 import classNames from '@components/user-profile/user-profile.module.scss';
-import { getUserSelf } from '../../helper-functions/action-handlers';
 
 const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const {
     user,
-    setUser,
     isSuperUser,
-    setIsSuperUser,
     isSuperUserMode,
     setIsSuperUserMode,
-    setApiCalledToVerifySuperUser,
+    makeApiCallToVerifySuperUser,
   } = userContext();
 
   useEffect(() => {
-    async function getUserProfile() {
-      const { data } = await getUserSelf();
+    (async () => {
+      await makeApiCallToVerifySuperUser();
       setIsLoading(false);
-      setUser(data);
-      if (data) {
-        setIsSuperUser(Boolean(data.roles?.super_user));
-        setApiCalledToVerifySuperUser(true);
-      }
-    }
-    getUserProfile();
-  }, [setUser, setIsSuperUser, setApiCalledToVerifySuperUser]);
+    })();
+  }, [makeApiCallToVerifySuperUser]);
 
   const showSuperUserOptions = () => {
     return (
