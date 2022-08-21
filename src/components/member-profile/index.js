@@ -363,7 +363,7 @@ const Profile = (props) => {
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.ctrlKey || e.metaKey) {
+        if (e.altKey) {
           setIsOptionKey(true);
         }
       }}
@@ -374,7 +374,7 @@ const Profile = (props) => {
           {children}
         </Modal>
       )}
-      <div>{showMemberTaskUpdateModal && <MemberTaskUpdate />}</div>
+      {showMemberTaskUpdateModal && <MemberTaskUpdate />}
       <div className={classNames.container}>
         <div className={(classNames.sidebar, classNames.column)}>
           <div className={classNames.memberDetails}>

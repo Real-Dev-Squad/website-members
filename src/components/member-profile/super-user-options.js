@@ -2,23 +2,26 @@ import React from 'react';
 import classNames from '@components/member-profile/member-profile.module.scss';
 import { userContext } from '../../store/user/user-context';
 
-const SuperUserOptions = ({ showSettings, isNoteworthy, TaskId }) => {
+const SuperUserOptions = ({ showSettings, isNoteworthy, taskId }) => {
   const {
     isSuperUserMode,
-    showMemberTaskUpdateModal,
-    setshowMemberTaskUpdateModal,
+    setShowMemberTaskUpdateModal,
     setTaskId,
-    setIsnoteWorthy,
+    setIsNoteworthy,
   } = userContext();
 
   const showModal = (e) => {
     e.stopPropagation();
-    setshowMemberTaskUpdateModal(!showMemberTaskUpdateModal);
-    setTaskId(TaskId);
-    setIsnoteWorthy(isNoteworthy);
+    setShowMemberTaskUpdateModal(true);
+    setTaskId(taskId);
+    setIsNoteworthy(isNoteworthy);
   };
 
-  const showSuperUserOptions = () => {
+  if (isNoteworthy === undefined) {
+    return null;
+  }
+
+  if (isSuperUserMode) {
     return (
       <div
         className={`${classNames.settingsContainer} ${
@@ -38,8 +41,8 @@ const SuperUserOptions = ({ showSettings, isNoteworthy, TaskId }) => {
         </button>
       </div>
     );
-  };
-  return <>{isSuperUserMode && showSuperUserOptions()}</>;
+  }
+  return null;
 };
 
 export default SuperUserOptions;

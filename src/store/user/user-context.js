@@ -10,9 +10,9 @@ export const UserContextProvider = ({ children }) => {
   const [showMemberRoleUpdateModal, setShowMemberRoleUpdateModal] =
     useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
-  const [showMemberTaskUpdateModal, setshowMemberTaskUpdateModal] =
+  const [showMemberTaskUpdateModal, setShowMemberTaskUpdateModal] =
     useState(false);
-  const [isnoteworthy, setIsnoteWorthy] = useState(false);
+  const [isNoteworthy, setIsNoteworthy] = useState(false);
   const [isOptionKey, setIsOptionKey] = useState(false);
   const [taskId, setTaskId] = useState('');
   const initialUserContext = {
@@ -22,7 +22,7 @@ export const UserContextProvider = ({ children }) => {
     selectedMember,
     showMemberRoleUpdateModal,
     showMemberTaskUpdateModal,
-    isnoteworthy,
+    isNoteworthy,
     isOptionKey,
     taskId,
     setIsSuperUser,
@@ -30,8 +30,8 @@ export const UserContextProvider = ({ children }) => {
     setIsSuperUserMode,
     setSelectedMember,
     setShowMemberRoleUpdateModal,
-    setshowMemberTaskUpdateModal,
-    setIsnoteWorthy,
+    setShowMemberTaskUpdateModal,
+    setIsNoteworthy,
     setIsOptionKey,
     setTaskId,
   };

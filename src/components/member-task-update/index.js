@@ -8,8 +8,8 @@ import { moveTask } from '../../helper-functions/action-handlers';
 const MemberTaskUpdate = () => {
   const {
     showMemberTaskUpdateModal,
-    setshowMemberTaskUpdateModal,
-    isnoteworthy,
+    setShowMemberTaskUpdateModal,
+    isNoteworthy,
     taskId,
   } = userContext();
 
@@ -18,13 +18,13 @@ const MemberTaskUpdate = () => {
 
   const changeTaskType = async (taskid) => {
     setIsUpdating(true);
-    const data = { isNoteworthy: !isnoteworthy };
+    const data = { isNoteworthy: !isNoteworthy };
     const res = await moveTask(taskid, data);
     setIsUpdating(false);
     if (res.status === 204) {
       setUpdateStatus(
         `Task changed to ${
-          isnoteworthy ? 'other contribution' : 'noteworthy'
+          isNoteworthy ? 'other contribution' : 'noteworthy'
         }! reloading...`
       );
       window.location.reload();
@@ -34,7 +34,7 @@ const MemberTaskUpdate = () => {
   };
 
   const renderTaskUpdateButtton = () => {
-    const task = isnoteworthy ? 'Other contribution' : 'noteworthy';
+    const task = isNoteworthy ? 'Other contribution' : 'noteworthy';
 
     if (updateStatus === '') {
       return (
@@ -57,7 +57,7 @@ const MemberTaskUpdate = () => {
       <Modal
         show={showMemberTaskUpdateModal}
         closeModal={() => {
-          setshowMemberTaskUpdateModal(false);
+          setShowMemberTaskUpdateModal(false);
         }}
       >
         {isUpdating ? <Spinner /> : renderTaskUpdateButtton()}

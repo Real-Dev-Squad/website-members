@@ -74,10 +74,15 @@ const ContributionCard = ({
   const [showSettings, setShowSettings] = useState(false);
   const { isOptionKey, setIsOptionKey } = userContext();
 
-  const handleSettingsButton = () => {
+  const revealSettingButton = () => {
     if (isOptionKey) {
       setShowSettings(true);
     }
+  };
+
+  const hideSettingButton = () => {
+    setShowSettings(false);
+    setIsOptionKey(false);
   };
 
   const renderFeatureUrl = (featureUrl, featureUrlObj) => {
@@ -130,13 +135,7 @@ const ContributionCard = ({
     }
   }
   return (
-    <div
-      onMouseEnter={handleSettingsButton}
-      onMouseLeave={() => {
-        setShowSettings(false);
-        setIsOptionKey(false);
-      }}
-    >
+    <div onMouseEnter={revealSettingButton} onMouseLeave={hideSettingButton}>
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
           <h3 className={classNames.featureTitle}>{featureTitle}</h3>
@@ -152,13 +151,11 @@ const ContributionCard = ({
           )}
         </div>
         <div className={classNames.rightSection}>
-          {isNoteworthy !== undefined ? (
-            <SuperUserOptions
-              showSettings={showSettings}
-              isNoteworthy={isNoteworthy}
-              TaskId={id}
-            />
-          ) : null}
+          <SuperUserOptions
+            showSettings={showSettings}
+            isNoteworthy={isNoteworthy}
+            taskId={id}
+          />
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
           <div className={classNames.userIcon}>
             <img src={imageLink} alt="participantsIcon" />
