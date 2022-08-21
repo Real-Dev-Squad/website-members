@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { userContext } from '@store/user/user-context';
 
 // returns card which shows details of new member
-const renderNewMember = (newMember, isOptionKey) => {
+const renderNewUserCard = (newMember, isOptionKey) => {
   return (
     <div className={styles.containerForNewMember}>
       <Card
@@ -21,23 +21,26 @@ const renderNewMember = (newMember, isOptionKey) => {
   );
 };
 
-const renderNewMemberAsClickable = (newMember, isOptionKey) => {
-  return (
-    <Link
-      prefetch={false}
-      href={{
-        pathname: '/[id]',
-        query: {
-          first_name: `${newMember.first_name || ''}`,
-          last_name: `${newMember.last_name || ''}`,
-        },
-      }}
-      as={`/${newMember.username}`}
-      key={newMember.username}
-    >
-      {renderNewMember(newMember, isOptionKey)}
-    </Link>
-  );
+const renderNewUsers = (newMember, isOptionKey, isSuperUser) => {
+  if (isSuperUser && isOptionKey) {
+    return (
+      <Link
+        prefetch={false}
+        href={{
+          pathname: '/[id]',
+          query: {
+            first_name: `${newMember.first_name || ''}`,
+            last_name: `${newMember.last_name || ''}`,
+          },
+        }}
+        as={`/${newMember.username}`}
+        key={newMember.username}
+      >
+        {renderNewUserCard(newMember, isOptionKey)}
+      </Link>
+    );
+  }
+  return renderNewUserCard(newMember, isOptionKey);
 };
 
 const NewMemberList = ({ isOptionKey }) => {
@@ -52,9 +55,7 @@ const NewMemberList = ({ isOptionKey }) => {
       <div className={styles.container}>
         {filterMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
-            {isSuperUser && isOptionKey
-              ? renderNewMemberAsClickable(newMember, isOptionKey)
-              : renderNewMember(newMember, isOptionKey)}
+            {renderNewUsers(newMember, isOptionKey, isSuperUser)}
           </React.Fragment>
         ))}
       </div>
