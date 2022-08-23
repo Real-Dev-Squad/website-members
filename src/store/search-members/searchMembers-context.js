@@ -18,6 +18,7 @@ export const SearchMemberProvider = ({ children }) => {
 
 export const searchMemberContext = () => {
   const context = useContext(SearchMemberContext);
+
   if (!context)
     throw new Error(`searchMemberContext context can only  
         be used in a component wrapped with SearchMemberContext`);
