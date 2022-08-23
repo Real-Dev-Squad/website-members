@@ -9,15 +9,15 @@ const UserProfile = () => {
     isSuperUser,
     isSuperUserMode,
     setIsSuperUserMode,
-    makeApiCallToVerifySuperUser,
+    verifySuperUser,
   } = userContext();
 
   useEffect(() => {
     (async () => {
-      await makeApiCallToVerifySuperUser();
+      await verifySuperUser();
       setIsLoading(false);
     })();
-  }, [makeApiCallToVerifySuperUser]);
+  }, [verifySuperUser]);
 
   const showSuperUserOptions = () => {
     return (

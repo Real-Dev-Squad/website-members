@@ -11,15 +11,20 @@ export const UserContextProvider = ({ children }) => {
   const [showMemberRoleUpdateModal, setShowMemberRoleUpdateModal] =
     useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
-  const [apiCalledToVerifySuperUser, setApiCalledToVerifySuperUser] =
-    useState(false);
+  const [superUserVerified, setSuperUserVerified] = useState(false);
 
-  const makeApiCallToVerifySuperUser = async () => {
-    const { data } = await getUserSelf();
-    setUser(data);
-    if (data) {
-      setIsSuperUser(Boolean(data.roles?.super_user));
-      setApiCalledToVerifySuperUser(true);
+  const verifySuperUser = async () => {
+    try {
+      const { data } = await getUserSelf();
+      if (data) {
+        setUser(data);
+        setIsSuperUser(Boolean(data.roles?.super_user));
+        setSuperUserVerified(true);
+      }
+    } catch {
+      setUser(null);
+      setIsSuperUser(false);
+      setSuperUserVerified(false);
     }
   };
 
@@ -34,9 +39,9 @@ export const UserContextProvider = ({ children }) => {
     setIsSuperUserMode,
     setSelectedMember,
     setShowMemberRoleUpdateModal,
-    apiCalledToVerifySuperUser,
-    setApiCalledToVerifySuperUser,
-    makeApiCallToVerifySuperUser,
+    superUserVerified,
+    setSuperUserVerified,
+    verifySuperUser,
   };
 
   return (

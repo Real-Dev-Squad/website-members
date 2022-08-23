@@ -23,11 +23,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { userContext } from '@store/user/user-context';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
-  const {
-    isSuperUser,
-    apiCalledToVerifySuperUser,
-    makeApiCallToVerifySuperUser,
-  } = userContext();
+  const { isSuperUser, superUserVerified, verifySuperUser } = userContext();
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
@@ -51,18 +47,22 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
 
-  if (!isSuperUser) {
-    if (!apiCalledToVerifySuperUser) {
-      makeApiCallToVerifySuperUser();
-    }
-  }
-  if (!isSuperUser && !user.roles?.member) {
-    const errorMsg = `The Member Page for ${
-      id.charAt(0).toUpperCase() + id.slice(1)
-    } is not yet generated.`;
-    return <NotFound errorMsg={errorMsg} />;
+  if (!isSuperUser && !superUserVerified) {
+    verifySuperUser();
   }
   const { first_name = '', last_name = '' } = user;
+  let fullUserName = `${first_name.charAt(0).toUpperCase()}${first_name.slice(
+    1
+  )}`;
+  if (last_name.length) {
+    fullUserName = `${fullUserName} ${last_name
+      .charAt(0)
+      .toUpperCase()}${last_name.slice(1)}`;
+  }
+  if (!isSuperUser && !user.roles?.member) {
+    const errorMsg = `The Member Page for ${fullUserName} is not yet generated.`;
+    return <NotFound errorMsg={errorMsg} />;
+  }
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
   const devUser = !!router.query.dev;
