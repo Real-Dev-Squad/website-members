@@ -51,16 +51,8 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     verifySuperUser();
   }
   const { first_name = '', last_name = '' } = user;
-  let fullUserName = `${first_name.charAt(0).toUpperCase()}${first_name.slice(
-    1
-  )}`;
-  if (last_name.length) {
-    fullUserName = `${fullUserName} ${last_name
-      .charAt(0)
-      .toUpperCase()}${last_name.slice(1)}`;
-  }
   if (!isSuperUser && !user.roles?.member) {
-    const errorMsg = `The Member Page for ${fullUserName} is not yet generated.`;
+    const errorMsg = `The Member Page for ${first_name} ${last_name} is not yet generated.`;
     return <NotFound errorMsg={errorMsg} />;
   }
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;

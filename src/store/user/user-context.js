@@ -14,6 +14,9 @@ export const UserContextProvider = ({ children }) => {
   const [superUserVerified, setSuperUserVerified] = useState(false);
 
   const verifySuperUser = async () => {
+    setUser(null);
+    setIsSuperUser(false);
+    setSuperUserVerified(false);
     try {
       const { data } = await getUserSelf();
       if (data) {
@@ -22,9 +25,7 @@ export const UserContextProvider = ({ children }) => {
         setSuperUserVerified(true);
       }
     } catch {
-      setUser(null);
-      setIsSuperUser(false);
-      setSuperUserVerified(false);
+      // we have handled the catch case in the beginning by setting the default state
     }
   };
 
