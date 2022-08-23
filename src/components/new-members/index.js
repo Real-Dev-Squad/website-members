@@ -21,17 +21,14 @@ const renderNewUserCard = (newMember, isOptionKey) => {
   );
 };
 
-const renderNewUsers = (newMember, isOptionKey, isSuperUser) => {
+const renderNewUser = (newMember, isOptionKey) => {
+  const { isSuperUser } = userContext();
   if (isSuperUser && isOptionKey) {
     return (
       <Link
         prefetch={false}
         href={{
           pathname: '/[id]',
-          query: {
-            first_name: `${newMember.first_name || ''}`,
-            last_name: `${newMember.last_name || ''}`,
-          },
         }}
         as={`/${newMember.username}`}
         key={newMember.username}
@@ -44,7 +41,6 @@ const renderNewUsers = (newMember, isOptionKey, isSuperUser) => {
 };
 
 const NewMemberList = ({ isOptionKey }) => {
-  const { isSuperUser } = userContext();
   const {
     state: { newMembers },
   } = membersContext();
@@ -55,7 +51,7 @@ const NewMemberList = ({ isOptionKey }) => {
       <div className={styles.container}>
         {filterMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
-            {renderNewUsers(newMember, isOptionKey, isSuperUser)}
+            {renderNewUser(newMember, isOptionKey)}
           </React.Fragment>
         ))}
       </div>

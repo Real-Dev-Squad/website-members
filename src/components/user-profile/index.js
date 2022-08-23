@@ -39,13 +39,13 @@ const UserProfile = () => {
     );
   };
 
-  if (!isLoading && user)
+  if (!isLoading && isSuperUser && user)
     return (
       <div className={classNames.superUserOptions}>
         <p>
           Hello {user.first_name} {user.last_name}
         </p>
-        {isSuperUser && showSuperUserOptions()}
+        {showSuperUserOptions()}
       </div>
     );
   return <div />;
