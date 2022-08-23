@@ -14,19 +14,22 @@ export const UserContextProvider = ({ children }) => {
   const [superUserVerified, setSuperUserVerified] = useState(false);
 
   const verifySuperUser = async () => {
-    setUser(null);
-    setIsSuperUser(false);
-    setSuperUserVerified(false);
+    let selfUser = null;
+    let selfIsSuperUser = false;
+    let selfSuperUserVerified = false;
     try {
       const { data } = await getUserSelf();
       if (data) {
-        setUser(data);
-        setIsSuperUser(Boolean(data.roles?.super_user));
-        setSuperUserVerified(true);
+        selfUser = data;
+        selfIsSuperUser = Boolean(data.roles?.super_user);
+        selfSuperUserVerified = true;
       }
     } catch {
-      // we have handled the catch case in the beginning by setting the default state
+      // by default handled in the initial local variables
     }
+    setUser(selfUser);
+    setIsSuperUser(selfIsSuperUser);
+    setSuperUserVerified(selfSuperUserVerified);
   };
 
   const initialUserContext = {
