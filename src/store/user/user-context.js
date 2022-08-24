@@ -11,25 +11,25 @@ export const UserContextProvider = ({ children }) => {
   const [showMemberRoleUpdateModal, setShowMemberRoleUpdateModal] =
     useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
-  const [superUserVerified, setSuperUserVerified] = useState(false);
+  const [userApiCalled, setUserApiCalled] = useState(false);
 
-  const verifySuperUser = async () => {
+  const setUserPrivileges = async () => {
     let selfUser = null;
     let selfIsSuperUser = false;
-    let selfSuperUserVerified = false;
+    let selfUserApiCalled = false;
     try {
       const { data } = await getUserSelf();
       if (data) {
         selfUser = data;
         selfIsSuperUser = Boolean(data.roles?.super_user);
-        selfSuperUserVerified = true;
+        selfUserApiCalled = true;
       }
     } catch {
-      // by default handled in the initial local variables
+      console.error(`couldn't fetch the user.Something went wrong.`);
     }
     setUser(selfUser);
     setIsSuperUser(selfIsSuperUser);
-    setSuperUserVerified(selfSuperUserVerified);
+    setUserApiCalled(selfUserApiCalled);
   };
 
   const initialUserContext = {
@@ -43,9 +43,9 @@ export const UserContextProvider = ({ children }) => {
     setIsSuperUserMode,
     setSelectedMember,
     setShowMemberRoleUpdateModal,
-    superUserVerified,
-    setSuperUserVerified,
-    verifySuperUser,
+    userApiCalled,
+    setUserApiCalled,
+    setUserPrivileges,
   };
 
   return (

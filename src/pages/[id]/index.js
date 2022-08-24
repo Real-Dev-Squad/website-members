@@ -23,7 +23,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { userContext } from '@store/user/user-context';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
-  const { isSuperUser, superUserVerified, verifySuperUser } = userContext();
+  const { isSuperUser, userApiCalled, setUserPrivileges } = userContext();
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
@@ -47,8 +47,8 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
     return <NotFound errorMsg={errorMessage} />;
   }
 
-  if (!isSuperUser && !superUserVerified) {
-    verifySuperUser();
+  if (!isSuperUser && !userApiCalled) {
+    setUserPrivileges();
   }
   const { first_name = '', last_name = '' } = user;
   if (!isSuperUser && !user.roles?.member) {
