@@ -12,9 +12,9 @@ import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
-import { userContext } from '@store/user/user-context';
 import UserProfile from '@components/user-profile';
 import { useRouter } from 'next/router';
+import { useTaskContext } from '@store/tasks/tasks-context';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -71,9 +71,9 @@ const Profile = (props) => {
     'linkedin_id',
     'instagram_id',
   ];
-  const { showMemberTaskUpdateModal, setIsOptionKey } = userContext();
+  const { showMemberTaskUpdateModal, setIsOptionKey } = useTaskContext();
 
-  const { query } = useRouter() || { query: { dev: false } };
+  const { query } = useRouter();
   const { dev } = query;
 
   const fullName = `${first_name} ${last_name}`;

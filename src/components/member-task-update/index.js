@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Modal from '@components/UI/modal/index';
-import { userContext } from '@store/user/user-context';
 import Spinner from '@components/UI/spinner';
+import { ISNOTEWORTHY, OTHER } from '@constants/AppConstants';
+import { useTaskContext } from '@store/tasks/tasks-context';
 import classNames from './member-task-update.module.scss';
 import { moveTask } from '../../helper-functions/action-handlers';
 
@@ -11,7 +12,7 @@ const MemberTaskUpdate = () => {
     setShowMemberTaskUpdateModal,
     isNoteworthy,
     taskId,
-  } = userContext();
+  } = useTaskContext();
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateStatus, setUpdateStatus] = useState('');
@@ -23,9 +24,7 @@ const MemberTaskUpdate = () => {
     setIsUpdating(false);
     if (res.status === 204) {
       setUpdateStatus(
-        `Task changed to ${
-          isNoteworthy ? 'other contribution' : 'noteworthy'
-        }! reloading...`
+        `Task changed to ${isNoteworthy ? OTHER : ISNOTEWORTHY}! reloading...`
       );
       window.location.reload();
     } else {
@@ -34,7 +33,7 @@ const MemberTaskUpdate = () => {
   };
 
   const renderTaskUpdateButtton = () => {
-    const task = isNoteworthy ? 'Other contribution' : 'noteworthy';
+    const task = isNoteworthy ? OTHER : ISNOTEWORTHY;
 
     if (updateStatus === '') {
       return (

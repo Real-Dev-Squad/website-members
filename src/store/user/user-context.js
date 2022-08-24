@@ -10,30 +10,17 @@ export const UserContextProvider = ({ children }) => {
   const [showMemberRoleUpdateModal, setShowMemberRoleUpdateModal] =
     useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
-  const [showMemberTaskUpdateModal, setShowMemberTaskUpdateModal] =
-    useState(false);
-  const [isNoteworthy, setIsNoteworthy] = useState(false);
-  const [isOptionKey, setIsOptionKey] = useState(false);
-  const [taskId, setTaskId] = useState('');
   const initialUserContext = {
     user,
     isSuperUser,
     isSuperUserMode,
     selectedMember,
     showMemberRoleUpdateModal,
-    showMemberTaskUpdateModal,
-    isNoteworthy,
-    isOptionKey,
-    taskId,
     setIsSuperUser,
     setUser,
     setIsSuperUserMode,
     setSelectedMember,
     setShowMemberRoleUpdateModal,
-    setShowMemberTaskUpdateModal,
-    setIsNoteworthy,
-    setIsOptionKey,
-    setTaskId,
   };
 
   return (
