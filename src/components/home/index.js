@@ -8,6 +8,8 @@ import SearchBox from '@components/UI/search-box/index';
 import styles from '@components/home/home.module.scss';
 import { userContext } from '@store/user/user-context';
 import { membersContext } from '@store/members/members-context';
+import { searchMemberContext } from '@store/search-members/searchMembers-context';
+import { searchMembers } from '@helper-functions/search-members';
 import { useState, useEffect } from 'react';
 import { Waypoint } from 'react-waypoint';
 
@@ -22,6 +24,8 @@ const Home = () => {
   const {
     state: { newMembers: newMembersList },
   } = membersContext();
+  const { searchTerm } = searchMemberContext();
+  const filterMembersList = searchMembers(newMembersList, searchTerm);
 
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
@@ -32,8 +36,9 @@ const Home = () => {
   const membersToShow = 10;
 
   const fetchNewMembers = () => {
+    const newMemberArr = searchTerm ? filterMembersList : newMembersList;
     const noOfMembersToShow = scrollCount * membersToShow;
-    const slicedNewMembersList = newMembersList.slice(0, noOfMembersToShow);
+    const slicedNewMembersList = newMemberArr.slice(0, noOfMembersToShow);
     setNewMembers(slicedNewMembersList);
     setScrollCount(scrollCount + 1);
   };
@@ -43,9 +48,7 @@ const Home = () => {
   }, [newMembersList]);
 
   const loadMoreData = () => {
-    if (scrollCount > 1) {
-      fetchNewMembers();
-    }
+    fetchNewMembers();
   };
 
   return (
@@ -75,11 +78,7 @@ const Home = () => {
       <Members isOptionKey={isOptionKey} />
       <h1 className={styles.heading}>{NEW_MEMBERS_TITLE}</h1>
       <NewMembers newMembers={newMembers} isOptionKey={isOptionKey} />
-      {newMembers && (
-        <Waypoint onEnter={loadMoreData}>
-          <h5>Loading...</h5>
-        </Waypoint>
-      )}
+      {newMembers && <Waypoint onEnter={loadMoreData} />}
     </div>
   );
 };

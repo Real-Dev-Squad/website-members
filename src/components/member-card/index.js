@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import classNames from '@components/member-card/card.module.scss';
+import { motion } from 'framer-motion';
 import SocialMediaIcon from '@components/social-media-icon';
 import PropTypes from 'prop-types';
 import ShowSkills from '@components/member-card/show-skills';
@@ -45,7 +46,7 @@ const Card = ({ developerInfo, isOptionKey }) => {
       {dev && (
         <SuperUserOptions username={username} showSettings={showSettings} />
       )}
-      <img
+      <motion.img
         layoutId={username}
         src={isMember ? `${img_url}` : '/images/Avatar.png'}
         onError={brokenImageHandler}
