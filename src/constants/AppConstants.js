@@ -65,5 +65,7 @@ export const HOST_NAME = 'members.realdevsquad.com';
 export const TIMEOUT = 1000;
 export const KEY_TAB = 9;
 export const KEY_ESC = 27;
-export const ISNOTEWORTHY = 'Noteworthy';
-export const OTHER = 'Other Contribution';
+export const TASK_TYPE = {
+  ISNOTEWORTHY: 'Noteworthy',
+  OTHER: 'Other Contribution',
+};

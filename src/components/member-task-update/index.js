@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from '@components/UI/modal/index';
 import Spinner from '@components/UI/spinner';
-import { ISNOTEWORTHY, OTHER } from '@constants/AppConstants';
+import { TASK_TYPE } from '@constants/AppConstants';
 import { useTaskContext } from '@store/tasks/tasks-context';
 import classNames from './member-task-update.module.scss';
 import { moveTask } from '../../helper-functions/action-handlers';
@@ -24,7 +24,9 @@ const MemberTaskUpdate = () => {
     setIsUpdating(false);
     if (res.status === 204) {
       setUpdateStatus(
-        `Task changed to ${isNoteworthy ? OTHER : ISNOTEWORTHY}! reloading...`
+        `Task changed to ${
+          isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.ISNOTEWORTHY
+        }! reloading...`
       );
       window.location.reload();
     } else {
@@ -33,7 +35,7 @@ const MemberTaskUpdate = () => {
   };
 
   const renderTaskUpdateButtton = () => {
-    const task = isNoteworthy ? OTHER : ISNOTEWORTHY;
+    const task = isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.ISNOTEWORTHY;
 
     if (updateStatus === '') {
       return (
