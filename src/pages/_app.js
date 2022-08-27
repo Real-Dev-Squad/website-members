@@ -6,21 +6,14 @@ import { AnimateSharedLayout } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Spinner from '@components/UI/spinner';
 import { MembersProvider } from '@store';
-import { UserContextProvider } from '@store/user/context';
+import { UserContextProvider } from '@store/user/user-context';
 import { SearchMemberProvider } from '@store/search-members/searchMembers-context';
 import { usePostHog } from 'next-use-posthog';
-import { TaskContextProvider } from '@store/tasks/context';
-import { KeyboardContextProvider } from '@store/keyboard/context';
+import { TaskContextProvider } from '@store/tasks/tasks-context';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
   const router = useRouter();
-  const [isOptionKey, setIsOptionKey] = useState(false);
-
-  const initialContext = {
-    isOptionKey,
-    setIsOptionKey,
-  };
 
   const [loading, setLoading] = useState(false);
 
@@ -52,23 +45,12 @@ const MyApp = (props) => {
         <MembersProvider>
           <SearchMemberProvider>
             <TaskContextProvider>
-              <KeyboardContextProvider value={initialContext}>
-                <div
-                  className={classNames.root}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.altKey) {
-                      setIsOptionKey(true);
-                    }
-                  }}
-                >
-                  <div className={classNames.main}>
-                    {loading && <Spinner />}
-                    <Component {...pageProps} />
-                  </div>
+              <div className={classNames.root}>
+                <div className={classNames.main}>
+                  {loading && <Spinner />}
+                  <Component {...pageProps} />
                 </div>
-              </KeyboardContextProvider>
+              </div>
             </TaskContextProvider>
           </SearchMemberProvider>
         </MembersProvider>

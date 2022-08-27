@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from '@components/member-card/card.module.scss';
 import PropTypes from 'prop-types';
-import { userContext } from '../../store/user/context';
+import { userContext } from '../../store/user/user-context';
 
 const SuperUserOptions = ({ username, showSettings }) => {
   const {

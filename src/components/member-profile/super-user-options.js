@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from '@components/member-profile/member-profile.module.scss';
-import { useTaskContext } from '@store/tasks/context';
-import { userContext } from '../../store/user/context';
+import { useTaskContext } from '@store/tasks/tasks-context';
+import { userContext } from '../../store/user/user-context';
 
 const SuperUserOptions = ({ showSettings, isNoteworthy, taskId }) => {
   const { isSuperUserMode } = userContext();

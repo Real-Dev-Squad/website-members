@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Modal from '@components/UI/modal/index';
 import Spinner from '@components/UI/spinner';
 import { TASK_TYPE } from '@constants/AppConstants';
-import { useTaskContext } from '@store/tasks/context';
+import { useTaskContext } from '@store/tasks/tasks-context';
 import classNames from './member-task-update.module.scss';
 import { moveTask } from '../../helper-functions/action-handlers';
 
