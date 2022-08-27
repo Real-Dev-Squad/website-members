@@ -9,12 +9,19 @@ import { MembersProvider } from '@store';
 import { UserContextProvider } from '@store/user/user-context';
 import { SearchMemberProvider } from '@store/search-members/searchMembers-context';
 import { usePostHog } from 'next-use-posthog';
+import { KeyboardContextProvider } from '@store/keyboard/context';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
+  const [isOptionKey, setIsOptionKey] = useState(false);
+
+  const initialvalue = {
+    isOptionKey,
+    setIsOptionKey,
+  };
 
   useEffect(() => {
     const handleStart = (url) => url !== router.asPath && setLoading(true);
@@ -43,12 +50,23 @@ const MyApp = (props) => {
       <UserContextProvider>
         <MembersProvider>
           <SearchMemberProvider>
-            <div className={classNames.root}>
-              <div className={classNames.main}>
-                {loading && <Spinner />}
-                <Component {...pageProps} />
+            <KeyboardContextProvider value={initialvalue}>
+              <div
+                className={classNames.root}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.altKey) {
+                    setIsOptionKey(true);
+                  }
+                }}
+              >
+                <div className={classNames.main}>
+                  {loading && <Spinner />}
+                  <Component {...pageProps} />
+                </div>
               </div>
-            </div>
+            </KeyboardContextProvider>
           </SearchMemberProvider>
         </MembersProvider>
       </UserContextProvider>
