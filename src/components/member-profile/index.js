@@ -14,7 +14,7 @@ import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
 import UserProfile from '@components/user-profile';
 import { useRouter } from 'next/router';
-import { useTaskContext } from '@store/tasks/tasks-context';
+import { useTaskContext } from '@store/tasks/context';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -71,7 +71,7 @@ const Profile = (props) => {
     'linkedin_id',
     'instagram_id',
   ];
-  const { showMemberTaskUpdateModal, setIsOptionKey } = useTaskContext();
+  const { showMemberTaskUpdateModal } = useTaskContext();
 
   const { query } = useRouter();
   const { dev } = query;
@@ -359,15 +359,7 @@ const Profile = (props) => {
   };
 
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.altKey) {
-          setIsOptionKey(true);
-        }
-      }}
-    >
+    <div>
       {dev && <UserProfile />}
       {showModal && (
         <Modal style={modalStyle} show={showModal} closeModal={closeModal}>

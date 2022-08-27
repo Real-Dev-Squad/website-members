@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { userContext } from '@store/user/user-context';
+import { userContext } from '@store/user/context';
 import classNames from '@components/user-profile/user-profile.module.scss';
 import { getUserSelf } from '../../helper-functions/action-handlers';
 

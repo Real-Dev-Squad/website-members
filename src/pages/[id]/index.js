@@ -20,7 +20,7 @@ import {
   HEIGHT_40PX,
 } from '@constants/profile-image';
 import { useEffect, useState, useCallback } from 'react';
-import { userContext } from '@store/user/user-context';
+import { userContext } from '@store/user/context';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const { isSuperUserMode } = userContext();

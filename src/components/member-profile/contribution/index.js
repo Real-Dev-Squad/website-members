@@ -6,11 +6,11 @@ import PRLink from '@components/member-profile/contribution/pr-link';
 import { timeWas } from '@helper-functions/time-was';
 import { HOST_NAME } from '@constants/AppConstants';
 import { useState } from 'react';
-import { useTaskContext } from '@store/tasks/tasks-context';
 import {
   hideSuperUserOption,
   revealSuperUserOption,
 } from '@helper-functions/show-super_user-options';
+import { useKeyboardContext } from '@store/keyboard/context';
 import SuperUserOptions from '../super-user-options';
 
 const renderPRLinks = (prList) =>
@@ -76,7 +76,7 @@ const ContributionCard = ({
   const isTitleAvailable = !!title;
   const featureTitle = isTitleAvailable ? title : prList[0].title;
   const [showSettings, setShowSettings] = useState(false);
-  const { isOptionKey, setIsOptionKey } = useTaskContext();
+  const { isOptionKey, setIsOptionKey } = useKeyboardContext();
 
   const renderFeatureUrl = (featureUrl, featureUrlObj) => {
     if (featureUrlObj.host === HOST_NAME) {

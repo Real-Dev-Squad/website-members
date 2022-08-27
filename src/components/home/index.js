@@ -6,7 +6,7 @@ import MemberRoleUpdate from '@components/member-role-update';
 import Designers from '@components/designers';
 import SearchBox from '@components/UI/search-box/index';
 import styles from '@components/home/home.module.scss';
-import { userContext } from '@store/user/user-context';
+import { userContext } from '@store/user/context';
 import { useState } from 'react';
 import {
   BRAND_NAME,
