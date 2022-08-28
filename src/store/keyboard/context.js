@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 
 const KeyboardContext = createContext();
 
-export const KeyboardContextProvider = ({ children, value }) => {
+export const KeyboardProvider = ({ children, value }) => {
   return (
     <KeyboardContext.Provider value={value}>
       {children}

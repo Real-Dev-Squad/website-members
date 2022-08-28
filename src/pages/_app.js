@@ -9,7 +9,7 @@ import { MembersProvider } from '@store';
 import { UserContextProvider } from '@store/user/user-context';
 import { SearchMemberProvider } from '@store/search-members/searchMembers-context';
 import { usePostHog } from 'next-use-posthog';
-import { KeyboardContextProvider } from '@store/keyboard/context';
+import { KeyboardProvider } from '@store/keyboard/context';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -50,7 +50,7 @@ const MyApp = (props) => {
       <UserContextProvider>
         <MembersProvider>
           <SearchMemberProvider>
-            <KeyboardContextProvider value={initialvalue}>
+            <KeyboardProvider value={initialvalue}>
               <div
                 className={classNames.root}
                 role="button"
@@ -66,7 +66,7 @@ const MyApp = (props) => {
                   <Component {...pageProps} />
                 </div>
               </div>
-            </KeyboardContextProvider>
+            </KeyboardProvider>
           </SearchMemberProvider>
         </MembersProvider>
       </UserContextProvider>
