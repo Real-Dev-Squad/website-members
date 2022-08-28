@@ -1,17 +1,17 @@
 import { createContext, useContext } from 'react';
 
-const keyboardContext = createContext();
+const KeyboardContext = createContext();
 
 export const KeyboardContextProvider = ({ children, value }) => {
   return (
-    <keyboardContext.Provider value={value}>
+    <KeyboardContext.Provider value={value}>
       {children}
-    </keyboardContext.Provider>
+    </KeyboardContext.Provider>
   );
 };
 
 export const useKeyboardContext = () => {
-  const context = useContext(keyboardContext);
+  const context = useContext(KeyboardContext);
   if (!context)
     throw new Error(`keyboardcontext context can only  
         be used in a component wrapped with keyboardcontext`);
