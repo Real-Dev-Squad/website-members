@@ -60,6 +60,9 @@ const MyApp = (props) => {
                     setIsOptionKey(true);
                   }
                 }}
+                onKeyUp={() => {
+                  setIsOptionKey(false);
+                }}
               >
                 <div className={classNames.main}>
                   {loading && <Spinner />}
