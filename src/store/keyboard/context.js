@@ -2,20 +2,20 @@ import { createContext, useContext, useState } from 'react';
 
 const KeyboardContext = createContext();
 
+function isOptionKey(e) {
+  if (e.key === 'Alt') {
+    return true;
+  }
+
+  return false;
+}
+
 export const KeyboardProvider = ({ children }) => {
   const [isOptionKeyPressed, setIsOptionKeyPressed] = useState(false);
 
   const initialvalue = {
     isOptionKeyPressed,
   };
-
-  function isOptionKey(e) {
-    if (e.key === 'Alt') {
-      return true;
-    }
-
-    return false;
-  }
 
   return (
     <KeyboardContext.Provider value={initialvalue}>
