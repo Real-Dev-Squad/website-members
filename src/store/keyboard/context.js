@@ -9,7 +9,7 @@ function isOptionKey(e) {
 export const KeyboardProvider = ({ children }) => {
   const [isOptionKeyPressed, setIsOptionKeyPressed] = useState(false);
 
-  const initialvalue = {
+  const initialValue = {
     isOptionKeyPressed,
   };
 
