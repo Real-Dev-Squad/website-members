@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import {
   getMembersDataURL,
   getContributionsURL,
-  getActiveTasksURL,
   getCloudinaryImgURL,
 } from '@helper-functions/urls';
 import { fetch } from '@helper-functions/fetch';
@@ -19,8 +18,9 @@ import {
   HEIGHT_200PX,
   HEIGHT_40PX,
 } from '@constants/profile-image';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { userContext } from '@store/user/user-context';
+import { UserTasksApi } from '@api/UserTasksApi';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const { isSuperUser, userApiCalled, setUserPrivileges } = userContext();
@@ -28,20 +28,9 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   const router = useRouter();
   const { id } = router.query;
 
-  const fillActiveTasksArray = useCallback(async () => {
-    const tasksURL = getActiveTasksURL(id);
-    try {
-      const tasksResponse = await fetch(tasksURL);
-      const { tasks } = await tasksResponse.data;
-      setActiveTasksData(tasks);
-    } catch {
-      setActiveTasksData([]);
-    }
-  }, [id]);
-
   useEffect(() => {
-    fillActiveTasksArray();
-  }, [fillActiveTasksArray]);
+    UserTasksApi.getAll(id).then((listTasks) => setActiveTasksData(listTasks));
+  }, [id]);
 
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
