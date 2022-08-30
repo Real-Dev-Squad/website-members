@@ -15,12 +15,14 @@ export const KeyboardProvider = ({ children }) => {
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.altKey) {
+          if (e.key === 'Alt') {
             setIsOptionKeyPressed(true);
           }
         }}
-        onKeyUp={() => {
-          setIsOptionKeyPressed(false);
+        onKeyUp={(e) => {
+          if (e.key === 'Alt') {
+            setIsOptionKeyPressed(false);
+          }
         }}
       >
         {children}
