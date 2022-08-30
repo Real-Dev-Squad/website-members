@@ -14,7 +14,7 @@ export const KeyboardProvider = ({ children }) => {
   };
 
   return (
-    <KeyboardContext.Provider value={initialvalue}>
+    <KeyboardContext.Provider value={initialValue}>
       <div
         role="button"
         tabIndex={0}
