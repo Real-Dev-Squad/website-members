@@ -3,11 +3,7 @@ import { createContext, useContext, useState } from 'react';
 const KeyboardContext = createContext();
 
 function isOptionKey(e) {
-  if (e.key === 'Alt') {
-    return true;
-  }
-
-  return false;
+  return e.key === 'Alt';
 }
 
 export const KeyboardProvider = ({ children }) => {
