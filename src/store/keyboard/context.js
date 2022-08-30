@@ -9,18 +9,26 @@ export const KeyboardProvider = ({ children }) => {
     isOptionKeyPressed,
   };
 
+  function isOptionKey(e) {
+    if (e.key === 'Alt') {
+      return true;
+    }
+
+    return false;
+  }
+
   return (
     <KeyboardContext.Provider value={initialvalue}>
       <div
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === 'Alt') {
+          if (isOptionKey(e)) {
             setIsOptionKeyPressed(true);
           }
         }}
         onKeyUp={(e) => {
-          if (e.key === 'Alt') {
+          if (isOptionKey(e)) {
             setIsOptionKeyPressed(false);
           }
         }}
