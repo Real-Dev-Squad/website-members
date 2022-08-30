@@ -3,11 +3,10 @@ import { createContext, useContext, useState } from 'react';
 const KeyboardContext = createContext();
 
 export const KeyboardProvider = ({ children }) => {
-  const [isOptionKey, setIsOptionKey] = useState(false);
+  const [isOptionKeyPressed, setIsOptionKeyPressed] = useState(false);
 
   const initialvalue = {
-    isOptionKey,
-    setIsOptionKey,
+    isOptionKeyPressed,
   };
 
   return (
@@ -17,12 +16,11 @@ export const KeyboardProvider = ({ children }) => {
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.altKey) {
-            setIsOptionKey(true);
+            setIsOptionKeyPressed(true);
           }
         }}
         onKeyUp={() => {
-          if (e.altKey)
-            setIsOptionKey(false);
+          setIsOptionKeyPressed(false);
         }}
       >
         {children}
