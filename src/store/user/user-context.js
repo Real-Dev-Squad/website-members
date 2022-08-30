@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { createContext, useState, useContext } from 'react';
-import { UserData } from '@api/UserDataApi';
+import { UserData } from '../../api/UserDataApi';
 
 const UserContext = createContext();
 
