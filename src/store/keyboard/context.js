@@ -21,7 +21,8 @@ export const KeyboardProvider = ({ children }) => {
           }
         }}
         onKeyUp={() => {
-          setIsOptionKey(false);
+          if (e.altKey)
+            setIsOptionKey(false);
         }}
       >
         {children}
