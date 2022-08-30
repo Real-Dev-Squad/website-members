@@ -1,11 +1,31 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const KeyboardContext = createContext();
 
-export const KeyboardProvider = ({ children, value }) => {
+export const KeyboardProvider = ({ children }) => {
+  const [isOptionKey, setIsOptionKey] = useState(false);
+
+  const initialvalue = {
+    isOptionKey,
+    setIsOptionKey,
+  };
+
   return (
-    <KeyboardContext.Provider value={value}>
-      {children}
+    <KeyboardContext.Provider value={initialvalue}>
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.altKey) {
+            setIsOptionKey(true);
+          }
+        }}
+        onKeyUp={() => {
+          setIsOptionKey(false);
+        }}
+      >
+        {children}
+      </div>
     </KeyboardContext.Provider>
   );
 };
