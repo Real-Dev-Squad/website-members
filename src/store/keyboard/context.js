@@ -38,7 +38,7 @@ export const KeyboardProvider = ({ children }) => {
 export const useKeyboardContext = () => {
   const context = useContext(KeyboardContext);
   if (!context)
-    throw new Error(`keyboardcontext context can only  
-        be used in a component wrapped with keyboardcontext`);
+    throw new Error(`keyboardContext context can only  
+        be used in a component wrapped with keyboardContext`);
   return context;
 };
