@@ -65,3 +65,4 @@ export const HOST_NAME = 'members.realdevsquad.com';
 export const TIMEOUT = 1000;
 export const KEY_TAB = 9;
 export const KEY_ESC = 27;
+export const NEW_MEMBERS_TO_SHOW = 10;

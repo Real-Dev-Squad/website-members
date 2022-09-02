@@ -17,6 +17,7 @@ import {
   BRAND_NAME,
   MEMBERS_TITLE,
   NEW_MEMBERS_TITLE,
+  NEW_MEMBERS_TO_SHOW,
 } from '@constants/AppConstants';
 
 const Home = () => {
@@ -33,11 +34,9 @@ const Home = () => {
   const [newMembers, setNewMembers] = useState([]);
   const [scrollCount, setScrollCount] = useState(0);
 
-  const membersToShow = 10;
-
   const fetchNewMembers = () => {
     const newMemberArr = searchTerm ? filterMembersList : newMembersList;
-    const noOfMembersToShow = scrollCount * membersToShow;
+    const noOfMembersToShow = scrollCount * NEW_MEMBERS_TO_SHOW;
     const slicedNewMembersList = newMemberArr.slice(0, noOfMembersToShow);
     setNewMembers(slicedNewMembersList);
     setScrollCount(scrollCount + 1);
@@ -46,10 +45,6 @@ const Home = () => {
   useEffect(() => {
     fetchNewMembers();
   }, [newMembersList]);
-
-  const loadMoreData = () => {
-    fetchNewMembers();
-  };
 
   return (
     <div
@@ -78,7 +73,7 @@ const Home = () => {
       <Members isOptionKey={isOptionKey} />
       <h1 className={styles.heading}>{NEW_MEMBERS_TITLE}</h1>
       <NewMembers newMembers={newMembers} isOptionKey={isOptionKey} />
-      {newMembers && <Waypoint onEnter={loadMoreData} />}
+      {newMembers && <Waypoint onEnter={fetchNewMembers} />}
     </div>
   );
 };
