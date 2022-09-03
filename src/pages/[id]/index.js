@@ -18,6 +18,7 @@ import {
   HEIGHT_200PX,
   HEIGHT_40PX,
 } from '@constants/profile-image';
+
 import { useEffect, useState } from 'react';
 import { userContext } from '@store/user/user-context';
 import { UserTasksApi } from '@api/UserTasksApi';
@@ -39,7 +40,9 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   if (!isSuperUser && !userApiCalled) {
     setUserPrivileges();
   }
+
   const { first_name = '', last_name = '' } = user;
+
   if (!isSuperUser && !user.roles?.member) {
     const errorMsg = `The Member Page for ${first_name} ${last_name} is not yet generated.`;
     return <NotFound errorMsg={errorMsg} />;
