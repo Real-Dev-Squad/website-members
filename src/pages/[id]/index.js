@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import {
   getMembersDataURL,
   getContributionsURL,
-  getActiveTasksURL,
   getCloudinaryImgURL,
 } from '@helper-functions/urls';
 import { fetch } from '@helper-functions/fetch';
@@ -12,49 +11,45 @@ import Profile from '@components/member-profile';
 import NotFound from '@components/not-found-page';
 import Layout from '@components/layout';
 import { CACHE_MAX_AGE } from '@constants/cache-max-age.js';
-import { unAuthorizedPageViewError } from '@constants/error-messages';
+
 import {
   WIDTH_200PX,
   WIDTH_40PX,
   HEIGHT_200PX,
   HEIGHT_40PX,
 } from '@constants/profile-image';
-import { useEffect, useState, useCallback } from 'react';
+
+import { useEffect, useState } from 'react';
 import { userContext } from '@store/user/user-context';
+import { UserTasksApi } from '@api/UserTasksApi';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
-  const { isSuperUserMode } = userContext();
+  const { isSuperUser, userApiCalled, setUserPrivileges } = userContext();
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
 
+  useEffect(() => {
+    UserTasksApi.getAll(id).then((listTasks) => setActiveTasksData(listTasks));
+  }, [id]);
+
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
   }
-  if (!user.roles?.member && !isSuperUserMode) {
-    return <NotFound errorMsg={unAuthorizedPageViewError} />;
+
+  if (!isSuperUser && !userApiCalled) {
+    setUserPrivileges();
   }
 
-  const fillActiveTasksArray = useCallback(async () => {
-    const tasksURL = getActiveTasksURL(id);
-    try {
-      const tasksResponse = await fetch(tasksURL);
-      const { tasks } = await tasksResponse.data;
-      setActiveTasksData(tasks);
-    } catch {
-      setActiveTasksData([]);
-    }
-  }, [id]);
-
-  useEffect(() => {
-    fillActiveTasksArray();
-  }, [fillActiveTasksArray]);
-
   const { first_name = '', last_name = '' } = user;
+
+  if (!isSuperUser && !user.roles?.member) {
+    const errorMsg = `The Member Page for ${first_name} ${last_name} is not yet generated.`;
+    return <NotFound errorMsg={errorMsg} />;
+  }
   const memberName = `${first_name} ${last_name} | Member Real Dev Squad`;
 
-  const { query } = useRouter(); // this needs to be changed
-  const devUser = !!query.dev;
+  const devUser = !!router.query.dev;
 
   return (
     <Layout title={memberName}>

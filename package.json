@@ -62,6 +62,10 @@
     "prettier": "^2.3.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
+  },
+  "volta": {
+    "node": "16.16.0",
+    "yarn": "1.22.17"
   }
 }
