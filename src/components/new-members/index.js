@@ -37,7 +37,11 @@ const renderNewUser = (newMember, isOptionKey) => {
       </Link>
     );
   }
-  return renderNewUserCard(newMember, isOptionKey);
+  return (
+    <div className={styles.newUser}>
+      {renderNewUserCard(newMember, isOptionKey)}
+    </div>
+  );
 };
 
 const NewMemberList = ({ isOptionKey }) => {

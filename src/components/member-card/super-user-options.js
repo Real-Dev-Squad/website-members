@@ -5,7 +5,7 @@ import { userContext } from '../../store/user/user-context';
 
 const SuperUserOptions = ({ username, showSettings }) => {
   const {
-    isSuperUserMode,
+    isSuperUser,
     showMemberRoleUpdateModal,
     setShowMemberRoleUpdateModal,
     setSelectedMember,
@@ -39,7 +39,7 @@ const SuperUserOptions = ({ username, showSettings }) => {
     );
   };
 
-  return <>{isSuperUserMode && showSuperUserOptions()}</>;
+  return <>{isSuperUser && showSuperUserOptions()}</>;
 };
 
 SuperUserOptions.propTypes = {
