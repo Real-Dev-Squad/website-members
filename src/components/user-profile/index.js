@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { userContext } from '@store/user/user-context';
 import classNames from '@components/user-profile/user-profile.module.scss';
 
@@ -12,12 +12,14 @@ const UserProfile = () => {
     setUserPrivileges,
   } = userContext();
 
+  const memoizeUserPrivilege = useCallback(async () => {
+    await setUserPrivileges();
+    setIsLoading(false);
+  }, [setUserPrivileges, setIsLoading]);
+
   useEffect(() => {
-    (async () => {
-      await setUserPrivileges();
-      setIsLoading(false);
-    })();
-  }, [setUserPrivileges]);
+    memoizeUserPrivilege();
+  }, [memoizeUserPrivilege]);
 
   const showSuperUserOptions = () => {
     return (
