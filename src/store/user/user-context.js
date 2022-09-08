@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { createContext, useState, useContext } from 'react';
+
+import { createContext, useState, useContext, useCallback } from 'react';
 import { UserData } from '../../api/UserDataApi';
 
 const UserContext = createContext();
@@ -13,13 +14,12 @@ export const UserContextProvider = ({ children }) => {
   const [selectedMember, setSelectedMember] = useState(null);
   const [userApiCalled, setUserApiCalled] = useState(false);
 
-  const setUserPrivileges = () => {
-    UserData.get().then((userData) => {
-      setUserApiCalled(true);
-      setUser(userData);
-      setIsSuperUser(Boolean(userData?.roles?.super_user));
-    });
-  };
+  const setUserPrivileges = useCallback(async () => {
+    const userData = await UserData.get();
+    setUserApiCalled(true);
+    setUser(userData);
+    setIsSuperUser(Boolean(userData?.roles?.super_user));
+  }, [setUserApiCalled, setIsSuperUser, setUser]);
 
   const initialUserContext = {
     user,
