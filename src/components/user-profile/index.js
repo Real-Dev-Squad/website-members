@@ -1,30 +1,23 @@
 import { useState, useEffect } from 'react';
 import { userContext } from '@store/user/user-context';
 import classNames from '@components/user-profile/user-profile.module.scss';
-import { getUserSelf } from '../../helper-functions/action-handlers';
 
 const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const {
     user,
-    setUser,
     isSuperUser,
-    setIsSuperUser,
     isSuperUserMode,
     setIsSuperUserMode,
+    setUserPrivileges,
   } = userContext();
 
   useEffect(() => {
-    async function getUserProfile() {
-      const { data } = await getUserSelf();
+    (async () => {
+      await setUserPrivileges();
       setIsLoading(false);
-      setUser(data);
-      if (data) {
-        setIsSuperUser(data.roles.super_user);
-      }
-    }
-    getUserProfile();
-  }, [setUser, setIsSuperUser]);
+    })();
+  }, [setUserPrivileges]);
 
   const showSuperUserOptions = () => {
     return (
@@ -39,13 +32,13 @@ const UserProfile = () => {
     );
   };
 
-  if (!isLoading && user)
+  if (!isLoading && isSuperUser && user)
     return (
       <div className={classNames.superUserOptions}>
         <p>
           Hello {user.first_name} {user.last_name}
         </p>
-        {isSuperUser && showSuperUserOptions()}
+        {showSuperUserOptions()}
       </div>
     );
   return <div />;
