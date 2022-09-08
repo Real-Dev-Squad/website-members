@@ -6,6 +6,21 @@
   justify-content: center;
 }
 
+.newUser {
+  pointer-events: none;
+  display: flex;
+  padding: 20px 10px;
+  background: white;
+  max-width: 270px;
+  border-radius: 5%;
+  transition: 0.38s box-shadow ease-out;
+  cursor: none;
+  flex: 0 150px;
+  height: 160px;
+  overflow: hidden;
+  margin: auto;
+}
+
 .containerForNewMember {
   display: flex;
   flex-direction: column;
