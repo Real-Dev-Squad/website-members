@@ -48,9 +48,7 @@ const Card = ({ developerInfo, isOptionKey }) => {
       )}
       <motion.img
         layoutId={username}
-        src={
-          isMember ? `${img_url}?${Math.random() * 100}` : '/images/Avatar.png'
-        }
+        src={isMember ? `${img_url}` : '/images/Avatar.png'}
         onError={brokenImageHandler}
         className={
           isMember ? classNames.imgContainer : classNames.imgContainerNewMember
