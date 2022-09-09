@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-
 import { createContext, useState, useContext, useCallback } from 'react';
 import { UserData } from '../../api/UserDataApi';
 
