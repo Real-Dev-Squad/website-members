@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Members from '@components/members';
 import NewMembers from '@components/new-members';
@@ -20,11 +20,13 @@ const Home = () => {
   const { dev } = query;
   const [isOptionKey, setIsOptionKey] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      await setUserPrivileges();
-    })();
+  const memoizeUserPrivilege = useCallback(async () => {
+    await setUserPrivileges();
   }, [setUserPrivileges]);
+
+  useEffect(() => {
+    memoizeUserPrivilege();
+  }, [memoizeUserPrivilege]);
 
   return (
     <div
