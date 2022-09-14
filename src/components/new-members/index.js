@@ -21,8 +21,7 @@ const renderNewUserCard = (newMember, isOptionKey) => {
   );
 };
 
-const renderNewUser = (newMember, isOptionKey) => {
-  const { isSuperUser } = userContext();
+const renderNewUser = (newMember, isOptionKey, isSuperUser) => {
   if (isSuperUser && isOptionKey) {
     return (
       <Link
@@ -48,6 +47,7 @@ const NewMemberList = ({ isOptionKey }) => {
   const {
     state: { newMembers },
   } = membersContext();
+  const { isSuperUser } = userContext();
   const { searchTerm } = searchMemberContext();
   const filterMembers = searchMembers(newMembers, searchTerm);
   if (newMembers) {
@@ -55,7 +55,7 @@ const NewMemberList = ({ isOptionKey }) => {
       <div className={styles.container}>
         {filterMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
-            {renderNewUser(newMember, isOptionKey)}
+            {renderNewUser(newMember, isOptionKey, isSuperUser)}
           </React.Fragment>
         ))}
       </div>
