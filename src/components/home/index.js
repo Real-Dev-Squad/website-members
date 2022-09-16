@@ -7,18 +7,44 @@ import Designers from '@components/designers';
 import SearchBox from '@components/UI/search-box/index';
 import styles from '@components/home/home.module.scss';
 import { userContext } from '@store/user/user-context';
-import { useState } from 'react';
+import { membersContext } from '@store/members/members-context';
+import { searchMemberContext } from '@store/search-members/searchMembers-context';
+import { searchMembers } from '@helper-functions/search-members';
+import { useState, useEffect } from 'react';
+import { Waypoint } from 'react-waypoint';
+
 import {
   BRAND_NAME,
   MEMBERS_TITLE,
   NEW_MEMBERS_TITLE,
+  NEW_MEMBERS_TO_SHOW,
 } from '@constants/AppConstants';
 
 const Home = () => {
   const { showMemberRoleUpdateModal, isSuperUserMode } = userContext();
+  const {
+    state: { newMembers: newMembersList },
+  } = membersContext();
+  const { searchTerm } = searchMemberContext();
+  const filterMembersList = searchMembers(newMembersList, searchTerm);
+
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const [isOptionKey, setIsOptionKey] = useState(false);
+  const [newMembers, setNewMembers] = useState([]);
+  const [scrollCount, setScrollCount] = useState(0);
+
+  const fetchNewMembers = () => {
+    const newMemberArr = searchTerm ? filterMembersList : newMembersList;
+    const noOfMembersToShow = scrollCount * NEW_MEMBERS_TO_SHOW;
+    const slicedNewMembersList = newMemberArr.slice(0, noOfMembersToShow);
+    setNewMembers(slicedNewMembersList);
+    setScrollCount(scrollCount + 1);
+  };
+
+  useEffect(() => {
+    fetchNewMembers();
+  }, [newMembersList]);
 
   return (
     <div
@@ -46,7 +72,8 @@ const Home = () => {
       )}
       <Members isOptionKey={isOptionKey} />
       <h1 className={styles.heading}>{NEW_MEMBERS_TITLE}</h1>
-      <NewMembers isOptionKey={isOptionKey} />
+      <NewMembers newMembers={newMembers} isOptionKey={isOptionKey} />
+      {newMembers && <Waypoint onEnter={fetchNewMembers} />}
     </div>
   );
 };

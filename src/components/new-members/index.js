@@ -2,9 +2,6 @@ import React from 'react';
 import Card from '@components/member-card';
 import PropTypes from 'prop-types';
 import styles from '@components/new-members/new-members.module.scss';
-import { membersContext } from '@store/members/members-context';
-import { searchMemberContext } from '@store/search-members/searchMembers-context';
-import { searchMembers } from '@helper-functions/search-members';
 import Link from 'next/link';
 import { userContext } from '@store/user/user-context';
 
@@ -40,16 +37,11 @@ const renderNewUser = (newMember, isOptionKey) => {
   return renderNewUserCard(newMember, isOptionKey);
 };
 
-const NewMemberList = ({ isOptionKey }) => {
-  const {
-    state: { newMembers },
-  } = membersContext();
-  const { searchTerm } = searchMemberContext();
-  const filterMembers = searchMembers(newMembers, searchTerm);
-  if (newMembers) {
+const NewMemberList = ({ isOptionKey, newMembers }) => {
+  if (newMembers?.length) {
     return (
       <div className={styles.container}>
-        {filterMembers.map((newMember) => (
+        {newMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
             {renderNewUser(newMember, isOptionKey)}
           </React.Fragment>
