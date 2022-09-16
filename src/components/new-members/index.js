@@ -2,9 +2,6 @@ import React from 'react';
 import Card from '@components/member-card';
 import PropTypes from 'prop-types';
 import styles from '@components/new-members/new-members.module.scss';
-import { membersContext } from '@store/members/members-context';
-import { searchMemberContext } from '@store/search-members/searchMembers-context';
-import { searchMembers } from '@helper-functions/search-members';
 import Link from 'next/link';
 import { userContext } from '@store/user/user-context';
 
