@@ -1,9 +1,10 @@
+import { ALT_KEY } from '@constants/AppConstants';
 import { createContext, useContext, useState } from 'react';
 
 const KeyboardContext = createContext();
 
 function isOptionKey(e) {
-  return e.key === 'Alt';
+  return e.key === ALT_KEY;
 }
 
 export const KeyboardProvider = ({ children }) => {
