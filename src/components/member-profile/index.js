@@ -12,7 +12,6 @@ import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
-import { useRouter } from 'next/router';
 import { useTaskContext } from '@store/tasks/tasks-context';
 
 const renderBadgeImages = (badges) =>
@@ -72,9 +71,6 @@ const Profile = (props) => {
   ];
 
   const { showMemberTaskUpdateModal } = useTaskContext();
-
-  const { query } = useRouter();
-  const { dev } = query;
 
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
@@ -360,7 +356,6 @@ const Profile = (props) => {
 
   return (
     <div>
-      {dev}
       {showModal && (
         <Modal style={modalStyle} show={showModal} closeModal={closeModal}>
           {children}
