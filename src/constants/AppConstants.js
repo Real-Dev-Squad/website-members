@@ -69,3 +69,4 @@ export const TASK_TYPE = {
   ISNOTEWORTHY: 'Noteworthy',
   OTHER: 'Other Contribution',
 };
+export const ALT_KEY = 'Alt';
