@@ -41,15 +41,14 @@ const Card = ({ developerInfo, isOptionKey }) => {
       onMouseLeave={() => {
         setShowSettings(false);
       }}
+      className={isMember ? [] : classNames.newUsers}
     >
       {dev && (
         <SuperUserOptions username={username} showSettings={showSettings} />
       )}
       <motion.img
         layoutId={username}
-        src={
-          isMember ? `${img_url}?${Math.random() * 100}` : '/images/Avatar.png'
-        }
+        src={isMember ? `${img_url}` : '/images/Avatar.png'}
         onError={brokenImageHandler}
         className={
           isMember ? classNames.imgContainer : classNames.imgContainerNewMember
