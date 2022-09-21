@@ -4,7 +4,6 @@ export const revealSuperUserOption = (setShowOption, isOptionKey) => {
   }
 };
 
-export const hideSuperUserOption = (setShowOption, setIsOptionKey) => {
+export const hideSuperUserOption = (setShowOption) => {
   setShowOption(false);
-  setIsOptionKey(false);
 };

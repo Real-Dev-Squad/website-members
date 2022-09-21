@@ -4,7 +4,7 @@ import { useTaskContext } from '@store/tasks/tasks-context';
 import { userContext } from '../../store/user/user-context';
 
 const SuperUserOptions = ({ showSettings, isNoteworthy, taskId }) => {
-  const { isSuperUserMode } = userContext();
+  const { isSuperUser } = userContext();
   const { setShowMemberTaskUpdateModal, setTaskId, setIsNoteworthy } =
     useTaskContext();
 
@@ -19,7 +19,7 @@ const SuperUserOptions = ({ showSettings, isNoteworthy, taskId }) => {
     return null;
   }
 
-  if (isSuperUserMode) {
+  if (isSuperUser) {
     return (
       <div
         className={`${classNames.settingsContainer} ${
