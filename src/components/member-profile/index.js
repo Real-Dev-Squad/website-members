@@ -355,7 +355,7 @@ const Profile = (props) => {
   };
 
   return (
-    <div>
+    <>
       {showModal && (
         <Modal style={modalStyle} show={showModal} closeModal={closeModal}>
           {children}
@@ -428,7 +428,7 @@ const Profile = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
