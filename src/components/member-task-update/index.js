@@ -25,7 +25,7 @@ const MemberTaskUpdate = () => {
     if (res.status === 204) {
       setUpdateStatus(
         `Task changed to ${
-          isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.ISNOTEWORTHY
+          isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.NOTEWORTHY
         }! reloading...`
       );
       window.location.reload();
@@ -35,7 +35,7 @@ const MemberTaskUpdate = () => {
   };
 
   const renderTaskUpdateButtton = () => {
-    const task = isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.ISNOTEWORTHY;
+    const task = isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.NOTEWORTHY;
 
     if (updateStatus === '') {
       return (

@@ -66,7 +66,7 @@ export const TIMEOUT = 1000;
 export const KEY_TAB = 9;
 export const KEY_ESC = 27;
 export const TASK_TYPE = {
-  ISNOTEWORTHY: 'Noteworthy',
+  NOTEWORTHY: 'Noteworthy',
   OTHER: 'Other Contribution',
 };
 export const ALT_KEY = 'Alt';
