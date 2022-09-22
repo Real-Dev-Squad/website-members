@@ -27,7 +27,7 @@ export const TaskContextProvider = ({ children }) => {
 export const useTaskContext = () => {
   const context = useContext(TaskContext);
   if (!context)
-    throw new Error(`taskcontext context can only  
-        be used in a component wrapped with taskcontext`);
+    throw new Error(`taskContext context can only  
+        be used in a component wrapped with taskContext`);
   return context;
 };

@@ -8,7 +8,7 @@ import { HOST_NAME } from '@constants/AppConstants';
 import { useState } from 'react';
 import {
   hideSuperUserOption,
-  revealSuperUserOption,
+  showSuperUserOption,
 } from '@helper-functions/show-super_user-options';
 import { useKeyboardContext } from '@store/keyboard/context';
 import SuperUserOptions from '../super-user-options';
@@ -130,7 +130,7 @@ const ContributionCard = ({
   return (
     <div
       onMouseEnter={() =>
-        revealSuperUserOption(setShowSettings, isOptionKeyPressed)
+        showSuperUserOption(setShowSettings, isOptionKeyPressed)
       }
       onMouseLeave={() => hideSuperUserOption(setShowSettings)}
     >

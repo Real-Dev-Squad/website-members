@@ -24,13 +24,13 @@ const MemberTaskUpdate = () => {
     setIsUpdating(false);
     if (res.status === 204) {
       setUpdateStatus(
-        `Task changed to ${
+        `Task moved to ${
           isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.NOTEWORTHY
         }! reloading...`
       );
       window.location.reload();
     } else {
-      setUpdateStatus(`There was an error while changing the task`);
+      setUpdateStatus(`There was an error while updating the task`);
     }
   };
 
@@ -45,7 +45,7 @@ const MemberTaskUpdate = () => {
             type="button"
             onClick={() => changeTaskType(taskId)}
           >
-            Change Task to {task}
+            Move Task to {task}
           </button>
         </div>
       );

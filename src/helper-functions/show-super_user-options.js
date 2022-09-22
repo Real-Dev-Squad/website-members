@@ -1,4 +1,4 @@
-export const revealSuperUserOption = (setShowOption, isOptionKey) => {
+export const showSuperUserOption = (setShowOption, isOptionKey) => {
   if (isOptionKey) {
     setShowOption(true);
   }
