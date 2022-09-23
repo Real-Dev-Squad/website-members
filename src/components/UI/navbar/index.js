@@ -9,6 +9,7 @@ import {
   NAVMENU,
 } from '@constants/AppConstants';
 import Link from 'next/link';
+import Dropdown from '../dropdown';
 
 import styles from './navbar.module.scss';
 
@@ -187,26 +188,14 @@ const Navbar = () => {
                   </Link>
                 )}
                 {isLoggedIn && (
-                  <div className={styles.userGreet}>
-                    <Link href={USER_PROFILE_URL}>
-                      <a>
-                        <div className={styles.userGreetMsg}>
-                          {isLoggedIn
-                            ? `Hello, ${userData.firstName}!`
-                            : `Hello, User!`}
-                        </div>
-                        <img
-                          className={styles.userProfilePic}
-                          src={
-                            isLoggedIn
-                              ? `${userData.profilePicture}`
-                              : `${DEFAULT_AVATAR}`
-                          }
-                          alt="Profile Pic"
-                        />
-                      </a>
-                    </Link>
-                  </div>
+                  // <div className={styles.userGreet}>
+                  <Dropdown
+                    isLoggedIn={isLoggedIn}
+                    USER_PROFILE_URL={USER_PROFILE_URL}
+                    userData={userData}
+                    DEFAULT_AVATAR={DEFAULT_AVATAR}
+                  />
+                  // </div>
                 )}
               </li>
             )}

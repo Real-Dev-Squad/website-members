@@ -1,3 +1,105 @@
-.wrapper {
-  background-color: #dcdcdc;
+.userGreet {
+  color: #ffffff;
+  margin: 23px;
+}
+
+.userGreet a {
+  padding: 0px;
+}
+
+.userProfilePic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline;
+  vertical-align: middle;
+}
+.dropdownHeader {
+  margin: 10px;
+}
+// .userProfilePic {
+//   width: 32px;
+//   height: 32px;
+//   border-radius: 50%;
+//   display: inline;
+//   vertical-align: middle;
+// }
+
+.userGreetMsg {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: rgb(255, 255, 255);
+}
+
+.dropdownContent a:hover {
+  color: #49a82e;
+}
+
+.dropdownContent div > p:hover {
+  color: #49a82e;
+}
+
+.dropdownContent div > p {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.dropdownContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background-color: #1d1283;
+}
+
+.dropDownClose {
+  width: 200px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background-color: #1d1283;
+  pointer-events: none;
+  inset: 0;
+  animation: fade-out 500ms forwards;
+  // z-index: 50;
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  border-radius: 10px;
+}
+
+.dropDownOpen {
+  animation: fade-in 500ms forwards;
+  z-index: 50;
+  position: absolute;
+  right: 25px;
+  top: 70px;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .userGreet {
+    margin: 0px;
+  }
 }
