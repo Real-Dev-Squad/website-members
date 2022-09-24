@@ -26,14 +26,13 @@ const Dropdown = ({
   });
 
   return (
-    <div className={styles.userGreet}>
+    <div className={styles.userGreet} ref={modalClose}>
       <div
         role="button"
         tabIndex={0}
         className={styles.dropdownHeader}
         onClick={toggleDropdown}
         onKeyDown={toggleDropdown}
-        ref={modalClose}
       >
         <div className={styles.userGreetMsg}>
           {isLoggedIn ? `Hello, ${userData.firstName}!` : `Hello, User!`}
