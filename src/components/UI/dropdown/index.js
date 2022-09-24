@@ -53,7 +53,9 @@ const Dropdown = ({
               </Link>
             </div>
             <div className={styles.signOutWrapper}>
-              <p className={styles.signOut}>Sign Out</p>
+              <button type="submit" className={styles.signOut}>
+                Sign Out
+              </button>
             </div>
           </div>
         </div>

@@ -47,6 +47,15 @@
   border-top: 1px solid black;
 }
 
+.signOutWrapper > button {
+  all: unset;
+  cursor: pointer;
+}
+
+.signOutWrapper button:focus-visible {
+  outline: black 5px auto;
+}
+
 .signOut:hover {
   color: #49a82e;
   cursor: pointer;
@@ -78,8 +87,6 @@
   align-items: center;
   justify-content: center;
 }
-
-
 
 .dropDownClose {
   width: 180px;
