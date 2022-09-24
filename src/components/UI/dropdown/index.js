@@ -46,11 +46,15 @@ const Dropdown = ({
 
       <div className={isOpen ? styles.dropDownOpen : styles.dropDownClose}>
         <div className={styles.dropdownContent}>
-          <Link href={USER_PROFILE_URL}>
-            <a>My profile</a>
-          </Link>
-          <div>
-            <p>Log Out</p>
+          <div className={styles.dropDownContentWrapper}>
+            <div className={styles.myProfileWrapper}>
+              <Link href={USER_PROFILE_URL}>
+                <a className={styles.myProfile}>My profile</a>
+              </Link>
+            </div>
+            <div className={styles.signOutWrapper}>
+              <p className={styles.signOut}>Sign Out</p>
+            </div>
           </div>
         </div>
       </div>
