@@ -115,7 +115,18 @@
   .userGreet {
     margin: 0px;
   }
+
+  .dropDown {
+    width: 130px;
+    right: 15px;
+    top: 45px;
+  }
 }
 
 @media screen and (max-width: 500px) {
+  .dropDown {
+    width: 110px;
+    right: 15px;
+    top: 45px;
+  }
 }

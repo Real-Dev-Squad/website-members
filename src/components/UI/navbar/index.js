@@ -119,26 +119,6 @@ const Navbar = () => {
                   userData={userData}
                   DEFAULT_AVATAR={DEFAULT_AVATAR}
                 />
-                // <div className={styles.userGreet}>
-                //   <Link href={USER_PROFILE_URL}>
-                //     <a>
-                //       <div className={styles.userGreetMsg}>
-                //         {`Hello ${
-                //           isLoggedIn ? `${userData.firstName}` : 'User'
-                //         }!`}
-                //       </div>
-                //       <img
-                //         className={styles.userProfilePic}
-                //         src={
-                //           isLoggedIn
-                //             ? `${userData.profilePicture}`
-                //             : `${DEFAULT_AVATAR}`
-                //         }
-                //         alt="Profile pic"
-                //       />
-                //     </a>
-                //   </Link>
-                // </div>
               )}
             </div>
           )}
@@ -194,14 +174,12 @@ const Navbar = () => {
                   </Link>
                 )}
                 {isLoggedIn && (
-                  // <div className={styles.userGreet}>
                   <Dropdown
                     isLoggedIn={isLoggedIn}
                     USER_PROFILE_URL={USER_PROFILE_URL}
                     userData={userData}
                     DEFAULT_AVATAR={DEFAULT_AVATAR}
                   />
-                  // </div>
                 )}
               </li>
             )}
