@@ -44,7 +44,11 @@ const Dropdown = ({
         />
       </div>
 
-      <div className={isOpen ? styles.dropDownOpen : styles.dropDownClose}>
+      <div
+        className={` ${styles.dropDown} ${
+          isOpen ? styles.dropDownOpen : styles.dropDownClose
+        }`}
+      >
         <div className={styles.dropdownContent}>
           <div className={styles.dropDownContentWrapper}>
             <div className={styles.myProfileWrapper}>

@@ -88,35 +88,34 @@
   justify-content: center;
 }
 
-.dropDownClose {
+.dropDown {
+  background-color: #ffffff;
   width: 180px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  border-radius: 8px;
-  pointer-events: none;
-  transition: height 0.25s ease;
-  height: 0;
   position: absolute;
-  z-index: 0;
   overflow: hidden;
   right: 35px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .dropDownOpen {
-  width: 180px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  border-radius: 8px;
   height: 115px;
   transition: height 0.25s ease;
-  position: absolute;
   z-index: 50;
-  overflow: hidden;
-  right: 35px;
+}
+
+.dropDownClose {
+  pointer-events: none;
+  transition: height 0.25s ease;
+  height: 0;
+  z-index: 0;
 }
 
 @media screen and (max-width: 970px) {
   .userGreet {
     margin: 0px;
   }
+}
+
+@media screen and (max-width: 500px) {
 }
