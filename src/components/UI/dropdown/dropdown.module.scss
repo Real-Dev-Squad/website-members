@@ -26,10 +26,14 @@
   color: rgb(255, 255, 255);
 }
 
+.userGreetMsg:hover {
+  color: #49a82e;
+}
+
 .myProfileWrapper {
   padding-bottom: 15px;
   text-align: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000000;
 }
 
 .myProfile:hover {
@@ -44,7 +48,7 @@
 .signOutWrapper {
   padding-top: 15px;
   text-align: center;
-  border-top: 1px solid black;
+  border-top: 1px solid #000000;
 }
 
 .signOutWrapper > button {
@@ -53,7 +57,7 @@
 }
 
 .signOutWrapper button:focus-visible {
-  outline: black 5px auto;
+  outline: #000000 5px auto;
 }
 
 .signOut:hover {
@@ -66,7 +70,7 @@
   flex-direction: column;
   align-items: center;
   color: #000000;
-  border: 2px solid black;
+  border: 2px solid #000000;
   height: 100%;
   border-radius: 8px;
   width: 100%;
