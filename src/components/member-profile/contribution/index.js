@@ -50,7 +50,6 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       <div
         className={url && classNames.contributionCard}
         onClick={gotoUrl}
-        onKeyDown={gotoUrl}
         aria-hidden="true"
       >
         {contributionCard()}
@@ -149,11 +148,13 @@ const ContributionCard = ({
           )}
         </div>
         <div className={classNames.rightSection}>
-          <SuperUserOptions
-            showSettings={showSettings}
-            isNoteworthy={isNoteworthy}
-            taskId={id}
-          />
+          {devUser && (
+            <SuperUserOptions
+              showSettings={showSettings}
+              isNoteworthy={isNoteworthy}
+              taskId={id}
+            />
+          )}
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
           <div className={classNames.userIcon}>
             <img src={imageLink} alt="participantsIcon" />
