@@ -13,6 +13,16 @@ const Dropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
   const modalClose = useRef();
+
+  const signOut = () => {
+    fetch('https://api.realdevsquad.com/auth/signout', {
+      method: 'GET',
+      credentials: 'include',
+    }).then(() => {
+      window.location.reload();
+    });
+  };
+
   useEffect(() => {
     const handler = (event) => {
       if (!modalClose.current.contains(event.target)) {
@@ -57,7 +67,11 @@ const Dropdown = ({
               </Link>
             </div>
             <div className={styles.signOutWrapper}>
-              <button type="submit" className={styles.signOut}>
+              <button
+                type="submit"
+                className={styles.signOut}
+                onClick={signOut}
+              >
                 Sign Out
               </button>
             </div>
