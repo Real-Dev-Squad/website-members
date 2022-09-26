@@ -7,6 +7,7 @@ import {
   USER_DATA_URL,
   USER_PROFILE_URL,
   NAVMENU,
+  SIGN_OUT_URL,
 } from '@constants/AppConstants';
 import Link from 'next/link';
 import Dropdown from '../dropdown';
@@ -118,6 +119,7 @@ const Navbar = () => {
                   USER_PROFILE_URL={USER_PROFILE_URL}
                   userData={userData}
                   DEFAULT_AVATAR={DEFAULT_AVATAR}
+                  SIGN_OUT_URL={SIGN_OUT_URL}
                 />
               )}
             </div>
@@ -179,6 +181,7 @@ const Navbar = () => {
                     USER_PROFILE_URL={USER_PROFILE_URL}
                     userData={userData}
                     DEFAULT_AVATAR={DEFAULT_AVATAR}
+                    SIGN_OUT_URL={SIGN_OUT_URL}
                   />
                 )}
               </li>

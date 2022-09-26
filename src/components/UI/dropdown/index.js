@@ -6,7 +6,7 @@ import styles from './dropdown.module.scss';
 const Dropdown = ({
   isLoggedIn,
   USER_PROFILE_URL,
-  // LOGOUT_URL,
+  SIGN_OUT_URL,
   userData,
   DEFAULT_AVATAR,
 }) => {
@@ -15,7 +15,7 @@ const Dropdown = ({
   const modalClose = useRef();
 
   const signOut = () => {
-    fetch('https://api.realdevsquad.com/auth/signout', {
+    fetch(SIGN_OUT_URL, {
       method: 'GET',
       credentials: 'include',
     }).then(() => {
