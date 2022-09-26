@@ -1,5 +1,12 @@
+// scss variables
+$border-color: #000000;
+$black: #000000;
+$text-color: #ffffff;
+$hover-color: #49a82e;
+$background-color: #ffffff;
+
 .userGreet {
-  color: #ffffff;
+  color: $text-color;
   margin: 23px;
 }
 
@@ -27,28 +34,28 @@
 }
 
 .userGreetMsg:hover {
-  color: #49a82e;
+  color: $hover-color;
 }
 
 .myProfileWrapper {
   padding-bottom: 15px;
   text-align: center;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid $border-color;
 }
 
 .myProfile:hover {
-  color: #49a82e;
+  color: $hover-color;
 }
 
 .myProfile {
-  color: #000000;
+  color: $black;
   text-decoration: none;
 }
 
 .signOutWrapper {
   padding-top: 15px;
   text-align: center;
-  border-top: 1px solid #000000;
+  border-top: 1px solid $border-color;
 }
 
 .signOutWrapper > button {
@@ -57,11 +64,11 @@
 }
 
 .signOutWrapper button:focus-visible {
-  outline: #000000 5px auto;
+  outline: var(--black) 5px auto;
 }
 
 .signOut:hover {
-  color: #49a82e;
+  color: $hover-color;
   cursor: pointer;
 }
 
@@ -69,8 +76,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #000000;
-  border: 2px solid #000000;
+  color: $black;
+  border: 2px solid $border-color;
   height: 100%;
   border-radius: 8px;
   width: 100%;
@@ -93,7 +100,7 @@
 }
 
 .dropDown {
-  background-color: #ffffff;
+  background-color: $background-color;
   width: 180px;
   position: absolute;
   overflow: hidden;
