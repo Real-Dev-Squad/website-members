@@ -6,7 +6,7 @@ import PRLink from '@components/member-profile/contribution/pr-link';
 import { timeWas } from '@helper-functions/time-was';
 import { HOST_NAME } from '@constants/AppConstants';
 import { useState } from 'react';
-import SuperUserOptions from '../super-user-options/super-user-options-container';
+import SuperUserOptions from '../super-user-options/container';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
