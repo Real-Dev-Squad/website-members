@@ -6,12 +6,7 @@ import PRLink from '@components/member-profile/contribution/pr-link';
 import { timeWas } from '@helper-functions/time-was';
 import { HOST_NAME } from '@constants/AppConstants';
 import { useState } from 'react';
-import {
-  hideSuperUserOption,
-  showSuperUserOption,
-} from '@helper-functions/show-super_user-options';
-import { useKeyboardContext } from '@store/keyboard/context';
-import SuperUserOptions from '../super-user-options';
+import SuperUserOptions from '../super-user-options/super-user-options-container';
 
 const renderPRLinks = (prList) =>
   prList.map(({ url }, index) => {
@@ -75,7 +70,6 @@ const ContributionCard = ({
   const isTitleAvailable = !!title;
   const featureTitle = isTitleAvailable ? title : prList[0].title;
   const [showSettings, setShowSettings] = useState(false);
-  const { isOptionKeyPressed } = useKeyboardContext();
 
   const renderFeatureUrl = (featureUrl, featureUrlObj) => {
     if (featureUrlObj.host === HOST_NAME) {
@@ -128,10 +122,8 @@ const ContributionCard = ({
   }
   return (
     <div
-      onMouseEnter={() =>
-        showSuperUserOption(setShowSettings, isOptionKeyPressed)
-      }
-      onMouseLeave={() => hideSuperUserOption(setShowSettings)}
+      onMouseEnter={() => setShowSettings(true)}
+      onMouseLeave={() => setShowSettings(false)}
     >
       <div className={classNames.contributionContainer}>
         <div className={classNames.leftSection}>
