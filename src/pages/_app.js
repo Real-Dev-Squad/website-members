@@ -9,6 +9,7 @@ import { MembersProvider } from '@store';
 import { UserContextProvider } from '@store/user/user-context';
 import { SearchMemberProvider } from '@store/search-members/searchMembers-context';
 import { usePostHog } from 'next-use-posthog';
+import { KeyboardProvider } from '@store/keyboard/context';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -43,12 +44,14 @@ const MyApp = (props) => {
       <UserContextProvider>
         <MembersProvider>
           <SearchMemberProvider>
-            <div className={classNames.root}>
-              <div className={classNames.main}>
-                {loading && <Spinner />}
-                <Component {...pageProps} />
+            <KeyboardProvider>
+              <div className={classNames.root}>
+                <div className={classNames.main}>
+                  {loading && <Spinner />}
+                  <Component {...pageProps} />
+                </div>
               </div>
-            </div>
+            </KeyboardProvider>
           </SearchMemberProvider>
         </MembersProvider>
       </UserContextProvider>
