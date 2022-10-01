@@ -218,3 +218,24 @@
     width: 100%;
   }
 }
+
+.settingsContainer {
+  position: relative;
+}
+
+.settingsButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.settingsIcon {
+  width: 1rem;
+}
+
+.hidden {
+  display: none;
+}
