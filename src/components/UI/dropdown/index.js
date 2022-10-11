@@ -10,7 +10,7 @@ const Dropdown = ({
   DEFAULT_AVATAR,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen((prevState) => !prevState);
   const modalClose = useRef();
 
   const signOut = () => {
