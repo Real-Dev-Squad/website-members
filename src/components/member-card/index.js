@@ -30,9 +30,7 @@ const Card = ({ developerInfo }) => {
 
   return (
     <div
-      onMouseEnter={() => {
-        setShowSettings(true);
-      }}
+      onMouseEnter={() => setShowSettings(true)}
       onMouseLeave={() => setShowSettings(false)}
     >
       {dev && (
