@@ -11,6 +11,8 @@ import ShowSkills from '@components/member-card/show-skills';
 import { useForm } from 'react-hook-form';
 import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
+import MemberTaskUpdate from '@components/member-task-update';
+import { useTaskContext } from '@store/tasks/tasks-context';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -67,6 +69,8 @@ const Profile = (props) => {
     'linkedin_id',
     'instagram_id',
   ];
+
+  const { showMemberTaskUpdateModal } = useTaskContext();
 
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
@@ -357,6 +361,7 @@ const Profile = (props) => {
           {children}
         </Modal>
       )}
+      {showMemberTaskUpdateModal && <MemberTaskUpdate />}
       <div className={classNames.container}>
         <div className={(classNames.sidebar, classNames.column)}>
           <div className={classNames.memberDetails}>
