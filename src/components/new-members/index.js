@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '@components/member-card';
-import PropTypes from 'prop-types';
 import styles from '@components/new-members/new-members.module.scss';
 import { membersContext } from '@store/members/members-context';
 import { searchMemberContext } from '@store/search-members/searchMembers-context';
@@ -9,20 +8,16 @@ import Link from 'next/link';
 import { userContext } from '@store/user/user-context';
 
 // returns card which shows details of new member
-const renderNewUserCard = (newMember, isOptionKey) => {
+const renderNewUserCard = (newMember) => {
   return (
     <div className={styles.containerForNewMember}>
-      <Card
-        developerInfo={newMember}
-        isMember={false}
-        isOptionKey={isOptionKey}
-      />
+      <Card developerInfo={newMember} isMember={false} />
     </div>
   );
 };
 
-const renderNewUser = (newMember, isOptionKey, isSuperUser) => {
-  if (isSuperUser && isOptionKey) {
+const renderNewUser = (newMember, isSuperUser) => {
+  if (isSuperUser) {
     return (
       <Link
         prefetch={false}
@@ -32,18 +27,14 @@ const renderNewUser = (newMember, isOptionKey, isSuperUser) => {
         as={`/${newMember.username}`}
         key={newMember.username}
       >
-        {renderNewUserCard(newMember, isOptionKey)}
+        {renderNewUserCard(newMember)}
       </Link>
     );
   }
-  return (
-    <div className={styles.newUser}>
-      {renderNewUserCard(newMember, isOptionKey)}
-    </div>
-  );
+  return <div className={styles.newUser}>{renderNewUserCard(newMember)}</div>;
 };
 
-const NewMemberList = ({ isOptionKey }) => {
+const NewMemberList = () => {
   const {
     state: { newMembers },
   } = membersContext();
@@ -55,7 +46,7 @@ const NewMemberList = ({ isOptionKey }) => {
       <div className={styles.container}>
         {filterMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
-            {renderNewUser(newMember, isOptionKey, isSuperUser)}
+            {renderNewUser(newMember, isSuperUser)}
           </React.Fragment>
         ))}
       </div>
@@ -65,10 +56,3 @@ const NewMemberList = ({ isOptionKey }) => {
 };
 
 export default NewMemberList;
-
-NewMemberList.propTypes = {
-  isOptionKey: PropTypes.bool,
-};
-NewMemberList.defaultProps = {
-  isOptionKey: false,
-};
