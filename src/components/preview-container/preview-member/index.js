@@ -6,18 +6,19 @@ import { useRouter } from 'next/router';
 import { TIMEOUT } from '@constants/AppConstants';
 
 import styles from '@components/preview-container/preview-member/preview-member.module.scss';
+import { useKeyboardContext } from '@store/keyboard/context';
 
-const PreviewMember = ({ memberDetails, isOptionKey }) => {
+const PreviewMember = ({ memberDetails }) => {
   const { username, first_name, last_name } = memberDetails;
   const divref = useRef(null);
   const cardRef = useRef(null);
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
-
+  const { isOptionKeyPressed } = useKeyboardContext();
   let timer = 0;
 
   const mouseEnter = () => {
-    if (!isOptionKey) {
+    if (!isOptionKeyPressed) {
       timer = setTimeout(() => {
         divref.current.style.display = 'flex';
         divref.current.style.height = `${cardRef.current.offsetHeight}px`;
@@ -27,7 +28,7 @@ const PreviewMember = ({ memberDetails, isOptionKey }) => {
   };
 
   const mouseLeave = () => {
-    if (!isOptionKey) {
+    if (!isOptionKeyPressed) {
       divref.current.style.display = 'none';
       clearTimeout(timer);
     }
@@ -51,8 +52,8 @@ const PreviewMember = ({ memberDetails, isOptionKey }) => {
         onMouseEnter={dev && mouseEnter}
         onMouseLeave={dev && mouseLeave}
       >
-        <Card developerInfo={memberDetails} isOptionKey={isOptionKey} />
-        {dev && !isOptionKey && (
+        <Card developerInfo={memberDetails} />
+        {dev && !isOptionKeyPressed && (
           <div ref={divref} className={styles.previewMember}>
             <div style={{ margin: '0.5rem' }}>
               <p style={{ fontWeight: '900' }}>Company: </p>
@@ -82,7 +83,6 @@ PreviewMember.propTypes = {
     username: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
-    isOptionKey: PropTypes.bool,
   }),
 };
 PreviewMember.defaultProps = {
