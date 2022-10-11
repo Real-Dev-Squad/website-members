@@ -1,6 +1,6 @@
 import React from 'react';
-import { userContext } from '@store/user/user-context';
 import classNames from '@components/member-card/card.module.scss';
+import { userContext } from '../../../store/user/user-context';
 
 const SuperUserOptions = ({ showSettings, username }) => {
   const { setShowMemberRoleUpdateModal, setSelectedMember } = userContext();
