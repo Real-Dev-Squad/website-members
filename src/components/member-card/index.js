@@ -42,9 +42,7 @@ const Card = ({ developerInfo, isOptionKey }) => {
         setShowSettings(false);
       }}
     >
-      {dev && (
-        <SuperUserOptions username={username} showSettings={showSettings} />
-      )}
+      <SuperUserOptions username={username} showSettings={showSettings} />
       <motion.img
         layoutId={username}
         src={img_url || '/images/Avatar.png'}
