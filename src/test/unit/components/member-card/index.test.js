@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import MemberCard from '@components/member-card';
 import { UserContextProvider } from '@store/user/user-context';
+import { KeyboardProvider } from '@store/keyboard/context';
 
 describe('Members Card', () => {
   it('should render members full name', () => {
@@ -14,7 +15,9 @@ describe('Members Card', () => {
 
     render(
       <UserContextProvider>
-        <MemberCard developerInfo={developerInfo} />
+        <KeyboardProvider>
+          <MemberCard developerInfo={developerInfo} />
+        </KeyboardProvider>
       </UserContextProvider>
     );
 

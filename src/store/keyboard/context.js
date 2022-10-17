@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { ALT_KEY } from '../../constants/AppConstants';
+import { ALT_KEY } from '@constants/AppConstants';
 
 const KeyboardContext = createContext();
 
