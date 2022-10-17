@@ -1,6 +1,6 @@
 import React from 'react';
-import { useKeyboardContext } from '../../../store/keyboard/context';
-import { userContext } from '../../../store/user/user-context';
+import { useKeyboardContext } from '@store/keyboard/context';
+import { userContext } from '@store/user/user-context';
 import SuperUserOptions from '.';
 
 const ShowSuperUserOptionContainer = ({ showSettings, username }) => {
