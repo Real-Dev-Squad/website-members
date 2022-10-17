@@ -6,7 +6,7 @@ const SearchBox = () => {
   const { setSearchTerm } = searchMemberContext();
 
   return (
-    <div className={classNames.searchbox_container}>
+    <div className={classNames.searchboxContainer}>
       <input
         className={classNames.searchbox}
         type="text"
