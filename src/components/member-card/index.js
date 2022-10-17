@@ -33,12 +33,10 @@ const Card = ({ developerInfo }) => {
       onMouseEnter={() => setShowSettings(true)}
       onMouseLeave={() => setShowSettings(false)}
     >
-      {dev && (
-        <SuperUserOptions username={username} showSettings={showSettings} />
-      )}
+      <SuperUserOptions username={username} showSettings={showSettings} />
       <motion.img
         layoutId={username}
-        src={isMember ? `${img_url}` : '/images/Avatar.png'}
+        src={img_url || '/images/Avatar.png'}
         onError={brokenImageHandler}
         className={
           isMember ? classNames.imgContainer : classNames.imgContainerNewMember

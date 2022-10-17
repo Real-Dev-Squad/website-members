@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import MemberCard from '@components/member-card';
+import { UserContextProvider } from '@store/user/user-context';
 
 describe('Members Card', () => {
   it('should render members full name', () => {
@@ -11,7 +12,11 @@ describe('Members Card', () => {
       isMember: true,
     };
 
-    render(<MemberCard developerInfo={developerInfo} />);
+    render(
+      <UserContextProvider>
+        <MemberCard developerInfo={developerInfo} />
+      </UserContextProvider>
+    );
 
     const heading = screen.getByText('Sumit Dhanania');
     expect(heading).toBeInTheDocument();

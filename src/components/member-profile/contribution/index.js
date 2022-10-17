@@ -140,13 +140,11 @@ const ContributionCard = ({
           )}
         </div>
         <div className={classNames.rightSection}>
-          {devUser && (
-            <SuperUserOptions
-              showSettings={showSettings}
-              isNoteworthy={isNoteworthy}
-              taskId={id}
-            />
-          )}
+          <SuperUserOptions
+            showSettings={showSettings}
+            isNoteworthy={isNoteworthy}
+            taskId={id}
+          />
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
           <div className={classNames.userIcon}>
             <img src={imageLink} alt="participantsIcon" />
