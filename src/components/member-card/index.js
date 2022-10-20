@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import SocialMediaIcon from '@components/social-media-icon';
 import PropTypes from 'prop-types';
 import ShowSkills from '@components/member-card/show-skills';
-import SuperUserOptions from '@components/member-card/super-user-options';
+import SuperUserOptions from './super-user-options/container';
 
-const Card = ({ developerInfo, isOptionKey }) => {
+const Card = ({ developerInfo }) => {
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
   const { username, first_name, last_name, img_url, isMember } = developerInfo;
@@ -20,11 +20,6 @@ const Card = ({ developerInfo, isOptionKey }) => {
   const fullName = `${`${first_name} ${last_name}`}`;
 
   const [showSettings, setShowSettings] = useState(false);
-  const handleSettingsButton = () => {
-    if (isOptionKey) {
-      setShowSettings(true);
-    }
-  };
 
   const brokenImageHandler = (e) => {
     e.target.src = '/images/Avatar.png';
@@ -35,16 +30,10 @@ const Card = ({ developerInfo, isOptionKey }) => {
 
   return (
     <div
-      role="button"
-      tabIndex={0}
-      onMouseEnter={handleSettingsButton}
-      onMouseLeave={() => {
-        setShowSettings(false);
-      }}
+      onMouseEnter={() => setShowSettings(true)}
+      onMouseLeave={() => setShowSettings(false)}
     >
-      {dev && (
-        <SuperUserOptions username={username} showSettings={showSettings} />
-      )}
+      <SuperUserOptions username={username} showSettings={showSettings} />
       <motion.img
         layoutId={username}
         src={img_url || '/images/Avatar.png'}
@@ -90,10 +79,6 @@ Card.propTypes = {
     img_url: PropTypes.string.isRequired,
     isMember: PropTypes.bool.isRequired,
   }).isRequired,
-  isOptionKey: PropTypes.bool,
-};
-Card.defaultProps = {
-  isOptionKey: false,
 };
 
 export default Card;
