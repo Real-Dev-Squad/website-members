@@ -7,5 +7,6 @@ module.exports = {
     '^@styles(.*)$': '<rootDir>/src/styles$1',
     '^@store(.*)$': '<rootDir>/src/store$1',
     '^@helper-functions(.*)$': '<rootDir>/src/helper-functions$1',
+    '^@constants(.*)$': '<rootDir>/src/constants$1',
   },
 };

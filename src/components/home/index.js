@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Members from '@components/members';
 import NewMembers from '@components/new-members';
@@ -18,7 +18,6 @@ const Home = () => {
     userContext();
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
-  const [isOptionKey, setIsOptionKey] = useState(false);
 
   const memoizeUserPrivilege = useCallback(async () => {
     await setUserPrivileges();
@@ -29,19 +28,7 @@ const Home = () => {
   }, [memoizeUserPrivilege]);
 
   return (
-    <div
-      className={styles.container}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Alt') {
-          setIsOptionKey(true);
-        }
-      }}
-      onKeyUp={() => {
-        setIsOptionKey(false);
-      }}
-    >
+    <div className={styles.container}>
       {dev && <SearchBox />}
       <h1 className={styles.heading}>Designers</h1>
       <Designers />
@@ -51,9 +38,9 @@ const Home = () => {
           {showMemberRoleUpdateModal && <MemberRoleUpdate />}
         </div>
       )}
-      <Members isOptionKey={isOptionKey} />
+      <Members />
       <h1 className={styles.heading}>{NEW_MEMBERS_TITLE}</h1>
-      <NewMembers isOptionKey={isOptionKey} />
+      <NewMembers />
     </div>
   );
 };
