@@ -5,7 +5,7 @@ import MemberPreview from '@components/preview-container/preview-member';
 
 import styles from '@components/preview-container/preview-container.module.scss';
 
-const PreviewContainer = ({ memberDetails, designer, isOptionKey }) => {
+const PreviewContainer = ({ memberDetails, designer }) => {
   return (
     <>
       {designer ? (
@@ -13,10 +13,7 @@ const PreviewContainer = ({ memberDetails, designer, isOptionKey }) => {
           <Card developerInfo={memberDetails} />
         </div>
       ) : (
-        <MemberPreview
-          isOptionKey={isOptionKey}
-          memberDetails={memberDetails}
-        />
+        <MemberPreview memberDetails={memberDetails} />
       )}
     </>
   );
@@ -27,7 +24,6 @@ PreviewContainer.propTypes = {
     username: PropTypes.string,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
-    isOptionKey: PropTypes.bool,
   }),
   designer: PropTypes.bool,
 };
