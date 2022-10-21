@@ -22,9 +22,11 @@ import {
 import { useEffect, useState } from 'react';
 import { userContext } from '@store/user/user-context';
 import { UserTasksApi } from '@api/UserTasksApi';
+import Spinner from '@components/UI/spinner';
 
 const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
-  const { isSuperUser, userApiCalled, setUserPrivileges } = userContext();
+  const { isSuperUser, userApiCalled, setUserPrivileges, isLoading } =
+    userContext();
   const [activeTasksData, setActiveTasksData] = useState([]);
   const router = useRouter();
   const { id } = router.query;
@@ -32,6 +34,10 @@ const MemberProfile = ({ imageLink, user, contributions, errorMessage }) => {
   useEffect(() => {
     UserTasksApi.getAll(id).then((listTasks) => setActiveTasksData(listTasks));
   }, [id]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   if (errorMessage) {
     return <NotFound errorMsg={errorMessage} />;
