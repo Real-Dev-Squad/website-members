@@ -63,6 +63,7 @@ const Profile = (props) => {
     tasks,
   } = props;
   const { membersData } = props;
+  const isMember = Boolean(membersData?.roles?.member);
   const socialMedia = [
     'twitter_id',
     'github_id',
@@ -83,7 +84,6 @@ const Profile = (props) => {
   const submitBtnRef = useRef(null);
   const modalContent = useRef(null);
   const introBtn = useRef(null);
-
   const getMembersIntroURL = (RDSID) =>
     `https://api.realdevsquad.com/members/intro/${RDSID}`;
   const parameter = username;
@@ -372,6 +372,28 @@ const Profile = (props) => {
               className={classNames.profilePic}
               alt={fullName}
             />
+            {isMember ? (
+              <div className={classNames.memberStatus}>
+                <img
+                  alt="info icon"
+                  src="icons/info.png"
+                  width={20}
+                  height={20}
+                />
+                <span>User is a Member</span>
+              </div>
+            ) : (
+              <div className={classNames.memberStatus}>
+                <img
+                  alt="info icon"
+                  src="icons/info.png"
+                  width={20}
+                  height={20}
+                />
+                <span>User is not a Member</span>
+              </div>
+            )}
+
             <div className={classNames.personalInfo}>
               <h1 className={classNames.profileName}>{memberName}</h1>
               <p className={classNames.userName}>{rdsUserName}</p>
@@ -387,6 +409,7 @@ const Profile = (props) => {
                   {renderSocialMediaIcons(socialMedia, membersData)}
                 </div>
               )}
+
               {devUser && (
                 <div>
                   <ShowSkills show />

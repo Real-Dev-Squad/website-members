@@ -211,6 +211,10 @@
   .memberDetails {
     text-align: center;
   }
+
+  .memberStatus {
+    justify-content: center !important;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -238,4 +242,15 @@
 
 .hidden {
   display: none;
+}
+
+.memberStatus {
+  display: flex;
+  margin: 10px 0px;
+  justify-content: flex-start;
+  gap: 5px;
+  color: #576871;
+  font-size: 16px;
+  font-weight: 700;
+  user-select: none;
 }
