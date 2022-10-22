@@ -6,6 +6,7 @@ const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSuperUser, setIsSuperUser] = useState(false);
   const [showMemberRoleUpdateModal, setShowMemberRoleUpdateModal] =
     useState(false);
@@ -13,10 +14,12 @@ export const UserContextProvider = ({ children }) => {
   const [userApiCalled, setUserApiCalled] = useState(false);
 
   const setUserPrivileges = useCallback(async () => {
+    setIsLoading(true);
     const userData = await UserData.get();
     setUserApiCalled(true);
     setUser(userData);
     setIsSuperUser(Boolean(userData?.roles?.super_user));
+    setIsLoading(false);
   }, [setUserApiCalled, setIsSuperUser, setUser]);
 
   const initialUserContext = {
@@ -24,6 +27,7 @@ export const UserContextProvider = ({ children }) => {
     isSuperUser,
     selectedMember,
     showMemberRoleUpdateModal,
+    isLoading,
     setIsSuperUser,
     setUser,
     setSelectedMember,
@@ -31,6 +35,7 @@ export const UserContextProvider = ({ children }) => {
     userApiCalled,
     setUserApiCalled,
     setUserPrivileges,
+    setIsLoading,
   };
 
   return (
