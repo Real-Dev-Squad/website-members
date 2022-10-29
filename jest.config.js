@@ -3,6 +3,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|scss|sass|less)$': 'identity-obj-proxy',
     '^@components(.*)$': '<rootDir>/src/components$1',
+    '^@constants(.*)$': '<rootDir>/src/constants$1',
     '^@pages(.*)$': '<rootDir>/src/pages$1',
     '^@styles(.*)$': '<rootDir>/src/styles$1',
     '^@store(.*)$': '<rootDir>/src/store$1',
