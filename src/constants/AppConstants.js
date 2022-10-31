@@ -12,6 +12,7 @@ const PATHS = {
 };
 const LOGIN_URL =
   'https://github.com/login/oauth/authorize?client_id=23c78f66ab7964e5ef97';
+const SIGN_OUT_URL = 'https://api.realdevsquad.com/auth/signout';
 const USER_PROFILE_URL = 'https://my.realdevsquad.com/profile';
 const SEARCHBOX_PLACEHOLDER = 'search members here';
 const NAVMENU = [
@@ -51,6 +52,7 @@ export {
   BASE_API_URL,
   USER_DATA_URL,
   LOGIN_URL,
+  SIGN_OUT_URL,
   PATHS,
   USER_PROFILE_URL,
   NAVMENU,

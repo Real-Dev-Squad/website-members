@@ -1,0 +1,143 @@
+// scss variables
+$border-color: #000000;
+$text-color-2: #000000;
+$text-color: #ffffff;
+$hover-color: #49a82e;
+$background-color: #ffffff;
+
+.userGreet {
+  color: $text-color;
+  margin: 23px;
+}
+
+.userGreet a {
+  padding: 0px;
+}
+
+.userProfilePic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline;
+  vertical-align: middle;
+}
+.dropdownHeader {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.userGreetMsg {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: $text-color;
+}
+
+.userGreetMsg:hover {
+  color: $hover-color;
+}
+
+.myProfileWrapper {
+  padding-bottom: 15px;
+  text-align: center;
+  border-bottom: 1px solid $border-color;
+}
+
+.myProfile:hover {
+  color: $hover-color;
+}
+
+.myProfile {
+  color: $text-color-2;
+  text-decoration: none;
+}
+
+.signOutWrapper {
+  padding-top: 15px;
+  text-align: center;
+  border-top: 1px solid $border-color;
+}
+
+.signOutWrapper > button {
+  all: unset;
+  cursor: pointer;
+}
+
+.signOutWrapper button:focus-visible {
+  outline: $border-color 5px auto;
+}
+
+.signOut:hover {
+  color: $hover-color;
+  cursor: pointer;
+}
+
+.dropdownContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $text-color-2;
+  border: 2px solid $border-color;
+  height: 100%;
+  border-radius: 8px;
+  width: 100%;
+  justify-items: center;
+}
+
+.dropDownContentWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dropDownContentWrapper div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropDown {
+  background-color: $background-color;
+  width: 180px;
+  position: absolute;
+  overflow: hidden;
+  right: 35px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px #0000001a;
+}
+
+.dropDownOpen {
+  height: 115px;
+  transition: height 0.25s ease;
+  z-index: 50;
+}
+
+.dropDownClose {
+  pointer-events: none;
+  transition: height 0.25s ease;
+  height: 0;
+  z-index: 0;
+}
+
+@media screen and (max-width: 970px) {
+  .userGreet {
+    margin: 0px;
+  }
+
+  .dropDown {
+    width: 130px;
+    right: 15px;
+    top: 45px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .dropDown {
+    width: 110px;
+    right: 15px;
+    top: 45px;
+  }
+}
