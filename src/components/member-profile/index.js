@@ -13,6 +13,7 @@ import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
 import { useTaskContext } from '@store/tasks/tasks-context';
+import { userContext } from '@store/user/user-context';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -72,7 +73,7 @@ const Profile = (props) => {
   ];
 
   const { showMemberTaskUpdateModal } = useTaskContext();
-
+  const { isSuperUser } = userContext();
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
   const rdsUserName = `@${username}`;
@@ -372,27 +373,28 @@ const Profile = (props) => {
               className={classNames.profilePic}
               alt={fullName}
             />
-            {isMember ? (
-              <div className={classNames.memberStatus}>
-                <img
-                  alt="info icon"
-                  src="icons/info.png"
-                  width={20}
-                  height={20}
-                />
-                <span>User is a Member</span>
-              </div>
-            ) : (
-              <div className={classNames.memberStatus}>
-                <img
-                  alt="info icon"
-                  src="icons/info.png"
-                  width={20}
-                  height={20}
-                />
-                <span>User is not a Member</span>
-              </div>
-            )}
+            {isSuperUser &&
+              (isMember ? (
+                <div className={classNames.memberStatus}>
+                  <img
+                    alt="info icon"
+                    src="icons/info.png"
+                    width={20}
+                    height={20}
+                  />
+                  <span>User is a Member</span>
+                </div>
+              ) : (
+                <div className={classNames.memberStatus}>
+                  <img
+                    alt="info icon"
+                    src="icons/info.png"
+                    width={20}
+                    height={20}
+                  />
+                  <span>User is not a Member</span>
+                </div>
+              ))}
 
             <div className={classNames.personalInfo}>
               <h1 className={classNames.profileName}>{memberName}</h1>

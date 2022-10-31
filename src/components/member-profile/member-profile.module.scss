@@ -1,3 +1,5 @@
+@import '@styles/constants/colors';
+
 .container {
   display: flex;
   justify-content: center;
@@ -100,7 +102,7 @@
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 15px;
-  color: #576871;
+  color: $color-dark-grey;
   font-size: 16px;
 }
 
@@ -249,7 +251,7 @@
   margin: 10px 0px;
   justify-content: flex-start;
   gap: 5px;
-  color: #576871;
+  color: $color-dark-grey;
   font-size: 16px;
   font-weight: 700;
   user-select: none;
