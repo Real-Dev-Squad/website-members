@@ -51,4 +51,3 @@ test('test useFetch Hook with reject', async () => {
     expect(result.current.error).toStrictEqual(new Error('Unauthorized'))
   );
 });
-
