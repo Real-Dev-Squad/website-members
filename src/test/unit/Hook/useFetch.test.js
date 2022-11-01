@@ -25,9 +25,9 @@ test('test useFetch Hook with resolve', async () => {
   expect(result.current.data).toBe(undefined);
   expect(result.current.error).toBe(undefined);
 
-  await waitFor(() => expect(result.current.loading).toBe(false));
-  await waitFor(() => expect(result.current.data).toStrictEqual(mockData));
-  await waitFor(() => expect(result.current.error).toBe(undefined));
+  waitFor(() => expect(result.current.loading).toBe(false));
+  waitFor(() => expect(result.current.data).toStrictEqual(mockData));
+  waitFor(() => expect(result.current.error).toBe(undefined));
 });
 
 test('test useFetch Hook with reject', async () => {
@@ -45,9 +45,9 @@ test('test useFetch Hook with reject', async () => {
   expect(result.current.data).toBe(undefined);
   expect(result.current.error).toBe(undefined);
 
-  await waitFor(() => expect(result.current.loading).toBe(false));
-  await waitFor(() => expect(result.current.data).toStrictEqual(undefined));
-  await waitFor(() =>
+  waitFor(() => expect(result.current.loading).toBe(false));
+  waitFor(() => expect(result.current.data).toStrictEqual(undefined));
+  waitFor(() =>
     expect(result.current.error).toStrictEqual(new Error('Unauthorized'))
   );
 });
