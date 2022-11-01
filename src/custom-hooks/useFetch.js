@@ -10,7 +10,7 @@ const defaults = {
 /**
  * @param {string} url
  */
-const useFetch = (url) => {
+const useFetch = ({ url } = {}) => {
   const [loading, setLoading] = useState(defaults.loading);
   const [error, setError] = useState(defaults.error);
   const [data, setData] = useState(defaults.data);
