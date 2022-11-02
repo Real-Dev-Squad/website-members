@@ -9,8 +9,15 @@ import { userContext } from '@store/user/user-context';
 
 // returns card which shows details of new member
 const renderNewUserCard = (newMember) => {
+  const { isSuperUser } = userContext();
   return (
-    <div className={styles.containerForNewMember}>
+    <div
+      className={
+        isSuperUser
+          ? styles.containerForNewMemberHover
+          : styles.containerForNewMember
+      }
+    >
       <Card developerInfo={newMember} isMember={false} />
     </div>
   );

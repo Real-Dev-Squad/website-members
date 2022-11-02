@@ -34,9 +34,13 @@
   height: 160px;
   overflow: hidden;
   margin: auto;
-  border: 0;
+  border: none;
   box-shadow: none;
   &:hover {
     box-shadow: none;
   }
+}
+.containerForNewMemberHover {
+  @extend .containerForNewMember;
+  cursor: pointer;
 }
