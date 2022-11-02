@@ -199,32 +199,6 @@
   color: #1d1283;
 }
 
-@media only screen and (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .column,
-  .content {
-    width: 100%;
-  }
-
-  .memberDetails {
-    text-align: center;
-  }
-
-  .memberStatus {
-    justify-content: center !important;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .container {
-    width: 100%;
-  }
-}
-
 .settingsContainer {
   position: relative;
 }
@@ -255,4 +229,31 @@
   font-size: 16px;
   font-weight: 700;
   user-select: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .column,
+  .content {
+    width: 100%;
+  }
+
+  .memberDetails {
+    text-align: center;
+  }
+
+  .memberStatus {
+    justify-content: center;
+    color: #0e141e;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    width: 100%;
+  }
 }
