@@ -3,12 +3,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import {
   PATHS,
-  LOGIN_URL,
   USER_DATA_URL,
   USER_PROFILE_URL,
   NAVMENU,
 } from '@constants/AppConstants';
 import Link from 'next/link';
+import { getAuthUrl, setGithubMockLoginTTL } from '../../../utils';
 
 import styles from './navbar.module.scss';
 
@@ -27,7 +27,6 @@ const GenericClosePopUp = (ref, callback) => {
     };
   });
 };
-
 const Navbar = () => {
   const GITHUB_LOGO = '/icons/github-white.png';
   const DEFAULT_AVATAR = '/images/Avatar.png';
@@ -36,6 +35,7 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [mountedComponent, setMountedComponent] = useState(false);
   const navbarRef = useRef();
+  const authUrlRef = useRef({ url: '', isMockUrl: false });
   GenericClosePopUp(navbarRef, () => {
     setToggle(false);
   });
@@ -72,6 +72,7 @@ const Navbar = () => {
     };
 
     fetchData();
+    authUrlRef.current = getAuthUrl();
   }, []);
   const sidebarToggle = () => {
     setToggle(!toggle);
@@ -96,9 +97,15 @@ const Navbar = () => {
           {mountedComponent && (
             <div className={styles.navBarLogin}>
               {!isLoggedIn && (
-                <Link href={LOGIN_URL}>
+                <Link href={authUrlRef.current.url}>
                   <a className={styles.btnLogin}>
-                    <button type="button" className={styles.btnLoginText}>
+                    <button
+                      type="button"
+                      className={styles.btnLoginText}
+                      onClick={() =>
+                        setGithubMockLoginTTL(authUrlRef.current.isMockUrl)
+                      }
+                    >
                       Sign In
                       <img
                         className={styles.githubLogo}
@@ -171,9 +178,15 @@ const Navbar = () => {
             {mountedComponent && (
               <li className={styles.navBarLoginLi}>
                 {!isLoggedIn && (
-                  <Link href={LOGIN_URL}>
+                  <Link href={authUrlRef.current.url}>
                     <a className={styles.btnLogin}>
-                      <button type="button" className={styles.btnLoginText}>
+                      <button
+                        type="button"
+                        className={styles.btnLoginText}
+                        onClick={() =>
+                          setGithubMockLoginTTL(authUrlRef.current.isMockUrl)
+                        }
+                      >
                         Sign In With GitHub
                         <img
                           className={styles.githubLogo}
