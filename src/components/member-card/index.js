@@ -33,7 +33,11 @@ const Card = ({ developerInfo }) => {
       onMouseEnter={() => setShowSettings(true)}
       onMouseLeave={() => setShowSettings(false)}
     >
-      <SuperUserOptions username={username} showSettings={showSettings} />
+      <SuperUserOptions
+        username={username}
+        showSettings={showSettings}
+        isMember={isMember}
+      />
       <motion.img
         layoutId={username}
         src={img_url || '/images/Avatar.png'}
