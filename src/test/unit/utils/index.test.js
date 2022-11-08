@@ -1,17 +1,15 @@
-import { GITHUB_MOCK_LOGIN_URL } from '@constants/AppConstants';
-import { getAuthUrl, setGithubMockLoginTTL } from '../../../utils';
+import { LOGIN_URL } from '@constants/AppConstants';
+import { getAuthUrl } from '../../../utils';
 
-it('checks for auth url before and after visiting mock github auth page', () => {
-  jest.spyOn(global.Storage.prototype, 'setItem');
-  expect(setGithubMockLoginTTL()).toBeFalsy();
-  expect(getAuthUrl()).toEqual({
-    url: GITHUB_MOCK_LOGIN_URL,
-    isMockUrl: true,
+// INFO: https://remarkablemark.org/blog/2021/04/14/jest-mock-window-location-href/
+it('checks for auth url when window location href is undefined and not undefined', () => {
+  const originURL = window.location.href;
+  const getHref = jest.fn(() => originURL);
+  delete window.location;
+  expect(getAuthUrl()).not.toEqual(`${LOGIN_URL}&state=${originURL}`);
+  window.location = {};
+  Object.defineProperty(window.location, 'href', {
+    get: getHref,
   });
-  expect(setGithubMockLoginTTL(true)).toBeFalsy();
-  expect(getAuthUrl()).not.toEqual({
-    url: GITHUB_MOCK_LOGIN_URL,
-    isMockUrl: true,
-  });
-  expect(global.Storage.prototype.setItem).toHaveBeenCalledTimes(1);
+  expect(getAuthUrl()).toEqual(`${LOGIN_URL}&state=${originURL}`);
 });
