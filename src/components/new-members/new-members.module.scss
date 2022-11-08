@@ -40,7 +40,7 @@
     box-shadow: none;
   }
 }
-.containerForNewMemberHover {
+.superUserContainerForNewMember {
   @extend .containerForNewMember;
   cursor: pointer;
 }

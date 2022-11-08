@@ -14,7 +14,7 @@ const renderNewUserCard = (newMember) => {
     <div
       className={
         isSuperUser
-          ? styles.containerForNewMemberHover
+          ? styles.superUserContainerForNewMember
           : styles.containerForNewMember
       }
     >
