@@ -65,6 +65,10 @@ const Profile = (props) => {
   } = props;
   const { membersData } = props;
   const isMember = Boolean(membersData?.roles?.member);
+  const memberStatusMessage = isMember
+    ? 'User is a Member'
+    : 'User is not a Member';
+
   const socialMedia = [
     'twitter_id',
     'github_id',
@@ -373,28 +377,17 @@ const Profile = (props) => {
               className={classNames.profilePic}
               alt={fullName}
             />
-            {isSuperUser &&
-              (isMember ? (
-                <div className={classNames.memberStatus}>
-                  <img
-                    alt="info icon"
-                    src="icons/info.png"
-                    width={20}
-                    height={20}
-                  />
-                  <span>User is a Member</span>
-                </div>
-              ) : (
-                <div className={classNames.memberStatus}>
-                  <img
-                    alt="info icon"
-                    src="icons/info.png"
-                    width={20}
-                    height={20}
-                  />
-                  <span>User is not a Member</span>
-                </div>
-              ))}
+            {isSuperUser && (
+              <div className={classNames.memberStatus}>
+                <img
+                  alt="info icon"
+                  src="icons/info.png"
+                  width={20}
+                  height={20}
+                />
+                <span>{memberStatusMessage}</span>
+              </div>
+            )}
 
             <div className={classNames.personalInfo}>
               <h1 className={classNames.profileName}>{memberName}</h1>
