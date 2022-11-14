@@ -21,6 +21,8 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const url = featureUrl || prList[0]?.url;
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
+  const closePullRequest = contribution.prList.filter((pullRequest)=> pullRequest.state ==  'closed');
+  contribution.prList = closePullRequest;
   const contributionCard = () => (
     <ContributionCard
       contribution={contribution}
@@ -68,7 +70,7 @@ const ContributionCard = ({
     prList,
   } = contribution;
   const isTitleAvailable = !!title;
-  const featureTitle = isTitleAvailable ? title : prList[0].title;
+  const featureTitle = isTitleAvailable ? title : prList[0]?.title;
   const [showSettings, setShowSettings] = useState(false);
 
   const renderFeatureUrl = (featureUrl, featureUrlObj) => {
@@ -109,8 +111,8 @@ const ContributionCard = ({
       featureLiveOnText = featureLiveDate;
     }
   } else {
-    const createdAt = +new Date(prList[0].createdAt);
-    const updatedAt = +new Date(prList[0].updatedAt);
+    const createdAt = +new Date(prList[0]?.createdAt);
+    const updatedAt = +new Date(prList[0]?.updatedAt);
     if (prList[0].state === 'closed') {
       completedDate = timeWas(createdAt, false, updatedAt);
       completedText = (
@@ -121,7 +123,10 @@ const ContributionCard = ({
     }
   }
   return (
-    <div
+
+    <>
+    { featureTitle && 
+    (<div
       onMouseEnter={() => setShowSettings(true)}
       onMouseLeave={() => setShowSettings(false)}
     >
@@ -164,7 +169,9 @@ const ContributionCard = ({
         </div>
       )}
       <hr className={classNames.line} />
-    </div>
+    </div>)
+    }
+</>
   );
 };
 
