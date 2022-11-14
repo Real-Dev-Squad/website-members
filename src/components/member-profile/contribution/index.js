@@ -21,7 +21,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const url = featureUrl || prList[0]?.url;
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
-  const closePullRequest = contribution.prList.filter((pullRequest)=> pullRequest.state ==  'closed');
+  const closePullRequest = contribution.prList.filter((data)=> data.state ===  'closed');
   contribution.prList = closePullRequest;
   const contributionCard = () => (
     <ContributionCard
