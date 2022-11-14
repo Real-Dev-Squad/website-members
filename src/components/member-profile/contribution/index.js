@@ -38,7 +38,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       return (
         <Link href={urlObj.pathname}>
           <div className={url && classNames.contributionCard}>
-            {contributionCard()}
+            {prList[0]?.title && contributionCard()}
           </div>
         </Link>
       );
@@ -49,7 +49,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         onClick={gotoUrl}
         aria-hidden="true"
       >
-        {contributionCard()}
+        {prList[0]?.title && contributionCard()}
       </div>
     );
   };
@@ -123,10 +123,7 @@ const ContributionCard = ({
     }
   }
   return (
-
-    <>
-    { featureTitle && 
-    (<div
+    <div
       onMouseEnter={() => setShowSettings(true)}
       onMouseLeave={() => setShowSettings(false)}
     >
@@ -169,9 +166,7 @@ const ContributionCard = ({
         </div>
       )}
       <hr className={classNames.line} />
-    </div>)
-    }
-</>
+    </div>
   );
 };
 
