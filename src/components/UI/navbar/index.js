@@ -6,10 +6,9 @@ import {
   USER_DATA_URL,
   USER_PROFILE_URL,
   NAVMENU,
+  LOGIN_URL,
 } from '@constants/AppConstants';
 import Link from 'next/link';
-import { getAuthUrl } from '../../../utils';
-
 import styles from './navbar.module.scss';
 
 const GenericClosePopUp = (ref, callback) => {
@@ -27,7 +26,6 @@ const GenericClosePopUp = (ref, callback) => {
     };
   });
 };
-let authUrl = '';
 const Navbar = () => {
   const GITHUB_LOGO = '/icons/github-white.png';
   const DEFAULT_AVATAR = '/images/Avatar.png';
@@ -36,6 +34,11 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [mountedComponent, setMountedComponent] = useState(false);
   const navbarRef = useRef();
+  let authUrl = LOGIN_URL;
+
+  if (typeof window !== 'undefined') {
+    authUrl = `${LOGIN_URL}&state=${window.location.href}`;
+  }
   GenericClosePopUp(navbarRef, () => {
     setToggle(false);
   });
@@ -72,7 +75,6 @@ const Navbar = () => {
     };
 
     fetchData();
-    authUrl = getAuthUrl();
   }, []);
   const sidebarToggle = () => {
     setToggle(!toggle);
