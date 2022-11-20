@@ -14,15 +14,18 @@ const renderPRLinks = (prList) =>
   });
 
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
+  const contributions = contribution;
   const {
     task: { featureUrl },
     prList,
-  } = contribution;
+  } = contributions;
   const url = featureUrl || prList[0]?.url;
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
-  const closePullRequest = contribution.prList.filter((data)=> data.state ===  'closed');
-  contribution.prList = closePullRequest;
+  const closePullRequest = contributions.prList.filter(
+    (data) => data.state === 'closed'
+  );
+  contributions.prList = closePullRequest;
   const contributionCard = () => (
     <ContributionCard
       contribution={contribution}
@@ -113,7 +116,7 @@ const ContributionCard = ({
   } else {
     const createdAt = +new Date(prList[0]?.createdAt);
     const updatedAt = +new Date(prList[0]?.updatedAt);
-    if (prList[0].state === 'closed') {
+    if (prList[0]?.state === 'closed') {
       completedDate = timeWas(createdAt, false, updatedAt);
       completedText = (
         <span className={classNames.completedText}>Completed in </span>
