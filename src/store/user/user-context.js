@@ -4,7 +4,7 @@ import { UserData } from '../../api/UserDataApi';
 
 const UserContext = createContext();
 
-export const UserContextProvider = ({ children }) => {
+export const UserContextProvider = ({ children, value }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuperUser, setIsSuperUser] = useState(false);
@@ -39,7 +39,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={initialUserContext}>
+    <UserContext.Provider value={value || initialUserContext}>
       {children}
     </UserContext.Provider>
   );
