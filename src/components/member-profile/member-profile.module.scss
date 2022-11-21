@@ -1,3 +1,5 @@
+@import '@styles/constants/colors';
+
 .container {
   display: flex;
   justify-content: center;
@@ -100,7 +102,7 @@
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 15px;
-  color: #576871;
+  color: $color-dark-grey;
   font-size: 16px;
 }
 
@@ -197,28 +199,6 @@
   color: #1d1283;
 }
 
-@media only screen and (max-width: 1024px) {
-  .container {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .column,
-  .content {
-    width: 100%;
-  }
-
-  .memberDetails {
-    text-align: center;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .container {
-    width: 100%;
-  }
-}
-
 .settingsContainer {
   position: relative;
 }
@@ -238,4 +218,41 @@
 
 .hidden {
   display: none;
+}
+
+.memberStatus {
+  display: flex;
+  margin: 10px 0px;
+  justify-content: flex-start;
+  gap: 5px;
+  color: $color-dark-grey;
+  font-size: 16px;
+  font-weight: 700;
+  user-select: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .column,
+  .content {
+    width: 100%;
+  }
+
+  .memberDetails {
+    text-align: center;
+  }
+
+  .memberStatus {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    width: 100%;
+  }
 }
