@@ -13,6 +13,7 @@ import { isEmail, isDecimal } from 'validator';
 import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
 import { useTaskContext } from '@store/tasks/tasks-context';
+import { userContext } from '@store/user/user-context';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -63,6 +64,11 @@ const Profile = (props) => {
     tasks,
   } = props;
   const { membersData } = props;
+  const isMember = Boolean(membersData?.roles?.member);
+  const memberStatusMessage = isMember
+    ? 'User is a Member'
+    : 'User is not a Member';
+
   const socialMedia = [
     'twitter_id',
     'github_id',
@@ -71,7 +77,7 @@ const Profile = (props) => {
   ];
 
   const { showMemberTaskUpdateModal } = useTaskContext();
-
+  const { isSuperUser } = userContext();
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
   const rdsUserName = `@${username}`;
@@ -83,7 +89,6 @@ const Profile = (props) => {
   const submitBtnRef = useRef(null);
   const modalContent = useRef(null);
   const introBtn = useRef(null);
-
   const getMembersIntroURL = (RDSID) =>
     `https://api.realdevsquad.com/members/intro/${RDSID}`;
   const parameter = username;
@@ -372,6 +377,18 @@ const Profile = (props) => {
               className={classNames.profilePic}
               alt={fullName}
             />
+            {isSuperUser && (
+              <div className={classNames.memberStatus}>
+                <img
+                  alt="info icon"
+                  src="icons/info.png"
+                  width={20}
+                  height={20}
+                />
+                <span>{memberStatusMessage}</span>
+              </div>
+            )}
+
             <div className={classNames.personalInfo}>
               <h1 className={classNames.profileName}>{memberName}</h1>
               <p className={classNames.userName}>{rdsUserName}</p>
@@ -387,6 +404,7 @@ const Profile = (props) => {
                   {renderSocialMediaIcons(socialMedia, membersData)}
                 </div>
               )}
+
               {devUser && (
                 <div>
                   <ShowSkills show />
