@@ -59,10 +59,19 @@ const MemberRoleUpdate = () => {
           Archive Member
         </button>
         <br />
-        <p>{updateStatus}</p>
       </>
     );
   };
+
+  function renderModalStatus() {
+    if (isUpdating) {
+      return <Spinner />;
+    }
+    if (!updateStatus) {
+      return renderPromoteButton();
+    }
+    return <p>{updateStatus}</p>;
+  }
 
   return ReactDOM.createPortal(
     <>
@@ -73,7 +82,7 @@ const MemberRoleUpdate = () => {
           setShowMemberRoleUpdateModal(false);
         }}
       >
-        {isUpdating ? <Spinner /> : renderPromoteButton()}
+        {renderModalStatus()}
       </Modal>
     </>,
     document.getElementById('memberRoleUpdateModal')
