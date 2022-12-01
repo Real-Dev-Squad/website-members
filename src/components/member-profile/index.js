@@ -14,16 +14,7 @@ import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
 import { useTaskContext } from '@store/tasks/tasks-context';
 import { userContext } from '@store/user/user-context';
-
-const renderBadgeImages = (badges) =>
-  badges.map((badge) => (
-    <img
-      src={badge.img}
-      className={classNames.badge}
-      alt={badge.title}
-      key={badge.title}
-    />
-  ));
+import Badges from './badges';
 
 const CONTRIBUTIONTYPE = ['Noteworthy', 'Active tasks', 'All'];
 
@@ -426,14 +417,7 @@ const Profile = (props) => {
         </div>
 
         <div className={classNames.content}>
-          {devUser && (
-            <div className={(classNames.section, classNames.card)}>
-              <h2>Badges</h2>
-              <div className={classNames.badgeContainer}>
-                {badges && renderBadgeImages(badges)}
-              </div>
-            </div>
-          )}
+          <Badges badges={badges} isSuperUser={devUser} />
 
           <div className={(classNames.section, classNames.card)}>
             {renderContributionsTypes(
