@@ -1,0 +1,84 @@
+.badges {
+    position: relative;
+}
+
+.badges--container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.badges__btn--container {
+    position: absolute;
+    top: 1.25rem;
+    right: 2rem;
+}
+
+.badge {
+    cursor: pointer;
+}
+
+.badge__image {
+    max-width: 100%;
+    height: auto;
+}
+
+.badge__caption {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(51, 51, 51, 0.9);
+    font-style: italic;
+    font-size: smaller;
+}
+
+/* INFO: https://codepen.io/PhiloBeddoe/pen/oNjzeGr?editors=0100 */
+.badge__tooltip {
+    display: inline-block;
+    position: relative;
+}
+
+.badge__tooltip:focus::before,
+.badge__tooltip:hover::before,
+.badge__tooltip:focus::after,
+.badge__tooltip:hover::after {
+    position: absolute;
+    border-radius: 0.3rem;
+    border-style: solid;
+    border-width: 0.5rem;
+    border-color: transparent transparent rgba(51, 51, 51, 0.9) transparent;
+    transition: opacity 0.2s;
+    z-index: 1;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1rem;
+}
+
+.badge__tooltip:focus::before,
+.badge__tooltip:hover::before {
+    content: "";
+    bottom: 0;
+    left: 50%;
+    margin-left: -0.3rem;
+}
+
+.badge__tooltip:focus::after,
+.badge__tooltip:hover::after {
+    width: 8rem;
+    color: #fff;
+    background-color: rgba(51, 51, 51, 0.9);
+    content: attr(data-tooltip);
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+}

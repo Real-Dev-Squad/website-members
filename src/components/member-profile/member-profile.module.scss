@@ -58,29 +58,6 @@
   justify-content: flex-start;
 }
 
-.badges {
-  position: relative;
-}
-
-.badges--container {
-  margin-top: 1.25rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.badges__btn--container {
-  position: absolute;
-  top: 1.25rem;
-  right: 2rem;
-}
-
-.badge {
-  max-width: 4rem;
-  max-height: 4rem;
-  margin-right: 1rem;
-  cursor: pointer;
-}
-
 .open {
   color: #28a745;
 }
