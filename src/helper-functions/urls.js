@@ -52,6 +52,8 @@ const getArchiveMemberURL = (rdsId) =>
  */
 const getTaskUpdateURL = (taskId) => `${baseURL}/tasks/${taskId}`;
 
+const getTagAssignURL = () => `${baseURL}/items`;
+
 export {
   getImgURL,
   getMembersDataURL,
@@ -63,4 +65,5 @@ export {
   getAddMemberRoleURL,
   getArchiveMemberURL,
   getTaskUpdateURL,
+  getTagAssignURL,
 };
