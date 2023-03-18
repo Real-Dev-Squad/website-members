@@ -1,13 +1,8 @@
-import { BASE_API_URL } from '@constants/AppConstants';
-import useFetch from '@custom-hooks/useFetch';
 import { assignTags } from '@helper-functions/action-handlers';
 import { useState } from 'react';
 
-const MemberTagAssign = ({ userId }) => {
+const MemberTagAssign = ({ userId, tags, levels }) => {
   const [saveStatus, setSavedStatus] = useState(' ');
-
-  const { data: tagData } = useFetch(`${BASE_API_URL}/tags`);
-  const { data: levelData } = useFetch(`${BASE_API_URL}/levels`);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,20 +39,18 @@ const MemberTagAssign = ({ userId }) => {
         }}
       >
         <select name="tag">
-          {tagData &&
-            tagData.tags.map((tag) => (
-              <option value={tag.id} key={tag.id}>
-                {tag.name}
-              </option>
-            ))}
+          {tags.map((tag) => (
+            <option value={tag.id} key={tag.id}>
+              {tag.name}
+            </option>
+          ))}
         </select>
         <select name="level">
-          {levelData &&
-            levelData.levels.map((level) => (
-              <option value={level.id} key={level.id}>
-                {level.name}
-              </option>
-            ))}
+          {levels.map((level) => (
+            <option value={level.id} key={level.id}>
+              {level.name}
+            </option>
+          ))}
         </select>
         <button type="submit">Add</button>
       </form>

@@ -22,7 +22,12 @@ const MemberRoleUpdate = () => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateStatus, setUpdateStatus] = useState('');
 
-  const { data } = useFetch(`${BASE_API_URL}/users/${selectedMember}`);
+  const { data: userData } = useFetch(
+    `${BASE_API_URL}/users/${selectedMember}`
+  );
+
+  const { data: tagData } = useFetch(`${BASE_API_URL}/tags`);
+  const { data: levelData } = useFetch(`${BASE_API_URL}/levels`);
 
   const promoteToMember = async (user) => {
     setIsUpdating(true);
@@ -65,7 +70,13 @@ const MemberRoleUpdate = () => {
         </button>
         <br />
 
-        {data && <MemberTagAssign userId={data.user.id} />}
+        {userData && tagData && levelData && (
+          <MemberTagAssign
+            userId={userData.user.id}
+            tags={tagData.tags}
+            levels={levelData.levels}
+          />
+        )}
 
         <p>{updateStatus}</p>
       </>
