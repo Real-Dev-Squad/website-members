@@ -21,7 +21,6 @@ const MemberRoleUpdate = () => {
 
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateStatus, setUpdateStatus] = useState('');
-  // const [userData, setUserData] = useState(' ');
 
   const { data } = useFetch(`${BASE_API_URL}/users/${selectedMember}`);
 
