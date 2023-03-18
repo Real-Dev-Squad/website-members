@@ -4,6 +4,7 @@ import {
   getUserProfileSelf,
   getArchiveMemberURL,
   getTaskUpdateURL,
+  getTagAssignURL,
 } from './urls';
 
 const moveToMember = (user) =>
@@ -33,4 +34,16 @@ const moveTask = (taskId, data) =>
     }
   );
 
-export { archiveMember, moveToMember, getUserSelf, moveTask };
+const assignTags = (data) =>
+  fetch(
+    getTagAssignURL(),
+    'post',
+    null,
+    JSON.stringify(data),
+    { 'Content-type': 'application/json' },
+    {
+      withCredentials: true,
+    }
+  );
+
+export { archiveMember, moveToMember, getUserSelf, moveTask, assignTags };
