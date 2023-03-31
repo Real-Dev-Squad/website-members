@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { ALT_KEY } from '@constants/AppConstants';
 
 const KeyboardContext = createContext();
@@ -9,16 +9,23 @@ function isOptionKey(e) {
 
 export const KeyboardProvider = ({ children }) => {
   const [isOptionKeyPressed, setIsOptionKeyPressed] = useState(false);
+  const divRef = useRef(null);
 
   const initialValue = {
     isOptionKeyPressed,
   };
 
+  useEffect(() => {
+    if (!divRef) return;
+    divRef.current.focus();
+  }, []);
+
   return (
     <KeyboardContext.Provider value={initialValue}>
       <div
-        role="button"
-        tabIndex={0}
+        tabIndex={-1}
+        role="presentation"
+        ref={divRef}
         onKeyDown={(e) => {
           if (isOptionKey(e)) {
             setIsOptionKeyPressed(true);
