@@ -11,7 +11,7 @@ import { SearchMemberProvider } from '@store/search-members/searchMembers-contex
 import { usePostHog } from 'next-use-posthog';
 import { TaskContextProvider } from '@store/tasks/tasks-context';
 import { KeyboardProvider } from '@store/keyboard/context';
-import KeyboardHandler from '@components/util/KeyboardHandler';
+import KeyboardHandler from '@components/keyboard-handler';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;

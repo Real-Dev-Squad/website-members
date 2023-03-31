@@ -9,18 +9,18 @@ function isOptionKey(e) {
 function KeyboardHandler({ children }) {
   const { setIsOptionKeyPressed } = useKeyboardContext();
 
-  const handelOptionKeyDown = (e) => {
-    if (isOptionKey(e)) {
-      setIsOptionKeyPressed(true);
-    }
-  };
-  const handelOptionKeyUp = (e) => {
-    if (isOptionKey(e)) {
-      setIsOptionKeyPressed(false);
-    }
-  };
-
   useEffect(() => {
+    const handelOptionKeyDown = (e) => {
+      if (isOptionKey(e)) {
+        setIsOptionKeyPressed(true);
+      }
+    };
+    const handelOptionKeyUp = (e) => {
+      if (isOptionKey(e)) {
+        setIsOptionKeyPressed(false);
+      }
+    };
+
     document.addEventListener('keydown', handelOptionKeyDown);
     document.addEventListener('keyup', handelOptionKeyUp);
 
@@ -28,7 +28,7 @@ function KeyboardHandler({ children }) {
       document.removeEventListener('keydown', handelOptionKeyDown);
       document.removeEventListener('keyup', handelOptionKeyUp);
     };
-  }, []);
+  }, [setIsOptionKeyPressed]);
 
   return children;
 }
