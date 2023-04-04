@@ -11,6 +11,7 @@ import { SearchMemberProvider } from '@store/search-members/searchMembers-contex
 import { usePostHog } from 'next-use-posthog';
 import { TaskContextProvider } from '@store/tasks/tasks-context';
 import { KeyboardProvider } from '@store/keyboard/context';
+import KeyboardHandler from '@components/keyboard-handler';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -47,12 +48,14 @@ const MyApp = (props) => {
           <SearchMemberProvider>
             <TaskContextProvider>
               <KeyboardProvider>
-                <div className={classNames.root}>
-                  <div className={classNames.main}>
-                    {loading && <Spinner />}
-                    <Component {...pageProps} />
+                <KeyboardHandler>
+                  <div className={classNames.root}>
+                    <div className={classNames.main}>
+                      {loading && <Spinner />}
+                      <Component {...pageProps} />
+                    </div>
                   </div>
-                </div>
+                </KeyboardHandler>
               </KeyboardProvider>
             </TaskContextProvider>
           </SearchMemberProvider>
