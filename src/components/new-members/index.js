@@ -17,14 +17,14 @@ const renderNewUserCard = (newMember) => {
   );
 };
 
-const renderNewUser = (newMember, isSuperUser, handleNewMemberDetailsPage) => {
+const renderNewUser = (newMember, isSuperUser, handleNewMemberClick) => {
   if (isSuperUser) {
     return (
       <div
         role="button"
         tabIndex={-1}
         key={newMember.username}
-        onClick={() => handleNewMemberDetailsPage(newMember.username)}
+        onClick={() => handleNewMemberClick(newMember.username)}
         aria-hidden="true"
       >
         {renderNewUserCard(newMember)}
@@ -43,9 +43,9 @@ const NewMemberList = () => {
   const { searchTerm } = searchMemberContext();
   const filterMembers = searchMembers(newMembers, searchTerm);
   const router = useRouter();
-  const handleNewMemberDetailsPage = (newUserMember) => {
+  const handleNewMemberClick = (newUserName) => {
     if (isOptionKeyPressed) {
-      router.push(`/${newUserMember}`);
+      router.push(`/${newUserName}`);
     }
     return null;
   };
@@ -55,7 +55,7 @@ const NewMemberList = () => {
       <div className={styles.container}>
         {filterMembers.map((newMember) => (
           <React.Fragment key={newMember.id}>
-            {renderNewUser(newMember, isSuperUser, handleNewMemberDetailsPage)}
+            {renderNewUser(newMember, isSuperUser, handleNewMemberClick)}
           </React.Fragment>
         ))}
       </div>
