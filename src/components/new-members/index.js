@@ -6,6 +6,7 @@ import { searchMemberContext } from '@store/search-members/searchMembers-context
 import { searchMembers } from '@helper-functions/search-members';
 import { userContext } from '@store/user/user-context';
 import { useRouter } from 'next/router';
+import { useKeyboardContext } from '@store/keyboard/context';
 
 // returns card which shows details of new member
 const renderNewUserCard = (newMember) => {
@@ -23,7 +24,7 @@ const renderNewUser = (newMember, isSuperUser, handleNewMemberDetailsPage) => {
         role="button"
         tabIndex={-1}
         key={newMember.username}
-        onClick={(e) => handleNewMemberDetailsPage(e, newMember.username)}
+        onClick={() => handleNewMemberDetailsPage(newMember.username)}
         aria-hidden="true"
       >
         {renderNewUserCard(newMember)}
@@ -38,12 +39,12 @@ const NewMemberList = () => {
     state: { newMembers },
   } = membersContext();
   const { isSuperUser } = userContext();
+  const { isOptionKeyPressed } = useKeyboardContext();
   const { searchTerm } = searchMemberContext();
   const filterMembers = searchMembers(newMembers, searchTerm);
   const router = useRouter();
-  const handleNewMemberDetailsPage = (e, newUserMember) => {
-    e.preventDefault();
-    if (e.altKey) {
+  const handleNewMemberDetailsPage = (newUserMember) => {
+    if (isOptionKeyPressed) {
       router.push(`/${newUserMember}`);
     }
     return null;
