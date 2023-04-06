@@ -22,7 +22,7 @@ const renderNewUser = (newMember, isSuperUser, handleNewMemberClick) => {
     return (
       <div
         role="button"
-        tabIndex={-1}
+        tabIndex={0}
         key={newMember.username}
         onClick={() => handleNewMemberClick(newMember.username)}
         aria-hidden="true"
