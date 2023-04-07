@@ -5,7 +5,13 @@ import classNames from '@components/member-profile/contribution-type/contributio
 import Contribution from '@components/member-profile/contribution/';
 import ActiveTask from '@components/member-profile/active-task';
 
-const renderContributions = (contributions, fullName, imageLink, devUser) =>
+const renderContributions = (
+  contributions,
+  fullName,
+  imageLink,
+  devUser,
+  isCollapsed
+) =>
   contributions.map((noteWorthyContribution, index) => (
     <Contribution
       contribution={noteWorthyContribution}
@@ -13,6 +19,7 @@ const renderContributions = (contributions, fullName, imageLink, devUser) =>
       fullName={fullName}
       imageLink={imageLink}
       devUser={devUser}
+      isCollapsed={isCollapsed}
     />
   ));
 
