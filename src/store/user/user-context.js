@@ -18,8 +18,7 @@ export const UserContextProvider = ({ children, value }) => {
     const userData = await UserData.get();
     setUserApiCalled(true);
     setUser(userData);
-    // setIsSuperUser(Boolean(userData?.roles?.super_user));
-    setIsSuperUser(true);
+    setIsSuperUser(Boolean(userData?.roles?.super_user));
     setIsLoading(false);
   }, [setUserApiCalled, setIsSuperUser, setUser]);
 
