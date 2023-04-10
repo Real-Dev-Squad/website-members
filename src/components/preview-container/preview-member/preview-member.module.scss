@@ -30,4 +30,9 @@
   margin-top: -1.3rem;
   margin-left: -0.65rem;
   padding: 2rem;
+  opacity: 50%;
+}
+.previewMember:hover {
+  opacity: 100%;
+  transition: opacity 0.25s;
 }
