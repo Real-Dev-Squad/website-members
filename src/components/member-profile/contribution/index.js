@@ -64,7 +64,16 @@ const ContributionCard = ({
   urlObj,
 }) => {
   const {
-    task: { id, title, startedOn, endsOn, status, purpose, isNoteworthy },
+    task: {
+      id,
+      title,
+      startedOn,
+      endsOn,
+      status,
+      purpose,
+      isNoteworthy,
+      isCollapsed,
+    },
     prList,
   } = contribution;
   const isTitleAvailable = !!title;
@@ -143,6 +152,7 @@ const ContributionCard = ({
           <SuperUserOptions
             showSettings={showSettings}
             isNoteworthy={isNoteworthy}
+            isCollapsed={isCollapsed}
             taskId={id}
           />
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>
