@@ -14,6 +14,7 @@ import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
 import { useTaskContext } from '@store/tasks/tasks-context';
 import { userContext } from '@store/user/user-context';
+import { useKeyboardContext } from '@store/keyboard/context';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -92,6 +93,7 @@ const Profile = (props) => {
   const getMembersIntroURL = (RDSID) =>
     `https://api.realdevsquad.com/members/intro/${RDSID}`;
   const parameter = username;
+  const { isOptionKeyPressed } = useKeyboardContext();
 
   const onFormSubmit = (data) => {
     const rdsApiURL = getMembersIntroURL(parameter);
@@ -385,7 +387,7 @@ const Profile = (props) => {
                   width={20}
                   height={20}
                 />
-                <span>{memberStatusMessage}</span>
+                {isOptionKeyPressed && <span>{memberStatusMessage}</span>}
               </div>
             )}
 
