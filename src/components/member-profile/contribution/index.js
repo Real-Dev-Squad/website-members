@@ -31,6 +31,10 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       urlObj={urlObj}
     />
   );
+
+  // const collapsedContributionCard = () => (
+  //   <ContributionCard contribution={contribution.title} />
+  // );
   const renderFeatureCard = () => {
     if (urlObj?.host === HOST_NAME) {
       return (

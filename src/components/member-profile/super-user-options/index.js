@@ -27,6 +27,10 @@ const SuperUserOptions = ({
     return null;
   }
 
+  if (isCollapsed === undefined) {
+    return null;
+  }
+
   return (
     <div
       className={`${classNames.settingsContainer} ${
