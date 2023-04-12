@@ -24,7 +24,7 @@ const renderNewUser = (newMember, isSuperUser, handleNewMemberClick) => {
         role="button"
         tabIndex={0}
         key={newMember.username}
-        onClick={() => handleNewMemberClick(newMember.username)}
+        onClick={(e) => handleNewMemberClick(e, newMember.username)}
         aria-hidden="true"
       >
         {renderNewUserCard(newMember)}
@@ -43,7 +43,8 @@ const NewMemberList = () => {
   const { searchTerm } = searchMemberContext();
   const filterMembers = searchMembers(newMembers, searchTerm);
   const router = useRouter();
-  const handleNewMemberClick = (newUserName) => {
+  const handleNewMemberClick = (e, newUserName) => {
+    e.stopPropagation();
     if (isOptionKeyPressed) {
       router.push(`/${newUserName}`);
     }

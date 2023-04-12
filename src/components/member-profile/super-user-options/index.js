@@ -7,6 +7,7 @@ const SuperUserOptions = ({ showSettings, isNoteworthy, taskId }) => {
     useTaskContext();
 
   const showModal = (e) => {
+    e.preventDefault();
     e.stopPropagation();
     setShowMemberTaskUpdateModal(true);
     setTaskId(taskId);
