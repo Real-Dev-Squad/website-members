@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
-    "dev:next": "next dev -p 3000",
+    "dev:next": "next dev -p 3001",
     "dev:https-link": "local-ssl-proxy --source 443 --target 3000",
     "build": "next build",
     "start": "next start -p $PORT",
