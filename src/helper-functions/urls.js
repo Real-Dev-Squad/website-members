@@ -1,4 +1,4 @@
-const baseURL = `http://localhost:3000`;
+const baseURL = `https://api.realdevsquad.com`;
 const imgBaseURL = `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main`;
 const getMembersURL = `${baseURL}/members`;
 const cloudinaryImageUrl = `https://res.cloudinary.com/realdevsquad/image/upload`;
