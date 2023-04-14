@@ -7,6 +7,7 @@ const SuperUserOptions = ({ showSettings, username }) => {
 
   const showModal = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setShowMemberRoleUpdateModal(true);
     setSelectedMember(username);
   };
