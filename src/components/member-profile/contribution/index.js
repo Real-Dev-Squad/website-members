@@ -31,10 +31,9 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       urlObj={urlObj}
     />
   );
-
-  // const collapsedContributionCard = () => (
-  //   <ContributionCard contribution={contribution.title} />
-  // );
+  const collapsedContribution = () => (
+    <ContributionCollapsedCard contribution={contribution} />
+  );
   const renderFeatureCard = () => {
     if (urlObj?.host === HOST_NAME) {
       return (
@@ -51,7 +50,9 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         onClick={gotoUrl}
         aria-hidden="true"
       >
-        {contributionCard()}
+        {contribution.task.isCollapsed
+          ? collapsedContribution()
+          : contributionCard()}
       </div>
     );
   };
@@ -177,6 +178,37 @@ const ContributionCard = ({
           {renderFeatureUrl(url, urlObj)}
         </div>
       )}
+      <hr className={classNames.line} />
+    </div>
+  );
+};
+const ContributionCollapsedCard = ({ contribution }) => {
+  const {
+    task: { id, title, isNoteworthy, isCollapsed },
+    prList,
+  } = contribution;
+  const isTitleAvailable = !!title;
+  const featureTitle = isTitleAvailable ? title : prList[0].title;
+  const [showSettings, setShowSettings] = useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setShowSettings(true)}
+      onMouseLeave={() => setShowSettings(false)}
+    >
+      <div className={classNames.contributionContainer}>
+        <div className={classNames.leftSection}>
+          <h3 className={classNames.featureTitle}>{featureTitle}</h3>
+        </div>
+        <div className={classNames.rightSection}>
+          <SuperUserOptions
+            showSettings={showSettings}
+            isNoteworthy={isNoteworthy}
+            isCollapsed={isCollapsed}
+            taskId={id}
+          />
+        </div>
+      </div>
       <hr className={classNames.line} />
     </div>
   );
