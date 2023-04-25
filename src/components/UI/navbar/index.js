@@ -100,7 +100,7 @@ const Navbar = () => {
             <div className={styles.navBarLogin}>
               {!isLoggedIn && (
                 <Link href={authUrl}>
-                  <a className={styles.btnLogin}>
+                  <div className={styles.btnLogin}>
                     <button type="button" className={styles.btnLoginText}>
                       Sign In
                       <img
@@ -111,7 +111,7 @@ const Navbar = () => {
                         width="15px"
                       />
                     </button>
-                  </a>
+                  </div>
                 </Link>
               )}
               {isLoggedIn && (
@@ -175,7 +175,7 @@ const Navbar = () => {
               <li className={styles.navBarLoginLi}>
                 {!isLoggedIn && (
                   <Link href={authUrl}>
-                    <a className={styles.btnLogin}>
+                    <div className={styles.btnLogin}>
                       <button type="button" className={styles.btnLoginText}>
                         Sign In With GitHub
                         <img
@@ -186,7 +186,7 @@ const Navbar = () => {
                           width="15px"
                         />
                       </button>
-                    </a>
+                    </div>
                   </Link>
                 )}
                 {isLoggedIn && (
