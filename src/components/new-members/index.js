@@ -21,6 +21,7 @@ const renderNewUser = (newMember, isSuperUser, handleNewMemberClick) => {
   if (isSuperUser) {
     return (
       <div
+        data-testid="renderNewUser"
         role="button"
         tabIndex={0}
         key={newMember.username}

@@ -1,7 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Profile from '@components/member-profile';
 import { TaskContextProvider } from '@store/tasks/tasks-context';
 import { UserContextProvider } from '@store/user/user-context';
+import { KeyboardProvider } from '@store/keyboard/context';
+import KeyboardHandler from '@components/keyboard-handler';
 
 const notaMember = {
   roles: {
@@ -21,26 +23,44 @@ const initialUserContext = {
 };
 
 describe('Members Profile', () => {
-  it('Should render member status properly', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  test('Should render  a member status properly', () => {
     render(
       <UserContextProvider value={initialUserContext}>
         <TaskContextProvider>
-          <Profile membersData={notaMember} />
+          <KeyboardProvider>
+            <KeyboardHandler>
+              <Profile membersData={isaMember} />
+            </KeyboardHandler>
+          </KeyboardProvider>
         </TaskContextProvider>
       </UserContextProvider>
     );
-
-    let memberStatus = screen.getByText('User is not a Member');
+    fireEvent.keyDown(document, { key: 'Alt', code: 'AltLeft' });
+    const memberStatus = screen.getByText('User is a Member');
     expect(memberStatus).toBeInTheDocument();
+  });
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
+  });
+
+  test('Should render not a member status properly', () => {
     render(
       <UserContextProvider value={initialUserContext}>
         <TaskContextProvider>
-          <Profile membersData={isaMember} />
+          <KeyboardProvider>
+            <KeyboardHandler>
+              <Profile membersData={notaMember} />
+            </KeyboardHandler>
+          </KeyboardProvider>
         </TaskContextProvider>
       </UserContextProvider>
     );
-
-    memberStatus = screen.getByText('User is a Member');
+    fireEvent.keyDown(document, { key: 'Alt', code: 'AltLeft' });
+    const memberStatus = screen.getByText('User is not a Member');
     expect(memberStatus).toBeInTheDocument();
   });
 
@@ -48,7 +68,11 @@ describe('Members Profile', () => {
     render(
       <UserContextProvider value={initialUserContext}>
         <TaskContextProvider>
-          <Profile membersData={notaMember} />
+          <KeyboardProvider>
+            <KeyboardHandler>
+              <Profile membersData={notaMember} />
+            </KeyboardHandler>
+          </KeyboardProvider>
         </TaskContextProvider>
       </UserContextProvider>
     );
