@@ -54,16 +54,14 @@ const MemberTaskUpdate = () => {
   };
 
   return (
-    <>
-      <Modal
-        show={showMemberTaskUpdateModal}
-        closeModal={() => {
-          setShowMemberTaskUpdateModal(false);
-        }}
-      >
-        {isUpdating ? <Spinner /> : renderTaskUpdateButtton()}
-      </Modal>
-    </>
+    <Modal
+      show={showMemberTaskUpdateModal}
+      closeModal={() => {
+        setShowMemberTaskUpdateModal(false);
+      }}
+    >
+      {isUpdating ? <Spinner /> : renderTaskUpdateButtton()}
+    </Modal>
   );
 };
 

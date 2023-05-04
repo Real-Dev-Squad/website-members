@@ -1,5 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { createContext, useState, useContext, useCallback } from 'react';
+import {
+  createContext,
+  useState,
+  useContext,
+  useCallback,
+  useMemo,
+} from 'react';
 import { UserData } from '../../api/UserDataApi';
 
 const UserContext = createContext();
@@ -22,21 +28,32 @@ export const UserContextProvider = ({ children, value }) => {
     setIsLoading(false);
   }, [setUserApiCalled, setIsSuperUser, setUser]);
 
-  const initialUserContext = {
-    user,
-    isSuperUser,
-    selectedMember,
-    showMemberRoleUpdateModal,
-    isLoading,
-    setIsSuperUser,
-    setUser,
-    setSelectedMember,
-    setShowMemberRoleUpdateModal,
-    userApiCalled,
-    setUserApiCalled,
-    setUserPrivileges,
-    setIsLoading,
-  };
+  const initialUserContext = useMemo(
+    () => ({
+      user,
+      isSuperUser,
+      selectedMember,
+      showMemberRoleUpdateModal,
+      isLoading,
+      setIsSuperUser,
+      setUser,
+      setSelectedMember,
+      setShowMemberRoleUpdateModal,
+      userApiCalled,
+      setUserApiCalled,
+      setUserPrivileges,
+      setIsLoading,
+    }),
+    [
+      user,
+      isLoading,
+      isSuperUser,
+      showMemberRoleUpdateModal,
+      selectedMember,
+      userApiCalled,
+      setUserPrivileges,
+    ]
+  );
 
   return (
     <UserContext.Provider value={value || initialUserContext}>

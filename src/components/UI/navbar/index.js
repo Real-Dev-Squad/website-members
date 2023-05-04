@@ -82,140 +82,125 @@ const Navbar = () => {
 
   return (
     <div className={styles.wrapper}>
-      <>
-        <nav className={styles.navBar}>
-          <div
-            className={styles.hamburger}
-            ref={navbarRef}
-            onClick={sidebarToggle}
-            onKeyDown={sidebarToggle}
-          >
-            <img
-              className={styles.icon}
-              src="/icons/ham.png"
-              alt="hamburger_logo"
-            />
+      <nav className={styles.navBar}>
+        <div
+          className={styles.hamburger}
+          ref={navbarRef}
+          onClick={sidebarToggle}
+          onKeyDown={sidebarToggle}
+        >
+          <img
+            className={styles.icon}
+            src="/icons/ham.png"
+            alt="hamburger_logo"
+          />
+        </div>
+        {mountedComponent && (
+          <div className={styles.navBarLogin}>
+            {!isLoggedIn && (
+              <Link href={authUrl} className={styles.btnLogin}>
+                <button type="button" className={styles.btnLoginText}>
+                  Sign In
+                  <img
+                    className={styles.githubLogo}
+                    src={GITHUB_LOGO}
+                    alt="GitHub Icon"
+                    height="15px"
+                    width="15px"
+                  />
+                </button>
+              </Link>
+            )}
+            {isLoggedIn && (
+              <div className={styles.userGreet}>
+                <Link href={USER_PROFILE_URL}>
+                  <div className={styles.userGreetMsg}>
+                    {`Hello ${isLoggedIn ? `${userData.firstName}` : 'User'}!`}
+                  </div>
+                  <img
+                    className={styles.userProfilePic}
+                    src={
+                      isLoggedIn
+                        ? `${userData.profilePicture}`
+                        : `${DEFAULT_AVATAR}`
+                    }
+                    alt="Profile pic"
+                  />
+                </Link>
+              </div>
+            )}
           </div>
+        )}
+        <ul
+          className={`${styles.navBarMenu} ${toggle ? `${styles.active}` : ''}`}
+        >
+          <li className={styles.navBarLogoLi}>
+            <a href={PATHS.HOME}>
+              <Image
+                width={50}
+                height={50}
+                src="/images/Real-Dev-Squad@1x.png"
+                alt="real-dev-squad"
+              />
+            </a>
+          </li>
+          {NAVMENU.map((nav) => {
+            return (
+              <li
+                className={nav.name === 'Home' ? `${styles.homes}` : null}
+                key={nav.id}
+              >
+                <Link
+                  href={nav.path}
+                  className={
+                    nav.name === 'Members' ? `${styles.activeTab}` : null
+                  }
+                >
+                  {nav.name}
+                </Link>
+              </li>
+            );
+          })}
           {mountedComponent && (
-            <div className={styles.navBarLogin}>
+            <li className={styles.navBarLoginLi}>
               {!isLoggedIn && (
-                <Link href={authUrl}>
-                  <a className={styles.btnLogin}>
-                    <button type="button" className={styles.btnLoginText}>
-                      Sign In
-                      <img
-                        className={styles.githubLogo}
-                        src={GITHUB_LOGO}
-                        alt="GitHub Icon"
-                        height="15px"
-                        width="15px"
-                      />
-                    </button>
-                  </a>
+                <Link href={authUrl} className={styles.btnLogin}>
+                  <button type="button" className={styles.btnLoginText}>
+                    Sign In With GitHub
+                    <img
+                      className={styles.githubLogo}
+                      src={GITHUB_LOGO}
+                      alt="GitHub Icon"
+                      height="15px"
+                      width="15px"
+                    />
+                  </button>
                 </Link>
               )}
               {isLoggedIn && (
                 <div className={styles.userGreet}>
                   <Link href={USER_PROFILE_URL}>
-                    <a>
-                      <div className={styles.userGreetMsg}>
-                        {`Hello ${
-                          isLoggedIn ? `${userData.firstName}` : 'User'
-                        }!`}
-                      </div>
-                      <img
-                        className={styles.userProfilePic}
-                        src={
-                          isLoggedIn
-                            ? `${userData.profilePicture}`
-                            : `${DEFAULT_AVATAR}`
-                        }
-                        alt="Profile pic"
-                      />
-                    </a>
+                    <div className={styles.userGreetMsg}>
+                      {isLoggedIn
+                        ? `Hello, ${userData.firstName}!`
+                        : `Hello, User!`}
+                    </div>
+                    <img
+                      className={styles.userProfilePic}
+                      src={
+                        isLoggedIn
+                          ? `${userData.profilePicture}`
+                          : `${DEFAULT_AVATAR}`
+                      }
+                      alt="Profile Pic"
+                    />
                   </Link>
                 </div>
               )}
-            </div>
-          )}
-          <ul
-            className={`${styles.navBarMenu} ${
-              toggle ? `${styles.active}` : ''
-            }`}
-          >
-            <li className={styles.navBarLogoLi}>
-              <a href={PATHS.HOME}>
-                <Image
-                  width="50px"
-                  height="50px"
-                  src="/images/Real-Dev-Squad@1x.png"
-                  alt="real-dev-squad"
-                />
-              </a>
             </li>
-            {NAVMENU.map((nav) => {
-              return (
-                <li
-                  className={nav.name === 'Home' ? `${styles.homes}` : null}
-                  key={nav.id}
-                >
-                  <Link href={nav.path}>
-                    <a
-                      className={
-                        nav.name === 'Members' ? `${styles.activeTab}` : null
-                      }
-                    >
-                      {nav.name}
-                    </a>
-                  </Link>
-                </li>
-              );
-            })}
-            {mountedComponent && (
-              <li className={styles.navBarLoginLi}>
-                {!isLoggedIn && (
-                  <Link href={authUrl}>
-                    <a className={styles.btnLogin}>
-                      <button type="button" className={styles.btnLoginText}>
-                        Sign In With GitHub
-                        <img
-                          className={styles.githubLogo}
-                          src={GITHUB_LOGO}
-                          alt="GitHub Icon"
-                          height="15px"
-                          width="15px"
-                        />
-                      </button>
-                    </a>
-                  </Link>
-                )}
-                {isLoggedIn && (
-                  <div className={styles.userGreet}>
-                    <Link href={USER_PROFILE_URL}>
-                      <a>
-                        <div className={styles.userGreetMsg}>
-                          {isLoggedIn
-                            ? `Hello, ${userData.firstName}!`
-                            : `Hello, User!`}
-                        </div>
-                        <img
-                          className={styles.userProfilePic}
-                          src={
-                            isLoggedIn
-                              ? `${userData.profilePicture}`
-                              : `${DEFAULT_AVATAR}`
-                          }
-                          alt="Profile Pic"
-                        />
-                      </a>
-                    </Link>
-                  </div>
-                )}
-              </li>
-            )}
-          </ul>
-        </nav>
-      </>
+          )}
+        </ul>
+      </nav>
     </div>
   );
 };

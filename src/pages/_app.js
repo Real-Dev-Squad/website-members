@@ -2,16 +2,27 @@ import '@styles/global-styles.scss';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import classNames from '@styles/layout-style.module.scss';
-import { AnimateSharedLayout } from 'framer-motion';
 import { useRouter } from 'next/router';
 import Spinner from '@components/UI/spinner';
 import { MembersProvider } from '@store';
 import { UserContextProvider } from '@store/user/user-context';
 import { SearchMemberProvider } from '@store/search-members/searchMembers-context';
-import { usePostHog } from 'next-use-posthog';
 import { TaskContextProvider } from '@store/tasks/tasks-context';
 import { KeyboardProvider } from '@store/keyboard/context';
 import KeyboardHandler from '@components/keyboard-handler';
+
+import posthog from 'posthog-js';
+import { PostHogProvider } from 'posthog-js/react';
+
+if (typeof window !== 'undefined') {
+  posthog.init('phc_SRQcmzRDT5aNlAEkcrGgU2FqxKRaec66c7tdrntqAbs', {
+    api_host: 'https://app.posthog.com',
+    // Enable debug mode in development
+    loaded: (posthogInstance) => {
+      if (process.env.NODE_ENV === 'development') posthogInstance.debug();
+    },
+  });
+}
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
@@ -34,15 +45,8 @@ const MyApp = (props) => {
     };
   });
 
-  usePostHog('phc_SRQcmzRDT5aNlAEkcrGgU2FqxKRaec66c7tdrntqAbs', {
-    api_host: 'https://app.posthog.com',
-    loaded: (posthog) => {
-      if (process.env.NODE_ENV === 'development') posthog.opt_out_capturing();
-    },
-  });
-
   return (
-    <AnimateSharedLayout>
+    <PostHogProvider client={posthog}>
       <UserContextProvider>
         <MembersProvider>
           <SearchMemberProvider>
@@ -61,7 +65,7 @@ const MyApp = (props) => {
           </SearchMemberProvider>
         </MembersProvider>
       </UserContextProvider>
-    </AnimateSharedLayout>
+    </PostHogProvider>
   );
 };
 
