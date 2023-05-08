@@ -13,17 +13,6 @@ const renderPRLinks = (prList) =>
     return <PRLink link={url} key={index} />;
   });
 
-const checkPrTitle = (str) => {
-  if (!str) {
-    return false;
-  }
-  const headBranchName = ['dev', 'Dev', 'DEV', 'develop', 'Develop', 'DEVELOP'];
-  const baseBranchName = ['main', 'Main', 'MAIN'];
-  const containsHead = headBranchName.some((name) => str.includes(name));
-  const containsBase = baseBranchName.some((name) => str.includes(name));
-  return containsHead && containsBase;
-};
-
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
   const {
     task: { featureUrl },
@@ -55,14 +44,13 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         </Link>
       );
     }
-    const isDevToMain = checkPrTitle(prList[0]?.title);
     return (
       <div
         className={url && classNames.contributionCard}
         onClick={gotoUrl}
         aria-hidden="true"
       >
-        {contribution.task.isCollapsed || isDevToMain
+        {contribution.task.isCollapsed
           ? collapsedContribution()
           : contributionCard()}
       </div>
