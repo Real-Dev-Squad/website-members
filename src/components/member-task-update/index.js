@@ -3,6 +3,7 @@ import Modal from '@components/UI/modal/index';
 import Spinner from '@components/UI/spinner';
 import { TASK_TYPE, TASK_LOOKS } from '@constants/AppConstants';
 import { useTaskContext } from '@store/tasks/tasks-context';
+import { useRouter } from 'next/router';
 import classNames from './member-task-update.module.scss';
 import { moveTask } from '../../helper-functions/action-handlers';
 
@@ -19,6 +20,8 @@ const MemberTaskUpdate = () => {
   const [updateStatus, setUpdateStatus] = useState('');
   const [collapsedState, setCollapsedState] = useState(false);
   const [taskType, setTaskType] = useState('');
+  const { query } = useRouter() || { query: { dev: false } };
+  const { dev } = query;
 
   const changeTaskType = async (taskid) => {
     setIsUpdating(true);
@@ -68,13 +71,15 @@ const MemberTaskUpdate = () => {
           >
             Move Task to {task}
           </button>
-          <button
-            className={classNames.changeTaskType}
-            type="button"
-            onClick={() => collapseTask(taskId)}
-          >
-            {taskLook} Task
-          </button>
+          {dev && (
+            <button
+              className={classNames.changeTaskType}
+              type="button"
+              onClick={() => collapseTask(taskId)}
+            >
+              {taskLook} Task
+            </button>
+          )}
         </div>
       );
     }
