@@ -28,9 +28,10 @@ const renderActiveTasks = (tasks) => {
 const ContributionType = (props) => {
   const { fullName, type, imageLink, contributions, devUser, tasks } = props;
   const [showMoreContent, setShowMoreContent] = useState(false);
+  const isContribution = type === 'Noteworthy' || type === 'All';
 
   useEffect(() => {
-    if (type === 'Noteworthy' || type === 'All') {
+    if (isContribution) {
       setShowMoreContent(contributions.length > 0);
       return;
     }
@@ -38,7 +39,7 @@ const ContributionType = (props) => {
   }, [tasks.length, contributions.length]);
 
   const showMoreContentHandler = () => {
-    if (type === 'Noteworthy' || type === 'All') {
+    if (isContribution) {
       if (contributions.length > 0) {
         setShowMoreContent(!showMoreContent);
       }
