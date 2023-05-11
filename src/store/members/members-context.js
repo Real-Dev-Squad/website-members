@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { membersReducer } from './members-reducer';
 
@@ -12,10 +12,10 @@ const initialState = {
 
 export const MembersProvider = ({ children }) => {
   const [state, dispatch] = useReducer(membersReducer, initialState);
+  const value = useMemo(() => ({ state, dispatch }), [state]);
+
   return (
-    <MembersContext.Provider value={{ state, dispatch }}>
-      {children}
-    </MembersContext.Provider>
+    <MembersContext.Provider value={value}>{children}</MembersContext.Provider>
   );
 };
 

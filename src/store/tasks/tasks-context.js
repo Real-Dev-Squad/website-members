@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useMemo } from 'react';
 
 const TaskContext = createContext();
 
@@ -8,14 +8,17 @@ export const TaskContextProvider = ({ children }) => {
   const [isNoteworthy, setIsNoteworthy] = useState(false);
   const [taskId, setTaskId] = useState('');
 
-  const initialTaskContext = {
-    showMemberTaskUpdateModal,
-    isNoteworthy,
-    taskId,
-    setShowMemberTaskUpdateModal,
-    setIsNoteworthy,
-    setTaskId,
-  };
+  const initialTaskContext = useMemo(
+    () => ({
+      showMemberTaskUpdateModal,
+      isNoteworthy,
+      taskId,
+      setShowMemberTaskUpdateModal,
+      setIsNoteworthy,
+      setTaskId,
+    }),
+    [taskId, showMemberTaskUpdateModal, isNoteworthy]
+  );
 
   return (
     <TaskContext.Provider value={initialTaskContext}>

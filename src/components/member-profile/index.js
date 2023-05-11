@@ -193,12 +193,12 @@ const Profile = (props) => {
             type="text"
             placeholder="Eg: Amazon"
             name="company"
-            ref={register({
+            {...register('company', {
               required: true,
             })}
           />
         </label>
-        {errors.company && (
+        {errors?.company && (
           <p className={classNames.errorPrompt}>Company cannot be blank</p>
         )}
         <label className={classNames.tagWord} htmlFor="first_name">
@@ -209,12 +209,12 @@ const Profile = (props) => {
             type="text"
             placeholder="Eg: John"
             name="first_name"
-            ref={register({
+            {...register('first_name', {
               required: true,
             })}
           />
         </label>
-        {errors.first_name && (
+        {errors?.first_name && (
           <p className={classNames.errorPrompt}>First Name cannot be blank</p>
         )}
         <label className={classNames.tagWord} htmlFor="last_name">
@@ -225,12 +225,12 @@ const Profile = (props) => {
             type="text"
             placeholder="Eg: Doe"
             name="last_name"
-            ref={register({
+            {...register('last_name', {
               required: true,
             })}
           />
         </label>
-        {errors.last_name && (
+        {errors?.last_name && (
           <p className={classNames.errorPrompt}>Last Name cannot be blank</p>
         )}
         <label className={classNames.tagWord} htmlFor="designation">
@@ -241,16 +241,16 @@ const Profile = (props) => {
             type="text"
             placeholder="Eg: HR executive"
             name="designation"
-            ref={register({
+            {...register('designation', {
               required: true,
               minLength: 2,
             })}
           />
         </label>
-        {errors.designation?.type === 'required' && (
+        {errors?.designation?.type === 'required' && (
           <p className={classNames.errorPrompt}>Designation cannot be blank</p>
         )}
-        {errors.designation?.type === 'minLength' && (
+        {errors?.designation?.type === 'minLength' && (
           <p className={classNames.errorPrompt}>Designation too short</p>
         )}
         <label className={classNames.tagWord} htmlFor="reason">
@@ -261,16 +261,16 @@ const Profile = (props) => {
             type="text"
             placeholder="Why you are interested in this candidate(Max 100 characters)"
             name="reason"
-            ref={register({
+            {...register('reason', {
               required: true,
               maxlength: 100,
             })}
           />
         </label>
-        {errors.reason && (
+        {errors?.reason && (
           <p className={classNames.errorPrompt}>Reason cannot be blank</p>
         )}
-        {errors.reason?.type === 'maxLength' && (
+        {errors?.reason?.type === 'maxLength' && (
           <p className={classNames.errorPrompt}>Character exceeded</p>
         )}
         <label className={classNames.tagWord} htmlFor="email">
@@ -281,16 +281,16 @@ const Profile = (props) => {
             type="email"
             placeholder="Your Email address"
             name="email"
-            ref={register({
+            {...register('email', {
               required: true,
               validate: (value) => isEmail(value) === true,
             })}
           />
         </label>
-        {errors.email?.type === 'required' && (
+        {errors?.email?.type === 'required' && (
           <p className={classNames.errorPrompt}>Email cannot be blank</p>
         )}
-        {errors.email?.type === 'validate' && (
+        {errors?.email?.type === 'validate' && (
           <p className={classNames.errorPrompt}>
             Provide a valid email address
           </p>
@@ -303,7 +303,7 @@ const Profile = (props) => {
               type="select"
               name="currency"
               className={classNames.inputBoxCur}
-              ref={register({
+              {...register('currency', {
                 validate: (value) => value !== '',
               })}
             >
@@ -317,7 +317,7 @@ const Profile = (props) => {
               <option value="SGD">Singapore Dollar(SGD)</option>
               <option value="JPY">Japanese Yen(JPY)</option>
             </select>
-            {errors.currency?.type === 'validate' && (
+            {errors?.currency?.type === 'validate' && (
               <p className={classNames.errorPrompt}>Provide a valid currency</p>
             )}
           </div>
@@ -330,18 +330,18 @@ const Profile = (props) => {
             type="number"
             placeholder="2000000"
             name="package"
-            ref={register({
+            {...register('package', {
               required: true,
               validate: (value) => isDecimal(value) === true,
             })}
           />
         </label>
-        {errors.package && (
+        {errors?.package && (
           <p className={classNames.errorPrompt}>
             Package offered cannot be blank
           </p>
         )}
-        {errors.package?.type === 'validate' && (
+        {errors?.package?.type === 'validate' && (
           <p className={classNames.errorPrompt}>Package must be a number</p>
         )}
         <button

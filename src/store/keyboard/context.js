@@ -1,14 +1,17 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useMemo } from 'react';
 
 const KeyboardContext = createContext();
 
 export const KeyboardProvider = ({ children }) => {
   const [isOptionKeyPressed, setIsOptionKeyPressed] = useState(false);
 
-  const initialValue = {
-    isOptionKeyPressed,
-    setIsOptionKeyPressed,
-  };
+  const initialValue = useMemo(
+    () => ({
+      isOptionKeyPressed,
+      setIsOptionKeyPressed,
+    }),
+    [isOptionKeyPressed]
+  );
 
   return (
     <KeyboardContext.Provider value={initialValue}>

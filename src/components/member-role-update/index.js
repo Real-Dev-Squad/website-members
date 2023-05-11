@@ -84,17 +84,15 @@ const MemberRoleUpdate = () => {
   };
 
   return ReactDOM.createPortal(
-    <>
-      <Modal
-        show={showMemberRoleUpdateModal}
-        closeModal={(e) => {
-          e.preventDefault();
-          setShowMemberRoleUpdateModal(false);
-        }}
-      >
-        {isUpdating ? <Spinner /> : renderPromoteButton()}
-      </Modal>
-    </>,
+    <Modal
+      show={showMemberRoleUpdateModal}
+      closeModal={(e) => {
+        e.preventDefault();
+        setShowMemberRoleUpdateModal(false);
+      }}
+    >
+      {isUpdating ? <Spinner /> : renderPromoteButton()}
+    </Modal>,
     document.getElementById('memberRoleUpdateModal')
   );
 };

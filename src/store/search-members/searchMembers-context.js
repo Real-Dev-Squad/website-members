@@ -1,14 +1,18 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useMemo } from 'react';
 
 const SearchMemberContext = createContext();
 
 export const SearchMemberProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const initialSearchMemberContext = {
-    searchTerm,
-    setSearchTerm,
-  };
+  const initialSearchMemberContext = useMemo(
+    () => ({
+      searchTerm,
+      setSearchTerm,
+    }),
+    [searchTerm]
+  );
+
   return (
     <SearchMemberContext.Provider value={initialSearchMemberContext}>
       {children}

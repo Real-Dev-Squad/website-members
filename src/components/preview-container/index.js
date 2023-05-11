@@ -7,7 +7,7 @@ import styles from '@components/preview-container/preview-container.module.scss'
 
 const PreviewContainer = ({ memberDetails, designer }) => {
   return (
-    <>
+    <div>
       {designer ? (
         <div className={styles.designerContainer}>
           <Card developerInfo={memberDetails} />
@@ -15,7 +15,7 @@ const PreviewContainer = ({ memberDetails, designer }) => {
       ) : (
         <MemberPreview memberDetails={memberDetails} />
       )}
-    </>
+    </div>
   );
 };
 
