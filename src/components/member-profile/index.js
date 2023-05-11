@@ -35,6 +35,7 @@ const renderContributionsTypes = (
   tasks
 ) => {
   const { noteworthy, all } = contributions;
+
   return CONTRIBUTIONTYPE.map((type, index) => (
     <ContributionType
       type={type}
