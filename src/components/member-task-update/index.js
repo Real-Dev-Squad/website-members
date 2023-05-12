@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from '@components/UI/modal/index';
 import Spinner from '@components/UI/spinner';
-import { TASK_TYPE, TASK_LOOKS } from '@constants/AppConstants';
+import { TASK_TYPE, TASK_VIEW } from '@constants/AppConstants';
 import { useTaskContext } from '@store/tasks/tasks-context';
 import { useRouter } from 'next/router';
 import classNames from './member-task-update.module.scss';
@@ -48,7 +48,7 @@ const MemberTaskUpdate = () => {
     if (res.status === 204) {
       setTaskType(
         `Task ${
-          isCollapsed ? TASK_LOOKS.EXPANDED : TASK_LOOKS.COLLAPSED
+          isCollapsed ? TASK_VIEW.EXPANDED : TASK_VIEW.COLLAPSED
         }! reloading...`
       );
       window.location.reload();
@@ -59,7 +59,7 @@ const MemberTaskUpdate = () => {
 
   const renderTaskUpdateButtton = () => {
     const task = isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.NOTEWORTHY;
-    const taskLook = isCollapsed ? TASK_LOOKS.EXPANDED : TASK_LOOKS.COLLAPSED;
+    const taskLook = isCollapsed ? TASK_VIEW.EXPANDED : TASK_VIEW.COLLAPSED;
 
     if (updateStatus === '' && taskType === '') {
       return (
