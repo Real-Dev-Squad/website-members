@@ -4,8 +4,10 @@ import { timeWas } from '@helper-functions/time-was';
 import { percentageofDaysRemaining } from '@helper-functions/taskProgress';
 import { estimatedDays } from '@helper-functions/estimated-days';
 import { progressIndicator } from '@helper-functions/progressIndicator';
+// import { useState, useEffect } from 'react';
 
 const ActiveTask = ({ taskDetails }) => {
+  // const [filled, setFilled] = useState(0);
   const { title, purpose, startedOn, endsOn, percentCompleted } = taskDetails;
   const completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
   const percentOfTaskLeft = 100 - percentCompleted;
@@ -20,6 +22,17 @@ const ActiveTask = ({ taskDetails }) => {
     classNames
   );
   const showProgressIndicator = progressIndicator(showEstimatedDay, classNames);
+
+  // const showProgressIndicator = classNames.progressIndicatorYellow; // default yellow
+
+  // if (percentageOfDaysRemaining >= percentOfTaskLeft) {
+  //   showProgressIndicator = classNames.progressIndicatorGreen; // green
+  // } else if (percentageOfDaysRemaining < 50 && percentOfTaskLeft > 75) {
+  //   showProgressIndicator = classNames.progressIndicatorOrange; // orange
+  // } else if (percentageOfDaysRemaining < 25 && percentOfTaskLeft > 35) {
+  //   showProgressIndicator = classNames.progressIndicatorRed; // red
+  // }
+  // }
 
   return (
     <div className={classNames.container}>
