@@ -14,13 +14,18 @@ const renderPRLinks = (prList) =>
   });
 
 const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
+  const contributions = contribution;
   const {
     task: { featureUrl },
     prList,
-  } = contribution;
+  } = contributions;
   const url = featureUrl || prList[0]?.url;
   const gotoUrl = () => url && window.open(url, '_blank');
   const urlObj = url && new URL(url);
+  const closePullRequest = contributions.prList.filter(
+    (data) => data.state === 'closed'
+  );
+  contributions.prList = closePullRequest;
   const contributionCard = () => (
     <ContributionCard
       contribution={contribution}
@@ -36,7 +41,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       return (
         <Link href={urlObj.pathname}>
           <div className={url && classNames.contributionCard}>
-            {contributionCard()}
+            {prList[0]?.title && contributionCard()}
           </div>
         </Link>
       );
@@ -47,7 +52,7 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         onClick={gotoUrl}
         aria-hidden="true"
       >
-        {contributionCard()}
+        {prList[0]?.title && contributionCard()}
       </div>
     );
   };
@@ -68,7 +73,7 @@ const ContributionCard = ({
     prList,
   } = contribution;
   const isTitleAvailable = !!title;
-  const featureTitle = isTitleAvailable ? title : prList[0].title;
+  const featureTitle = isTitleAvailable ? title : prList[0]?.title;
   const [showSettings, setShowSettings] = useState(false);
 
   const renderFeatureUrl = (featureUrl, featureUrlObj) => {
@@ -109,9 +114,9 @@ const ContributionCard = ({
       featureLiveOnText = featureLiveDate;
     }
   } else {
-    const createdAt = +new Date(prList[0].createdAt);
-    const updatedAt = +new Date(prList[0].updatedAt);
-    if (prList[0].state === 'closed') {
+    const createdAt = +new Date(prList[0]?.createdAt);
+    const updatedAt = +new Date(prList[0]?.updatedAt);
+    if (prList[0]?.state === 'closed') {
       completedDate = timeWas(createdAt, false, updatedAt);
       completedText = (
         <span className={classNames.completedText}>Completed in </span>
