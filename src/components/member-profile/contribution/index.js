@@ -31,9 +31,6 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
       urlObj={urlObj}
     />
   );
-  const collapsedContribution = () => (
-    <ContributionCollapsedCard contribution={contribution} />
-  );
   const renderFeatureCard = () => {
     if (urlObj?.host === HOST_NAME) {
       return (
@@ -50,9 +47,11 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         onClick={gotoUrl}
         aria-hidden="true"
       >
-        {contribution.task.isCollapsed
-          ? collapsedContribution()
-          : contributionCard()}
+        {contribution.task.isCollapsed ? (
+          <ContributionCollapsedCard contribution={contribution} />
+        ) : (
+          contributionCard()
+        )}
       </div>
     );
   };
