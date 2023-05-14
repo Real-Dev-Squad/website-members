@@ -20,7 +20,7 @@ const MemberTaskUpdate = () => {
   const [updateStatus, setUpdateStatus] = useState('');
   const [collapsedState, setCollapsedState] = useState(false);
   const [taskType, setTaskType] = useState('');
-  const { query } = useRouter() || { query: { dev: false } };
+  const { query, replace, asPath } = useRouter() || { query: { dev: false } };
   const { dev } = query;
 
   const changeTaskType = async (taskid) => {
@@ -51,7 +51,8 @@ const MemberTaskUpdate = () => {
           isCollapsed ? TASK_VIEW.EXPANDED : TASK_VIEW.COLLAPSED
         }! reloading...`
       );
-      window.location.reload();
+      replace(asPath);
+      setShowMemberTaskUpdateModal(false);
     } else {
       setTaskType(`There was an error while updating the task`);
     }
