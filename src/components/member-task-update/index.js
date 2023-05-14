@@ -34,7 +34,8 @@ const MemberTaskUpdate = () => {
           isNoteworthy ? TASK_TYPE.OTHER : TASK_TYPE.NOTEWORTHY
         }! reloading...`
       );
-      window.location.reload();
+      await replace(asPath);
+      setShowMemberTaskUpdateModal(false);
     } else {
       setUpdateStatus(`There was an error while updating the task`);
     }
@@ -51,7 +52,7 @@ const MemberTaskUpdate = () => {
           isCollapsed ? TASK_VIEW.EXPANDED : TASK_VIEW.COLLAPSED
         }! reloading...`
       );
-      replace(asPath);
+      await replace(asPath);
       setShowMemberTaskUpdateModal(false);
     } else {
       setTaskType(`There was an error while updating the task`);
