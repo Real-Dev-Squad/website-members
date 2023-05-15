@@ -6,6 +6,7 @@ import SuperUserOptions from '.';
 const ShowSuperUserOptionsContainer = ({
   showSettings,
   isNoteworthy,
+  isCollapsed,
   taskId,
 }) => {
   const { isOptionKeyPressed } = useKeyboardContext();
@@ -15,6 +16,7 @@ const ShowSuperUserOptionsContainer = ({
       <SuperUserOptions
         showSettings={showSettings}
         isNoteworthy={isNoteworthy}
+        isCollapsed={isCollapsed}
         taskId={taskId}
       />
     );

@@ -2,15 +2,25 @@ import React from 'react';
 import classNames from '@components/member-profile/member-profile.module.scss';
 import { useTaskContext } from '@store/tasks/tasks-context';
 
-const SuperUserOptions = ({ showSettings, isNoteworthy, taskId }) => {
-  const { setShowMemberTaskUpdateModal, setTaskId, setIsNoteworthy } =
-    useTaskContext();
+const SuperUserOptions = ({
+  showSettings,
+  isNoteworthy,
+  isCollapsed,
+  taskId,
+}) => {
+  const {
+    setShowMemberTaskUpdateModal,
+    setTaskId,
+    setIsNoteworthy,
+    setIsCollapsed,
+  } = useTaskContext();
 
   const showModal = (e) => {
     e.stopPropagation();
     setShowMemberTaskUpdateModal(true);
     setTaskId(taskId);
     setIsNoteworthy(isNoteworthy);
+    setIsCollapsed(isCollapsed);
   };
 
   if (isNoteworthy === undefined) {
