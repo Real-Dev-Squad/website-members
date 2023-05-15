@@ -42,20 +42,24 @@ const MemberTaskUpdate = () => {
   };
 
   const collapseTask = async (taskid) => {
-    setCollapsedState(true);
-    const data = { isCollapsed: !isCollapsed };
-    const res = await moveTask(taskid, data);
-    setCollapsedState(false);
-    if (res.status === 204) {
-      setTaskType(
-        `Task ${
-          isCollapsed ? TASK_VIEW.EXPANDED : TASK_VIEW.COLLAPSED
-        }! reloading...`
-      );
-      await replace(asPath);
-      setShowMemberTaskUpdateModal(false);
-    } else {
-      setTaskType(`There was an error while updating the task`);
+    try {
+      setCollapsedState(true);
+      const data = { isCollapsed: !isCollapsed };
+      const res = await moveTask(taskid, data);
+      setCollapsedState(false);
+      if (res.status === 204) {
+        setTaskType(
+          `Task ${
+            isCollapsed ? TASK_VIEW.EXPANDED : TASK_VIEW.COLLAPSED
+          }! reloading...`
+        );
+        await replace(asPath);
+        setShowMemberTaskUpdateModal(false);
+      } else {
+        setTaskType(`There was an error while updating the task`);
+      }
+    } catch (error) {
+      console.error('Error while collapsing task', error);
     }
   };
 
