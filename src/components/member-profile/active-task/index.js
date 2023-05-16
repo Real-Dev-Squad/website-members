@@ -22,18 +22,6 @@ const ActiveTask = ({ taskDetails }) => {
   );
   const showProgressIndicator = progressIndicator(showEstimatedDay, classNames);
 
-  // eslint-disable-next-line no-console
-  console.log(
-    completedDate,
-    percentCompleted,
-    percentOfTaskLeft,
-    percentageOfDaysRemaining,
-    showEstimatedDay,
-    estimatedDays()
-  );
-
-  // const showProgressIndicator = classNames.progressIndicatorYellow; // default yellow
-
   const handleProgressBarColor = () => {
     const colorOptions = [];
     if (percentageOfDaysRemaining >= percentOfTaskLeft) {
@@ -70,13 +58,6 @@ const ActiveTask = ({ taskDetails }) => {
             style={{
               width: `${percentCompleted}%`,
               backgroundColor: `${handleProgressBarColor}`,
-              //      percentageOfDaysRemaining >= percentOfTaskLeft
-              //   ? 'green'
-              //   : percentageOfDaysRemaining < 50 && percentOfTaskLeft > 75
-              //   ? 'orange'
-              //   : percentageOfDaysRemaining < 25 && percentOfTaskLeft > 35
-              //   ? 'red'
-              //   : 'yellow',
             }}
             data-testid="progressIndicator"
           />
