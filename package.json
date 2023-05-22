@@ -6,6 +6,7 @@
     "dev": "npm-run-all --parallel dev:*",
     "dev:next": "next dev -p 3000",
     "dev:https-link": "local-ssl-proxy --source 443 --target 3000",
+    "build:staging": "cp .env.staging .env.local && next build",
     "build": "next build",
     "start": "next start -p $PORT",
     "build-static": "next build && next export",
