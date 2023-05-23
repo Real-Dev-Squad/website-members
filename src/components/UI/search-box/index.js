@@ -1,18 +1,25 @@
 import React from 'react';
+import classNames from '@components/UI/search-box/search-box.module.scss';
 import { searchMemberContext } from '@store/search-members/searchMembers-context';
-import { SEARCHBOX_PLACEHOLDER } from '@constants/AppConstants';
-import classNames from './search-box.module.scss';
 
 const SearchBox = () => {
   const { setSearchTerm } = searchMemberContext();
+
   return (
-    <div className={classNames.searchContainer}>
+    <div className={classNames.searchboxContainer}>
       <input
+        className={classNames.searchbox}
         type="text"
-        placeholder={SEARCHBOX_PLACEHOLDER}
-        onChange={({ target: { value } }) => setSearchTerm(value)}
-        className={classNames.searchBox}
+        placeholder="Search by Skills, Accomplishments levels, Name"
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
+      <button
+        type="button"
+        className={classNames.button}
+        // onClick={() => searchFunction(searchTerm)}
+      >
+        SEARCH
+      </button>
     </div>
   );
 };
