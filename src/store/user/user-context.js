@@ -12,6 +12,7 @@ export const UserContextProvider = ({ children, value }) => {
     useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
   const [userApiCalled, setUserApiCalled] = useState(false);
+  const [isUserMember, setIsUserMember] = useState(true);
 
   const setUserPrivileges = useCallback(async () => {
     setIsLoading(true);
@@ -36,6 +37,8 @@ export const UserContextProvider = ({ children, value }) => {
     setUserApiCalled,
     setUserPrivileges,
     setIsLoading,
+    isUserMember,
+    setIsUserMember,
   };
 
   return (
