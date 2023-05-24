@@ -4,7 +4,6 @@ import { timeWas } from '@helper-functions/time-was';
 import { percentageofDaysRemaining } from '@helper-functions/taskProgress';
 import { estimatedDays } from '@helper-functions/estimated-days';
 import { progressIndicator } from '@helper-functions/progressIndicator';
-// import { useState, useEffect } from 'react';
 
 const ActiveTask = ({ taskDetails }) => {
   const { title, purpose, startedOn, endsOn, percentCompleted } = taskDetails;
@@ -23,18 +22,19 @@ const ActiveTask = ({ taskDetails }) => {
   const showProgressIndicator = progressIndicator(showEstimatedDay, classNames);
 
   const handleProgressBarColor = () => {
-    const colorOptions = [];
     if (percentageOfDaysRemaining >= percentOfTaskLeft) {
-      colorOptions.push(classNames.progressIndicatorGreen); // green
-    } else if (percentageOfDaysRemaining < 50 && percentOfTaskLeft > 75) {
-      colorOptions.push(classNames.progressIndicatorOrange); // orange
-    } else if (percentageOfDaysRemaining < 25 && percentOfTaskLeft > 35) {
-      colorOptions.push(classNames.progressIndicatorRed); // red
-    } else {
-      colorOptions.push(classNames.progressIndicatorYellow); // yellow
+      return classNames.progressIndicatorGreen; // green
     }
-    return colorOptions;
+    if (percentageOfDaysRemaining < 50 && percentOfTaskLeft > 75) {
+      return classNames.progressIndicatorOrange; // orange
+    }
+    if (percentageOfDaysRemaining < 25 && percentOfTaskLeft > 35) {
+      return classNames.progressIndicatorRed; // red
+    }
+    return classNames.progressIndicatorYellow; // yellow
   };
+
+  const progressBarColor = handleProgressBarColor();
 
   return (
     <div className={classNames.container}>
@@ -54,11 +54,8 @@ const ActiveTask = ({ taskDetails }) => {
         </div>
         <div className={classNames.progressBar}>
           <div
-            className={showProgressIndicator}
-            style={{
-              width: `${percentCompleted}%`,
-              backgroundColor: `${handleProgressBarColor}`,
-            }}
+            className={`${showProgressIndicator} ${progressBarColor}`}
+            style={{ width: `${percentCompleted}%` }}
             data-testid="progressIndicator"
           />
         </div>
