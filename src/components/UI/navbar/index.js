@@ -100,18 +100,16 @@ const Navbar = () => {
             <div className={styles.navBarLogin}>
               {!isLoggedIn && (
                 <Link href={authUrl}>
-                  <div className={styles.btnLogin}>
-                    <button type="button" className={styles.btnLoginText}>
-                      Sign In
-                      <img
-                        className={styles.githubLogo}
-                        src={GITHUB_LOGO}
-                        alt="GitHub Icon"
-                        height="15px"
-                        width="15px"
-                      />
-                    </button>
-                  </div>
+                  <button type="button" className={styles.btnLoginText}>
+                    Sign In
+                    <img
+                      className={styles.githubLogo}
+                      src={GITHUB_LOGO}
+                      alt="GitHub Icon"
+                      height="15px"
+                      width="15px"
+                    />
+                  </button>
                 </Link>
               )}
               {isLoggedIn && (
@@ -175,18 +173,16 @@ const Navbar = () => {
               <li className={styles.navBarLoginLi}>
                 {!isLoggedIn && (
                   <Link href={authUrl}>
-                    <div className={styles.btnLogin}>
-                      <button type="button" className={styles.btnLoginText}>
-                        Sign In With GitHub
-                        <img
-                          className={styles.githubLogo}
-                          src={GITHUB_LOGO}
-                          alt="GitHub Icon"
-                          height="15px"
-                          width="15px"
-                        />
-                      </button>
-                    </div>
+                    <button type="button" className={styles.btnLoginText}>
+                      Sign In With GitHub
+                      <img
+                        className={styles.githubLogo}
+                        src={GITHUB_LOGO}
+                        alt="GitHub Icon"
+                        height="15px"
+                        width="15px"
+                      />
+                    </button>
                   </Link>
                 )}
                 {isLoggedIn && (
