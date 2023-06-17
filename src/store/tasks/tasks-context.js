@@ -6,14 +6,17 @@ export const TaskContextProvider = ({ children }) => {
   const [showMemberTaskUpdateModal, setShowMemberTaskUpdateModal] =
     useState(false);
   const [isNoteworthy, setIsNoteworthy] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [taskId, setTaskId] = useState('');
 
   const initialTaskContext = {
     showMemberTaskUpdateModal,
     isNoteworthy,
+    isCollapsed,
     taskId,
     setShowMemberTaskUpdateModal,
     setIsNoteworthy,
+    setIsCollapsed,
     setTaskId,
   };
 

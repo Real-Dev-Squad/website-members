@@ -69,4 +69,8 @@ export const TASK_TYPE = {
   NOTEWORTHY: 'Noteworthy',
   OTHER: 'Other Contribution',
 };
+export const TASK_VIEW = {
+  COLLAPSED: 'Collapsed',
+  EXPANDED: 'Expanded',
+};
 export const ALT_KEY = 'Alt';

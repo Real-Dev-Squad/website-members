@@ -6,6 +6,7 @@ import PRLink from '@components/member-profile/contribution/pr-link';
 import { timeWas } from '@helper-functions/time-was';
 import { HOST_NAME } from '@constants/AppConstants';
 import { useState } from 'react';
+import ContributionCollapsedCard from '@components/member-profile/contribution/ContributionCollapsedCard';
 import SuperUserOptions from '../super-user-options/container';
 
 const renderPRLinks = (prList) =>
@@ -47,7 +48,11 @@ const Contribution = ({ contribution, fullName, imageLink, devUser }) => {
         onClick={gotoUrl}
         aria-hidden="true"
       >
-        {contributionCard()}
+        {contribution.task.isCollapsed ? (
+          <ContributionCollapsedCard contribution={contribution} />
+        ) : (
+          contributionCard()
+        )}
       </div>
     );
   };
@@ -64,7 +69,16 @@ const ContributionCard = ({
   urlObj,
 }) => {
   const {
-    task: { id, title, startedOn, endsOn, status, purpose, isNoteworthy },
+    task: {
+      id,
+      title,
+      startedOn,
+      endsOn,
+      status,
+      purpose,
+      isNoteworthy,
+      isCollapsed,
+    },
     prList,
   } = contribution;
   const isTitleAvailable = !!title;
@@ -143,6 +157,7 @@ const ContributionCard = ({
           <SuperUserOptions
             showSettings={showSettings}
             isNoteworthy={isNoteworthy}
+            isCollapsed={isCollapsed}
             taskId={id}
           />
           <div className={classNames.prLink}>{renderPRLinks(prList)}</div>

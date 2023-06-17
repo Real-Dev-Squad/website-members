@@ -91,7 +91,7 @@ const Profile = (props) => {
   const modalContent = useRef(null);
   const introBtn = useRef(null);
   const getMembersIntroURL = (RDSID) =>
-    `https://api.realdevsquad.com/members/intro/${RDSID}`;
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}/members/intro/${RDSID}`;
   const parameter = username;
 
   const onFormSubmit = (data) => {
