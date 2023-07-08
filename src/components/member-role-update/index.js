@@ -39,6 +39,7 @@ const MemberRoleUpdate = () => {
       setUpdateStatus('Some error occured, please contact admin');
     }
   };
+
   const archiveTheMember = async (user) => {
     setIsUpdating(true);
     const { status } = await archiveMember(user);
@@ -68,6 +69,7 @@ const MemberRoleUpdate = () => {
         >
           Archive Member
         </button>
+
         <br />
 
         {userData && tagData && levelData && (
