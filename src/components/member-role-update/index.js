@@ -26,6 +26,9 @@ const MemberRoleUpdate = () => {
     `${BASE_API_URL}/users/${selectedMember}`
   );
 
+  const member = userData?.user.roles.member;
+  const archived = userData?.user.roles.archived;
+
   const { data: tagData } = useFetch(`${BASE_API_URL}/tags`);
   const { data: levelData } = useFetch(`${BASE_API_URL}/levels`);
 
@@ -54,21 +57,40 @@ const MemberRoleUpdate = () => {
   const renderPromoteButton = () => {
     return (
       <>
-        <button
-          className={classNames.moveToMember}
-          type="button"
-          onClick={() => promoteToMember(selectedMember)}
-        >
-          Promote to Member
-        </button>
-
-        <button
-          className={classNames.moveToMember}
-          type="button"
-          onClick={() => archiveTheMember(selectedMember)}
-        >
-          Archive Member
-        </button>
+        {member ? (
+          <button
+            className={classNames.moveToMember}
+            type="button"
+            onClick={() => promoteToMember(selectedMember)}
+          >
+            Demote Member
+          </button>
+        ) : (
+          <button
+            className={classNames.moveToMember}
+            type="button"
+            onClick={() => promoteToMember(selectedMember)}
+          >
+            Promote to Member
+          </button>
+        )}
+        {archived ? (
+          <button
+            className={classNames.moveToMember}
+            type="button"
+            onClick={() => archiveTheMember(selectedMember)}
+          >
+            Unarchive Member
+          </button>
+        ) : (
+          <button
+            className={classNames.moveToMember}
+            type="button"
+            onClick={() => archiveTheMember(selectedMember)}
+          >
+            Archive Member
+          </button>
+        )}
 
         <br />
 
