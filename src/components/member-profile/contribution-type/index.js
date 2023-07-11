@@ -5,8 +5,14 @@ import classNames from '@components/member-profile/contribution-type/contributio
 import Contribution from '@components/member-profile/contribution/';
 import ActiveTask from '@components/member-profile/active-task';
 
-const renderContributions = (contributions, fullName, imageLink, devUser) =>
-  contributions.map((noteWorthyContribution, index) => (
+const ASSIGNED = 'ASSIGNED';
+
+const renderContributions = (contributions, fullName, imageLink, devUser) => {
+  const allContributions = contributions.filter(
+    ({ task }) => task.status !== ASSIGNED
+  );
+
+  return allContributions.map((noteWorthyContribution, index) => (
     <Contribution
       contribution={noteWorthyContribution}
       key={index}
@@ -15,6 +21,7 @@ const renderContributions = (contributions, fullName, imageLink, devUser) =>
       devUser={devUser}
     />
   ));
+};
 
 const renderActiveTasks = (tasks) => {
   return (
