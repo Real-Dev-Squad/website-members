@@ -54,43 +54,47 @@ const MemberRoleUpdate = () => {
     }
   };
 
+  const memberRoleUpdateButton = member ? (
+    <button
+      className={classNames.moveToMember}
+      type="button"
+      onClick={() => promoteToMember(selectedMember)}
+    >
+      Demote Member
+    </button>
+  ) : (
+    <button
+      className={classNames.moveToMember}
+      type="button"
+      onClick={() => promoteToMember(selectedMember)}
+    >
+      Promote to Member
+    </button>
+  );
+
+  const memeberArchiveUnArchiveButton = archived ? (
+    <button
+      className={classNames.moveToMember}
+      type="button"
+      onClick={() => archiveTheMember(selectedMember)}
+    >
+      Unarchive Member
+    </button>
+  ) : (
+    <button
+      className={classNames.moveToMember}
+      type="button"
+      onClick={() => archiveTheMember(selectedMember)}
+    >
+      Archive Member
+    </button>
+  );
+
   const renderPromoteButton = () => {
     return (
       <>
-        {member ? (
-          <button
-            className={classNames.moveToMember}
-            type="button"
-            onClick={() => promoteToMember(selectedMember)}
-          >
-            Demote Member
-          </button>
-        ) : (
-          <button
-            className={classNames.moveToMember}
-            type="button"
-            onClick={() => promoteToMember(selectedMember)}
-          >
-            Promote to Member
-          </button>
-        )}
-        {archived ? (
-          <button
-            className={classNames.moveToMember}
-            type="button"
-            onClick={() => archiveTheMember(selectedMember)}
-          >
-            Unarchive Member
-          </button>
-        ) : (
-          <button
-            className={classNames.moveToMember}
-            type="button"
-            onClick={() => archiveTheMember(selectedMember)}
-          >
-            Archive Member
-          </button>
-        )}
+        {memberRoleUpdateButton}
+        {memeberArchiveUnArchiveButton}
 
         <br />
 

@@ -390,34 +390,26 @@ const Profile = (props) => {
               className={classNames.profilePic}
               alt={fullName}
             />
-            {isSuperUser && (
-              <>
-                <div
-                  className={classNames.memberStatus}
-                  onMouseEnter={() => setShowSettings(true)}
-                  onMouseLeave={() => setShowSettings(false)}
-                >
-                  <img
-                    alt="info icon"
-                    src="icons/info.png"
-                    width={20}
-                    height={20}
+            {dev && isSuperUser && isOptionKeyPressed && (
+              <div
+                className={classNames.memberStatus}
+                onMouseEnter={() => setShowSettings(true)}
+                onMouseLeave={() => setShowSettings(false)}
+              >
+                <img
+                  alt="info icon"
+                  src="icons/info.png"
+                  width={20}
+                  height={20}
+                />
+                <span>{memberStatusMessage}</span>
+                <span style={{ marginLeft: '0.8rem' }}>
+                  <SuperUserOptions
+                    showSettings={showSettings}
+                    username={membersData.username}
                   />
-                  <span>{memberStatusMessage}</span>
-                  {dev && (
-                    <span style={{ marginLeft: '0.8rem' }}>
-                      {isSuperUser && isOptionKeyPressed && (
-                        <>
-                          <SuperUserOptions
-                            showSettings={showSettings}
-                            username={membersData.username}
-                          />
-                        </>
-                      )}
-                    </span>
-                  )}
-                </div>
-              </>
+                </span>
+              </div>
             )}
 
             <div className={classNames.personalInfo}>
