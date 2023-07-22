@@ -59,8 +59,6 @@ export {
   getCloudinaryImgURL,
   getActiveTasksURL,
   getUserProfileSelf,
-  // getAddMemberRoleURL,
-  // getArchiveMemberURL,
   getTaskUpdateURL,
   getTagAssignURL,
   updateMemberRole,
