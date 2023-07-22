@@ -40,11 +40,8 @@ const getActiveTasksURL = (rdsId) => `${baseURL}/tasks/${rdsId}?status=active`;
  *
  * @param {string} rdsId
  */
-const getAddMemberRoleURL = (rdsId) =>
-  `${baseURL}/members/moveToMembers/${rdsId}`;
 
-const getArchiveMemberURL = (rdsId) =>
-  `${baseURL}/members/archiveMembers/${rdsId}`;
+const updateMemberRole = (rdsId) => `${baseURL}/users/${rdsId}/temporary/data`;
 
 /**
  *
@@ -62,8 +59,9 @@ export {
   getCloudinaryImgURL,
   getActiveTasksURL,
   getUserProfileSelf,
-  getAddMemberRoleURL,
-  getArchiveMemberURL,
+  // getAddMemberRoleURL,
+  // getArchiveMemberURL,
   getTaskUpdateURL,
   getTagAssignURL,
+  updateMemberRole,
 };

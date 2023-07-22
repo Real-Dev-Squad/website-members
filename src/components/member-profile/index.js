@@ -403,7 +403,7 @@ const Profile = (props) => {
                   height={20}
                 />
                 <span>{memberStatusMessage}</span>
-                <span style={{ marginLeft: '0.8rem' }}>
+                <span className={classNames.showSettingsButton}>
                   <SuperUserOptions
                     showSettings={showSettings}
                     username={membersData.username}
