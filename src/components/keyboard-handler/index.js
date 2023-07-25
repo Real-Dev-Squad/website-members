@@ -3,7 +3,7 @@ import { useKeyboardContext } from '@store/keyboard/context';
 import { ALT_KEY } from '@constants/AppConstants';
 
 function isOptionKey(e) {
-  e.preventDefault();
+  if (e.key === ALT_KEY) e.preventDefault();
   return e.key === ALT_KEY;
 }
 
