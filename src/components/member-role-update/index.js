@@ -23,64 +23,52 @@ const MemberRoleUpdate = () => {
     `${BASE_API_URL}/users/${selectedMember}`
   );
 
-  const member = userData?.user.roles.member;
-  const archived = userData?.user.roles.archived;
+  const member = userData?.user?.roles.member;
+  const archived = userData?.user?.roles.archived;
   const userId = userData?.user.id;
   const { data: tagData } = useFetch(`${BASE_API_URL}/tags`);
   const { data: levelData } = useFetch(`${BASE_API_URL}/levels`);
 
-  const promoteToMember = async (id) => {
+  const promoteDemoteAMember = async (id) => {
+    let memberRole = null;
     setIsUpdating(true);
-    const role = {
-      member: true,
-    };
-    const { status } = await memberRoleUpdate(id, role);
-    setIsUpdating(false);
-    if (status === 200) {
-      setUpdateStatus('user promoted to a member');
+    if (member) {
+      memberRole = false;
     } else {
+      memberRole = true;
+    }
+    const role = {
+      member: memberRole,
+    };
+    try {
+      const { status } = await memberRoleUpdate(id, role);
+      setIsUpdating(false);
+      if (status === 200) {
+        setUpdateStatus('user promoted to a member');
+      }
+    } catch (error) {
       setUpdateStatus('some error occured, please contact admin');
     }
   };
 
-  const demoteFromMember = async (id) => {
+  const archiveUnArchiveTheMember = async (id) => {
+    let archiveRole = null;
     setIsUpdating(true);
-    const role = {
-      member: false,
-    };
-    const { status } = await memberRoleUpdate(id, role);
-    setIsUpdating(false);
-    if (status === 200) {
-      setUpdateStatus('user deomoted from member');
+    if (archived) {
+      archiveRole = false;
     } else {
-      setUpdateStatus('some error occured, please contact admin');
+      archiveRole = true;
     }
-  };
-
-  const archiveTheMember = async (id) => {
-    setIsUpdating(true);
     const role = {
-      archived: true,
+      archived: archiveRole,
     };
-    const { status } = await memberRoleUpdate(id, role);
-    setIsUpdating(false);
-    if (status === 200) {
-      setUpdateStatus('user archived!');
-    } else {
-      setUpdateStatus('Some error occured, please contact admin');
-    }
-  };
-
-  const unArchiveMember = async (id) => {
-    setIsUpdating(true);
-    const role = {
-      archived: false,
-    };
-    const { status } = await memberRoleUpdate(id, role);
-    setIsUpdating(false);
-    if (status === 200) {
-      setUpdateStatus('user un-archived!');
-    } else {
+    try {
+      const { status } = await memberRoleUpdate(id, role);
+      setIsUpdating(false);
+      if (status === 200) {
+        setUpdateStatus('user archived!');
+      }
+    } catch (error) {
       setUpdateStatus('Some error occured, please contact admin');
     }
   };
@@ -89,7 +77,7 @@ const MemberRoleUpdate = () => {
     <button
       className={classNames.moveToMember}
       type="button"
-      onClick={() => demoteFromMember(userId)}
+      onClick={() => promoteDemoteAMember(userId)}
     >
       Demote Member
     </button>
@@ -97,7 +85,7 @@ const MemberRoleUpdate = () => {
     <button
       className={classNames.moveToMember}
       type="button"
-      onClick={() => promoteToMember(userId)}
+      onClick={() => promoteDemoteAMember(userId)}
     >
       Promote to Member
     </button>
@@ -107,7 +95,7 @@ const MemberRoleUpdate = () => {
     <button
       className={classNames.moveToMember}
       type="button"
-      onClick={() => unArchiveMember(userId)}
+      onClick={() => archiveUnArchiveTheMember(userId)}
     >
       Unarchive Member
     </button>
@@ -115,7 +103,7 @@ const MemberRoleUpdate = () => {
     <button
       className={classNames.moveToMember}
       type="button"
-      onClick={() => archiveTheMember(userId)}
+      onClick={() => archiveUnArchiveTheMember(userId)}
     >
       Archive Member
     </button>

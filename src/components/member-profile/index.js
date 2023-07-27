@@ -367,6 +367,8 @@ const Profile = (props) => {
     e.target.src = '/images/Avatar.png';
   };
 
+  const superUserOptionKeyPress = dev && isSuperUser && isOptionKeyPressed;
+
   return (
     <>
       {showModal && (
@@ -390,7 +392,7 @@ const Profile = (props) => {
               className={classNames.profilePic}
               alt={fullName}
             />
-            {dev && isSuperUser && isOptionKeyPressed && (
+            {superUserOptionKeyPress && (
               <div
                 className={classNames.memberStatus}
                 onMouseEnter={() => setShowSettings(true)}
