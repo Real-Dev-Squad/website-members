@@ -73,39 +73,23 @@ const MemberRoleUpdate = () => {
     }
   };
 
-  const memberRoleUpdateButton = member ? (
+  const memberRoleUpdateButton = (
     <button
       className={classNames.moveToMember}
       type="button"
       onClick={() => promoteDemoteAMember(userId)}
     >
-      Demote Member
-    </button>
-  ) : (
-    <button
-      className={classNames.moveToMember}
-      type="button"
-      onClick={() => promoteDemoteAMember(userId)}
-    >
-      Promote to Member
+      {member ? 'Demote Member' : 'Promote to Member'}
     </button>
   );
 
-  const memeberArchiveUnArchiveButton = archived ? (
+  const memeberArchiveUnArchiveButton = (
     <button
       className={classNames.moveToMember}
       type="button"
       onClick={() => archiveUnArchiveTheMember(userId)}
     >
-      Unarchive Member
-    </button>
-  ) : (
-    <button
-      className={classNames.moveToMember}
-      type="button"
-      onClick={() => archiveUnArchiveTheMember(userId)}
-    >
-      Archive Member
+      {archived ? 'Unarchive Member' : 'Archive Member'}
     </button>
   );
 
