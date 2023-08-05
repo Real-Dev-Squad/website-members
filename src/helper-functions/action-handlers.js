@@ -1,24 +1,18 @@
 import { fetch } from './fetch';
 import {
-  getAddMemberRoleURL,
   getUserProfileSelf,
-  getArchiveMemberURL,
   getTaskUpdateURL,
   getTagAssignURL,
+  updateMemberRole,
 } from './urls';
 
-const moveToMember = (user) =>
-  fetch(getAddMemberRoleURL(user), 'patch', null, null, null, {
+const memberRoleUpdate = (user, role) =>
+  fetch(updateMemberRole(user), 'patch', null, role, null, {
     withCredentials: true,
   });
 
 const getUserSelf = () =>
   fetch(getUserProfileSelf, 'get', null, null, null, {
-    withCredentials: true,
-  });
-
-const archiveMember = (user) =>
-  fetch(getArchiveMemberURL(user), 'patch', null, null, null, {
     withCredentials: true,
   });
 
@@ -46,4 +40,4 @@ const assignTags = (data) =>
     }
   );
 
-export { archiveMember, moveToMember, getUserSelf, moveTask, assignTags };
+export { getUserSelf, moveTask, assignTags, memberRoleUpdate };
