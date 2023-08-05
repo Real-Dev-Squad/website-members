@@ -45,7 +45,7 @@ export async function getServerSideProps(context) {
     const { members } = await res.json();
 
     for (const memberData of members) {
-      const { picture, isMember, first_name, archivedMember } = memberData;
+      const { picture, isMember, first_name, roles } = memberData;
 
       const img_url = picture
         ? getCloudinaryImgURL(
@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
       }
 
       // Filtering New Members
-      if (!isMember && !archivedMember && first_name) {
+      if (!isMember && first_name && roles.in_discord) {
         newMembersDetails.push({
           ...memberData,
           img_url,
