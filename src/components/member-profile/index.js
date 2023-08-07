@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import SocialMediaIcon from '@components/social-media-icon';
 import getBadges from '@components/member-profile/mock/get-badges';
@@ -14,6 +15,9 @@ import { KEY_ESC, KEY_TAB } from '@constants/AppConstants';
 import MemberTaskUpdate from '@components/member-task-update';
 import { useTaskContext } from '@store/tasks/tasks-context';
 import { userContext } from '@store/user/user-context';
+import { useKeyboardContext } from '@store/keyboard/context';
+import SuperUserOptions from '@components/member-card/super-user-options';
+import MemberRoleUpdate from '@components/member-role-update';
 
 const renderBadgeImages = (badges) =>
   badges.map((badge) => (
@@ -66,25 +70,28 @@ const Profile = (props) => {
   } = props;
   const { membersData } = props;
   const isMember = Boolean(membersData?.roles?.member);
+
   const memberStatusMessage = isMember
     ? 'User is a Member'
     : 'User is not a Member';
-
+  const { showMemberRoleUpdateModal, isSuperUser } = userContext();
   const socialMedia = [
     'twitter_id',
     'github_id',
     'linkedin_id',
     'instagram_id',
   ];
+  const { query } = useRouter() || { query: { dev: false } };
+  const { dev } = query;
 
   const { showMemberTaskUpdateModal } = useTaskContext();
-  const { isSuperUser } = userContext();
   const fullName = `${first_name} ${last_name}`;
   const memberName = fullName.trim() || '--';
   const rdsUserName = `@${username}`;
 
   const badges = getBadges(username);
-
+  const { isOptionKeyPressed } = useKeyboardContext();
+  const [showSettings, setShowSettings] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { register, handleSubmit, errors } = useForm();
   const submitBtnRef = useRef(null);
@@ -360,12 +367,19 @@ const Profile = (props) => {
     e.target.src = '/images/Avatar.png';
   };
 
+  const superUserOptionKeyPress = dev && isSuperUser && isOptionKeyPressed;
+
   return (
     <>
       {showModal && (
         <Modal style={modalStyle} show={showModal} closeModal={closeModal}>
           {children}
         </Modal>
+      )}
+      {isSuperUser && (
+        <div id="memberRoleUpdateModal">
+          {showMemberRoleUpdateModal && <MemberRoleUpdate />}
+        </div>
       )}
       {showMemberTaskUpdateModal && <MemberTaskUpdate />}
       <div className={classNames.container}>
@@ -378,8 +392,12 @@ const Profile = (props) => {
               className={classNames.profilePic}
               alt={fullName}
             />
-            {isSuperUser && (
-              <div className={classNames.memberStatus}>
+            {superUserOptionKeyPress && (
+              <div
+                className={classNames.memberStatus}
+                onMouseEnter={() => setShowSettings(true)}
+                onMouseLeave={() => setShowSettings(false)}
+              >
                 <img
                   alt="info icon"
                   src="icons/info.png"
@@ -387,6 +405,12 @@ const Profile = (props) => {
                   height={20}
                 />
                 <span>{memberStatusMessage}</span>
+                <span className={classNames.showSettingsButton}>
+                  <SuperUserOptions
+                    showSettings={showSettings}
+                    username={membersData.username}
+                  />
+                </span>
               </div>
             )}
 
