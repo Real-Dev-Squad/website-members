@@ -21,6 +21,21 @@ const ActiveTask = ({ taskDetails }) => {
   );
   const showProgressIndicator = progressIndicator(showEstimatedDay, classNames);
 
+  const handleProgressBarColor = () => {
+    if (percentageOfDaysRemaining >= percentOfTaskLeft) {
+      return classNames.progressIndicatorGreen; // green
+    }
+    if (percentageOfDaysRemaining < 50 && percentOfTaskLeft > 75) {
+      return classNames.progressIndicatorOrange; // orange
+    }
+    if (percentageOfDaysRemaining < 25 && percentOfTaskLeft > 35) {
+      return classNames.progressIndicatorRed; // red
+    }
+    return classNames.progressIndicatorYellow; // yellow
+  };
+
+  const progressBarColor = handleProgressBarColor();
+
   return (
     <div className={classNames.container}>
       <div className={classNames.taskSection}>
@@ -39,7 +54,7 @@ const ActiveTask = ({ taskDetails }) => {
         </div>
         <div className={classNames.progressBar}>
           <div
-            className={showProgressIndicator}
+            className={`${showProgressIndicator} ${progressBarColor}`}
             style={{ width: `${percentCompleted}%` }}
             data-testid="progressIndicator"
           />
