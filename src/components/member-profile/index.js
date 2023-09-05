@@ -99,10 +99,14 @@ const Profile = (props) => {
   const introBtn = useRef(null);
   const getMembersIntroURL = (RDSID) =>
     `${process.env.NEXT_PUBLIC_BASE_API_URL}/members/intro/${RDSID}`;
+  const getMembersIntroURLDev = (RDSID) =>
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}/users/intro/${RDSID}`;
   const parameter = username;
 
   const onFormSubmit = (data) => {
-    const rdsApiURL = getMembersIntroURL(parameter);
+    const rdsApiURL = dev
+      ? getMembersIntroURLDev(parameter)
+      : getMembersIntroURL(parameter);
     fetch(rdsApiURL, {
       method: 'POST',
       body: JSON.stringify(data),

@@ -1,6 +1,10 @@
 /* eslint-disable no-restricted-syntax */
 import PropTypes from 'prop-types';
-import { getMembersURL, getCloudinaryImgURL } from '@helper-functions/urls';
+import {
+  getMembersURL,
+  getCloudinaryImgURL,
+  getMemberURLDev,
+} from '@helper-functions/urls';
 import fetch from 'cross-fetch';
 import Home from '@components/home';
 import Layout from '@components/layout';
@@ -31,12 +35,14 @@ const Index = ({ members, newMembers, errorMsg }) => {
 };
 
 export async function getServerSideProps(context) {
+  const { query } = context;
+  const { dev } = query;
   context.res.setHeader('Cache-Control', `max-age=${CACHE_MAX_AGE}`);
   const membersDetails = [];
   const newMembersDetails = [];
 
   try {
-    const res = await fetch(getMembersURL);
+    const res = await fetch(dev ? getMemberURLDev : getMembersURL);
     if (res.status !== 200) {
       throw new Error(
         'There was some issues fetching the members, Please try again after some time'
