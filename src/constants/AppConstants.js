@@ -35,11 +35,6 @@ const NAVMENU = [
     name: 'Members',
     path: 'https://members.realdevsquad.com/',
   },
-  // {
-  //   id: '5',
-  //   name: 'Crypto',
-  //   path: 'https://crypto.realdevsquad.com/',
-  // },
   {
     id: '6',
     name: 'Status',
