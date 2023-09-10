@@ -32,7 +32,7 @@ jest.mock('next/router', () => {
 });
 
 describe('Members Profile', () => {
-  it('Should render member status properly', async () => {
+  it('Should render member status properly', () => {
     render(
       <KeyboardProvider
         initialValue={{
