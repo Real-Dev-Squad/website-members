@@ -2,16 +2,16 @@ import { createContext, useContext, useState } from 'react';
 
 const KeyboardContext = createContext();
 
-export const KeyboardProvider = ({ children }) => {
+export const KeyboardProvider = ({ children, initialValue }) => {
   const [isOptionKeyPressed, setIsOptionKeyPressed] = useState(false);
 
-  const initialValue = {
+  const value = {
     isOptionKeyPressed,
     setIsOptionKeyPressed,
   };
 
   return (
-    <KeyboardContext.Provider value={initialValue}>
+    <KeyboardContext.Provider value={initialValue || value}>
       {children}
     </KeyboardContext.Provider>
   );
