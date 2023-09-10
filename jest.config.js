@@ -8,5 +8,6 @@ module.exports = {
     '^@store(.*)$': '<rootDir>/src/store$1',
     '^@helper-functions(.*)$': '<rootDir>/src/helper-functions$1',
     '^@constants(.*)$': '<rootDir>/src/constants$1',
+    '^@custom-hooks(.*)$': '<rootDir>/src/custom-hooks$1',
   },
 };
