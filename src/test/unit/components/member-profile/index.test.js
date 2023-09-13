@@ -123,7 +123,7 @@ describe('Members Profile', () => {
     const memberRoleUpdateModal = screen.getByTestId('memberRoleUpdateModal');
     expect(memberRoleUpdateModal).toBeInTheDocument();
   });
-  it('renders the "Promote to Member" button', () => {
+  it('renders the button in the MemberRoleUpdate', () => {
     render(
       <KeyboardProvider
         initialValue={{
@@ -144,7 +144,7 @@ describe('Members Profile', () => {
     expect(archiveUnarchiveButton).toBeInTheDocument();
     expect(archiveUnarchiveButton.textContent).toEqual('Archive Member');
   });
-  it("Should render the 'Archive Member' component, when ?dev=true in the query", () => {
+  it('Should render the reason text box in the MemberRoleUpdate, when ?dev=true in the query', () => {
     render(
       <KeyboardProvider
         initialValue={{
