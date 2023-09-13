@@ -9,3 +9,24 @@
   font-size: inherit;
   margin: 10px;
 }
+.archiveUser {
+  text-align: left;
+  &__textArea {
+    width: 100%;
+    height: 7rem;
+    padding: 0.4rem;
+    text-align: justify;
+    font-family: inherit;
+    font-size: inherit;
+  }
+  &__error {
+    color: #e13110;
+    text-align: center;
+    font-size: inherit;
+  }
+  &__success {
+    color: #1e7e34;
+    text-align: center;
+    font-size: inherit;
+  }
+}
