@@ -377,7 +377,7 @@ const Profile = (props) => {
         </Modal>
       )}
       {isSuperUser && (
-        <div id="memberRoleUpdateModal">
+        <div id="memberRoleUpdateModal" data-testid="memberRoleUpdateModal">
           {showMemberRoleUpdateModal && <MemberRoleUpdate />}
         </div>
       )}
