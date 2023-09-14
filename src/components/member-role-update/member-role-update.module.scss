@@ -1,3 +1,5 @@
+@import '../../styles/constants/colors';
+
 .moveToMember {
   margin: 10px;
   padding: 10px;
@@ -20,12 +22,12 @@
     font-size: inherit;
   }
   &__error {
-    color: #e13110;
+    color: $color-red;
     text-align: center;
     font-size: inherit;
   }
   &__success {
-    color: #1e7e34;
+    color: $color-green;
     text-align: center;
     font-size: inherit;
   }

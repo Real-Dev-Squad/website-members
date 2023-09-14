@@ -164,7 +164,7 @@ describe('Members Profile', () => {
 
     expect(archiveUnarchiveButton).toBeInTheDocument();
     expect(archiveUnarchiveButton.textContent).toEqual('Archive Member');
-    expect(reasonInputLabel.textContent).toEqual('Reason: ');
+    expect(reasonInputLabel.textContent).toEqual('Reason:');
     expect(reasonTextBox).toBeInTheDocument();
     expect(reasonTextBox).toHaveAttribute(
       'placeholder',

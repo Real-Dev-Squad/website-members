@@ -146,7 +146,7 @@ const MemberRoleUpdate = () => {
     <div className={classNames.archiveUser}>
       <p className={classNames.archiveUser__error}>{validateError}</p>
       <label htmlFor="archiveReason" data-testid="reasonInputLabel">
-        Reason:{' '}
+        Reason:
         <textarea
           className={classNames.archiveUser__textArea}
           id="archiveReason"
