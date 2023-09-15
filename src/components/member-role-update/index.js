@@ -13,7 +13,7 @@ import { memberRoleUpdate } from '../../helper-functions/action-handlers';
 const MemberRoleUpdate = () => {
   const { query } = useRouter() || { query: { dev: false } };
   const { dev } = query;
-  const isDev = Boolean(dev); // convert string to boolean
+  const isDev = Boolean(dev);
   const {
     showMemberRoleUpdateModal,
     setShowMemberRoleUpdateModal,
@@ -60,17 +60,14 @@ const MemberRoleUpdate = () => {
     setIsUpdating(true);
     let body = {};
     if (archived) {
-      // if user is already archived
       body = {
         archived: false,
       };
     } else if (!reason && !archived) {
-      // if user is not archived and reason is not provided
       body = {
         archived: true,
       };
     } else {
-      // if user is not archived and reason is provided
       body = {
         archived: true,
         reason,
@@ -98,10 +95,10 @@ const MemberRoleUpdate = () => {
     </button>
   );
   const handleValidReason = (id, reason) => {
-    const isEmptyReason = !reason.length; // check for empty string
+    const isEmptyReason = !reason.length;
     const isReasonEmptyOrWhitespace = /^\s*$/.test(reason); // check for empty or multiple whitespaces
-    const isMoreThan99Words = reason.split(' ').length > 99; // check for more than 99 words
-    const isMoreThan50Characters = reason.length <= 25; // check for more than 25 characters
+    const isMoreThan99Words = reason.split(' ').length > 99;
+    const isMoreThan50Characters = reason.length <= 25;
     switch (!archived) {
       case isEmptyReason:
         setvalidateError('Reason cannot be empty!');
@@ -124,7 +121,7 @@ const MemberRoleUpdate = () => {
       !isMoreThan99Words &&
       !isMoreThan50Characters;
     if (isValid || archived) {
-      archiveUnArchiveTheMember(id, reason); // if valid reason or unarchiving, then archive/unarchive
+      archiveUnArchiveTheMember(id, reason);
     }
   };
   const memeberArchiveUnArchiveButton = (
