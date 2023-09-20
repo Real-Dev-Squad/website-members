@@ -6,8 +6,8 @@ import {
   updateMemberRole,
 } from './urls';
 
-const memberRoleUpdate = (user, role) =>
-  fetch(updateMemberRole(user), 'patch', null, role, null, {
+const memberRoleUpdate = (user, body) =>
+  fetch(updateMemberRole(user), 'patch', null, body, null, {
     withCredentials: true,
   });
 
