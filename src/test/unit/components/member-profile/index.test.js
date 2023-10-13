@@ -4,6 +4,11 @@ import { TaskContextProvider } from '@store/tasks/tasks-context';
 import { UserContextProvider } from '@store/user/user-context';
 import { KeyboardProvider } from '@store/keyboard/context';
 import MemberRoleUpdate from '@components/member-role-update';
+import {
+  emptyActiveTasksError,
+  emptyContributionsError,
+  emptyNoteworthyContributionsError,
+} from '@constants/error-messages';
 
 const notaMember = {
   roles: {
@@ -21,6 +26,13 @@ const isaMember = {
 const initialUserContext = {
   isSuperUser: true,
   showMemberRoleUpdateModal: true,
+};
+const activeTasks = {
+  tasks: [],
+};
+const contributions = {
+  noteworthy: [],
+  all: [],
 };
 
 jest.mock('next/router', () => {
@@ -82,6 +94,38 @@ describe('Members Profile', () => {
 
     memberStatus = screen.getByText('User is a Member');
     expect(memberStatus).toBeInTheDocument();
+  });
+  it('Should render empty error message if no data inside accordion sections', () => {
+    render(
+      <KeyboardProvider
+        initialValue={{
+          isOptionKeyPressed: true,
+          setIsOptionKeyPressed: jest.fn(),
+        }}
+      >
+        <UserContextProvider value={initialUserContext}>
+          <TaskContextProvider>
+            <Profile
+              membersData={isaMember}
+              activeTasks={activeTasks}
+              contributions={contributions}
+            />
+          </TaskContextProvider>
+        </UserContextProvider>
+      </KeyboardProvider>
+    );
+    const emptyActiveTasksErrorElement = screen.getByText(
+      emptyActiveTasksError
+    );
+    expect(emptyActiveTasksErrorElement).toBeInTheDocument();
+    const emptyContributionsErrorElement = screen.getByText(
+      emptyContributionsError
+    );
+    expect(emptyContributionsErrorElement).toBeInTheDocument();
+    const emptyNoteworthyContributionsErrorElement = screen.getByText(
+      emptyNoteworthyContributionsError
+    );
+    expect(emptyNoteworthyContributionsErrorElement).toBeInTheDocument();
   });
 
   it('Should render the info icon correctly', () => {
