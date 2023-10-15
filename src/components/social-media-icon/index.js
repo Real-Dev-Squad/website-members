@@ -6,6 +6,7 @@ import classNames from '@components/social-media-icon/social-media-icon.module.s
 const SocialMediaIcon = (props) => {
   const { id, type } = props;
 
+  
   const onClick = (e) => {
     e.stopPropagation();
   };
