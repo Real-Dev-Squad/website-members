@@ -6,6 +6,14 @@ import classNames from '@components/social-media-icon/social-media-icon.module.s
 const SocialMediaIcon = (props) => {
   const { id, type } = props;
 
+  let checkId = id;
+
+  if (checkId.includes('https') || checkId.includes('http')) {
+    checkId = checkId.split('/').pop();
+  } else {
+    checkId = id;
+  }
+
   const onClick = (e) => {
     e.stopPropagation();
   };
@@ -17,7 +25,7 @@ const SocialMediaIcon = (props) => {
       target="_blank"
       rel="noreferrer"
       tabIndex="0"
-      href={`${iconMapper[type].href}/${[id]}`}
+      href={`${iconMapper[type].href}/${[checkId]}`}
     >
       <img
         className={classNames.iconImage}
