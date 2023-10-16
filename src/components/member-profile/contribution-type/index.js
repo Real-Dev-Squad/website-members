@@ -11,40 +11,59 @@ import {
 } from '@constants/error-messages';
 
 const renderContributions = (
-  type,
   contributions,
   fullName,
   imageLink,
-  devUser
+  devUser,
+  type
 ) => {
-  if (contributions?.length > 0) {
-    return contributions.map((noteWorthyContribution, index) => (
-      <Contribution
-        contribution={noteWorthyContribution}
-        key={index}
-        fullName={fullName}
-        imageLink={imageLink}
-        devUser={devUser}
-      />
-    ));
+  if (devUser) {
+    if (contributions?.length > 0) {
+      return contributions.map((noteWorthyContribution, index) => (
+        <Contribution
+          contribution={noteWorthyContribution}
+          key={index}
+          fullName={fullName}
+          imageLink={imageLink}
+          devUser={devUser}
+        />
+      ));
+    }
+    return (
+      <p className={classNames.emptyAccordianError}>
+        {type === 'All'
+          ? emptyContributionsError
+          : emptyNoteworthyContributionsError}
+      </p>
+    );
   }
-  return (
-    <p className={classNames.emptyAccordianError}>
-      {type === 'All'
-        ? emptyContributionsError
-        : emptyNoteworthyContributionsError}
-    </p>
-  );
+  return contributions?.map((noteWorthyContribution, index) => (
+    <Contribution
+      contribution={noteWorthyContribution}
+      key={index}
+      fullName={fullName}
+      imageLink={imageLink}
+      devUser={devUser}
+    />
+  ));
 };
 
-const renderActiveTasks = (tasks) => {
-  if (tasks?.length > 0) {
-    return tasks.map((task, index) => {
-      return <ActiveTask key={index} taskDetails={task} />;
-    });
+const renderActiveTasks = (tasks, devUser) => {
+  if (devUser) {
+    if (tasks?.length > 0) {
+      return tasks.map((task, index) => {
+        return <ActiveTask key={index} taskDetails={task} />;
+      });
+    }
+    return (
+      <p className={classNames.emptyAccordianError}>{emptyActiveTasksError}</p>
+    );
   }
   return (
-    <p className={classNames.emptyAccordianError}>{emptyActiveTasksError}</p>
+    tasks &&
+    tasks.map((task, index) => {
+      return <ActiveTask key={index} taskDetails={task} />;
+    })
   );
 };
 
@@ -62,7 +81,18 @@ const ContributionType = (props) => {
   }, [tasks.length, contributions.length]);
 
   const showMoreContentHandler = () => {
-    setShowMoreContent(!showMoreContent);
+    if (devUser) {
+      setShowMoreContent(!showMoreContent);
+    } else {
+      if (isContribution) {
+        if (contributions.length > 0) {
+          setShowMoreContent(!showMoreContent);
+        }
+      }
+      if (tasks.length > 0) {
+        setShowMoreContent(!showMoreContent);
+      }
+    }
   };
 
   const showMoreContentClass = showMoreContent
@@ -85,16 +115,23 @@ const ContributionType = (props) => {
       <div className={showMoreContentClass}>
         {type !== 'Active tasks' ? (
           <div>
-            {renderContributions(
-              type,
-              contributions,
-              fullName,
-              imageLink,
-              devUser
-            )}
+            {devUser
+              ? renderContributions(
+                  contributions,
+                  fullName,
+                  imageLink,
+                  devUser,
+                  type
+                )
+              : renderContributions(
+                  contributions,
+                  fullName,
+                  imageLink,
+                  devUser
+                )}
           </div>
         ) : (
-          <div>{renderActiveTasks(tasks)}</div>
+          <div>{renderActiveTasks(tasks, devUser)}</div>
         )}
       </div>
       <hr className={classNames.hrLine} />
