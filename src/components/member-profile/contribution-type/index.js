@@ -4,9 +4,40 @@ import PropTypes from 'prop-types';
 import classNames from '@components/member-profile/contribution-type/contributions-type.module.scss';
 import Contribution from '@components/member-profile/contribution/';
 import ActiveTask from '@components/member-profile/active-task';
+import {
+  emptyActiveTasksError,
+  emptyContributionsError,
+  emptyNoteworthyContributionsError,
+} from '@constants/error-messages';
 
-const renderContributions = (contributions, fullName, imageLink, devUser) =>
-  contributions.map((noteWorthyContribution, index) => (
+const renderContributions = (
+  contributions,
+  fullName,
+  imageLink,
+  devUser,
+  type
+) => {
+  if (devUser) {
+    if (contributions?.length > 0) {
+      return contributions.map((noteWorthyContribution, index) => (
+        <Contribution
+          contribution={noteWorthyContribution}
+          key={index}
+          fullName={fullName}
+          imageLink={imageLink}
+          devUser={devUser}
+        />
+      ));
+    }
+    return (
+      <p className={classNames.emptyAccordianError}>
+        {type === 'All'
+          ? emptyContributionsError
+          : emptyNoteworthyContributionsError}
+      </p>
+    );
+  }
+  return contributions?.map((noteWorthyContribution, index) => (
     <Contribution
       contribution={noteWorthyContribution}
       key={index}
@@ -15,8 +46,19 @@ const renderContributions = (contributions, fullName, imageLink, devUser) =>
       devUser={devUser}
     />
   ));
+};
 
-const renderActiveTasks = (tasks) => {
+const renderActiveTasks = (tasks, devUser) => {
+  if (devUser) {
+    if (tasks?.length > 0) {
+      return tasks.map((task, index) => {
+        return <ActiveTask key={index} taskDetails={task} />;
+      });
+    }
+    return (
+      <p className={classNames.emptyAccordianError}>{emptyActiveTasksError}</p>
+    );
+  }
   return (
     tasks &&
     tasks.map((task, index) => {
@@ -39,13 +81,17 @@ const ContributionType = (props) => {
   }, [tasks.length, contributions.length]);
 
   const showMoreContentHandler = () => {
-    if (isContribution) {
-      if (contributions.length > 0) {
+    if (devUser) {
+      setShowMoreContent(!showMoreContent);
+    } else {
+      if (isContribution) {
+        if (contributions.length > 0) {
+          setShowMoreContent(!showMoreContent);
+        }
+      }
+      if (tasks.length > 0) {
         setShowMoreContent(!showMoreContent);
       }
-    }
-    if (tasks.length > 0) {
-      setShowMoreContent(!showMoreContent);
     }
   };
 
@@ -69,10 +115,23 @@ const ContributionType = (props) => {
       <div className={showMoreContentClass}>
         {type !== 'Active tasks' ? (
           <div>
-            {renderContributions(contributions, fullName, imageLink, devUser)}
+            {devUser
+              ? renderContributions(
+                  contributions,
+                  fullName,
+                  imageLink,
+                  devUser,
+                  type
+                )
+              : renderContributions(
+                  contributions,
+                  fullName,
+                  imageLink,
+                  devUser
+                )}
           </div>
         ) : (
-          <div>{renderActiveTasks(tasks)}</div>
+          <div>{renderActiveTasks(tasks, devUser)}</div>
         )}
       </div>
       <hr className={classNames.hrLine} />

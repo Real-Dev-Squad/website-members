@@ -34,7 +34,8 @@ const getContributionsURL = (rdsId) => `${baseURL}/contributions/${rdsId}`;
  *
  * @param {string} rdsId
  */
-const getActiveTasksURL = (rdsId) => `${baseURL}/tasks/${rdsId}?status=active`;
+const getActiveTasksURL = (rdsId) =>
+  `${baseURL}/tasks/${rdsId}?status=IN_PROGRESS`;
 
 /**
  *
