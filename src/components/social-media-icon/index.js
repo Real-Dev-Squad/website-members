@@ -8,20 +8,15 @@ const SocialMediaIcon = (props) => {
 
   let checkId = id;
 
-
- 
-  if (checkId.includes('linkedin') &&(checkId.includes('https') || checkId.includes('http'))) {
-    
+  if (
+    checkId.includes('linkedin') &&
+    (checkId.includes('https') || checkId.includes('http'))
+  ) {
     checkId = checkId.split('/').at(-2);
-
+  } else if (checkId.includes('https') || checkId.includes('http')) {
+    checkId = checkId.split('/').pop();
   } else {
-
-    if (checkId.includes('https') || checkId.includes('http')) {
-      checkId = checkId.split('/').pop();
-    } else {
-      checkId = id;
-    }
-    
+    checkId = id;
   }
   const onClick = (e) => {
     e.stopPropagation();
