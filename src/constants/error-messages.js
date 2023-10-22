@@ -4,3 +4,4 @@ export const emptyContributionsError =
   'No Contributions have been received yet.';
 export const emptyNoteworthyContributionsError =
   'It would be wonderful to see some noteworthy contributions made.';
+export const notAvailableError = 'N/A';

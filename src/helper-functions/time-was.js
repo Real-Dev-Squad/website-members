@@ -1,6 +1,16 @@
+import { notAvailableError } from '@constants/error-messages';
+
 const calc = (interval, cycle) => Math.floor(cycle / interval);
 
-function timeWas(timestamp, completeDate = false, differentNow = Date.now()) {
+function timeWas(
+  timestamp,
+  completeDate = false,
+  differentNow = Date.now(),
+  devUser
+) {
+  if (devUser && (!timestamp || timestamp === 0)) {
+    return notAvailableError;
+  }
   const timeInSec = Math.floor(differentNow - timestamp) / 1000;
 
   /**
