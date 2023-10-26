@@ -7,7 +7,7 @@ const SocialMediaIcon = (props) => {
   const { id, type } = props;
 
   let socialUserId = id;
-
+if(socialUserId){
   if (
     socialUserId.includes('linkedin') &&
     (socialUserId.includes('https') || socialUserId.includes('http'))
@@ -18,6 +18,8 @@ const SocialMediaIcon = (props) => {
   } else {
     socialUserId = id;
   }
+}
+
   const onClick = (e) => {
     e.stopPropagation();
   };
