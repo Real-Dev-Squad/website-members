@@ -7,18 +7,21 @@ const SocialMediaIcon = (props) => {
   const { id, type } = props;
 
   let socialUserId = id;
-if(socialUserId){
-  if (
-    socialUserId.includes('linkedin') &&
-    (socialUserId.includes('https') || socialUserId.includes('http'))
-  ) {
-    socialUserId = socialUserId.split('/').at(-2);
-  } else if (socialUserId.includes('https') || socialUserId.includes('http')) {
-    socialUserId = socialUserId.split('/').pop();
-  } else {
-    socialUserId = id;
+  if (socialUserId) {
+    if (
+      socialUserId.includes('linkedin') &&
+      (socialUserId.includes('https') || socialUserId.includes('http'))
+    ) {
+      socialUserId = socialUserId.split('/').at(-2);
+    } else if (
+      socialUserId.includes('https') ||
+      socialUserId.includes('http')
+    ) {
+      socialUserId = socialUserId.split('/').pop();
+    } else {
+      socialUserId = id;
+    }
   }
-}
 
   const onClick = (e) => {
     e.stopPropagation();
