@@ -4,6 +4,12 @@ import { TaskContextProvider } from '@store/tasks/tasks-context';
 import { UserContextProvider } from '@store/user/user-context';
 import { KeyboardProvider } from '@store/keyboard/context';
 import MemberRoleUpdate from '@components/member-role-update';
+import {
+  emptyActiveTasksError,
+  emptyContributionsError,
+  emptyNoteworthyContributionsError,
+  notAvailableError,
+} from '@constants/error-messages';
 
 const notaMember = {
   roles: {
@@ -21,6 +27,13 @@ const isaMember = {
 const initialUserContext = {
   isSuperUser: true,
   showMemberRoleUpdateModal: true,
+};
+const activeTasks = {
+  tasks: [],
+};
+const contributions = {
+  noteworthy: [],
+  all: [],
 };
 
 jest.mock('next/router', () => {
@@ -82,6 +95,125 @@ describe('Members Profile', () => {
 
     memberStatus = screen.getByText('User is a Member');
     expect(memberStatus).toBeInTheDocument();
+  });
+  it('Should render empty error message if no data inside accordion sections', () => {
+    render(
+      <KeyboardProvider
+        initialValue={{
+          isOptionKeyPressed: true,
+          setIsOptionKeyPressed: jest.fn(),
+        }}
+      >
+        <UserContextProvider value={initialUserContext}>
+          <TaskContextProvider>
+            <Profile
+              membersData={isaMember}
+              devUser
+              activeTasks={activeTasks}
+              contributions={contributions}
+            />
+          </TaskContextProvider>
+        </UserContextProvider>
+      </KeyboardProvider>
+    );
+    const emptyActiveTasksErrorElement = screen.getByText(
+      emptyActiveTasksError
+    );
+    expect(emptyActiveTasksErrorElement).toBeInTheDocument();
+    const emptyContributionsErrorElement = screen.getByText(
+      emptyContributionsError
+    );
+    expect(emptyContributionsErrorElement).toBeInTheDocument();
+    const emptyNoteworthyContributionsErrorElement = screen.getByText(
+      emptyNoteworthyContributionsError
+    );
+    expect(emptyNoteworthyContributionsErrorElement).toBeInTheDocument();
+  });
+  it('Should render notAvailable error message in completion date, if start date is falsy inside task/contrbution object', () => {
+    const tasksWithEmptyStartDateAsFalsy = [
+      {
+        id: 'eHjZi3jzyqep43GvK2Rf',
+        percentCompleted: 50,
+        endsOn: '1698085740',
+        github: {
+          issue: {
+            html_url: 'https://github.com/Real-Dev-Squad/mobile-app/issues/263',
+            id: '1914069956',
+            assignee: 'harshitadatra',
+            status: 'open',
+          },
+        },
+        createdBy: 'amitprakash',
+        assignee: 'prakash',
+        title: 'Animation enhancement in Goals page',
+        type: 'feature',
+        priority: 'TBD',
+        startedOn: null,
+        status: 'IN_PROGRESS',
+        featureUrl:
+          'https://github.com/Real-Dev-Squad/website-members/issues/562',
+        assigneeId: 'YzEVZ50DHr37oL1mqqbO',
+      },
+    ];
+
+    const contributionsWithStartDateAsFalsy = {
+      all: [
+        {
+          task: {
+            id: 'CdsWvmW2c9h5D08bHsYa',
+            title: 'Dummy Title',
+            endsOn: '1697155200',
+            startedOn: '0',
+            status: 'COMPLETED',
+            featureUrl:
+              'https://github.com/Real-Dev-Squad/website-members/issues/562',
+            participants: [],
+          },
+          prList: [],
+        },
+      ],
+      noteworthy: [
+        {
+          task: {
+            id: 'CdsWvmW2c9h5D08bHsYa',
+            title: 'Dummy Title',
+            endsOn: '1697155200',
+            startedOn: undefined,
+            featureUrl:
+              'https://github.com/Real-Dev-Squad/website-members/issues/562',
+            status: 'COMPLETED',
+            participants: [],
+          },
+          prList: [],
+        },
+      ],
+    };
+    render(
+      <KeyboardProvider
+        initialValue={{
+          isOptionKeyPressed: true,
+          setIsOptionKeyPressed: jest.fn(),
+        }}
+      >
+        <UserContextProvider value={initialUserContext}>
+          <TaskContextProvider>
+            <Profile
+              membersData={isaMember}
+              devUser
+              tasks={tasksWithEmptyStartDateAsFalsy}
+              contributions={contributionsWithStartDateAsFalsy}
+            />
+          </TaskContextProvider>
+        </UserContextProvider>
+      </KeyboardProvider>
+    );
+    const notAvailableCompletetionDateElements =
+      screen.queryAllByText(notAvailableError);
+    notAvailableCompletetionDateElements.forEach((element) => {
+      expect(element).toHaveTextContent(notAvailableError);
+    });
+
+    expect(notAvailableCompletetionDateElements).toHaveLength(3);
   });
 
   it('Should render the info icon correctly', () => {
