@@ -52,7 +52,7 @@ const renderActiveTasks = (tasks, devUser) => {
   if (devUser) {
     if (tasks?.length > 0) {
       return tasks.map((task, index) => {
-        return <ActiveTask key={index} taskDetails={task} />;
+        return <ActiveTask key={index} taskDetails={task} devUser={devUser} />;
       });
     }
     return (
