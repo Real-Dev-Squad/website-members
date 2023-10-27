@@ -108,7 +108,6 @@ describe('Members Profile', () => {
           <TaskContextProvider>
             <Profile
               membersData={isaMember}
-              devUser
               activeTasks={activeTasks}
               contributions={contributions}
             />
@@ -199,7 +198,6 @@ describe('Members Profile', () => {
           <TaskContextProvider>
             <Profile
               membersData={isaMember}
-              devUser
               tasks={tasksWithEmptyStartDateAsFalsy}
               contributions={contributionsWithStartDateAsFalsy}
             />
