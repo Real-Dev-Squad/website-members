@@ -5,14 +5,20 @@ import { percentageofDaysRemaining } from '@helper-functions/taskProgress';
 import { estimatedDays } from '@helper-functions/estimated-days';
 import { progressIndicator } from '@helper-functions/progressIndicator';
 
-const ActiveTask = ({ taskDetails }) => {
+const ActiveTask = ({ taskDetails, devUser }) => {
   const { title, purpose, startedOn, endsOn, percentCompleted } = taskDetails;
-  const completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
+  const completedDate = timeWas(
+    startedOn * 1000,
+    false,
+    endsOn * 1000,
+    devUser
+  );
   const percentOfTaskLeft = 100 - percentCompleted;
   const percentageOfDaysRemaining = percentageofDaysRemaining(
     startedOn,
     endsOn,
-    completedDate
+    completedDate,
+    devUser
   );
   const showEstimatedDay = estimatedDays(
     percentageOfDaysRemaining,

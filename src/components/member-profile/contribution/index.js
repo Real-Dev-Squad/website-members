@@ -115,9 +115,9 @@ const ContributionCard = ({
   if (isTitleAvailable) {
     if (status !== 'VERIFIED') {
       completedText = <span>Estimated Completion: </span>;
-      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
+      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000, devUser);
     } else {
-      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
+      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000, devUser);
       completedText = <span>Completed in: </span>;
       featureLiveDate = timeWas(endsOn * 1000, true, Date.now());
       featureLiveOnText = featureLiveDate;
@@ -126,7 +126,7 @@ const ContributionCard = ({
     const createdAt = +new Date(prList[0].createdAt);
     const updatedAt = +new Date(prList[0].updatedAt);
     if (prList[0].state === 'closed') {
-      completedDate = timeWas(createdAt, false, updatedAt);
+      completedDate = timeWas(createdAt, false, updatedAt, devUser);
       completedText = (
         <span className={classNames.completedText}>Completed in </span>
       );
