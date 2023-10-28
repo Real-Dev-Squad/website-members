@@ -115,22 +115,22 @@ const ContributionCard = ({
   if (isTitleAvailable) {
     if (status !== 'VERIFIED') {
       completedText = <span>Estimated Completion: </span>;
-      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000, devUser);
+      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
     } else {
-      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000, devUser);
+      completedDate = timeWas(startedOn * 1000, false, endsOn * 1000);
       completedText = <span>Completed in: </span>;
-      featureLiveDate = timeWas(endsOn * 1000, true, Date.now(), devUser);
+      featureLiveDate = timeWas(endsOn * 1000, true, Date.now());
       featureLiveOnText = featureLiveDate;
     }
   } else {
     const createdAt = +new Date(prList[0].createdAt);
     const updatedAt = +new Date(prList[0].updatedAt);
     if (prList[0].state === 'closed') {
-      completedDate = timeWas(createdAt, false, updatedAt, devUser);
+      completedDate = timeWas(createdAt, false, updatedAt);
       completedText = (
         <span className={classNames.completedText}>Completed in </span>
       );
-      featureLiveDate = timeWas(updatedAt, true, Date.now(), devUser);
+      featureLiveDate = timeWas(updatedAt, true, Date.now());
       featureLiveOnText = featureLiveDate;
     }
   }
