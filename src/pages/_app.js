@@ -12,6 +12,7 @@ import { usePostHog } from 'next-use-posthog';
 import { TaskContextProvider } from '@store/tasks/tasks-context';
 import { KeyboardProvider } from '@store/keyboard/context';
 import KeyboardHandler from '@components/keyboard-handler';
+import '../mocks';
 
 const MyApp = (props) => {
   const { Component, pageProps } = props;
