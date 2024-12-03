@@ -1,7 +1,7 @@
 const BASE_IMAGE_URL =
   'https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main/members';
 const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
-const USER_DATA_URL = `${BASE_API_URL}/users/self`;
+const USER_DATA_URL = `${BASE_API_URL}/users?profile=true`;
 const PATHS = {
   HOME: 'https://www.realdevsquad.com',
   WELCOME: 'https://welcome.realdevsquad.com/',
