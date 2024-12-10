@@ -17,6 +17,11 @@ So, make sure to install both to use the project.
 From your terminal:
 
 ```sh
+yarn install
+```
+This install's all dependencies for a project.
+
+```sh
 yarn dev
 ```
 
