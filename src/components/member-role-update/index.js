@@ -18,6 +18,7 @@ const MemberRoleUpdate = () => {
     showMemberRoleUpdateModal,
     setShowMemberRoleUpdateModal,
     selectedMember,
+    isUserMember,
   } = userContext();
 
   const [isUpdating, setIsUpdating] = useState(false);
@@ -159,6 +160,22 @@ const MemberRoleUpdate = () => {
     </div>
   );
   const renderPromoteButton = () => {
+    if (isUserMember) {
+      return (
+        <>
+          <button
+            className={classNames.moveToMember}
+            type="button"
+            onClick={() => archiveTheMember(selectedMember)}
+          >
+            Archive Member
+          </button>
+          <br />
+          <p>{updateStatus}</p>
+        </>
+      );
+    }
+
     return (
       <>
         {isDev && !archived ? archiveReasonTextBox : null}
