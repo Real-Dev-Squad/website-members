@@ -2,7 +2,7 @@ const baseURL = `${process.env.NEXT_PUBLIC_BASE_API_URL}`;
 const imgBaseURL = `https://raw.githubusercontent.com/Real-Dev-Squad/website-static/main`;
 const getMembersURL = `${baseURL}/members`;
 const cloudinaryImageUrl = `https://res.cloudinary.com/realdevsquad/image/upload`;
-const getUserProfileSelf = `${baseURL}/users/self`;
+const getUserProfileSelf = `${baseURL}/users?profile=true`;
 
 /**
  *
