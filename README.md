@@ -1,5 +1,7 @@
 [![Better Uptime Badge](https://betteruptime.com/status-badges/v1/monitor/5hv0.svg)](https://betteruptime.com/?utm_source=status_badge)
 
+## **This Project has been deprecated and has been moved to the project: [members-site](https://github.com/Real-Dev-Squad/members-site).**
+
 # website-members
 
 The part of the website that shows the members of RDS
