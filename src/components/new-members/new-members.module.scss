@@ -7,7 +7,7 @@
 }
 
 .newUser {
-  pointer-events: none;
+  pointer-events: auto;
   display: flex;
   padding: 20px 10px;
   background: white;
@@ -39,4 +39,8 @@
   &:hover {
     box-shadow: none;
   }
+}
+.superUserContainerForNewMember {
+  @extend .containerForNewMember;
+  cursor: pointer;
 }
