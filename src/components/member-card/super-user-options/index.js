@@ -2,14 +2,16 @@ import React from 'react';
 import classNames from '@components/member-card/card.module.scss';
 import { userContext } from '@store/user/user-context';
 
-const SuperUserOptions = ({ showSettings, username }) => {
-  const { setShowMemberRoleUpdateModal, setSelectedMember } = userContext();
+const SuperUserOptions = ({ showSettings, username, isMember }) => {
+  const { setShowMemberRoleUpdateModal, setSelectedMember, setIsUserMember } =
+    userContext();
 
   const showModal = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setShowMemberRoleUpdateModal(true);
     setSelectedMember(username);
+    setIsUserMember(isMember);
   };
 
   return (
